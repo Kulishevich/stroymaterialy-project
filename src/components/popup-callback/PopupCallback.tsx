@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import s from "./PopupCallback.module.scss";
 import Image from "next/image";
@@ -18,7 +18,7 @@ export const PopupCallback = ({
   isOpen = true,
   setIsOpen,
 }: PopupCallbackProps) => {
-  const [isChecked, setIsChecked] = useState(false);
+  // const [isChecked, setIsChecked] = useState(false);
 
   //   const {
   //     handleSubmit,
@@ -34,13 +34,13 @@ export const PopupCallback = ({
 
   const handleCloseModal = () => {
     setIsOpen((prev) => !prev);
-    setIsChecked(false);
+    // setIsChecked(false);
     // reset();
   };
 
-  const handleCheckboxChange = () => {
-    setIsChecked((prev) => !prev);
-  };
+  // const handleCheckboxChange = () => {
+  //   setIsChecked((prev) => !prev);
+  // };
 
   //   const handlePost = handleSubmit(async (data) => {
   //     const message = `Поступила заявка на обратную связь. Номер телефона: ${data.phone} | Комментарий: ${data.comment}`;

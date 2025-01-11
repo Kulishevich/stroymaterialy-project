@@ -1,5 +1,4 @@
 import Head from "next/head";
-import clsx from "clsx";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { CatalogWithBanners } from "@/components/catalog-with-banners";
