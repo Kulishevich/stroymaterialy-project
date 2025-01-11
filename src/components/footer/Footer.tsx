@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Footer.module.scss";
-import { Logo } from "@/assets/logo";
+import { Logo } from "@/assets/icons/logo";
 import { SocialNetworks } from "../social-networks";
 import { Typography } from "../ui/typography";
 import Link from "next/link";

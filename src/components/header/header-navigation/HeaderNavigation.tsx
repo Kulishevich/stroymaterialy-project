@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { SelectIcons } from "@/components/ui/select-icons";
 import { PercentIcon, ProfileIcon } from "@/assets/icons";
-import { FlagRussia } from "@/assets/flag-russia";
+import { FlagRussia } from "@/assets/icons/flag-russia";
 import s from "./HeaderNavigation.module.scss";
 import clsx from "clsx";
 

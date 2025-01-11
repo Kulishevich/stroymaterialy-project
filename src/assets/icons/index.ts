@@ -21,3 +21,8 @@ export { default as AddressLocationIcon } from "./AddressLocationIcon";
 export { default as PhoneIcon } from "./PhoneIcon";
 export { default as UsersGroupIcon } from "./UsersGroupIcon";
 export { default as LetterOpenedIcon } from "./LetterOpenedIcon";
+export { default as ClockIcon } from "./ClockIcon";
+export { default as DollarIcon } from "./DollarIcon";
+export { default as MotorbikeSideIcon } from "./MotorbikeSideIcon";
+export { default as TruckSpeedIcon } from "./TruckSpeedIcon";
+export { default as DeliveryPackageIcon } from "./DeliveryPackageIcon";
