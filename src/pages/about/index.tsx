@@ -5,6 +5,7 @@ import { Banner } from "@/components/banner";
 import { LatestCompanyPromotions } from "@/components/latest-company-promotions";
 import { AboutUs } from "@/components/about-us";
 import { Advantages } from "@/components/advantages";
+import s from "./AboutPage.module.scss";
 
 export default function AboutPage() {
   return (
@@ -15,7 +16,7 @@ export default function AboutPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
+      <div className={s.container}>
         <Header />
         <AboutUs />
         <Advantages />

@@ -3,6 +3,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { FeedbackForm } from "@/components/feedback-form";
 import { DeliveryAndPayment } from "@/components/delivery-and-payment";
+import s from "./DeliveryAndPaymentPage.module.scss";
 
 export default function DeliveryAndPaymentPage() {
   return (
@@ -13,7 +14,7 @@ export default function DeliveryAndPaymentPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
+      <div className={s.container}>
         <Header />
         <DeliveryAndPayment />
         <FeedbackForm />

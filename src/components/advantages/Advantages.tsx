@@ -83,7 +83,7 @@ export const Advantages = () => {
               {advantage.title}
             </Typography>
             <Typography variant="body_3">{advantage.value}</Typography>
-            <DeliveryTruck />
+            {advantage.icon}
           </div>
         ))}
       </div>
