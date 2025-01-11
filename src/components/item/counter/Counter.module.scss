@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    border-radius: 4px;
+    border: 1px solid var(--color-grey-4);
+    width: fit-content;
+
+    font-family: var(--font-rubik);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    height: 48px;
+}
+
+.horizontal {
+    height: 38px;
+}
+
+.counter {
+    width: 52px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    & > button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        cursor: pointer;
+        width: 42px;
+        height: 50%;
+        border: none;
+
+        font-family: var(--font-rubik);
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 28px;
+
+        &:first-child {
+            border-bottom: 1px solid var(--color-grey-1);
+        }
+    }
+}

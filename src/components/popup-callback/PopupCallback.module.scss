@@ -1,0 +1,100 @@
+.overlay {
+    position: fixed;
+    background: #21253180;
+    inset: 0;
+    z-index: 999;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    box-sizing: border-box;
+    width: 856px;
+    height: 509px;
+    max-height: 100vh;
+    
+    padding: 40px 53px;
+
+    display: flex;
+    justify-content: end;
+
+    background-color: var(--color-bg);
+    border-radius: 6px;
+
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+    animation: fadeIn 0.3s ease-out;
+}
+
+.image{
+    object-fit: cover;
+    position: absolute;
+
+    right: 426px;
+    bottom: 20px;
+}
+
+.closeIcon {
+    position: absolute;
+    right: 23px;
+    top: 24px;
+    color: var(--color-accent-orange);
+}
+
+.container{
+    width: 369px;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & > h2 {
+        margin-bottom: 12px;
+    }
+    & > p {
+        margin-bottom: 16px;
+        text-align: center;
+    }
+}
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.textfield {
+    border: 1px solid #2125311A;
+}
+
+.checkboxContainer {
+    width: 100%;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin: 20px 0 12px;
+    & > p {
+        color: var(--color-gray-3);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }

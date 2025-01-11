@@ -1,0 +1,136 @@
+.wrapper {
+    width: 100%;
+}
+.containerMain {
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-text);
+}
+.containerInfo {
+    display: flex;
+    justify-content: center;
+    height: 64px;
+    background-color: var(--color-accent-orange);
+}
+.contentMain {
+    width: 1296px;
+    height: 100%;
+    padding: 48px 0;
+    display: flex;
+}
+.contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: start;
+    gap: 20px;
+
+    width: fit-content;
+    height: fit-content;
+    margin-right: 85px;
+    & > h3 {
+        color: var(--color-bg);
+        font-size: 19px;
+        font-weight: 500;
+        line-height: 26.6px;
+    }
+}
+.categoryes {
+    color: var(--color-bg);
+    width: 261px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.categoryesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.navigate {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    width: 171px;
+    color: var(--color-bg);
+
+    margin: 0 133px 0 67px;
+}
+
+.navigateContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    & > a {
+        color: var(--color-bg);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+}
+
+a.promotion {
+    display: flex;
+    gap: 5px;
+
+    color: var(--color-accent-orange);
+}
+
+.phoneAndTime {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.phoneContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    & > p{
+        color: var(--color-bg);
+    }
+}
+.card {
+    box-sizing: border-box;
+    width: 353px;
+    height: 142px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-radius: 6px;
+    background-color: #FFFFFF1A;
+    padding: 16px;
+    & > h6{
+        color: var(--color-bg);
+        opacity: 0.6;
+    }
+    & > p{
+        color: var(--color-bg);
+        width: 186px;
+    }
+}
+.contentInfo {
+    display: flex;
+    align-items: center;
+    color: var(--color-bg);
+}
+.icons {
+    width: 209px;
+    height: 32px;
+    margin: 0 295px 0 429px;
+
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    filter: brightness(0) invert(1);
+  }

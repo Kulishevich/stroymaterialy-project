@@ -1,0 +1,40 @@
+.container {
+    // container
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list {
+    display: inline-flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-width: 768px;
+    padding: 0 16px;
+}
+.elem {
+    display: inline-flex;
+    align-items: center;
+    & > a {
+        text-decoration: none;
+    }
+}
+.link {
+    text-decoration: none;
+    color: var(--color-text);
+}
+.icon {
+    margin: 0 8px;
+    flex-shrink: 0;
+    color: var(--color-accent-orange);
+    width: 16px;
+    height: 16px;
+}
+
+.li {
+    // sm:text-left
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+}

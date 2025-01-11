@@ -1,0 +1,143 @@
+@import '../../../styles/variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &:not(.disabled):hover .iconSearch,
+  &:not(.disabled):focus-within .iconSearch {
+    color: var(--color-accent-orange);
+  }
+}
+
+.iconSearch {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+
+  width: 26px;
+  height: 26px;
+
+  color: var(--color-text);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-accent-orange);
+}
+
+.input {
+  all: unset;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  padding: 16px;
+
+  font-family: var(--font-rubik);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18.96px;
+
+  background-color: #FFFFFF;
+  border-radius: 4px;
+
+  transition: border-color 0.3s ease;
+  &:disabled {
+    pointer-events: none; 
+    color: #7D7D7D;
+  }
+
+  &.search_field {
+    padding-left: 52px;
+  }
+
+  @media (max-width: $mobile) {
+    font-family: var(--font-onest);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22.4px;
+  }
+}
+
+.placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18.96px;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7d7d7d;
+  pointer-events: none;
+  & > span {
+    color: var(--color-accent-red);
+  }
+  @media (max-width: $mobile) {
+    font-family: var(--font-onest);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22.4px;
+  }
+}
+
+.error {
+  color: var(--color-accent-red);
+}
+
+.errorMessage {
+  margin-top: 12px;
+  color: var(--color-accent-red);
+}
+
+.disabled {
+  cursor: default;
+  color: #7D7D7D;
+}
+
+//разобраться
+.input:-webkit-autofill,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:hover {
+  box-shadow: 0 0 0 30px var(--color-dark-500) inset;
+
+  -webkit-text-fill-color: var(--color-light-100);
+}
+
+.input input[type='search']::-webkit-search-cancel-button {
+  display: none;
+  appearance: none;
+}
+
+/* Chrome, Edge и Safari,
+Ensure consistent autofill styling in all states (hover, focus, active) */
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:active,
+.input:-webkit-autofill:focus {
+  --webkit-text-fill-color: var(--color-light-100);
+
+  background-color: var(--color-dark-900);
+  transition: background-color 3000s ease-in-out 0s;
+}
+
+.input.error:-webkit-autofill,
+.input.error:-webkit-autofill:hover,
+.input.error:-webkit-autofill:focus,
+.input.error:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--color-danger-300);
+}
+

@@ -1,0 +1,98 @@
+@import '../../../styles/variables';
+
+.button {
+    cursor: pointer;
+    
+    width: 196px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    color: var(--color-bg);
+    font-family: var(--font-rubik);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    text-decoration: none;
+
+    box-sizing: border-box;
+    padding: 10px 12px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+
+    transition: all 0.3s ease;
+    &:disabled {
+      cursor: default;
+    }
+
+    @media (max-width: $mobile) {
+      font-family: var(--font-onest);
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+    }
+  }
+  
+  .primary {
+    border: none;
+    background-color: var(--color-accent-orange);
+  
+    &:hover {
+      background-color: var(--color-text);
+    }
+    
+    &:active {
+      background-color: var(--color-text);
+      box-shadow: 0px 0px 8px 0px #21253180;
+    }
+  
+    &:focus-visible {
+      background-color: var(--color-text);
+      box-shadow: 0px 0px 8px 0px #21253180;
+    }
+  
+    &:disabled {
+      color: var(--color-grey-3);
+      background-color: var(--color-grey-4);
+    }
+  }
+
+  .secondary {
+    border: none;
+    background-color: var(--color-text);
+  }
+
+  .icon {
+    width: fit-content;
+    padding: 12px;
+
+    background-color: transparent;
+    outline: 1px solid #7D7D7D33;
+    color: var(--color-accent-orange);
+
+    &:hover {
+      outline: none;
+      color: var(--color-bg);
+      background-color: var(--color-accent-orange);
+    }
+    
+    &:active {
+      box-shadow: 0px 0px 8px 0px #EB5C2080;
+      outline: none;
+      color: var(--color-bg);
+      background-color: var(--color-accent-orange);
+    }
+  
+    &:focus-visible {
+      box-shadow: 0px 0px 8px 0px #EB5C2080;
+      outline: none;
+      color: var(--color-bg);
+      background-color: var(--color-accent-orange);
+    }
+  
+    &:disabled {
+      color: var(--color-grey-2);
+    }
+  }

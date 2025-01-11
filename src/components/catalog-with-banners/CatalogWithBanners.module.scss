@@ -1,0 +1,17 @@
+.container {
+    position: relative;
+    width: 1296px;
+    margin: 0 auto;
+
+    display: flex;
+    gap: 24px;
+}
+.banner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.smallBannerContainer {
+    display: flex;
+    gap: 24px;
+}

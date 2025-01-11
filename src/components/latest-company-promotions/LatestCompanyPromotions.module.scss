@@ -1,0 +1,13 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    text-align: center;
+
+    width: 1296px;
+    margin: 0 auto;
+}
+.bannersContainer {
+    display: flex;
+    justify-content: space-between;
+}

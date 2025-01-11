@@ -1,0 +1,16 @@
+.main {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+}
+.text {
+    border-left: 2px solid var(--color-accent-orange);
+    height: 50px;
+    padding-left: 15px;
+}
+.light {
+    color: var(--color-bg);
+}
+.dark {
+    color: var(--color-text);
+}

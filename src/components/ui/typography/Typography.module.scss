@@ -1,0 +1,113 @@
+@import '../../../styles/variables';
+
+@mixin typography($fontSize, $lineHeight, $fontWeight) {
+  margin: 0;
+  padding: 0;
+
+  color: var(--color-text);
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  line-height: $lineHeight;
+  font-family: var(--font-rubik);
+  @media (max-width: $mobile) {
+    font-family: var(--font-onest);
+  }
+}
+
+.h1 {
+  @include typography(42px, 49.77px, 600);
+  @media (max-width: $mobile) {
+    @include typography(30px, 39px, 600);
+  }
+}
+
+.h2 {
+  @include typography(36px, 42.66px, 600);
+  @media (max-width: $mobile) {
+    @include typography(26px, 33.8px, 600);
+  }
+}
+
+.h3 {
+  @include typography(22px, 30.8px, 500);
+  @media (max-width: $mobile) {
+    @include typography(22px, 30.8px, 600);
+  }
+}
+
+.h4 {
+  @include typography(20px, 23.7px, 500);
+  @media (max-width: $mobile) {
+    @include typography(18px, 25.2px, 500);
+  }
+}
+
+.h5 {
+  @include typography(14px, 19.6px, 600);
+  @media (max-width: $mobile) {
+    @include typography(14px, 19.6px, 600);
+  }
+}
+
+.body_1 {
+  @include typography(18px, 25.2px, 400);
+  @media (max-width: $mobile) {
+    @include typography(16px, 24px, 400);
+  }
+}
+
+.body_2 {
+  @include typography(18px, 25.2px, 500);
+  @media (max-width: $mobile) {
+    @include typography(16px, 22.4px, 600);
+  }
+}
+
+.body_3 {
+  @include typography(16px, 22.4px, 400);
+  @media (max-width: $mobile) {
+    @include typography(14px, 19.6px, 400);
+  }
+}
+
+.body_4 {
+  @include typography(16px, 18.96px, 400);
+  @media (max-width: $mobile) {
+    @include typography(12px, 16.8px, 600);
+  }
+}
+
+.body_5 {
+  @include typography(16px, 22.4px, 600);
+  @media (max-width: $mobile) {
+    @include typography(16px, 22.4px, 600);
+  }
+}
+
+.body_6 {
+  @include typography(14px, 19.6px, 400);
+  @media (max-width: $mobile) {
+    @include typography(14px, 19.6px, 400);
+  }
+}
+
+.button {
+  @include typography(20px, 28px, 400);
+  @media (max-width: $mobile) {
+    @include typography(20px, 28px, 500);
+  }
+}
+
+.textfield {
+  @include typography(16px, 18.96px, 400);
+  @media (max-width: $mobile) {
+    @include typography(16px, 22.4px, 400);
+  }
+} 
+
+.required {
+  &::after {
+    content: '*';
+    color: var(--color-accent-red);
+  }
+}

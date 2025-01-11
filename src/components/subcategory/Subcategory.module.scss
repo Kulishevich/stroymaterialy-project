@@ -1,0 +1,23 @@
+.card {
+    width: 196px;
+    height: 196px;
+    
+    border-radius: 6px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+    text-align: center;
+
+    box-shadow: 2px 3px 7px 0px #2225310D;
+}
+
+.light {
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}
+.orange {
+    color: var(--color-bg);
+    background-color: var(--color-accent-orange);
+}

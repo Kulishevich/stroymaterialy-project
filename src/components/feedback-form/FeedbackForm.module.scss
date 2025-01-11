@@ -1,0 +1,39 @@
+.wrapper {
+    width: 1296px;
+    height: 464px;
+    background-color: var( --color-accent-orange);
+    display: flex;
+    border-radius: 6px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.image{
+    object-fit: cover;
+}
+
+.container {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 42px;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.text {
+    color: var(--color-bg);
+    max-width: 526px;
+}
+
+.inputsContainer{
+    display: flex;
+    gap: 24px;
+}
+.submitContainer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

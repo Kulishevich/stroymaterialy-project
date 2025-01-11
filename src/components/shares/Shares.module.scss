@@ -1,0 +1,15 @@
+.container {
+    width: 1296px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    align-items: center;
+}
+.sharesContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки одинаковой ширины */
+    grid-auto-rows: auto; /* Ряды автоматически подстраиваются под содержимое */
+    column-gap: 24px; /* Расстояние между колонками */
+    row-gap: 42px; /* Расстояние между строками */
+}
