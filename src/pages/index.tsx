@@ -1,6 +1,4 @@
 import Head from "next/head";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { CatalogWithBanners } from "@/components/catalog-with-banners";
 import { ProductCatalog } from "@/components/product-catalog";
 import { LatestCompanyPromotions } from "@/components/latest-company-promotions";

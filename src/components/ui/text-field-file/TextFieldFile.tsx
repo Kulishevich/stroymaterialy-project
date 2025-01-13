@@ -12,7 +12,7 @@ export const TextFieldFile = ({ setSelectedImage, ...rest }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const selectFileHandler = () => {
-    inputRef && inputRef.current?.click();
+    // inputRef && inputRef.current?.click();
   };
   const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
