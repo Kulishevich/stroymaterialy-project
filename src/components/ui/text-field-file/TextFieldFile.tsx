@@ -5,7 +5,7 @@ import { Button } from "../button/Button";
 import { Typography } from "../typography";
 import { UploadIcon } from "@/assets/icons";
 type Props = {
-  setSelectedImage: (image: File) => void;
+  setSelectedImage: any;
 } & ComponentPropsWithoutRef<"input">;
 
 export const TextFieldFile = ({ setSelectedImage, ...rest }: Props) => {

@@ -3,7 +3,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Radio } from "@/components/ui/radio";
 import { Select } from "@/components/ui/select";
 import { TextField } from "@/components/ui/text-field";
-import { TextFieldFile } from "@/components/ui/text-field-file";
+// import { TextFieldFile } from "@/components/ui/text-field-file";
 import { Typography } from "@/components/ui/typography";
 import s from "./MastersClubForm.module.scss";
 
@@ -87,7 +87,7 @@ export const MastersClubForm = () => {
           <Typography variant="h4" as="h4">
             5. Загрузить файл
           </Typography>
-          <TextFieldFile />
+          {/* <TextFieldFile setSelectedImage={setImage} /> */}
         </div>
         <div className={s.elem}>
           <div className={s.checkboxContainer}>
