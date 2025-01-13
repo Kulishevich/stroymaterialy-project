@@ -26,3 +26,8 @@ export { default as DollarIcon } from "./DollarIcon";
 export { default as MotorbikeSideIcon } from "./MotorbikeSideIcon";
 export { default as TruckSpeedIcon } from "./TruckSpeedIcon";
 export { default as DeliveryPackageIcon } from "./DeliveryPackageIcon";
+export { default as UploadIcon } from "./UploadIcon";
+export { default as DollarOutlinedIcon } from "./DollarOutlinedIcon";
+export { default as MaleIcon } from "./MaleIcon";
+export { default as BagOutlinedIcon } from "./BagOutlinedIcon";
+export { default as TruckOutlinedIcon } from "./TruckOutlinedIcon";

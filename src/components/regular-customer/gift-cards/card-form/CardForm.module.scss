@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 51px;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    width: 374px;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}

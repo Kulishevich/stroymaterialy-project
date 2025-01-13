@@ -1,0 +1,118 @@
+.tablesContainer {
+    display: flex;
+    flex-direction: column;
+
+    gap: 62px;
+}
+
+.tableContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.tableDelivery {
+    width: 945px;
+    height: 612px;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    border-radius: 6px;
+    overflow: hidden;
+
+    & > thead {
+        border: 1px solid #2125311A;
+        & > tr > th {
+            background-color: var(--color-text);
+            height: 132px;
+            box-sizing: border-box;
+            padding: 0;
+            &:first-child {
+                width: 281px;
+                padding-left: 36px;
+            }
+            &:not(:first-child) {
+                width: 166px;
+            }
+            &:not(:last-child){
+                border-right: 1px solid #2125311A;
+            }
+            & > p {
+                color: var(--color-bg);
+            }
+        }
+    }
+    
+    & > tbody > tr {
+        border: 1px solid #2125311A;
+    }
+
+    & > tbody > tr {
+        & > th {
+            height: 120px;
+            padding-left: 36px;
+            
+            display: flex;
+            align-items: center;
+            text-align: left;
+            gap: 4px;
+            border-right: 1px solid #2125311A;
+        }
+        & > td {
+            height: 120px;
+            text-align: center;
+            &:not(:last-child){
+                border-right: 1px solid #2125311A;
+            }
+        }
+
+    }
+}
+
+.tablePayment {
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    width: 945px;
+    height: 294px;
+    border-radius: 6px;
+    overflow: hidden;
+
+    th, td {
+        border: 1px solid #2125311A;
+    }
+    & > thead > tr {
+        & > th {
+            width: 281px;
+            height: 51px;
+            padding-left: 36px;
+
+            display: flex;
+            align-items: center;
+            text-align: left;
+            background-color: var(--color-text);
+            color: var(--color-bg);
+        }
+        & > td {
+            width: 332px;
+            text-align: center;
+        }
+    }
+    & > tbody > tr {
+        & > th {
+            width: 281px;  
+            height: 80px;          
+            padding-left: 36px;
+
+            display: flex;
+            align-items: center;
+            text-align: left;
+            background-color: var(--color-text);
+            color: var(--color-bg);
+        }
+        & > td {
+            text-align: center;
+        }
+
+    }
+}

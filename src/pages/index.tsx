@@ -19,14 +19,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={s.container}>
-        <Header />
         <CatalogWithBanners />
         <ProductCatalog />
         <LatestCompanyPromotions />
         <CompanyContacts />
         <Banner />
         <FeedbackForm />
-        <Footer />
       </div>
     </>
   );

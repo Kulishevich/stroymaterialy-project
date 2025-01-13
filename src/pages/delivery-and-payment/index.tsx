@@ -1,6 +1,4 @@
 import Head from "next/head";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { FeedbackForm } from "@/components/feedback-form";
 import { DeliveryAndPayment } from "@/components/delivery-and-payment";
 import s from "./DeliveryAndPaymentPage.module.scss";
@@ -15,10 +13,8 @@ export default function DeliveryAndPaymentPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={s.container}>
-        <Header />
         <DeliveryAndPayment />
         <FeedbackForm />
-        <Footer />
       </div>
     </>
   );

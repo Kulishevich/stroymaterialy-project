@@ -6,6 +6,7 @@ import { PercentIcon, ProfileIcon } from "@/assets/icons";
 import { FlagRussia } from "@/assets/icons/flag-russia";
 import s from "./HeaderNavigation.module.scss";
 import clsx from "clsx";
+import { Paths } from "@/shared/enums";
 
 export const HeaderNavigation = () => {
   const headerOption = [
@@ -28,35 +29,39 @@ export const HeaderNavigation = () => {
           </Typography>
           <Typography
             as={Link}
-            href={"/delivery-and-payment"}
+            href={Paths.deliveryAndPayment}
             className={s.navLink}
           >
             Доставка и оплата
           </Typography>
-          <Typography as={Link} href={"#"} className={s.navLink}>
+          <Typography
+            as={Link}
+            href={Paths.regularСustomer}
+            className={s.navLink}
+          >
             Постоянный клиент
           </Typography>
           <Typography
             as={Link}
-            href={"/shares"}
+            href={Paths.shares}
             className={clsx(s.navLink, s.shares)}
           >
             <PercentIcon />
             Акции
           </Typography>
-          <Typography as={Link} href={"#"} className={s.navLink}>
+          <Typography as={Link} href={Paths.cooperation} className={s.navLink}>
             Сотрудничество
           </Typography>
-          <Typography as={Link} href={"/about"} className={s.navLink}>
+          <Typography as={Link} href={Paths.about} className={s.navLink}>
             О нас
           </Typography>
-          <Typography as={Link} href={"/contacts"} className={s.navLink}>
+          <Typography as={Link} href={Paths.contacts} className={s.navLink}>
             Контакты
           </Typography>
         </nav>
         <SelectIcons options={headerOption} className={s.selectHeader} />
         <Typography
-          href={"/profile"}
+          href={Paths.profile}
           className={s.profileLink}
           as={Link}
           variant="body_3"

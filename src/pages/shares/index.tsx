@@ -1,6 +1,4 @@
 import Head from "next/head";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { FeedbackForm } from "@/components/feedback-form";
 import { Shares } from "@/components/shares";
 import s from "./SharesPage.module.scss";
@@ -15,10 +13,8 @@ export default function SharesPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={s.container}>
-        <Header />
         <Shares />
         <FeedbackForm />
-        <Footer />
       </div>
     </>
   );

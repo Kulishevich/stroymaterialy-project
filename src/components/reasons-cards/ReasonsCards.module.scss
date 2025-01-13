@@ -1,0 +1,42 @@
+.container {
+    width: 1296px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    & > h2 {
+        text-align: center;
+    }
+}
+.cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* Две колонки одинаковой ширины */
+    column-gap: 24px; /* Расстояние между элементами в колонках */
+    row-gap: 32px; /* Расстояние между строками */
+    justify-content: center; /* Центрирует элементы по горизонтали */
+  }
+.card {
+    display: flex;
+    width: 636px;
+    height: 313px;
+    box-sizing: border-box;
+
+    border-radius: 6px;
+    box-shadow: 6px 12px 13px 0px #2225310A;
+    overflow: hidden;
+
+    &:last-child{
+        grid-column: 1 / -1; /* Третий элемент занимает всю строку */
+        justify-self: center; /* Центрирует третий элемент */
+    }
+}
+.image {
+    object-fit: cover;
+    border-radius: 6px;
+}
+.content {
+    padding: 36px;
+    padding-bottom: 0;
+}

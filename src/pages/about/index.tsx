@@ -1,11 +1,10 @@
 import Head from "next/head";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { Banner } from "@/components/banner";
 import { LatestCompanyPromotions } from "@/components/latest-company-promotions";
 import { AboutUs } from "@/components/about-us";
 import { Advantages } from "@/components/advantages";
 import s from "./AboutPage.module.scss";
+import { FeedbackForm } from "@/components/feedback-form";
 
 export default function AboutPage() {
   return (
@@ -17,12 +16,11 @@ export default function AboutPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={s.container}>
-        <Header />
         <AboutUs />
         <Advantages />
         <Banner />
         <LatestCompanyPromotions />
-        <Footer />
+        <FeedbackForm />
       </div>
     </>
   );

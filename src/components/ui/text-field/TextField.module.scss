@@ -11,7 +11,6 @@
   position: relative;
   display: flex;
   align-items: center;
-
   &:not(.disabled):hover .iconSearch,
   &:not(.disabled):focus-within .iconSearch {
     color: var(--color-accent-orange);
@@ -51,7 +50,8 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 18.96px;
-
+  
+  border: 1px solid #2125311A;
   background-color: #FFFFFF;
   border-radius: 4px;
 

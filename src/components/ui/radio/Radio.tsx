@@ -3,7 +3,8 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef, useId } from "react";
 import * as RadixRadio from "@radix-ui/react-radio-group";
 import clsx from "clsx";
 
-import s from "@/components/radio/Radio.module.scss";
+import s from "./Radio.module.scss";
+import { Typography } from "../typography";
 
 export type RadioOption = {
   id: string;
@@ -37,6 +38,7 @@ export const Radio = forwardRef<RadioGroupRef, RadioProps>((props, ref) => {
           >
             <RadixRadio.Indicator className={s.indicator} />
           </RadixRadio.Item>
+          <Typography variant="body_1">{option.value}</Typography>
         </div>
       ))}
     </RadixRadio.Root>

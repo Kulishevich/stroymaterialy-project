@@ -1,6 +1,4 @@
 import Head from "next/head";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { FeedbackForm } from "@/components/feedback-form";
 import s from "./ContactsPage.module.scss";
 import { CompanyContacts } from "@/components/company-contacts";
@@ -15,10 +13,8 @@ export default function ContactsPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={s.main}>
-        <Header />
         <CompanyContacts variant="secondary" />
         <FeedbackForm />
-        <Footer />
       </div>
     </>
   );

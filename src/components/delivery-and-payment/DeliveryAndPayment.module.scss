@@ -44,59 +44,7 @@
     }
 }
 
-.content {
+.wrapper {
     display: flex;
     gap: 45px;
-}
-
-.table {
-    border-spacing: 0;
-
-    width: 945px;
-    height: 612px;
-    border: 1px solid black;
-    border-radius: 6px;
-    overflow: hidden;
-    & > caption {
-        margin-bottom: 24px;
-        text-align: left;
-    }
-    & > thead{
-        background-color: var(--color-text);
-    }
-
-    & > tbody > tr {
-        & > th {
-            height: 100%;
-            padding-left: 36px;
-
-            display: flex;
-            align-items: center;
-            text-align: left;
-            gap: 4px;
-        }
-        & > td {
-            text-align: center;
-        }
-
-    }
-}
-
-.tableTitle {
-    height: 132px;
-    box-sizing: border-box;
-    &:first-child {
-        width: 281px;
-        padding-left: 36px;
-
-        display: flex;
-        justify-content: start;
-        align-items: center;
-    }
-    &:not(:first-child) {
-        width: 166px;
-    }
-    & > p {
-        color: var(--color-bg);
-    }
 }
