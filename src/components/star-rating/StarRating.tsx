@@ -11,9 +11,9 @@ export const StarRating: FC = () => {
     setRating(value);
     console.log(`Текущий рейтинг: ${value}`);
   };
-
   return (
     <div>
+      {/* @ts-expect-error: Ошибка типов из-за несовместимости react-rating */}
       <Rating
         className={s.rating}
         initialRating={rating}
