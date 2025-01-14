@@ -8,18 +8,36 @@ import s from "./HeaderNavigation.module.scss";
 import clsx from "clsx";
 import { Paths } from "@/shared/enums";
 
-export const HeaderNavigation = () => {
-  const headerOption = [
-    {
-      icon: <FlagRussia />,
-      value: "Russia1",
-    },
-    {
-      icon: <FlagRussia />,
-      value: "Russia2",
-    },
-  ];
+const headerOptions = [
+  {
+    icon: <FlagRussia />,
+    value: "Russia1",
+  },
+  {
+    icon: <FlagRussia />,
+    value: "Russia2",
+  },
+];
 
+// const cooperationOptions = [
+//   {
+//     option: (
+//       <Typography as={Link} href={Paths.forBusiness} className={s.navLink}>
+//         Для бизнеса
+//       </Typography>
+//     ),
+//     value: "value1",
+//   },
+//   {
+//     option: (
+//       <Typography as={Link} href={Paths.vacancies} className={s.navLink}>
+//         Вакансии
+//       </Typography>
+//     ),
+//     value: "value2",
+//   },
+// ];
+export const HeaderNavigation = () => {
   return (
     <header className={s.header}>
       <div className={s.headerContainer}>
@@ -49,7 +67,7 @@ export const HeaderNavigation = () => {
             <PercentIcon />
             Акции
           </Typography>
-          <Typography as={Link} href={Paths.cooperation} className={s.navLink}>
+          <Typography as={Link} href={Paths.forBusiness} className={s.navLink}>
             Сотрудничество
           </Typography>
           <Typography as={Link} href={Paths.about} className={s.navLink}>
@@ -59,7 +77,11 @@ export const HeaderNavigation = () => {
             Контакты
           </Typography>
         </nav>
-        <SelectIcons options={headerOption} className={s.selectHeader} />
+        <SelectIcons
+          options={headerOptions}
+          className={s.selectHeader}
+          placeHolder={headerOptions[0].icon}
+        />
         <Typography
           href={Paths.profile}
           className={s.profileLink}

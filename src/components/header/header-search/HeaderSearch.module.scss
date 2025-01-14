@@ -1,21 +1,29 @@
-.search {
+.container {
+    position: relative;
     box-sizing: border-box;
     width: 1296px;
     height: 70px;
-    padding: 0 30px;
-
+    padding-right:30px;
+    
     display: flex;
     align-items: center;
-    gap: 42px;
-
+    gap: 12px;
     background-color: var(--color-accent-orange);
     border-radius: 6px;
-}
 
-.catalogButton {
+    & > .catalogButton {
+        gap: 10px;
+        height: 100%;
+        width: 168px;
+        box-sizing: border-box;
+        & > p {
+            color: var(--color-bg);
+        }
+    }
+}
+.search {
     display: flex;
-    gap: 10px;
-    color: var(--color-bg);
+    gap: 42px;
 }
 
 .inputSearch {

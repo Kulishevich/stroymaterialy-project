@@ -21,7 +21,7 @@ export type SelectIconsProps = {
   className?: string;
   label?: string;
   options?: OptionsValue[];
-  placeHolder?: string;
+  placeHolder?: ReactNode;
 } & ComponentPropsWithoutRef<typeof RadixSelect.Root>;
 export const SelectIcons = forwardRef<
   ElementRef<typeof RadixSelect.Trigger>,

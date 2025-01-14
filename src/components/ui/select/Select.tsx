@@ -19,6 +19,7 @@ export type OptionsValue = {
   value: string;
 };
 export type SelectProps = {
+  variant?: "primary" | "secondary";
   className?: string;
   label?: string;
   options?: OptionsValue[];
@@ -30,6 +31,7 @@ export const Select = forwardRef<
 >(
   (
     {
+      variant = "primary",
       className,
       defaultValue,
       disabled,
@@ -66,7 +68,13 @@ export const Select = forwardRef<
         {...rest}
       >
         {label && <Typography as={"label"}>{label}</Typography>}
-        <RadixSelect.Trigger className={clsx(s.trigger, className)} ref={ref}>
+        <RadixSelect.Trigger
+          className={clsx(
+            variant === "primary" ? s.trigger : s.triggerSecondary,
+            className
+          )}
+          ref={ref}
+        >
           <RadixSelect.Value placeholder={placeHolder} />
           <RadixSelect.Icon asChild>
             <ArrowDownIcon className={s.icon} />

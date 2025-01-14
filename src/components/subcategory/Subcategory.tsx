@@ -6,18 +6,19 @@ import clsx from "clsx";
 
 type SubcategoryProps = {
   variant?: "light" | "orange";
+  image: string;
+  value: string;
 };
 
-export const Subcategory = ({ variant = "light" }: SubcategoryProps) => {
+export const Subcategory = ({
+  variant = "light",
+  image,
+  value,
+}: SubcategoryProps) => {
   return (
     <div className={clsx(s.card, variant === "light" ? s.light : s.orange)}>
-      <Image
-        src={"/images/subcategory.png"}
-        width={160}
-        height={122}
-        alt="Subcategory"
-      />
-      <Typography variant="body_5">Упаковочные и укрывные пленки</Typography>
+      <Image src={image} width={160} height={122} alt="Subcategory" />
+      <Typography variant="body_5">{value}</Typography>
     </div>
   );
 };

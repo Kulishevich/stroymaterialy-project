@@ -1,0 +1,14 @@
+.container {
+    width: 1296px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 140px;
+    margin-bottom: 140px;
+}
+
+.products {
+    display: flex;
+    gap: 24px;
+}

@@ -5,6 +5,7 @@ export enum Paths {
   deliveryAndPayment = "/delivery-and-payment",
   regularСustomer = "/regular-customer",
   shares = "/shares",
-  cooperation = "/cooperation",
+  forBusiness = "/cooperation/for-business",
+  vacancies = "/cooperation/vacancies",
   profile = "/profile",
 }

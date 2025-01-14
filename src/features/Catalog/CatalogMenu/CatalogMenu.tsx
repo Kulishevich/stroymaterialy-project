@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import s from "./Catalog.module.scss";
-import { Typography } from "../ui/typography";
+import s from "./CatalogMenu.module.scss";
 import Image from "next/image";
 import { ArrowRightIcon } from "@/assets/icons";
 import clsx from "clsx";
+import { Typography } from "@/components/ui/typography";
 
 const categoryes = [
   {
@@ -58,7 +58,7 @@ const categoryes = [
   },
 ];
 
-export const Catalog = () => {
+export const CatalogMenu = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 

@@ -57,11 +57,40 @@
       color: var(--color-grey-3);
       background-color: var(--color-grey-4);
     }
+
+    &.active {
+      background-color: var(--color-text);
+      box-shadow: 0px 0px 8px 0px #21253180;
+    }
   }
 
   .secondary {
     border: none;
     background-color: var(--color-text);
+
+    &:hover {
+      background-color: var(--color-accent-orange);
+    }
+    
+    &:active {
+      background-color: var(--color-accent-orange);
+      box-shadow: 0px 0px 8px 0px #EB5C2080;
+    }
+    
+    &:focus-visible {
+      background-color: var(--color-accent-orange);
+      box-shadow: 0px 0px 8px 0px #EB5C2080;
+    }
+  
+    &:disabled {
+      color: var(--color-grey-3);
+      background-color: var(--color-grey-4);
+    }
+
+    &.active {
+      background-color: var(--color-accent-orange);
+      box-shadow: 0px 0px 8px 0px #EB5C2080;
+    }
   }
 
   .icon {
@@ -95,4 +124,8 @@
     &:disabled {
       color: var(--color-grey-2);
     }
+  }
+
+  .fullWidth {
+    width: 100%;
   }

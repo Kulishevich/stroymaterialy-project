@@ -6,10 +6,13 @@ import React, {
 } from "react";
 
 import s from "./Button.module.scss";
+import clsx from "clsx";
 
 export type ButtonProps<T extends ElementType = "button"> = {
   as?: T;
   variant?: "icon" | "secondary" | "primary";
+  active?: boolean;
+  fullWidth?: boolean;
 } & ComponentPropsWithoutRef<T>;
 
 export const Button = forwardRef(
@@ -22,12 +25,20 @@ export const Button = forwardRef(
       className,
       type = "button",
       variant = "primary",
+      active = false,
+      fullWidth = false,
       ...rest
     } = props;
 
     return (
       <Component
-        className={`${s.button} ${s[variant]} ${className}`}
+        className={clsx(
+          s.button,
+          s[variant],
+          className,
+          active && s.active,
+          fullWidth && s.fullWidth
+        )}
         ref={ref}
         type={type}
         {...rest}

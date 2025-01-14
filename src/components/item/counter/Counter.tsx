@@ -3,10 +3,10 @@ import s from "./Counter.module.scss";
 import clsx from "clsx";
 
 type CounterProps = {
-  vertical: boolean;
+  vertical?: boolean;
 };
 
-export const Counter = ({ vertical }: CounterProps) => {
+export const Counter = ({ vertical = true }: CounterProps) => {
   const [count, setCount] = useState(0);
 
   const increment = () => {

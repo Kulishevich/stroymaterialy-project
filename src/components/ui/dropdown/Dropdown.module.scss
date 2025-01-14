@@ -1,0 +1,35 @@
+.trigger {
+    display: flex;
+    justify-content: space-between;
+
+    cursor: pointer;
+    padding: 24px 16px;
+    width: 100%;
+    
+    border: none;
+    border-radius: 6px;
+    background-color: var(--color-bg);
+    box-shadow: 6px 12px 13px 0px #2225310A;
+    & > svg {
+        color: var(--color-accent-orange);
+    }
+  }
+  
+  .content {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+  }
+  
+  .item {
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .item:hover {
+    background-color: #f0f0f0;
+  }

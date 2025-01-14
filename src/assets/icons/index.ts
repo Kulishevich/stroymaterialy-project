@@ -31,3 +31,4 @@ export { default as DollarOutlinedIcon } from "./DollarOutlinedIcon";
 export { default as MaleIcon } from "./MaleIcon";
 export { default as BagOutlinedIcon } from "./BagOutlinedIcon";
 export { default as TruckOutlinedIcon } from "./TruckOutlinedIcon";
+export { default as StarIcon } from "./StarIcon";

@@ -1,41 +1,52 @@
 import { BagShoppingIcon, BurgerIcon, HeartIcon } from "@/assets/icons";
 import { TextField } from "@/components/ui/text-field";
 import { Typography } from "@/components/ui/typography";
-import React from "react";
+import React, { useState } from "react";
 import s from "./HeaderSearch.module.scss";
+import { Button } from "@/components/ui/button";
+import { CatalogPopup } from "@/components/catalog-popup";
 
 export const HeaderSearch = () => {
+  const [isActiveCatalog, setIsActiveCatalog] = useState<boolean>(false);
+
   return (
-    <div className={s.search}>
-      <div className={s.catalogButton}>
+    <div className={s.container}>
+      <Button
+        className={s.catalogButton}
+        onClick={() => setIsActiveCatalog(true)}
+        active={isActiveCatalog}
+      >
         <BurgerIcon />
         <Typography variant="body_2">Каталог</Typography>
-      </div>
-      <TextField
-        variant="search_field"
-        className={s.inputSearch}
-        placeholder="Поиск по сайту"
-      />
-      <div className={s.buttonsContainer}>
-        <div className={s.favorites}>
-          <div className={s.iconContainer}>
-            <HeartIcon width={28} height={28} />
+      </Button>
+      <div className={s.search}>
+        <TextField
+          variant="search_field"
+          className={s.inputSearch}
+          placeholder="Поиск по сайту"
+        />
+        <div className={s.buttonsContainer}>
+          <div className={s.favorites}>
+            <div className={s.iconContainer}>
+              <HeartIcon width={28} height={28} />
+            </div>
+            <div className={s.textContainer}>
+              <Typography as="h6">Избранное</Typography>
+              <Typography as="p">Товаров: 0</Typography>
+            </div>
           </div>
-          <div className={s.textContainer}>
-            <Typography as="h6">Избранное</Typography>
-            <Typography as="p">Товаров: 0</Typography>
+          <div className={s.shoppingCart}>
+            <div className={s.iconContainer}>
+              <BagShoppingIcon width={28} height={28} />
+            </div>
+            <div className={s.textContainer}>
+              <Typography as="h6">Корзина</Typography>
+              <Typography as="p">Товаров: 0 (0 AMD)</Typography>
+            </div>
           </div>
         </div>
-        <div className={s.shoppingCart}>
-          <div className={s.iconContainer}>
-            <BagShoppingIcon width={28} height={28} />
-          </div>
-          <div className={s.textContainer}>
-            <Typography as="h6">Корзина</Typography>
-            <Typography as="p">Товаров: 0 (0 AMD)</Typography>
-          </div>
-        </div>
       </div>
+      <CatalogPopup isOpen={isActiveCatalog} setIsOpen={setIsActiveCatalog} />
     </div>
   );
 };

@@ -53,7 +53,7 @@
   background-color: var(--color-bg);
   transition: all 0.3s;
 
-  margin-bottom: 12px;
+  // margin-bottom: 12px;
 
   &:last-child{
     margin-bottom: 0;
@@ -76,7 +76,7 @@
 .option {
   display: flex;
   flex-wrap: nowrap;
-  gap: 12px;
+  justify-content: center;
   align-items: center;
 
   font-family: var(--font-rubik);

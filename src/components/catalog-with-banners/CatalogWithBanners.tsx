@@ -1,12 +1,12 @@
 import React from "react";
 import s from "./CatalogWithBanners.module.scss";
-import { Catalog } from "../catalog/Catalog";
 import Image from "next/image";
+import { CatalogMenu } from "@/features/Catalog/CatalogMenu/CatalogMenu";
 
 export const CatalogWithBanners = () => {
   return (
     <div className={s.container}>
-      <Catalog />
+      <CatalogMenu />
       <div className={s.banner}>
         <Image
           src={"/images/banner.png"}

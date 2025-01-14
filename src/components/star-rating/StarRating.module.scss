@@ -1,0 +1,15 @@
+.rating {
+    & > span:not(:last-child) {
+        margin-right: 4px;
+    }
+}
+.star {
+    color: var(--color-grey-2);
+    width: 28px;
+    height: 28px;
+}
+.active {
+    color: var(--color-accent-orange);
+    width: 28px;
+    height: 28px;
+}
