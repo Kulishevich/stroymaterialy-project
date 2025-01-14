@@ -5,7 +5,17 @@ import { Checkbox } from "../checkbox";
 import { Typography } from "../typography";
 import { ArrowDownIcon } from "@/assets/icons";
 
-export const Dropdown = ({ placeholder, items }) => {
+export type DropdownItem = {
+  id: string;
+  value: string;
+};
+
+type DropdownProps = {
+  placeholder: string;
+  items: DropdownItem[];
+};
+
+export const Dropdown = ({ placeholder, items }: DropdownProps) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger className={s.trigger}>

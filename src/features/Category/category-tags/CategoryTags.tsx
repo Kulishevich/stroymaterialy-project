@@ -3,9 +3,15 @@ import s from "./CategoryTags.module.scss";
 import { Subcategory } from "@/components/subcategory";
 import { Typography } from "@/components/ui/typography";
 
+export type CategoryTag = {
+  id: string;
+  image: string;
+  value: string;
+};
+
 type CategoryTagsProps = {
   title: string;
-  tags: any[];
+  tags: CategoryTag[];
 };
 
 export const CategoryTags = ({ title, tags }: CategoryTagsProps) => {
