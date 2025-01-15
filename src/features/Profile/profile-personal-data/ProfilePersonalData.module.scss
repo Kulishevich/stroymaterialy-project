@@ -1,0 +1,35 @@
+.container {
+    width: 100%;
+
+    & > h3 {
+        margin-bottom: 24px;
+    }
+}
+.inputsContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 25px;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.button {
+    display: flex;
+    text-decoration: underline;
+    margin: 24px 0 32px auto;
+}
+.secondButton {
+    display: flex;
+    text-decoration: underline;
+    margin: 24px 0 24px auto;
+}
+.deleteButton {
+    width: 230px;
+    height: 58px;
+    margin-left: auto;
+}

@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.cardsContainer {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.card {
+    width: 177px;
+
+    & > h3 {
+        margin-bottom: 12px;
+    }
+    & > p {
+        margin-bottom: 10px;
+    }
+}
+.image {
+    background-color: var(--color-grey-1);
+    border-radius: 6px;
+
+    margin-bottom: 13px;
+}
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.shopButton {
+    padding: 0;
+    width: 36px;
+    height: 36px;
+}

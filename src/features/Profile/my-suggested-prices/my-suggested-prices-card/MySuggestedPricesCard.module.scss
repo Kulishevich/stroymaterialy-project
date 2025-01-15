@@ -1,0 +1,49 @@
+.card {
+    display: flex;
+    gap: 16px;
+
+    width: 460px;
+    box-sizing: border-box;
+
+    padding: 20px;
+    background-color: var(--color-bg);
+    border: 1px solid #2125314D;
+    border-radius: 6px;
+}
+
+.imageContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    height: fit-content;
+
+    padding: 16px;
+
+    background-color: var(--color-grey-1);
+    border-radius: 6px;
+}
+
+.image {
+    background-color: var(--color-bg);
+    border-radius: 6px;
+}
+
+.productInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    width: 252px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.flexContainer {
+    display: flex;
+    gap: 12px;
+}
