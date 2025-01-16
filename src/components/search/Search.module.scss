@@ -1,17 +1,44 @@
-.container {
+.content {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+    
     width: 685px;
     height: 612px;
     padding: 32px;
-
-    border: 1px solid #7D7D7D4D;
-    border-radius: 6px;
-    background-color: var(--colog-bg);
-
+    max-height: 100vh;
+    
     display: flex;
     flex-direction: column;
     gap: 20px;
 
-    overflow-y: scroll;
+    border: 1px solid #7D7D7D4D;
+    border-radius: 6px;
+    background-color: white;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    animation: fadeIn 0.3s ease-out;
+
+    &::-webkit-scrollbar{
+        width: 5px;
+    }
+    
+    &::-webkit-scrollbar-thumb{
+        background-color: var(--color-grey-4);
+        border-radius: 4px;
+        &:hover {
+            background-color: var(--color-grey-2);
+        }
+    }
+
+    &::-webkit-scrollbar-track{
+        background-color: transparent;
+        border-radius: 4px;
+    }
 }
 
 .categoryContainer {

@@ -8,4 +8,5 @@ export enum Paths {
   forBusiness = "/cooperation/for-business",
   vacancies = "/cooperation/vacancies",
   profile = "/profile",
+  shoppingCart = "/shopping-cart",
 }

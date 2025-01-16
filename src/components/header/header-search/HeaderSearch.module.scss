@@ -22,6 +22,7 @@
     }
 }
 .search {
+    position: relative;
     display: flex;
     gap: 42px;
 }
@@ -45,6 +46,8 @@
     display: flex;
     width: 183px;
     gap: 8px;
+
+    text-decoration: none;
 }
 
 .iconContainer {

@@ -5,9 +5,13 @@ import React, { useState } from "react";
 import s from "./HeaderSearch.module.scss";
 import { Button } from "@/components/ui/button";
 import { CatalogPopup } from "@/components/catalog-popup";
+import Link from "next/link";
+import { Paths } from "@/shared/enums";
+import { Search } from "@/components/search";
 
 export const HeaderSearch = () => {
   const [isActiveCatalog, setIsActiveCatalog] = useState<boolean>(false);
+  const [searchIsOpen, setSearchIsOpen] = useState(false);
 
   return (
     <div className={s.container}>
@@ -24,7 +28,9 @@ export const HeaderSearch = () => {
           variant="search_field"
           className={s.inputSearch}
           placeholder="Поиск по сайту"
+          onClick={() => setSearchIsOpen(true)}
         />
+        <Search isOpen={searchIsOpen} setIsOpen={setSearchIsOpen} />
         <div className={s.buttonsContainer}>
           <div className={s.favorites}>
             <div className={s.iconContainer}>
@@ -35,7 +41,11 @@ export const HeaderSearch = () => {
               <Typography as="p">Товаров: 0</Typography>
             </div>
           </div>
-          <div className={s.shoppingCart}>
+          <Typography
+            as={Link}
+            href={Paths.shoppingCart}
+            className={s.shoppingCart}
+          >
             <div className={s.iconContainer}>
               <BagShoppingIcon width={28} height={28} />
             </div>
@@ -43,7 +53,7 @@ export const HeaderSearch = () => {
               <Typography as="h6">Корзина</Typography>
               <Typography as="p">Товаров: 0 (0 AMD)</Typography>
             </div>
-          </div>
+          </Typography>
         </div>
       </div>
       <CatalogPopup isOpen={isActiveCatalog} setIsOpen={setIsActiveCatalog} />
