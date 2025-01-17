@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { TrashIcon } from "@/assets/icons";
 import Image from "next/image";
 import { RequestDiscountPopup } from "../request-discount-popup";
+import Link from "next/link";
+import { Paths } from "@/shared/enums";
 
 const products = [
   {
@@ -101,7 +103,9 @@ export const ShoppingCartPage = () => {
             <Typography variant="h4">1 500,00 AMD</Typography>
           </div>
           <div className={s.buttonsContainer}>
-            <Button fullWidth={true}>Продолжить</Button>
+            <Button fullWidth={true} as={Link} href={Paths.payment}>
+              Продолжить
+            </Button>
             <Button
               fullWidth={true}
               variant="secondary"

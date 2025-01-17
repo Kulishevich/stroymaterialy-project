@@ -13,7 +13,6 @@ type SearchProps = {
 export const Search = ({ isOpen, setIsOpen }: SearchProps) => {
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
-      {/* <Dialog.Overlay className={s.overlay} /> */}
       <Dialog.Content className={s.content}>
         <Typography variant="body_2" as="h2">
           Поиск по категориям

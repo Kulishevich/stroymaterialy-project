@@ -33,3 +33,8 @@ export { default as BagOutlinedIcon } from "./BagOutlinedIcon";
 export { default as TruckOutlinedIcon } from "./TruckOutlinedIcon";
 export { default as StarIcon } from "./StarIcon";
 export { default as TrashIcon } from "./TrashIcon";
+export { default as RhombIcon } from "./RhombIcon";
+export { default as CreditCardIcon } from "./CreditCardIcon";
+export { default as TransferIcon } from "./TransferIcon";
+export { default as PosIcon } from "./PosIcon";
+export { default as CashIcon } from "./CashIcon";

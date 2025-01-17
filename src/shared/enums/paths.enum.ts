@@ -9,4 +9,5 @@ export enum Paths {
   vacancies = "/cooperation/vacancies",
   profile = "/profile",
   shoppingCart = "/shopping-cart",
+  payment = "/shopping-cart/payment",
 }

@@ -1,4 +1,4 @@
-import { Error } from "@/components/error";
+import { Error } from "@/features/Error";
 import React from "react";
 
 export default function _error() {

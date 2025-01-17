@@ -1,11 +1,5 @@
 import Head from "next/head";
-import { CatalogWithBanners } from "@/components/catalog-with-banners";
-import { ProductCatalog } from "@/components/product-catalog";
-import { LatestCompanyPromotions } from "@/components/latest-company-promotions";
-import { CompanyContacts } from "@/components/company-contacts";
-import { Banner } from "@/components/banner";
-import { FeedbackForm } from "@/components/feedback-form";
-import s from "./Home.module.scss";
+import { HomePage } from "@/features/Home/home-page";
 
 export default function Home() {
   return (
@@ -16,13 +10,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={s.container}>
-        <CatalogWithBanners />
-        <ProductCatalog />
-        <LatestCompanyPromotions />
-        <CompanyContacts />
-        <Banner />
-        <FeedbackForm />
+      <div>
+        <HomePage />
       </div>
     </>
   );
