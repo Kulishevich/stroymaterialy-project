@@ -1,7 +1,9 @@
 import { Typography } from "@/components/ui/typography";
 import React from "react";
 import s from "./ProductsFilter.module.scss";
-import { Dropdown } from "@/components/ui/dropdown";
+import Accordion from "@/components/ui/accordion/Accordion";
+import { Checkbox } from "@/components/ui/checkbox";
+import { TextField } from "@/components/ui/text-field";
 
 const brandFilter = [
   {
@@ -32,11 +34,38 @@ export const ProductsFilter = () => {
       <Typography as="h3" variant="h3">
         Фильтр
       </Typography>
-      <Dropdown placeholder={"Бренд"} items={brandFilter} />
-      <Dropdown placeholder={"Ширина"} items={brandFilter} />
-      <Dropdown placeholder={"Длина"} items={brandFilter} />
-      <Dropdown placeholder={"Производитель"} items={brandFilter} />
-      <Dropdown placeholder={"Цена"} items={brandFilter} />
+      <Accordion title={"Бренд"}>
+        {brandFilter.map((brand) => (
+          <Checkbox key={brand.id} label={brand.value} />
+        ))}
+      </Accordion>
+      <Accordion title={"Ширина"}>
+        {brandFilter.map((brand) => (
+          <Checkbox key={brand.id} label={brand.value} />
+        ))}
+      </Accordion>
+      <Accordion title={"Длина"}>
+        {brandFilter.map((brand) => (
+          <Checkbox key={brand.id} label={brand.value} />
+        ))}
+      </Accordion>
+      <Accordion title={"Производитель"}>
+        {brandFilter.map((brand) => (
+          <Checkbox key={brand.id} label={brand.value} />
+        ))}
+      </Accordion>
+      <Accordion title={"Цена"}>
+        <div className={s.priceContainer}>
+          <div className={s.inputContainer}>
+            <Typography variant="body_5">От</Typography>
+            <TextField placeholder="0" />
+          </div>
+          <div className={s.inputContainer}>
+            <Typography variant="body_5">От</Typography>
+            <TextField placeholder="20000" />
+          </div>
+        </div>
+      </Accordion>
       <Typography as={"button"} variant="button" className={s.resetFilter}>
         Очистить фильтр
       </Typography>

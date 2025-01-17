@@ -54,22 +54,14 @@
   height: 32px;
 }
 
-// .error {
-//   border-radius: var(--border-radius-xs);
-//   outline: 2px solid var(--color-danger-500);
-//   outline-color: var(--color-danger-500);
-//   outline-offset: 2px;
-// }
-
 .label {
-  color: var(--color-grey-1);
-  opacity: 0.8;
+  color: var(--color-grey-3);
   width: 160px;
   &.disabled {
     color: var(--color-accent-red);
   }
 }
 
-// .disabledIcon {
-//   color: var(--color-light-100);
-// }
+.disabledIcon {
+  color: var(--color-grey-1);
+}

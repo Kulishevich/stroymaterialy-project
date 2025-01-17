@@ -12,3 +12,14 @@
 .resetFilter {
     text-decoration: underline;
 }
+
+.priceContainer {
+    display: flex;
+    gap: 16px;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
