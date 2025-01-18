@@ -130,6 +130,13 @@
   }
 } 
 
+.placeholder_big {
+  @include typography(18px, 21.33px, 400);
+  @media (max-width: $mobile) {
+    @include typography(18px, 21.33px, 400);
+  }
+}
+
 .required {
   &::after {
     content: '*';

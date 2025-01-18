@@ -4,6 +4,7 @@ import s from "./Textfield.module.scss";
 import { Button } from "../button/Button";
 import { Typography } from "../typography";
 import { UploadIcon } from "@/assets/icons";
+
 type Props = {
   setSelectedImage: (image: File) => void;
 } & ComponentPropsWithoutRef<"input">;

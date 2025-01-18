@@ -39,7 +39,8 @@ type TypographyProps<T extends ElementType = "p"> = {
     | "body_7"
     | "body_8"
     | "price_sale"
-    | "button";
+    | "button"
+    | "placeholder_big";
 } & ComponentPropsWithoutRef<T>;
 
 export const Typography = <T extends ElementType = "p">(

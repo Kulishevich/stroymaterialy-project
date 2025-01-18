@@ -25,6 +25,7 @@ export const Radio = forwardRef<RadioGroupRef, RadioProps>((props, ref) => {
     <RadixRadio.Root
       className={clsx(s.root, className)}
       disabled={disabled}
+      defaultValue={options[0].value}
       ref={ref}
       {...rest}
     >

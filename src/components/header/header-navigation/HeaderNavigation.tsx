@@ -8,6 +8,7 @@ import s from "./HeaderNavigation.module.scss";
 import clsx from "clsx";
 import { Paths } from "@/shared/enums";
 import { LoginFormPopup } from "@/components/login-form-popup";
+import { Dropdown } from "@/components/ui/dropdown";
 
 const headerOptions = [
   {
@@ -20,24 +21,24 @@ const headerOptions = [
   },
 ];
 
-// const cooperationOptions = [
-//   {
-//     option: (
-//       <Typography as={Link} href={Paths.forBusiness} className={s.navLink}>
-//         Для бизнеса
-//       </Typography>
-//     ),
-//     value: "value1",
-//   },
-//   {
-//     option: (
-//       <Typography as={Link} href={Paths.vacancies} className={s.navLink}>
-//         Вакансии
-//       </Typography>
-//     ),
-//     value: "value2",
-//   },
-// ];
+const cooperationOptions = [
+  {
+    value: (
+      <Typography as={Link} href={Paths.forBusiness} variant="placeholder_big">
+        Для бизнеса
+      </Typography>
+    ),
+    id: "value1",
+  },
+  {
+    value: (
+      <Typography as={Link} href={Paths.vacancies} variant="placeholder_big">
+        Вакансии
+      </Typography>
+    ),
+    id: "value2",
+  },
+];
 export const HeaderNavigation = () => {
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
 
@@ -70,9 +71,11 @@ export const HeaderNavigation = () => {
             <PercentIcon />
             Акции
           </Typography>
-          <Typography as={Link} href={Paths.forBusiness} className={s.navLink}>
-            Сотрудничество
-          </Typography>
+          <Dropdown
+            placeholder="Сотрудничество"
+            items={cooperationOptions}
+            className={s.navLink}
+          />
           <Typography as={Link} href={Paths.about} className={s.navLink}>
             О нас
           </Typography>

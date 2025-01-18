@@ -1,35 +1,44 @@
 .trigger {
-    display: flex;
-    justify-content: space-between;
+  cursor: pointer;    
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  & > p {
+      color: var(--color-grey-2);
+  }
+  & > svg {
+    transition: transform 0.3s ease;
+  }
+}
 
-    cursor: pointer;
-    padding: 24px 16px;
-    width: 100%;
-    
+.trigger[data-state=open] {
+  & > svg {
+    transform: rotate(180deg);
+  }
+}
+
+.content {
+  border: 1px solid #2125311A;
+  border-radius: 4px;
+  background-color: var(--color-bg);
+  padding: 18px 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item {
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: var(--color-grey-3);
+  text-decoration: none;
+  &:hover {
     border: none;
-    border-radius: 6px;
-    background-color: var(--color-bg);
-    box-shadow: 6px 12px 13px 0px #2225310A;
-    & > svg {
-        color: var(--color-accent-orange);
-    }
+    outline: none;
+    color: var(--color-accent-orange);
   }
-  
-  .content {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 8px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 150px;
-  }
-  
-  .item {
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .item:hover {
-    background-color: #f0f0f0;
-  }
+}

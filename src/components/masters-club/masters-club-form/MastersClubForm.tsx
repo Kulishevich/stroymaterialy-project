@@ -7,6 +7,8 @@ import { TextField } from "@/components/ui/text-field";
 import { Typography } from "@/components/ui/typography";
 import s from "./MastersClubForm.module.scss";
 import { TextArea } from "@/components/ui/text-area";
+import { TextFieldFile } from "@/components/ui/text-field-file";
+import { useState } from "react";
 
 const options = [
   {
@@ -35,6 +37,10 @@ const selectOption = [
 ];
 
 export const MastersClubForm = () => {
+  const [image, setImage] = useState<File | null>(null);
+
+  console.log(image);
+
   return (
     <>
       <Typography variant="body_2" className={s.title}>
@@ -103,7 +109,7 @@ export const MastersClubForm = () => {
           <Typography variant="h4" as="h4">
             5. Загрузить файл
           </Typography>
-          {/* <TextFieldFile setSelectedImage={setImage} /> */}
+          <TextFieldFile setSelectedImage={setImage} />
         </div>
         <div className={s.elem}>
           <div className={s.checkboxContainer}>
