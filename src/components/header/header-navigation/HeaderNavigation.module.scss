@@ -19,6 +19,12 @@
     display: flex;
     align-items: center;
     gap: 36px;
+    & > a {
+        text-wrap: nowrap;
+        &:hover {
+            color: var(--color-accent-orange);
+        }
+    }
 }
 .navLink {
     text-decoration: none;
@@ -51,4 +57,8 @@
     background-color: var(--color-grey-4);
     color: var(--color-text);
     text-decoration: none;
+
+    &:hover {
+        color: var(--color-accent-orange);
+    }
 }

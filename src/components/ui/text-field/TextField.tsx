@@ -7,19 +7,21 @@ import {
   useEffect,
   useId,
   useRef,
+  useState,
 } from "react";
 
 import clsx from "clsx";
 
 import s from "./TextField.module.scss";
 import { Typography } from "../typography";
-import { SearchIcon } from "@/assets/icons";
+import { EyeOffOutlineIcon, EyeOutlineIcon, SearchIcon } from "@/assets/icons";
+import { Button } from "../button";
 
 export type TextFieldProps = {
   errorMessage?: ReactNode | string;
   isRequired?: boolean;
   label?: string;
-  variant?: "input_field" | "search_field";
+  variant?: "input" | "search" | "password";
 } & ComponentPropsWithoutRef<"input">;
 
 type TextFieldRef = ElementRef<"input">;
@@ -39,17 +41,24 @@ export const TextField = forwardRef<TextFieldRef, TextFieldProps>(
       ...rest
     } = props;
 
+    const [showPassword, setShowPassword] = useState(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     const id = useId();
 
-    const isSearch = variant === "search_field";
+    const isSearch = variant === "search";
+    const isPassword = variant === "password";
+    const inputType = !showPassword && isPassword ? "password" : "text";
 
     const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
       onChange?.(e);
       if (inputRef.current) {
         inputRef.current.value = e.target.value;
       }
+    };
+
+    const showPasswordHandler = () => {
+      setShowPassword((prev) => !prev);
     };
 
     useEffect(() => {
@@ -89,10 +98,29 @@ export const TextField = forwardRef<TextFieldRef, TextFieldProps>(
             id={id}
             onChange={inputChangeHandler}
             ref={ref}
-            type={"text"}
+            type={inputType}
             value={value}
             {...rest}
           />
+          {isPassword && !!inputRef && (
+            <Button
+              className={clsx(
+                s.passwordControl,
+                errorMessage && s.error,
+                disabled && s.disabled,
+                s.showIcon
+              )}
+              disabled={disabled}
+              onClick={showPasswordHandler}
+              variant={"only_icon"}
+            >
+              {showPassword ? (
+                <EyeOutlineIcon className={s.icon} />
+              ) : (
+                <EyeOffOutlineIcon className={s.icon} />
+              )}
+            </Button>
+          )}
           {placeholder && !value && (
             <Typography
               className={s.placeholder}

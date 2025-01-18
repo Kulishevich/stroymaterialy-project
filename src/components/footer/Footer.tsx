@@ -23,7 +23,9 @@ export const Footer = () => {
             <Typography as="h3">Email: Info@domix.am</Typography>
           </div>
           <div className={s.categoryes}>
-            <Typography variant="h4">Категории</Typography>
+            <Typography variant="h4" as="h4">
+              Категории
+            </Typography>
             <div className={s.categoryesContainer}>
               <Typography variant="body_3">
                 Материалы, используемые в бытовых и строительных работах

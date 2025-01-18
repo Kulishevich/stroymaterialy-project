@@ -30,13 +30,7 @@
   height: 26px;
 
   color: var(--color-text);
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-  color: var(--color-accent-orange);
-}
+} 
 
 .input {
   all: unset;
@@ -61,7 +55,7 @@
     color: #7D7D7D;
   }
 
-  &.search_field {
+  &.search {
     padding-left: 52px;
   }
 
@@ -94,6 +88,30 @@
   }
 }
 
+.passwordControl {
+  cursor: pointer;
+
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+
+  display: none;
+
+  padding: 0;
+
+  background: none;
+  border: none;
+
+  &:hover {
+    background: none;
+  }
+}
+
+.showIcon {
+  display: flex;
+}
+
 .error {
   color: var(--color-accent-red);
 }
@@ -107,6 +125,8 @@
   cursor: default;
   color: #7D7D7D;
 }
+
+
 
 //разобраться
 .input:-webkit-autofill,

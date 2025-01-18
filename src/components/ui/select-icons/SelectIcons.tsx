@@ -9,9 +9,8 @@ import * as RadixSelect from "@radix-ui/react-select";
 import { SelectGroup, SelectItem } from "@radix-ui/react-select";
 import { clsx } from "clsx";
 
-import s from "./SelectIcons.module.scss";
-import { Typography } from "../typography";
 import { ArrowDownIcon } from "@/assets/icons";
+import s from "./SelectIcons.module.scss";
 
 export type OptionsValue = {
   icon?: ReactNode;
@@ -19,7 +18,6 @@ export type OptionsValue = {
 };
 export type SelectIconsProps = {
   className?: string;
-  label?: string;
   options?: OptionsValue[];
   placeHolder?: ReactNode;
 } & ComponentPropsWithoutRef<typeof RadixSelect.Root>;
@@ -32,7 +30,6 @@ export const SelectIcons = forwardRef<
       className,
       defaultValue,
       disabled,
-      label,
       onValueChange,
       options = [],
       placeHolder,
@@ -61,7 +58,6 @@ export const SelectIcons = forwardRef<
         value={value}
         {...rest}
       >
-        {label && <Typography as={"label"}>{label}</Typography>}
         <RadixSelect.Trigger className={clsx(s.trigger, className)} ref={ref}>
           <RadixSelect.Value placeholder={placeHolder} />
           <RadixSelect.Icon asChild>

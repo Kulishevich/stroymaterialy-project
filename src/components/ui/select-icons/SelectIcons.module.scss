@@ -36,7 +36,9 @@
 }
 
 .content {
-  width: var(--radix-select-trigger-width);
+  position: absolute;
+  left: -5px;
+  width: fit-content;
   max-height: var(--radix-select-content-available-height);
 
   border: 1px solid #2125311A;
@@ -47,13 +49,11 @@
 .selectItem {
   display: flex;
   justify-content: center;
-  
+  padding: 5px;
   cursor: pointer;
   
   background-color: var(--color-bg);
   transition: all 0.3s;
-
-  // margin-bottom: 12px;
 
   &:last-child{
     margin-bottom: 0;

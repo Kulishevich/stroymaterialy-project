@@ -1,6 +1,6 @@
 import s from "./FeedbackForm.module.scss";
 import Image from "next/image";
-import { Typography } from "../ui/typography";
+import { Typography, Variant } from "../ui/typography";
 import { TextField } from "../ui/text-field";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
@@ -59,7 +59,10 @@ export const FeedbackForm = () => {
         </div>
         <div className={s.submitContainer}>
           <Button variant={"secondary"}>Отправить</Button>
-          <Checkbox label="Согласие на обработку персональных данных" />
+          <Checkbox
+            label="Согласие на обработку персональных данных"
+            labelText={Variant.body_6}
+          />
         </div>
         <Typography variant="body_2" className={s.text}>
           или свяжитесь с нами через социальные сети

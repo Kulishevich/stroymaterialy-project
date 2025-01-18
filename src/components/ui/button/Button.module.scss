@@ -127,6 +127,30 @@
     }
   }
 
+  .only_icon {
+    width: fit-content;
+    height: fit-content;
+
+    background-color: transparent;
+    color: var(--color-grey-2);
+    
+    &:hover {
+      color: var(--color-accent-orange);
+    }
+    
+    &:active {
+      color: var(--color-accent-orange);
+    }
+  
+    &:focus-visible {
+      color: var(--color-bg);
+    }
+  
+    &:disabled {
+      color: var(--color-grey-1);
+    }
+  }
+
   .fullWidth {
     width: 100%;
   }

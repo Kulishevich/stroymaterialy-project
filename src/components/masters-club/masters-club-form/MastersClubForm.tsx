@@ -6,6 +6,7 @@ import { TextField } from "@/components/ui/text-field";
 // import { TextFieldFile } from "@/components/ui/text-field-file";
 import { Typography } from "@/components/ui/typography";
 import s from "./MastersClubForm.module.scss";
+import { TextArea } from "@/components/ui/text-area";
 
 const options = [
   {
@@ -15,6 +16,21 @@ const options = [
   {
     id: "2",
     value: "Юридическое лицо",
+  },
+];
+
+const selectOption = [
+  {
+    option: "Механик",
+    value: "1",
+  },
+  {
+    option: "Механик",
+    value: "2",
+  },
+  {
+    option: "Механик",
+    value: "3",
   },
 ];
 
@@ -33,7 +49,7 @@ export const MastersClubForm = () => {
             <Typography variant="h4" as="h4" isRequired={true}>
               1. Ваша профессия
             </Typography>
-            <Select placeHolder="Механик" />
+            <Select placeHolder="Механик" options={selectOption} />
           </div>
           <div className={s.elem}>
             <Typography variant="h4" as="h4">
@@ -69,11 +85,11 @@ export const MastersClubForm = () => {
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Пароль</Typography>
-              <TextField placeholder="" />
+              <TextField placeholder="" variant="password" />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Подтвердить пароль</Typography>
-              <TextField placeholder="" />
+              <TextField placeholder="" variant="password" />
             </div>
           </div>
         </div>
@@ -81,7 +97,7 @@ export const MastersClubForm = () => {
           <Typography variant="h4" as="h4">
             4. О вас
           </Typography>
-          <TextField className={s.about} />
+          <TextArea className={s.about} />
         </div>
         <div className={s.elem}>
           <Typography variant="h4" as="h4">

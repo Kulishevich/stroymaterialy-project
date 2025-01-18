@@ -38,3 +38,5 @@ export { default as CreditCardIcon } from "./CreditCardIcon";
 export { default as TransferIcon } from "./TransferIcon";
 export { default as PosIcon } from "./PosIcon";
 export { default as CashIcon } from "./CashIcon";
+export { default as EyeOutlineIcon } from "./EyeOutlineIcon";
+export { default as EyeOffOutlineIcon } from "./EyeOffOutlineIcon";

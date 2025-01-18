@@ -36,12 +36,15 @@
     }
 }
 .categoryes {
-    color: var(--color-bg);
     width: 261px;
-
+    
     display: flex;
     flex-direction: column;
     gap: 24px;
+    
+    & > h4, p {
+        color: var(--color-bg);
+    }
 }
 
 .categoryesContainer {

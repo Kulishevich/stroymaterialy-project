@@ -10,7 +10,7 @@ import clsx from "clsx";
 
 export type ButtonProps<T extends ElementType = "button"> = {
   as?: T;
-  variant?: "icon" | "secondary" | "primary";
+  variant?: "icon" | "secondary" | "primary" | "only_icon";
   active?: boolean;
   fullWidth?: boolean;
 } & ComponentPropsWithoutRef<T>;
