@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import s from "./ShoppingCartPage.module.scss";
 import { Typography } from "@/components/ui/typography";
-import { Counter } from "@/components/item/counter";
+import { Counter } from "@/components/counter";
 import { Button } from "@/components/ui/button";
 import { TrashIcon } from "@/assets/icons";
 import Image from "next/image";

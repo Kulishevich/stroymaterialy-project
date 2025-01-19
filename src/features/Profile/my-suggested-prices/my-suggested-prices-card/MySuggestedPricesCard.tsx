@@ -2,7 +2,7 @@ import React from "react";
 import s from "./MySuggestedPricesCard.module.scss";
 import Image from "next/image";
 import { Typography } from "@/components/ui/typography";
-import { Counter } from "@/components/item/counter";
+import { Counter } from "@/components/counter";
 import { TextField } from "@/components/ui/text-field";
 import { Button } from "@/components/ui/button";
 
@@ -38,11 +38,11 @@ export const MySuggestedPricesCard = ({ product }: MySuggestedPricesCard) => {
           <div className={s.flexContainer}>
             <div className={s.container}>
               <Typography variant="body_8">Цена</Typography>
-              <TextField defaultValue={product.price} />
+              <TextField defaultValue={product.price} className={s.input} />
             </div>
             <div className={s.container}>
               <Typography variant="body_8">Количество</Typography>
-              <Counter />
+              <Counter size="s" />
             </div>
           </div>
         </div>

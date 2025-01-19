@@ -2,7 +2,7 @@ import { Typography } from "@/components/ui/typography";
 import React from "react";
 import s from "./Favoriter.module.scss";
 import Image from "next/image";
-import { Counter } from "@/components/item/counter";
+import { Counter } from "@/components/counter";
 import { Button } from "@/components/ui/button";
 import { BagShoppingIcon } from "@/assets/icons";
 
@@ -54,7 +54,7 @@ export const Favorites = () => {
             </Typography>
             <Typography variant="body_7">{favorite.price}</Typography>
             <div className={s.buttonsContainer}>
-              <Counter />
+              <Counter size="s" />
               <Button className={s.shopButton}>
                 <BagShoppingIcon />
               </Button>

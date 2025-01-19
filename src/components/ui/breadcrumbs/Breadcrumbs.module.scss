@@ -1,5 +1,4 @@
 .container {
-    // container
     width: 100%;
     display: flex;
     align-items: center;
@@ -12,17 +11,24 @@
     flex-wrap: wrap;
     min-width: 768px;
     padding: 0 16px;
+    margin: 42px 0 32px;
 }
 .elem {
     display: inline-flex;
     align-items: center;
     & > a {
         text-decoration: none;
+        &:hover {
+            color: var(--color-accent-orange);
+        }
     }
 }
 .link {
     text-decoration: none;
     color: var(--color-text);
+    &:hover {
+        color: var(--color-accent-orange);
+    }
 }
 .icon {
     margin: 0 8px;
@@ -33,7 +39,6 @@
 }
 
 .li {
-    // sm:text-left
     display: inline-flex;
     align-items: center;
     text-align: center;

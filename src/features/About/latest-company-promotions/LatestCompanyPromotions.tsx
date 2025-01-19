@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./LatestCompanyPromotions.module.scss";
-import { Typography } from "../ui/typography";
-import { Discount } from "../discount";
+import { Typography } from "../../../components/ui/typography";
+import { Discount } from "../../../components/discount";
 
 export const LatestCompanyPromotions = () => {
   return (

@@ -3,18 +3,48 @@ import s from "./MyAddresses.module.scss";
 import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { AddAddressPopup } from "../add-address-popup";
-import { Checkbox } from "@/components/ui/checkbox";
+import { RadioCards } from "@/components/ui/radio-cards";
 
-const addresses = [
+const addressesOptions = [
   {
     id: "1",
-    name: "Эдвард",
-    info: "8F9P+XJF, Charents St, Yeghvard, Армения",
+    value: "express_delivery",
+    title: (
+      <>
+        <Typography variant="body_5">Эдвард</Typography>
+        <Typography variant="body_3">Основной адрес</Typography>
+      </>
+    ),
+    content: (
+      <>
+        <Typography variant="body_6">
+          8F9P+XJF, Charents St, Yeghvard, Армения
+        </Typography>
+        <Typography variant="body_6" as="button" className={s.editButton}>
+          Редактировать
+        </Typography>
+      </>
+    ),
   },
   {
-    id: "2",
-    name: "Эдвард",
-    info: "8F9P+XJF, Charents St, Yeghvard, Армения",
+    id: "1",
+    value: "express_delivery",
+    title: (
+      <>
+        <Typography variant="body_5">Эдвард</Typography>
+        <Typography variant="body_3">Основной адрес</Typography>
+      </>
+    ),
+    content: (
+      <>
+        <Typography variant="body_6">
+          8F9P+XJF, Charents St, Yeghvard, Армения
+        </Typography>
+        <Typography variant="body_6" as="button" className={s.editButton}>
+          Редактировать
+        </Typography>
+      </>
+    ),
   },
 ];
 
@@ -26,28 +56,10 @@ export const MyAddresses = () => {
       <Typography variant="h3" as="h3">
         Мои адреса
       </Typography>
-      {addresses.length > 0 ? (
+      {addressesOptions.length > 0 ? (
         <div className={s.addressContainer}>
           <div className={s.cards}>
-            {addresses.map((address) => (
-              <div className={s.card} key={address.id}>
-                <div className={s.title}>
-                  <Typography variant="body_5">{address.name}</Typography>
-                  <div className={s.checkboxContainer}>
-                    <Typography variant="body_3">Основной адрес</Typography>
-                    <Checkbox />
-                  </div>
-                </div>
-                <Typography variant="body_3">{address.info}</Typography>
-                <Typography
-                  variant="body_6"
-                  as="button"
-                  className={s.editButton}
-                >
-                  Редактировать
-                </Typography>
-              </div>
-            ))}
+            <RadioCards options={addressesOptions} className={s.radioAddress} />
           </div>
           <Button
             className={s.button}

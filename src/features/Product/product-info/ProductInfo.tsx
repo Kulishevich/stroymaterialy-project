@@ -2,7 +2,7 @@ import React from "react";
 import { StarRating } from "@/components/star-rating";
 import s from "./ProductInfo.module.scss";
 import { Typography } from "@/components/ui/typography";
-import { Counter } from "@/components/item/counter";
+import { Counter } from "@/components/counter";
 import { Button } from "@/components/ui/button";
 import {
   AddressLocationIcon,

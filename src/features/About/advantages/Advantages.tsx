@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Advantages.module.scss";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../../components/ui/typography";
 import {
   ChatComments,
   DeliveryTruck,
@@ -9,6 +9,7 @@ import {
   StoreShopHours,
   WalletMoneyCash,
 } from "@/assets/icons/advantages";
+import Image from "next/image";
 
 const advantages = [
   {
@@ -70,6 +71,23 @@ const advantages = [
 export const Advantages = () => {
   return (
     <div className={s.container}>
+      <div className={s.aboutUs}>
+        <Typography variant="h1" as="h1">
+          О нас
+        </Typography>
+        <Typography variant="body_2">
+          Domix-молодая команда с амбициям и с высоким потенциалом,
+          специализирующаяся на продаже строительных материалов для внутренней
+          и внешней отделки дома или квартиры, которая поможет вам благоустроить
+          свое жизненное пространство и построить свой дом мечты.
+        </Typography>
+        <Image
+          src={"/images/about-us.jpg"}
+          width={856}
+          height={494}
+          alt="about us"
+        />
+      </div>
       <Typography variant="h2" as="h2">
         Наши преимущества
       </Typography>

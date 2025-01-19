@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CloseIcon } from "@/assets/icons";
 import { Typography } from "@/components/ui/typography";
 import Image from "next/image";
-import { Counter } from "@/components/item/counter";
+import { Counter } from "@/components/counter";
 import { TextField } from "@/components/ui/text-field";
 
 type Order = {

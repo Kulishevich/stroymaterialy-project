@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Typography } from "../ui/typography";
 import { Button } from "../ui/button";
 import { HeartIcon } from "@/assets/icons";
-import { Counter } from "./counter";
+import { Counter } from "../counter";
 import clsx from "clsx";
 
 export type ItemProps = {
@@ -59,7 +59,7 @@ export const Item = ({ variant = "vertical" }: ItemProps) => {
           </Typography>
         </div>
         <div className={vertical ? s.buttonContainer : s.horizontalContainer}>
-          <Counter vertical={vertical} />
+          <Counter size={vertical ? "l" : "m"} />
           <Button className={!vertical && s.buttonVertical}>В корзину</Button>
         </div>
       </div>

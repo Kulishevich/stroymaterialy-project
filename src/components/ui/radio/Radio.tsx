@@ -9,6 +9,7 @@ import { Typography } from "../typography";
 export type RadioOption = {
   id: string;
   value: string;
+  content: string;
 };
 
 export type RadioProps = {
@@ -39,7 +40,7 @@ export const Radio = forwardRef<RadioGroupRef, RadioProps>((props, ref) => {
           >
             <RadixRadio.Indicator className={s.indicator} />
           </RadixRadio.Item>
-          <Typography variant="body_1">{option.value}</Typography>
+          <Typography variant="body_1">{option.content}</Typography>
         </div>
       ))}
     </RadixRadio.Root>

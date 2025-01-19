@@ -8,7 +8,7 @@ import s from "./ForBusinessPage.module.scss";
 
 export const ForBusinessPage = () => {
   return (
-    <div>
+    <div className={s.container}>
       <BusinessBanner />
       <BenefitsOfWorking />
       <WorkProcess />

@@ -3,7 +3,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import s from "./PopupCallback.module.scss";
 import Image from "next/image";
 // import { useForm } from "react-hook-form";
-import { Typography } from "../ui/typography";
+import { Typography, Variant } from "../ui/typography";
 import { Button } from "../ui/button";
 import { TextField } from "../ui/text-field";
 import { Checkbox } from "../ui/checkbox";
@@ -65,7 +65,13 @@ export const PopupCallback = ({
           height={502}
           className={s.image}
         />
-        <CloseIcon className={s.closeIcon} />
+        <Button
+          className={s.closeIcon}
+          onClick={() => setIsOpen(false)}
+          variant="only_icon"
+        >
+          <CloseIcon />
+        </Button>
         <div className={s.container}>
           <Typography variant="h2" as="h2">
             Обратный звонок
@@ -89,10 +95,11 @@ export const PopupCallback = ({
             </div>
           </form>
           <div className={s.checkboxContainer}>
-            <Checkbox />
-            <Typography variant="body_6">
-              Согласие на обработку персональных данных
-            </Typography>
+            <Checkbox
+              label="Согласие на обработку персональных данных"
+              labelText={Variant.body_6}
+              className={s.checkbox}
+            />
           </div>
           <Button>Отправить</Button>
         </div>

@@ -45,6 +45,10 @@
     right: 23px;
     top: 24px;
     color: var(--color-accent-orange);
+
+    &:hover {
+        color: var(--color-grey-2);
+    }
 }
 
 .container{
@@ -85,9 +89,10 @@
     gap: 6px;
     align-items: center;
     margin: 20px 0 12px;
-    & > p {
-        color: var(--color-gray-3);
-    }
+}
+
+.checkbox {
+    width: 100%;
 }
 
 @keyframes fadeIn {

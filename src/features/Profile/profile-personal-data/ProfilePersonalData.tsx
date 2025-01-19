@@ -36,7 +36,7 @@ export const ProfilePersonalData = () => {
       </Typography>
       <div className={s.inputContainer}>
         <Typography variant="body_5">Пароль</Typography>
-        <TextField placeholder="Пароль" />
+        <TextField placeholder="Пароль" variant="password" />
       </div>
       <Typography
         variant="button"

@@ -1,3 +1,3 @@
-import { RegularCustomerPage } from "@/features/RegularCustomer/redular-customer-page";
+import { RegularCustomerPage } from "@/features/RegularCustomer/regular-custormer-page";
 
 export default RegularCustomerPage;

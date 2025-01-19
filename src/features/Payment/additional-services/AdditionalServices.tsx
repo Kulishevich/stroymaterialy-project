@@ -2,7 +2,20 @@ import React from "react";
 import s from "./AdditionalServices.module.scss";
 import { Typography } from "@/components/ui/typography";
 import { RhombIcon } from "@/assets/icons";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Radio } from "@/components/ui/radio";
+
+const serviceOptions = [
+  {
+    id: "1",
+    value: "unloading",
+    content: "Разгрузка",
+  },
+  {
+    id: "2",
+    value: "climbing_to_the_floor",
+    content: "Подъем на этаж",
+  },
+];
 
 export const AdditionalServices = () => {
   return (
@@ -21,14 +34,7 @@ export const AdditionalServices = () => {
       <Typography variant="body_2">
         Стоимость дополнительных услуг уточнит оператор.
       </Typography>
-      <Typography variant="body_1">
-        <Checkbox />
-        Разгрузка
-      </Typography>
-      <Typography variant="body_1">
-        <Checkbox />
-        Подъем на этаж
-      </Typography>
+      <Radio options={serviceOptions} className={s.radioService} />
     </div>
   );
 };

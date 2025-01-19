@@ -1,11 +1,79 @@
 import React, { useState } from "react";
 import s from "./PurchaseMethod.module.scss";
 import { Typography } from "@/components/ui/typography";
-import { Checkbox } from "@/components/ui/checkbox";
 import { RhombIcon } from "@/assets/icons";
 import { Select } from "@/components/ui/select";
 import { TextField } from "@/components/ui/text-field";
 import { Button } from "@/components/ui/button";
+import { RadioCards } from "@/components/ui/radio-cards";
+
+const radioOptions = [
+  {
+    id: "1",
+    value: "address_1",
+    title: "",
+    content: (
+      <Typography variant="body_1">
+        8F9P+XJF, Charents St, Yeghvard, Армения
+      </Typography>
+    ),
+  },
+];
+
+const deliveryMethodOprions = [
+  {
+    id: "1",
+    value: "standard_delivery",
+    title: <Typography variant="body_7">Стандартная доставка</Typography>,
+    content: (
+      <>
+        <Typography variant="body_6">
+          до 2 дней (не распространяется на цемент и гипсокартон)
+        </Typography>
+        <Typography variant="body_5">Бесплатно</Typography>
+      </>
+    ),
+  },
+  {
+    id: "2",
+    value: "express_delivery",
+    title: <Typography variant="body_7">Экспресс доставка</Typography>,
+    content: (
+      <>
+        <Typography variant="body_6">
+          день в день (в течение 2-4 часов)
+        </Typography>
+        <Typography variant="body_5">от 2000 драм</Typography>
+      </>
+    ),
+  },
+  {
+    id: "3",
+    value: "courier_delivery",
+    title: <Typography variant="body_7">Курьер Мопед (до 10 кг)</Typography>,
+    content: (
+      <>
+        <Typography variant="body_6">
+          день в день (в течение 2 часов)
+        </Typography>
+        <Typography variant="body_5">1500 драм</Typography>
+      </>
+    ),
+  },
+  {
+    id: "4",
+    value: "ipost_delivery",
+    title: (
+      <Typography variant="body_7">Айпост Доставка (вес до 5 кг)</Typography>
+    ),
+    content: (
+      <>
+        <Typography variant="body_6">до 3 дней</Typography>
+        <Typography variant="body_5">700 драм</Typography>
+      </>
+    ),
+  },
+];
 
 export const PurchaseMethod = () => {
   const [isAddAddress, setIsAddAddress] = useState(false);
@@ -57,12 +125,7 @@ export const PurchaseMethod = () => {
           <Typography variant="h4" as="h4">
             Адрес:
           </Typography>
-          <div className={s.card}>
-            <Checkbox />
-            <Typography variant="body_1">
-              8F9P+XJF, Charents St, Yeghvard, Армения
-            </Typography>
-          </div>
+          <RadioCards options={radioOptions} />
           <Typography
             variant="button"
             as="button"
@@ -82,34 +145,7 @@ export const PurchaseMethod = () => {
           </Typography>
         </div>
         <div className={s.cardsContainer}>
-          <div className={s.card}>
-            <Typography variant="body_7">Стандартная доставка</Typography>
-            <Typography variant="body_6">
-              до 2 дней (не распространяется на цемент и гипсокартон)
-            </Typography>
-            <Typography variant="body_5">Бесплатно</Typography>
-          </div>
-          <div className={s.card}>
-            <Typography variant="body_7">Экспресс доставка</Typography>
-            <Typography variant="body_6">
-              день в день (в течение 2-4 часов)
-            </Typography>
-            <Typography variant="body_5">от 2000 драм</Typography>
-          </div>
-          <div className={s.card}>
-            <Typography variant="body_7">Курьер Мопед (до 10 кг)</Typography>
-            <Typography variant="body_6">
-              день в день (в течение 2 часов)
-            </Typography>
-            <Typography variant="body_5">1500 драм</Typography>
-          </div>
-          <div className={s.card}>
-            <Typography variant="body_7">
-              Айпост Доставка (вес до 5 кг)
-            </Typography>
-            <Typography variant="body_6">до 3 дней</Typography>
-            <Typography variant="body_5">700 драм</Typography>
-          </div>
+          <RadioCards options={deliveryMethodOprions} />
         </div>
       </div>
     </div>

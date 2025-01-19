@@ -20,22 +20,35 @@ export const Breadcrumbs = ({ className, dynamicPath }: Props) => {
   const pathname = usePathname();
   const pathNames = pathname.split("/");
 
+  if (pathname === "/") return;
+
   function handlePathName(path: string) {
     switch (path) {
       case "":
         return { href: "/", name: "Главная" };
-      case "shares":
-        return { href: "/shares", name: "Акции" };
-      case "delivery-payment":
-        return { href: "/delivery-payment", name: "Доставка и оплата" };
-      case "offer-contract":
-        return { href: "/offer-contract", name: "Договор оферты" };
-      case "privacy-policy":
-        return { href: "/privacy-policy", name: "Политика конфиденциальности" };
+      case "about":
+        return { href: "/about", name: "О нас" };
       case "contacts":
         return { href: "/contacts", name: "Контакты" };
-      case "news":
-        return { href: "/news", name: "Новости" };
+      case "delivery-and-payment":
+        return { href: "/delivery-and-payment", name: "Доставка и оплата" };
+      case "regular-customer":
+        return {
+          href: "/regular-customer",
+          name: "Постоянный клиент",
+        };
+      case "shares":
+        return { href: "/shares", name: "Акции" };
+      case "for-business":
+        return { href: "/for-business", name: "Для бизнеса" };
+      case "vacancies":
+        return { href: "/vacancies", name: "Вакансии" };
+      case "profile":
+        return { href: "/profile", name: "Профиль" };
+      case "shopping-cart":
+        return { href: "/shopping-cart", name: "Корзина" };
+      case "payment":
+        return { href: "/payment", name: "Оплата" };
       default:
         break;
     }

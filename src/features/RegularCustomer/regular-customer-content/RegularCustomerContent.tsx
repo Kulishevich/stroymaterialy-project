@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { ArrowRightIcon } from "@/assets/icons";
 import { GiftCards } from "../gift-cards";
 import { InfoRegularCustomer } from "../info-regular-customer";
-import s from "./RegularCustomerPage.module.scss";
+import s from "./RegularCustomerContent.module.scss";
 
 const categories = [
   {
@@ -19,7 +19,7 @@ const categories = [
   },
 ];
 
-export const RegularCustomerPage = () => {
+export const RegularCustomerContent = () => {
   const [activeCategory, setActiveCategory] = useState(categories[0].id);
 
   return (

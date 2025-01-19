@@ -25,15 +25,15 @@ export const EditPasswordPopup = ({
         <div className={s.inputsContainer}>
           <div className={s.inputContainer}>
             <Typography variant="body_5">Текущий пароль</Typography>
-            <TextField />
+            <TextField variant="password" />
           </div>
           <div className={s.inputContainer}>
             <Typography variant="body_5">Новый пароль</Typography>
-            <TextField />
+            <TextField variant="password" />
           </div>
           <div className={s.inputContainer}>
             <Typography variant="body_5">Подтвердить новый пароль</Typography>
-            <TextField />
+            <TextField variant="password" />
           </div>
         </div>
         <Button fullWidth={true} className={s.buttonSubmit}>
