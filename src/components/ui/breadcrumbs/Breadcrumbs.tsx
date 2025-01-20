@@ -18,9 +18,9 @@ interface Props {
 
 export const Breadcrumbs = ({ className, dynamicPath }: Props) => {
   const pathname = usePathname();
-  const pathNames = pathname.split("/");
+  if (!pathname || pathname === "/") return null;
 
-  if (pathname === "/") return;
+  const pathNames = pathname.split("/");
 
   function handlePathName(path: string) {
     switch (path) {
