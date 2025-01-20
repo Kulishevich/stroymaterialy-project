@@ -25,7 +25,7 @@ export const HeaderSearch = () => {
       </Button>
       <div className={s.search}>
         <TextField
-          variant="search_field"
+          variant="search"
           className={s.inputSearch}
           placeholder="Поиск по сайту"
           onFocus={() => setSearchIsOpen(true)}
