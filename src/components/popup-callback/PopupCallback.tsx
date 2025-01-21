@@ -1,13 +1,15 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import s from "./PopupCallback.module.scss";
 import Image from "next/image";
-// import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Typography, Variant } from "../ui/typography";
 import { Button } from "../ui/button";
-import { TextField } from "../ui/text-field";
-import { Checkbox } from "../ui/checkbox";
 import { CloseIcon } from "@/assets/icons";
+import { ControlledTextField } from "../ui/controlled-textfiled";
+import { ControlledCheckbox } from "../ui/controlled-checkbox";
+import { callbackSchemeCreator } from "./model/callback-scheme";
+import { zodResolver } from "@hookform/resolvers/zod";
+import s from "./PopupCallback.module.scss";
 
 type PopupCallbackProps = {
   isOpen: boolean;
@@ -18,41 +20,30 @@ export const PopupCallback = ({
   isOpen = true,
   setIsOpen,
 }: PopupCallbackProps) => {
-  // const [isChecked, setIsChecked] = useState(false);
-
-  //   const {
-  //     handleSubmit,
-  //     register,
-  //     formState: { errors },
-  //     reset,
-  //   } = useForm({
-  //     defaultValues: {
-  //       phone: "",
-  //       comment: "",
-  //     },
-  //   });
+  const {
+    control,
+    formState: { isValid },
+    handleSubmit,
+    reset,
+  } = useForm({
+    defaultValues: {
+      name: "",
+      phone: "",
+      agreement: false,
+    },
+    mode: "onTouched",
+    reValidateMode: "onChange",
+    resolver: zodResolver(callbackSchemeCreator()),
+  });
 
   const handleCloseModal = () => {
     setIsOpen((prev) => !prev);
-    // setIsChecked(false);
-    // reset();
+    reset();
   };
 
-  // const handleCheckboxChange = () => {
-  //   setIsChecked((prev) => !prev);
-  // };
-
-  //   const handlePost = handleSubmit(async (data) => {
-  //     const message = `Поступила заявка на обратную связь. Номер телефона: ${data.phone} | Комментарий: ${data.comment}`;
-  //     try {
-  //       await sendMessage(message);
-  //       setIsChecked(false);
-  //       showToast({ message: "Ваше сообщене отправлено", variant: "success" });
-  //       reset();
-  //     } catch (e) {
-  //       showToast({ message: e as string, variant: "error" });
-  //     }
-  //   });
+  const handlePost = handleSubmit(async (data) => {
+    console.log(data);
+  });
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={handleCloseModal}>
@@ -85,23 +76,37 @@ export const PopupCallback = ({
               <Typography variant="h4" isRequired={true}>
                 Ваше имя
               </Typography>
-              <TextField className={s.textfield} placeholder="Имя" />
+              <ControlledTextField
+                className={s.textfield}
+                placeholder="Имя"
+                control={control}
+                name="name"
+              />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="h4" isRequired={true}>
                 Ваш телефон
               </Typography>
-              <TextField className={s.textfield} placeholder="Телефон" />
+              <ControlledTextField
+                className={s.textfield}
+                placeholder="Телефон"
+                control={control}
+                name="phone"
+              />
             </div>
           </form>
           <div className={s.checkboxContainer}>
-            <Checkbox
+            <ControlledCheckbox
+              control={control}
+              name="agreement"
               label="Согласие на обработку персональных данных"
               labelText={Variant.body_6}
               className={s.checkbox}
             />
           </div>
-          <Button>Отправить</Button>
+          <Button onClick={handlePost} disabled={!isValid}>
+            Отправить
+          </Button>
         </div>
       </Dialog.Content>
     </Dialog.Root>

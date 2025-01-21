@@ -12,6 +12,9 @@ export const CatalogMenu = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { data: categories, isLoading } = useGetCategoriesQuery();
+  const activeTitle = categories?.data.find(
+    (elem) => elem.id === activeCategory
+  )?.name;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -56,7 +59,9 @@ export const CatalogMenu = () => {
           ))}
       </div>
 
-      {activeCategory && <ActiveCategory id={activeCategory} />}
+      {activeCategory && activeTitle && (
+        <ActiveCategory id={activeCategory} title={activeTitle} />
+      )}
     </div>
   );
 };

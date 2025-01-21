@@ -12,10 +12,10 @@ import {
 
 import clsx from "clsx";
 
-import s from "./TextField.module.scss";
 import { Typography } from "../typography";
 import { EyeOffOutlineIcon, EyeOutlineIcon, SearchIcon } from "@/assets/icons";
 import { Button } from "../button";
+import s from "./TextField.module.scss";
 
 export type TextFieldProps = {
   errorMessage?: ReactNode | string;
