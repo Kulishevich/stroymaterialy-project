@@ -10,13 +10,15 @@ export const BestSellingProducts = () => {
     perPage: 20,
   });
 
+  if (!product) return;
+
   return (
     <div className={s.container}>
       <Typography variant="h2" as="h2">
         Самые продаваемые товары
       </Typography>
       <div className={s.productContainer}>
-        {isLoading &&
+        {!isLoading &&
           product &&
           product.data.map((product) => (
             <Item product={product} key={product.id} />
