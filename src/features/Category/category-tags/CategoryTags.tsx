@@ -2,27 +2,22 @@ import React from "react";
 import s from "./CategoryTags.module.scss";
 import { Subcategory } from "@/components/subcategory";
 import { Typography } from "@/components/ui/typography";
-
-export type CategoryTag = {
-  id: string;
-  image: string;
-  value: string;
-};
+import { CategoryArgs } from "@/api/categories/categories.types";
 
 type CategoryTagsProps = {
   title: string;
-  tags: CategoryTag[];
+  categories: CategoryArgs[];
 };
 
-export const CategoryTags = ({ title, tags }: CategoryTagsProps) => {
+export const CategoryTags = ({ title, categories }: CategoryTagsProps) => {
   return (
     <div className={s.container}>
       <Typography variant="h1" as="h1">
         {title}
       </Typography>
       <div className={s.categoryContainer}>
-        {tags.map((tag) => (
-          <Subcategory image={tag.image} key={tag.id} value={tag.value} />
+        {categories.map((category) => (
+          <Subcategory category={category} key={category.id} />
         ))}
       </div>
     </div>

@@ -3,21 +3,13 @@ import s from "./AdditionalServices.module.scss";
 import { Typography } from "@/components/ui/typography";
 import { RhombIcon } from "@/assets/icons";
 import { Radio } from "@/components/ui/radio";
-
-const serviceOptions = [
-  {
-    id: "1",
-    value: "unloading",
-    content: "Разгрузка",
-  },
-  {
-    id: "2",
-    value: "climbing_to_the_floor",
-    content: "Подъем на этаж",
-  },
-];
+import { useGetExtraOptionsQuery } from "@/api/orders/orders.api";
 
 export const AdditionalServices = () => {
+  const { data: extraOptions, isLoading } = useGetExtraOptionsQuery();
+  if (!isLoading) {
+    console.log(extraOptions?.data);
+  }
   return (
     <div className={s.payment}>
       <div className={s.title}>
@@ -34,7 +26,9 @@ export const AdditionalServices = () => {
       <Typography variant="body_2">
         Стоимость дополнительных услуг уточнит оператор.
       </Typography>
-      <Radio options={serviceOptions} className={s.radioService} />
+      {extraOptions && (
+        <Radio options={extraOptions.data} className={s.radioService} />
+      )}
     </div>
   );
 };

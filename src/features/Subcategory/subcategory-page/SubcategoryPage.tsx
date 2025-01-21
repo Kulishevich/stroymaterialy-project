@@ -1,43 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./SubcategoryPage.module.scss";
 import { CategoryTags } from "@/features/Category/category-tags/CategoryTags";
 import { BestSellingProducts } from "@/components/best-selling-products";
-
-const subcategoryes = [
-  {
-    id: "1",
-    image: "/images/products/product1.png",
-    value: "Малярные ленты",
-  },
-  {
-    id: "2",
-    image: "/images/products/product2.png",
-    value: "Скотчи",
-  },
-  {
-    id: "3",
-    image: "/images/products/product3.png",
-    value: "Изоленты",
-  },
-  {
-    id: "4",
-    image: "/images/products/product4.png",
-    value: "Самоклеящиеся ленты",
-  },
-  {
-    id: "5",
-    image: "/images/products/product5.png",
-    value: "Уплотнители для окон и дверей",
-  },
-];
+import { useRouter } from "next/router";
+import { useGetSubCategoriesQuery } from "@/api/categories/categories.api";
 
 export const SubcategoryPage = () => {
+  const router = useRouter();
+  const { subcategory } = router.query;
+
+  useEffect(() => {
+    if (router.isReady) {
+      if (!subcategory || typeof subcategory !== "string") {
+        router.push("/404");
+      }
+    }
+  }, [subcategory, router.isReady, router]);
+
+  const { data: products, isLoading } = useGetSubCategoriesQuery({
+    id: subcategory as string,
+    perPage: 20,
+  });
+
+  console.log("SubcategoryPage:", products);
+
   return (
     <div className={s.container}>
-      <CategoryTags
-        title={"Скотч, изолента, клейкая лента"}
-        tags={subcategoryes}
-      />
+      {!isLoading && products && (
+        <CategoryTags
+          title={"Скотч, изолента, клейкая лента"}
+          categories={products.data}
+        />
+      )}
       <BestSellingProducts />
     </div>
   );

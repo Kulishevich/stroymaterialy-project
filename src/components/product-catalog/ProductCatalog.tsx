@@ -3,24 +3,34 @@ import { Typography } from "../ui/typography";
 import s from "./ProductCatalog.module.scss";
 import { Item } from "../item";
 import clsx from "clsx";
+import { useGetTrendsProductsQuery } from "@/api/products/products.api";
 
 const sort = [
   {
     id: "1",
-    value: "Самые продаваемые товары",
+    title: "Самые продаваемые товары",
+    value: "popular",
   },
   {
     id: "2",
-    value: "Акции",
+    title: "Акции",
+    value: "discounted",
   },
   {
     id: "3",
-    value: "Новинки",
+    title: "Новинки",
+    value: "newest",
   },
 ];
 
 export const ProductCatalog = () => {
-  const [activeSort, setActiveSort] = useState<string>(sort[0].id);
+  const [activeSort, setActiveSort] = useState<string>(sort[0].value);
+  const { data: products, isLoading } = useGetTrendsProductsQuery({
+    trend: activeSort,
+    perPage: 4,
+  });
+
+  console.log(products);
 
   return (
     <div className={s.container}>
@@ -33,19 +43,20 @@ export const ProductCatalog = () => {
             variant="body_4"
             as="button"
             key={elem.id}
-            onClick={() => setActiveSort(elem.id)}
-            className={clsx(activeSort === elem.id && s.active)}
+            onClick={() => setActiveSort(elem.value)}
+            className={clsx(activeSort === elem.value && s.active)}
           >
-            {elem.value}
+            {elem.title}
           </Typography>
         ))}
       </div>
-      <div className={s.itemsContainer}>
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-      </div>
+      {!isLoading && products && (
+        <div className={s.itemsContainer}>
+          {products.data.map((product) => (
+            <Item product={product} key={product.id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

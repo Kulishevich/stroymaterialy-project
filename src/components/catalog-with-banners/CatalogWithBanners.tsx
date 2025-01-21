@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./CatalogWithBanners.module.scss";
 import Image from "next/image";
-import { CatalogMenu } from "@/features/Catalog/CatalogMenu/CatalogMenu";
+import { CatalogMenu } from "@/features/Catalog/catalog-menu/CatalogMenu";
 
 export const CatalogWithBanners = () => {
   return (

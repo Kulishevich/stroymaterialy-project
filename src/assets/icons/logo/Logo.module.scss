@@ -2,6 +2,8 @@
     display: inline-flex;
     align-items: center;
     gap: 15px;
+
+    text-decoration: none;
 }
 .text {
     border-left: 2px solid var(--color-accent-orange);

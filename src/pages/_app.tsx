@@ -2,13 +2,17 @@ import type { AppProps } from "next/app";
 import "@/styles/index.scss";
 import { LayoutFonts } from "@/components/layouts/LayoutFonts";
 import { MainLayout } from "@/components/layouts/main-layout";
+import { Provider } from "react-redux";
+import { store } from "@/store/store";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <LayoutFonts>
-      <MainLayout>
-        <Component {...pageProps} />
-      </MainLayout>
+      <Provider store={store}>
+        <MainLayout>
+          <Component {...pageProps} />
+        </MainLayout>
+      </Provider>
     </LayoutFonts>
   );
 }

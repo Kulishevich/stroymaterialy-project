@@ -8,8 +8,7 @@ import { Typography } from "../typography";
 
 export type RadioOption = {
   id: string;
-  value: string;
-  content: string;
+  name: string;
 };
 
 export type RadioProps = {
@@ -26,7 +25,7 @@ export const Radio = forwardRef<RadioGroupRef, RadioProps>((props, ref) => {
     <RadixRadio.Root
       className={clsx(s.root, className)}
       disabled={disabled}
-      defaultValue={options[0].value}
+      defaultValue={options[0].name}
       ref={ref}
       {...rest}
     >
@@ -36,11 +35,11 @@ export const Radio = forwardRef<RadioGroupRef, RadioProps>((props, ref) => {
             className={s.item}
             id={radioGroupId + option.id}
             tabIndex={+option.id}
-            value={option.value}
+            value={option.name}
           >
             <RadixRadio.Indicator className={s.indicator} />
           </RadixRadio.Item>
-          <Typography variant="body_1">{option.content}</Typography>
+          <Typography variant="body_1">{option.name}</Typography>
         </div>
       ))}
     </RadixRadio.Root>

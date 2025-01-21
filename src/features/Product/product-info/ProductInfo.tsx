@@ -10,8 +10,15 @@ import {
   DollarIcon,
   HeartIcon,
 } from "@/assets/icons";
+import { Product } from "@/api/products/products.types";
 
-export const ProductInfo = () => {
+type ProductInfoProps = {
+  item: Product;
+};
+
+export const ProductInfo = ({ item }: ProductInfoProps) => {
+  console.log(item);
+
   return (
     <div className={s.container}>
       <div className={s.head}>
@@ -20,7 +27,7 @@ export const ProductInfo = () => {
           <div className={s.info}>
             <Typography variant="body_3">
               <span className={s.title}>Бренд</span>
-              <span className={s.value}>BONDIT</span>
+              <span className={s.value}>{item.brand}</span>
             </Typography>
             <Typography variant="body_3">
               <span className={s.title}>Высота [мм]</span>
@@ -48,10 +55,10 @@ export const ProductInfo = () => {
           <Counter />
           <div className={s.price}>
             <Typography variant="h3" as="h3">
-              300,00 AMD / шт
+              {item.discountedPrice}
             </Typography>
             <Typography variant="price_sale" as="span">
-              400,00 AMD
+              {item.price}
             </Typography>
           </div>
           <div className={s.buttonsContainer}>
@@ -70,12 +77,7 @@ export const ProductInfo = () => {
           <Typography variant="h3" as="h3">
             Описание
           </Typography>
-          <Typography variant="body_1">
-            Малярная лента используется при покраске для защиты площадей,
-            которые не должны быть покрыты краской, а также для создания чётких
-            краёв рисунка. Основная особенность ленты — в её клеевом слое,
-            который позволяет удалить ленту, не повреждая поверхность под ней.
-          </Typography>
+          <Typography variant="body_1">{item.description}</Typography>
         </div>
         <div className={s.elem}>
           <Typography variant="h3" as="h3">
