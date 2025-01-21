@@ -13,13 +13,11 @@ import { useState } from "react";
 const options = [
   {
     id: "1",
-    value: "individual",
-    content: "Физическое лицо",
+    name: "Физическое лицо",
   },
   {
     id: "2",
-    value: "Legal_entity",
-    content: "Юридическое лицо",
+    name: "Юридическое лицо",
   },
 ];
 
