@@ -48,7 +48,7 @@ export const LoginFormPopup = ({ isOpen, setIsOpen }: LoginFormPopupProps) => {
         </div>
         {navItems.find((elem) => elem.id === activeTag)?.value}
         <Button
-          variant={"icon"}
+          variant={"only_icon"}
           className={s.closeButton}
           onClick={() => setIsOpen(false)}
         >

@@ -9,6 +9,8 @@ import s from "./MastersClubForm.module.scss";
 import { TextArea } from "@/components/ui/text-area";
 import { TextFieldFile } from "@/components/ui/text-field-file";
 import { useState } from "react";
+import { useGetProfessionQuery } from "@/api/professions/professions.api";
+import { useGetSpheresQuery } from "@/api/spheres/spheres.api";
 
 const options = [
   {
@@ -21,25 +23,15 @@ const options = [
   },
 ];
 
-const selectOption = [
-  {
-    option: "Механик",
-    value: "1",
-  },
-  {
-    option: "Механик",
-    value: "2",
-  },
-  {
-    option: "Механик",
-    value: "3",
-  },
-];
-
 export const MastersClubForm = () => {
   const [image, setImage] = useState<File | null>(null);
 
   console.log(image);
+
+  const { data: profession } = useGetProfessionQuery();
+  const { data: spheres } = useGetSpheresQuery();
+  if (profession) console.log(profession);
+  if (spheres) console.log(spheres);
 
   return (
     <>
@@ -55,7 +47,7 @@ export const MastersClubForm = () => {
             <Typography variant="h4" as="h4" isRequired={true}>
               1. Ваша профессия
             </Typography>
-            <Select placeHolder="Механик" options={selectOption} />
+            <Select options={profession?.data} />
           </div>
           <div className={s.elem}>
             <Typography variant="h4" as="h4">
@@ -71,31 +63,39 @@ export const MastersClubForm = () => {
           <div className={s.inputsWrapper}>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Имя</Typography>
-              <TextField placeholder="Имя" />
+              <TextField placeholder="Имя" className={s.input} />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Фамилия</Typography>
-              <TextField placeholder="Фамилия" />
+              <TextField placeholder="Фамилия" className={s.input} />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Телефон</Typography>
-              <TextField placeholder="(+374) 12 34 56 78" />
+              <TextField placeholder="(+374) 12 34 56 78" className={s.input} />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Электронный адрес</Typography>
-              <TextField placeholder="Электронный адрес" />
+              <TextField placeholder="Электронный адрес" className={s.input} />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Область работы</Typography>
-              <TextField placeholder="Гипсокартонные конструкции" />
+              <Select options={spheres?.data} />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Пароль</Typography>
-              <TextField placeholder="" variant="password" />
+              <TextField
+                placeholder=""
+                variant="password"
+                className={s.input}
+              />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Подтвердить пароль</Typography>
-              <TextField placeholder="" variant="password" />
+              <TextField
+                placeholder=""
+                variant="password"
+                className={s.input}
+              />
             </div>
           </div>
         </div>

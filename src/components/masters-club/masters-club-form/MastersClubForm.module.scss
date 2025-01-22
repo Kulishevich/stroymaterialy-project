@@ -4,7 +4,6 @@
 
 .form {
     width: 1296px;
-    height: 1131px;
     padding: 64px 110px;
     box-sizing: border-box;
 
@@ -40,6 +39,10 @@
     gap: 8px;
 
     width: 342px;
+}
+
+.input {
+    height: 58px;
 }
 
 .about {

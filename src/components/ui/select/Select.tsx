@@ -15,8 +15,8 @@ import { ArrowDownIcon } from "@/assets/icons";
 
 export type OptionsValue = {
   icon?: ReactNode;
-  option: string;
-  value: string;
+  name: string;
+  id: string;
 };
 export type SelectProps = {
   variant?: "primary" | "secondary";
@@ -38,7 +38,7 @@ export const Select = forwardRef<
       label,
       onValueChange,
       options = [],
-      placeHolder,
+      placeHolder = options[0].name,
       value,
       ...rest
     },
@@ -47,13 +47,13 @@ export const Select = forwardRef<
     const mappedOptions = options?.map((item, index) => (
       <SelectItem
         className={s.selectItem}
-        key={item.value + index}
-        value={item.value}
+        key={item.id + index}
+        value={item.id}
       >
         <RadixSelect.ItemText asChild>
           <div className={s.option}>
             {item.icon}
-            {item.option}
+            {item.name}
           </div>
         </RadixSelect.ItemText>
       </SelectItem>
