@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StarRating } from "@/components/star-rating";
 import s from "./ProductInfo.module.scss";
 import { Typography } from "@/components/ui/typography";
@@ -11,13 +11,38 @@ import {
   HeartIcon,
 } from "@/assets/icons";
 import { Product } from "@/api/products/products.types";
+import { useAddItemCartMutation } from "@/api/cart/cart.api";
 
 type ProductInfoProps = {
   item: Product;
 };
 
 export const ProductInfo = ({ item }: ProductInfoProps) => {
+  const [count, setCount] = useState(1);
+  const [addItemCart] = useAddItemCartMutation();
+
   console.log(item);
+
+  const increment = () => {
+    setCount((prev) => prev + 1);
+  };
+
+  const decrement = () => {
+    setCount((prev) => prev - 1);
+  };
+
+  const handleAddItemInCart = async () => {
+    const fetchData = {
+      id: item.id,
+      count: count,
+    };
+    try {
+      await addItemCart(fetchData).unwrap();
+      setCount(1);
+    } catch (err: unknown) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className={s.container}>
@@ -52,7 +77,11 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
           </div>
         </div>
         <div className={s.priceContainer}>
-          <Counter />
+          <Counter
+            countCurrent={count}
+            increment={increment}
+            decrement={decrement}
+          />
           <div className={s.price}>
             <Typography variant="h3" as="h3">
               {item.discountedPrice}
@@ -62,7 +91,9 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
             </Typography>
           </div>
           <div className={s.buttonsContainer}>
-            <Button className={s.basketButton}>В корзину</Button>
+            <Button className={s.basketButton} onClick={handleAddItemInCart}>
+              В корзину
+            </Button>
             <Button variant={"icon"} className={s.iconButton}>
               <HeartIcon />
             </Button>

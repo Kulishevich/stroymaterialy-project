@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Typography } from "../ui/typography";
 import { Button } from "../ui/button";
@@ -8,6 +8,7 @@ import clsx from "clsx";
 import { Product } from "@/api/products/products.types";
 import s from "./Item.module.scss";
 import Link from "next/link";
+import { useAddItemCartMutation } from "@/api/cart/cart.api";
 
 export type ItemProps = {
   variant?: "vertical" | "horizontal";
@@ -15,8 +16,31 @@ export type ItemProps = {
 };
 
 export const Item = ({ variant = "vertical", product }: ItemProps) => {
+  const [count, setCount] = useState(1);
   const vertical = variant === "vertical";
   const sizeImage = vertical ? 306 : 110;
+  const [addItemCart] = useAddItemCartMutation();
+
+  const increment = () => {
+    setCount((prev) => prev + 1);
+  };
+
+  const decrement = () => {
+    setCount((prev) => prev - 1);
+  };
+
+  const handleAddItemInCart = async () => {
+    const fetchData = {
+      id: product.id,
+      count: count,
+    };
+    try {
+      await addItemCart(fetchData).unwrap();
+      setCount(1);
+    } catch (err: unknown) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className={clsx(vertical ? s.container : s.horizontalContainer)}>
@@ -71,8 +95,18 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
           </Typography>
         </div>
         <div className={vertical ? s.buttonContainer : s.horizontalContainer}>
-          <Counter size={vertical ? "l" : "m"} />
-          <Button className={!vertical && s.buttonVertical}>В корзину</Button>
+          <Counter
+            size={vertical ? "l" : "m"}
+            countCurrent={count}
+            increment={increment}
+            decrement={decrement}
+          />
+          <Button
+            className={!vertical && s.buttonVertical}
+            onClick={handleAddItemInCart}
+          >
+            В корзину
+          </Button>
         </div>
       </div>
     </div>

@@ -8,10 +8,13 @@ import { CatalogPopup } from "@/components/catalog-popup";
 import Link from "next/link";
 import { Paths } from "@/shared/enums";
 import { Search } from "@/components/search";
+import { useGetCartQuery } from "@/api/cart/cart.api";
 
 export const HeaderSearch = () => {
   const [isActiveCatalog, setIsActiveCatalog] = useState<boolean>(false);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
+
+  const { data: cart } = useGetCartQuery();
 
   return (
     <div className={s.container}>
@@ -51,7 +54,10 @@ export const HeaderSearch = () => {
             </div>
             <div className={s.textContainer}>
               <Typography as="h6">Корзина</Typography>
-              <Typography as="p">Товаров: 0 (0 AMD)</Typography>
+              <Typography as="p">
+                Товаров: {cart?.data.count ? cart?.data.count : 0} (
+                {cart?.data.total ? cart?.data.total : 0})
+              </Typography>
             </div>
           </Typography>
         </div>

@@ -4,10 +4,10 @@ import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({
   reducer: {
-    [domixApi.reducerPath]: domixApi.reducer, // Подключение RTK Query
+    [domixApi.reducerPath]: domixApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(domixApi.middleware), // Добавление middleware RTK Query
+    getDefaultMiddleware().concat(domixApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

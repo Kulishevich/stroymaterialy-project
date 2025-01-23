@@ -1,27 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import s from "./Counter.module.scss";
 import clsx from "clsx";
 
 type CounterProps = {
   size?: "s" | "m" | "l";
+  countCurrent?: number;
+  increment: () => void;
+  decrement: () => void;
 };
 
-export const Counter = ({ size = "l" }: CounterProps) => {
-  const [count, setCount] = useState(0);
-
-  const increment = () => {
-    setCount((prev) => ++prev);
-  };
-
-  const decrement = () => {
-    setCount((prev) => --prev);
-  };
-
+export const Counter = ({
+  size = "l",
+  countCurrent,
+  increment,
+  decrement,
+}: CounterProps) => {
   return (
     <div className={clsx(s.container, s[size])}>
-      <span className={clsx(s.counter, s[size])}>{count}</span>
+      <span className={clsx(s.counter, s[size])}>{countCurrent}</span>
       <div className={clsx(s.buttonContainer, s[size])}>
-        <button className={s[size]} onClick={decrement} disabled={count === 0}>
+        <button
+          className={s[size]}
+          onClick={decrement}
+          disabled={countCurrent === 1}
+        >
           -
         </button>
         <button className={s[size]} onClick={increment}>

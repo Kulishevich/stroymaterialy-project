@@ -1,37 +1,31 @@
 import React, { useState } from "react";
-import s from "./ShoppingCartPage.module.scss";
 import { Typography } from "@/components/ui/typography";
-import { Counter } from "@/components/counter";
 import { Button } from "@/components/ui/button";
-import { TrashIcon } from "@/assets/icons";
-import Image from "next/image";
 import { RequestDiscountPopup } from "../request-discount-popup";
 import Link from "next/link";
 import { Paths } from "@/shared/enums";
-
-const products = [
-  {
-    id: "1",
-    image: "/images/profile-card.png",
-    title: "Абразивный диск с листовой кромкой песок N60, 115мм RODEX",
-    price: "500,00 AMD",
-  },
-  {
-    id: "2",
-    image: "/images/profile-card.png",
-    title: "Абразивный диск с листовой кромкой песок N60, 115мм RODEX",
-    price: "500,00 AMD",
-  },
-  {
-    id: "3",
-    image: "/images/profile-card.png",
-    title: "Абразивный диск с листовой кромкой песок N60, 115мм RODEX",
-    price: "500,00 AMD",
-  },
-];
+import { useClearCartMutation, useGetCartQuery } from "@/api/cart/cart.api";
+import s from "./ShoppingCartPage.module.scss";
+import { ShoppingCartItemRow } from "../shopping-cart-item-row";
 
 export const ShoppingCartPage = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { data: cart } = useGetCartQuery();
+  const [clearCart] = useClearCartMutation();
+
+  const handleClearCart = async () => {
+    try {
+      const res = await clearCart().unwrap();
+      console.log(res);
+    } catch (err: unknown) {
+      console.log(err);
+    }
+  };
+
+  if (cart) {
+    console.log(cart);
+  }
 
   return (
     <div className={s.container}>
@@ -59,48 +53,28 @@ export const ShoppingCartPage = () => {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
-                <tr key={product.id}>
-                  <td className={s.card}>
-                    <Image
-                      src={product.image}
-                      width={120}
-                      height={120}
-                      alt="product image"
-                      className={s.image}
-                    />
-                    <Typography variant="body_3">{product.title}</Typography>
-                  </td>
-                  <td>
-                    <Typography variant="body_2">{product.price}</Typography>
-                  </td>
-                  <td>
-                    <Counter />
-                  </td>
-                  <td>
-                    <Typography variant="body_2">{product.price}</Typography>
-                  </td>
-                  <td>
-                    <Button variant={"icon"} className={s.trashButton}>
-                      <TrashIcon />
-                    </Button>
-                  </td>
-                </tr>
+              {cart?.data.list.map((item) => (
+                <ShoppingCartItemRow item={item} key={item.product.id} />
               ))}
             </tbody>
           </table>
-          <Typography variant="body_4" as="button" className={s.clearButton}>
+          <Typography
+            variant="body_4"
+            as="button"
+            onClick={handleClearCart}
+            className={s.clearButton}
+          >
             Очистить корзину
           </Typography>
         </div>
         <div className={s.price}>
           <div className={s.total}>
             <Typography variant="body_3">Цена</Typography>
-            <Typography variant="body_3">1 500,00 AMD</Typography>
+            <Typography variant="body_3">{cart?.data.subtotal}</Typography>
           </div>
           <div className={s.total}>
             <Typography variant="h4">Сумма</Typography>
-            <Typography variant="h4">1 500,00 AMD</Typography>
+            <Typography variant="h4">{cart?.data.total}</Typography>
           </div>
           <div className={s.buttonsContainer}>
             <Button fullWidth={true} as={Link} href={Paths.payment}>
@@ -110,17 +84,20 @@ export const ShoppingCartPage = () => {
               fullWidth={true}
               variant="secondary"
               onClick={() => setIsOpen(true)}
+              disabled={!cart?.data.list.length}
             >
               Запросить скидку
             </Button>
           </div>
         </div>
       </div>
-      <RequestDiscountPopup
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        orders={products}
-      />
+      {cart?.data.list && (
+        <RequestDiscountPopup
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          orders={cart?.data.list}
+        />
+      )}
     </div>
   );
 };

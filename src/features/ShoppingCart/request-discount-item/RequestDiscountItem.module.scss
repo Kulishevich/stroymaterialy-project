@@ -1,0 +1,31 @@
+.order {
+    display: flex;
+    gap: 40px;
+}
+
+.card {
+    width: 310px;
+    height: 100;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    & > img {
+        background-color: var(--color-grey-1);
+        border-radius: 6px;
+    }
+}
+
+.myPrice {
+    display: flex;
+    flex-direction: column;
+    width: 306px;
+    gap: 8px;
+}
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    width: 96px;
+    gap: 8px;
+}

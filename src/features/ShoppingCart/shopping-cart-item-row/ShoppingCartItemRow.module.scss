@@ -1,0 +1,21 @@
+.row > td{
+    border-bottom: 1px solid #7D7D7D50;
+    padding: 24px 0;
+    &.card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 370px;
+        box-sizing: border-box;
+        padding-right: 40px;
+    }
+}
+
+.image {
+    border-radius: 6px;
+    background-color: var(--color-grey-1);
+}
+
+.trashButton {
+    outline: none   ;
+}
