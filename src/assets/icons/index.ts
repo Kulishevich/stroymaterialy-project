@@ -40,3 +40,6 @@ export { default as PosIcon } from "./PosIcon";
 export { default as CashIcon } from "./CashIcon";
 export { default as EyeOutlineIcon } from "./EyeOutlineIcon";
 export { default as EyeOffOutlineIcon } from "./EyeOffOutlineIcon";
+export { default as HeartOutlineIcon } from "./HeartOutlineIcon";
+export { default as RuIcon } from "./RuIcon";
+export { default as AmIcon } from "./AmIcon";

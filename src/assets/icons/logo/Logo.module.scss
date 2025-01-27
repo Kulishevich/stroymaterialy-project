@@ -4,11 +4,21 @@
     gap: 15px;
 
     text-decoration: none;
+    @media (max-width: 768px) {
+        gap: 8px;
+    }
 }
 .text {
     border-left: 2px solid var(--color-accent-orange);
     height: 50px;
     padding-left: 15px;
+    @media (max-width: 768px) {
+        height: 29px;
+        padding-left: 8px;
+        font-size: 24.32px;
+        font-weight: 600;
+        line-height: 28.82px;
+      }
 }
 .light {
     color: var(--color-bg);

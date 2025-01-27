@@ -30,7 +30,8 @@ export const LoginForm = () => {
   const formHandler = handleSubmit(async (data) => {
     console.log(data);
     try {
-      await login(data).unwrap();
+      const res = await login(data).unwrap();
+      console.log(res);
       reset();
     } catch (err: unknown) {
       console.log(err);

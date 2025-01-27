@@ -9,6 +9,7 @@ import { Product } from "@/api/products/products.types";
 import s from "./Item.module.scss";
 import Link from "next/link";
 import { useAddItemCartMutation } from "@/api/cart/cart.api";
+import { useAddInFavoriteMutation } from "@/api/products/products.api";
 
 export type ItemProps = {
   variant?: "vertical" | "horizontal";
@@ -20,7 +21,7 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
   const vertical = variant === "vertical";
   const sizeImage = vertical ? 306 : 110;
   const [addItemCart] = useAddItemCartMutation();
-
+  const [addInFavorite] = useAddInFavoriteMutation();
   const increment = () => {
     setCount((prev) => prev + 1);
   };
@@ -37,6 +38,24 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
     try {
       await addItemCart(fetchData).unwrap();
       setCount(1);
+    } catch (err: unknown) {
+      console.error(err);
+    }
+  };
+
+  const handleAddFavorite = async () => {
+    const fetchData = {
+      products: [
+        [
+          "9dfe6d73-ae2c-4cb0-8cb3-79fc7cd6f447",
+          "9dfe515f-0cd7-4ebe-9a47-303490c6dd65",
+          "9dfe52cf-ec8d-4781-bba0-a3e386c68ed7",
+        ],
+      ],
+    };
+    try {
+      const res = await addInFavorite(fetchData).unwrap();
+      console.log(res);
     } catch (err: unknown) {
       console.error(err);
     }
@@ -74,7 +93,13 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
                 </Typography>
               )}
             </div>
-            <HeartIcon className={s.icon} />
+            <Button
+              variant="only_icon"
+              onClick={handleAddFavorite}
+              className={s.favoriteButton}
+            >
+              <HeartIcon />
+            </Button>
           </>
         )}
       </div>

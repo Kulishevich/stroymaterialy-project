@@ -1,11 +1,15 @@
 import React from "react";
-import { TextField } from "@/components/ui/text-field";
 import { Typography } from "@/components/ui/typography";
 import { Select } from "@/components/ui/select";
 import { RhombIcon } from "@/assets/icons";
 import s from "./PayerDetails.module.scss";
+import { ControlledTextField } from "@/components/ui/controlled-textfiled";
 
-export const PayerDetails = () => {
+type PayerDetailsProps = {
+  control: any;
+};
+
+export const PayerDetails = ({ control }: PayerDetailsProps) => {
   return (
     <div className={s.payment}>
       <div className={s.title}>
@@ -26,19 +30,39 @@ export const PayerDetails = () => {
         </div>
         <div className={s.inputContainer}>
           <Typography variant="body_5">Имя</Typography>
-          <TextField className={s.input} placeholder="Имя" />
+          <ControlledTextField
+            control={control}
+            name="firstName"
+            className={s.input}
+            placeholder="Имя"
+          />
         </div>
         <div className={s.inputContainer}>
           <Typography variant="body_5">Фамилия</Typography>
-          <TextField className={s.input} placeholder="Фамилия" />
+          <ControlledTextField
+            control={control}
+            name="lastName"
+            className={s.input}
+            placeholder="Фамилия"
+          />
         </div>
         <div className={s.inputContainer}>
           <Typography variant="body_5">Электронный адрес</Typography>
-          <TextField className={s.input} placeholder="Электронный адрес" />
+          <ControlledTextField
+            control={control}
+            name="email"
+            className={s.input}
+            placeholder="Электронный адрес"
+          />
         </div>
         <div className={s.inputContainer}>
           <Typography variant="body_5">Телефон</Typography>
-          <TextField className={s.input} placeholder="(+374) 12 34 56 78" />
+          <ControlledTextField
+            control={control}
+            name="phone"
+            className={s.input}
+            placeholder="(+374) 12 34 56 78"
+          />
         </div>
       </div>
     </div>

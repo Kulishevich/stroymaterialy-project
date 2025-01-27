@@ -12,9 +12,9 @@
 
   background-color: transparent;
   border: none;
-  @media (max-width: $mobile) {
-    font-family: var(--font-onest);
-  }
+  // @media (max-width: $mobile) {
+  //   font-family: var(--font-onest);
+  // }
 }
 
 .h1 {
@@ -83,7 +83,7 @@
 .body_5 {
   @include typography(16px, 22.4px, 600);
   @media (max-width: $mobile) {
-    @include typography(16px, 22.4px, 600);
+    @include typography(14px, 19.6px, 600);
   }
 }
 

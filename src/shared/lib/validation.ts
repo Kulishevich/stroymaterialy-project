@@ -16,15 +16,6 @@ export const passwordScheme = () =>
     .regex(/^\S*$/, { message: validation.password.noWhiteSpace })
     .min(1, { message: validation.requiredField })
     .max(20, { message: validation.password.maxLength });
-// .refine(
-//   (value) =>
-//     /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!"#$%&'()*+,\-.:;<=>?@[\]^_`{|}~])/.test(
-//       value
-//     ),
-//   {
-//     message: validation.password.mustContain,
-//   }
-// );
 
 export const confirmPasswordScheme = () => z.string().trim();
 

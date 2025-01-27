@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Counter } from "@/components/counter";
 import { Button } from "@/components/ui/button";
 import { BagShoppingIcon } from "@/assets/icons";
+import { useGetFavoriteProductsQuery } from "@/api/products/products.api";
 
 const favorites = [
   {
@@ -34,6 +35,8 @@ const favorites = [
 ];
 
 export const Favorites = () => {
+  const { data } = useGetFavoriteProductsQuery();
+  console.log(data);
   return (
     <div className={s.container}>
       <Typography variant="h3" as="h3">

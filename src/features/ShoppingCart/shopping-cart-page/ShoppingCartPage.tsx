@@ -2,17 +2,39 @@ import React, { useState } from "react";
 import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { RequestDiscountPopup } from "../request-discount-popup";
-import Link from "next/link";
 import { Paths } from "@/shared/enums";
 import { useClearCartMutation, useGetCartQuery } from "@/api/cart/cart.api";
 import s from "./ShoppingCartPage.module.scss";
 import { ShoppingCartItemRow } from "../shopping-cart-item-row";
+import { useCreateOrderMutation } from "@/api/orders/orders.api";
+import { useRouter } from "next/router";
 
 export const ShoppingCartPage = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-
   const { data: cart } = useGetCartQuery();
   const [clearCart] = useClearCartMutation();
+
+  const [createOrder] = useCreateOrderMutation();
+
+  const handleCreateOrder = async () => {
+    const fetchData = {
+      items: cart?.data.list.map((elem) => {
+        return {
+          count: elem.count,
+          id: elem.product.id,
+        };
+      }),
+    };
+    console.log("Ложим в заказ:", fetchData);
+    try {
+      const { data } = await createOrder(fetchData).unwrap();
+      console.log("Созданный заказ:", data);
+      router.push(`${Paths.payment}/${data.id}`);
+    } catch (err: unknown) {
+      console.error(err);
+    }
+  };
 
   const handleClearCart = async () => {
     try {
@@ -24,7 +46,7 @@ export const ShoppingCartPage = () => {
   };
 
   if (cart) {
-    console.log(cart);
+    console.log("Корзина:", cart.data);
   }
 
   return (
@@ -77,7 +99,7 @@ export const ShoppingCartPage = () => {
             <Typography variant="h4">{cart?.data.total}</Typography>
           </div>
           <div className={s.buttonsContainer}>
-            <Button fullWidth={true} as={Link} href={Paths.payment}>
+            <Button fullWidth={true} onClick={handleCreateOrder}>
               Продолжить
             </Button>
             <Button

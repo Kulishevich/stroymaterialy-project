@@ -11,6 +11,27 @@ import {
   VisaIcon,
 } from "@/assets/icons";
 import Image from "next/image";
+import { Paths } from "@/shared/enums";
+import { Dropdown } from "../ui/dropdown";
+
+const cooperationOptions = [
+  {
+    value: (
+      <Typography as={Link} href={Paths.forBusiness} variant="placeholder_big">
+        Для бизнеса
+      </Typography>
+    ),
+    id: "value1",
+  },
+  {
+    value: (
+      <Typography as={Link} href={Paths.vacancies} variant="placeholder_big">
+        Вакансии
+      </Typography>
+    ),
+    id: "value2",
+  },
+];
 
 export const Footer = () => {
   return (
@@ -46,28 +67,34 @@ export const Footer = () => {
           <div className={s.navigate}>
             <Typography variant="h4">Компания</Typography>
             <nav className={s.navigateContainer}>
-              <Typography as={Link} href={"#"} variant="body_3">
+              <Typography as={Link} href={Paths.home} variant="body_3">
                 Главная
               </Typography>
-              <Typography as={Link} href={"#"} variant="body_3">
+              <Typography
+                as={Link}
+                href={Paths.deliveryAndPayment}
+                variant="body_3"
+              >
                 Доставка и оплата
               </Typography>
               <Typography
                 as={Link}
-                href={"#"}
+                href={Paths.shares}
                 variant="body_3"
                 className={s.promotion}
               >
                 <PercentIcon />
                 Акции
               </Typography>
-              <Typography as={Link} href={"#"} variant="body_3">
-                Сотрудничество
-              </Typography>
-              <Typography as={Link} href={"#"} variant="body_3">
+              <Dropdown
+                placeholder="Сотрудничество"
+                items={cooperationOptions}
+                className={s.navLink}
+              />
+              <Typography as={Link} href={Paths.about} variant="body_3">
                 О нас
               </Typography>
-              <Typography as={Link} href={"#"} variant="body_3">
+              <Typography as={Link} href={Paths.contacts} variant="body_3">
                 Контакты
               </Typography>
               <Typography as={Link} href={"#"} variant="body_3">

@@ -60,7 +60,11 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>((props, ref) => {
           {label}
         </Typography>
       )}
-      {error && <Typography as={"span"}>{error}</Typography>}
+      {error && (
+        <Typography as={"span"} className={s.errorMessage} variant="body_6">
+          {error}
+        </Typography>
+      )}
     </div>
   );
 });

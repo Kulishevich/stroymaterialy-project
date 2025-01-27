@@ -2,6 +2,7 @@ import { Typography } from "@/components/ui/typography";
 import React, { useState } from "react";
 import s from "./Orders.module.scss";
 import { OrderPopup } from "../order-popup";
+import { useGetUserOrdersQuery } from "@/api/user/user.api";
 
 export type OrderType = {
   id: string;
@@ -37,6 +38,10 @@ const orders: OrderType[] = [
 export const Orders = () => {
   const [isOrderOpen, setIsOrderOpen] = useState<boolean>(false);
   const [activeOrder, setActiveOrder] = useState<number>(0);
+
+  const { data } = useGetUserOrdersQuery({
+    perPage: 20,
+  });
 
   const handleOpenModal = (index: number) => {
     setActiveOrder(index);

@@ -1,13 +1,15 @@
 import { Product } from "../products/products.types";
 
 export type CartResponse = {
-  data: {
-    count: number;
-    discount: string;
-    list: CartList[];
-    subtotal: string;
-    total: string;
-  };
+  data: CartItem;
+};
+
+export type CartItem = {
+  count: number;
+  discount: string;
+  list: CartList[];
+  subtotal: string;
+  total: string;
 };
 
 export type CartList = {

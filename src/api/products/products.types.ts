@@ -1,3 +1,5 @@
+import { LinksTypes, MetaTypes } from "@/shared/types/types";
+
 export type RequestParams = {
   id: string;
   perPage: number;
@@ -77,32 +79,10 @@ export type Filters = {
   };
 };
 
-export type PaginationLinks = {
-  first: string;
-  last: string;
-  next: string;
-  prev: string | null;
-};
-
-export type PaginationMeta = {
-  current_page: number;
-  from: number;
-  last_page: number;
-  links: {
-    active: boolean;
-    label: number;
-    url: string;
-  }[];
-  path: string;
-  per_page: number;
-  to: number;
-  total: number;
-};
-
 export type ProductsData = {
   data: Product[];
-  links: PaginationLinks;
-  meta: PaginationMeta;
+  links: LinksTypes;
+  meta: MetaTypes;
 };
 
 export type ResponseProductsByCategory = {
@@ -113,4 +93,22 @@ export type ResponseProductsByCategory = {
   };
   errors: boolean;
   message: string;
+};
+
+export type GetFavotireResponse = {
+  discountDetails: DiscountDetailsTypes;
+  email: string;
+  favorites: [];
+  firstName: string;
+  fullName: string;
+  isPartner: boolean;
+  lastName: string;
+  phone: string;
+};
+
+export type DiscountDetailsTypes = {
+  discountPercent: number;
+  isFreeDelivery: boolean;
+  isFreeWorkerService: boolean;
+  level: number;
 };

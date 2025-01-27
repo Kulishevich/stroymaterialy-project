@@ -1,4 +1,4 @@
-import { BagShoppingIcon, BurgerIcon, HeartIcon } from "@/assets/icons";
+import { BagShoppingIcon, BurgerIcon, HeartOutlineIcon } from "@/assets/icons";
 import { TextField } from "@/components/ui/text-field";
 import { Typography } from "@/components/ui/typography";
 import React, { useState } from "react";
@@ -37,7 +37,7 @@ export const HeaderSearch = () => {
         <div className={s.buttonsContainer}>
           <div className={s.favorites}>
             <div className={s.iconContainer}>
-              <HeartIcon width={28} height={28} />
+              <HeartOutlineIcon width={48} height={48} />
             </div>
             <div className={s.textContainer}>
               <Typography as="h6">Избранное</Typography>

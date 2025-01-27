@@ -5,25 +5,12 @@ import { RhombIcon } from "@/assets/icons";
 import { Select } from "@/components/ui/select";
 import { TextField } from "@/components/ui/text-field";
 import { Button } from "@/components/ui/button";
-import { RadioCards } from "@/components/ui/radio-cards";
-
-const radioOptions = [
-  {
-    id: "1",
-    value: "address_1",
-    title: "",
-    content: (
-      <Typography variant="body_1">
-        8F9P+XJF, Charents St, Yeghvard, Армения
-      </Typography>
-    ),
-  },
-];
+import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
 
 const deliveryMethodOprions = [
   {
     id: "1",
-    value: "standard_delivery",
+    value: "Стандартная доставка",
     title: <Typography variant="body_7">Стандартная доставка</Typography>,
     content: (
       <>
@@ -36,7 +23,7 @@ const deliveryMethodOprions = [
   },
   {
     id: "2",
-    value: "express_delivery",
+    value: "Экспресс доставка",
     title: <Typography variant="body_7">Экспресс доставка</Typography>,
     content: (
       <>
@@ -49,7 +36,7 @@ const deliveryMethodOprions = [
   },
   {
     id: "3",
-    value: "courier_delivery",
+    value: "Курьер Мопед",
     title: <Typography variant="body_7">Курьер Мопед (до 10 кг)</Typography>,
     content: (
       <>
@@ -62,7 +49,7 @@ const deliveryMethodOprions = [
   },
   {
     id: "4",
-    value: "ipost_delivery",
+    value: "Айпост Доставка",
     title: (
       <Typography variant="body_7">Айпост Доставка (вес до 5 кг)</Typography>
     ),
@@ -75,8 +62,28 @@ const deliveryMethodOprions = [
   },
 ];
 
-export const PurchaseMethod = () => {
+type PurchaseMethodProps = {
+  addresses: any;
+  control: any;
+};
+
+export const PurchaseMethod = ({ addresses, control }: PurchaseMethodProps) => {
   const [isAddAddress, setIsAddAddress] = useState(false);
+  console.log("Адреса:", addresses);
+  const radioOptions =
+    !!addresses?.length &&
+    addresses.map((address) => {
+      return {
+        id: address.id,
+        value: address.address,
+        title: "",
+        content: (
+          <Typography variant="body_1">
+            {address.address},{address.region.name}
+          </Typography>
+        ),
+      };
+    });
 
   return (
     <div className={s.payment}>
@@ -125,7 +132,13 @@ export const PurchaseMethod = () => {
           <Typography variant="h4" as="h4">
             Адрес:
           </Typography>
-          <RadioCards options={radioOptions} />
+          {radioOptions && (
+            <ControlledRadioCards
+              control={control}
+              name="address"
+              options={radioOptions}
+            />
+          )}
           <Typography
             variant="button"
             as="button"
@@ -145,7 +158,11 @@ export const PurchaseMethod = () => {
           </Typography>
         </div>
         <div className={s.cardsContainer}>
-          <RadioCards options={deliveryMethodOprions} />
+          <ControlledRadioCards
+            options={deliveryMethodOprions}
+            control={control}
+            name="orderType"
+          />
         </div>
       </div>
     </div>

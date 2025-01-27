@@ -2,22 +2,26 @@ import { Typography } from "@/components/ui/typography";
 import Link from "next/link";
 import React, { useState } from "react";
 import { SelectIcons } from "@/components/ui/select-icons";
-import { PercentIcon, ProfileIcon } from "@/assets/icons";
-import { FlagRussia } from "@/assets/icons/flag-russia";
+import { AmIcon, PercentIcon, ProfileIcon, RuIcon } from "@/assets/icons";
 import s from "./HeaderNavigation.module.scss";
-import clsx from "clsx";
 import { Paths } from "@/shared/enums";
 import { LoginFormPopup } from "@/components/login-form-popup";
 import { Dropdown } from "@/components/ui/dropdown";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { changeLang } from "@/store/slices/lang/langSlice";
+import { useTranslation } from "react-i18next";
+import clsx from "clsx";
+import { RootState } from "@/store/store";
 
 const headerOptions = [
   {
-    icon: <FlagRussia />,
-    value: "Russia1",
+    icon: <AmIcon />,
+    value: "hy",
   },
   {
-    icon: <FlagRussia />,
-    value: "Russia2",
+    icon: <RuIcon />,
+    value: "ru",
   },
 ];
 
@@ -41,32 +45,60 @@ const cooperationOptions = [
 ];
 export const HeaderNavigation = () => {
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
+  const router = useRouter();
+  const [lang, langs] = useSelector((state: RootState) => state.lang);
+  const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
+  console.log(lang, langs);
+
+  const changeLanguage = (value: string) => {
+    dispatch(changeLang(value));
+    i18n.changeLanguage(value);
+  };
 
   return (
     <header className={s.header}>
       <div className={s.headerContainer}>
         <nav className={s.navigate}>
-          <Typography as={Link} href={"/"} className={s.navLink}>
-            Главная
+          <Typography
+            as={Link}
+            href={Paths.home}
+            className={clsx(
+              s.navLink,
+              router.pathname === Paths.home && s.active
+            )}
+          >
+            {t("header.main")}
+            {t("texts.deliveryHeaderMessage")}
           </Typography>
           <Typography
             as={Link}
             href={Paths.deliveryAndPayment}
-            className={s.navLink}
+            className={clsx(
+              s.navLink,
+              router.pathname === Paths.deliveryAndPayment && s.active
+            )}
           >
             Доставка и оплата
           </Typography>
           <Typography
             as={Link}
             href={Paths.regularСustomer}
-            className={s.navLink}
+            className={clsx(
+              s.navLink,
+              router.pathname === Paths.regularСustomer && s.active
+            )}
           >
             Постоянный клиент
           </Typography>
           <Typography
             as={Link}
             href={Paths.shares}
-            className={clsx(s.navLink, s.shares)}
+            className={clsx(
+              s.navLink,
+              s.shares,
+              router.pathname === Paths.shares && s.active
+            )}
           >
             <PercentIcon />
             Акции
@@ -76,10 +108,24 @@ export const HeaderNavigation = () => {
             items={cooperationOptions}
             className={s.navLink}
           />
-          <Typography as={Link} href={Paths.about} className={s.navLink}>
+          <Typography
+            as={Link}
+            href={Paths.about}
+            className={clsx(
+              s.navLink,
+              router.pathname === Paths.about && s.active
+            )}
+          >
             О нас
           </Typography>
-          <Typography as={Link} href={Paths.contacts} className={s.navLink}>
+          <Typography
+            as={Link}
+            href={Paths.contacts}
+            className={clsx(
+              s.navLink,
+              router.pathname === Paths.contacts && s.active
+            )}
+          >
             Контакты
           </Typography>
         </nav>
@@ -87,6 +133,7 @@ export const HeaderNavigation = () => {
           options={headerOptions}
           className={s.selectHeader}
           placeHolder={headerOptions[0].icon}
+          onValueChange={(value) => changeLanguage(value)}
         />
         <Typography
           onClick={() => setIsLoginFormOpen(true)}

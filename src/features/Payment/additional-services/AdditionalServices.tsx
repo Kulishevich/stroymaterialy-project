@@ -4,8 +4,13 @@ import { Typography } from "@/components/ui/typography";
 import { RhombIcon } from "@/assets/icons";
 import { Radio } from "@/components/ui/radio";
 import { useGetExtraOptionsQuery } from "@/api/orders/orders.api";
+import { ControlledRadio } from "@/components/ui/controlled-radio";
 
-export const AdditionalServices = () => {
+type AdditionalServicesProps = {
+  control: any;
+};
+
+export const AdditionalServices = ({ control }: AdditionalServicesProps) => {
   const { data: extraOptions, isLoading } = useGetExtraOptionsQuery();
   if (!isLoading) {
     console.log(extraOptions?.data);
@@ -27,7 +32,12 @@ export const AdditionalServices = () => {
         Стоимость дополнительных услуг уточнит оператор.
       </Typography>
       {extraOptions && (
-        <Radio options={extraOptions.data} className={s.radioService} />
+        <ControlledRadio
+          control={control}
+          name="extraOptions"
+          options={extraOptions.data}
+          className={s.radioService}
+        />
       )}
     </div>
   );

@@ -1,0 +1,45 @@
+.container {
+    width: 336px;
+    min-width: 336px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 13px;
+    border-bottom: 1px solid #21253126;
+}
+
+.phoneContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.burgerContainer {
+    display: flex;
+    gap: 12px;
+}
+
+.burgerButton{
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.buttons {
+    display: flex;
+    gap: 6px;
+}

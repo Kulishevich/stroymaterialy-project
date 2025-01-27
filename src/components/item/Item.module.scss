@@ -48,12 +48,17 @@
     border-radius: 4px;
 }
 
-.icon {
+.favoriteButton {
     position: absolute;
     right: 16px;
     top: 16px;
+    z-index: 1000;
+    padding: 0;
+    color: #21253126;
+}
+
+.favorite {
     color: var(--color-accent-red);
-    fill: var(--color-accent-red);
 }
 
 .image {

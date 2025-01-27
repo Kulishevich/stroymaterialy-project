@@ -62,3 +62,8 @@
         color: var(--color-accent-orange);
     }
 }
+
+.active {
+    color: var(--color-text);
+    text-decoration: underline;
+}

@@ -8,43 +8,47 @@ import {
   TransferIcon,
 } from "@/assets/icons";
 import { Typography } from "@/components/ui/typography";
-import { RadioCards } from "@/components/ui/radio-cards";
 import s from "./PaymentMethod.module.scss";
+import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
 
 const radioOptions = [
   {
     id: "1",
-    value: "card",
+    value: "Оплатить картой",
     title: <CreditCardIcon />,
     content: <Typography>Оплатить картой</Typography>,
   },
   {
     id: "2",
-    value: "idram",
+    value: "Оплатить Идрамом",
     title: <IdramIcon width={126} height={38} />,
     content: <Typography>Оплатить Идрамом</Typography>,
   },
   {
     id: "3",
-    value: "cash",
+    value: "Оплатить наличными",
     title: <CashIcon />,
     content: <Typography>Оплатить наличными</Typography>,
   },
   {
     id: "4",
-    value: "bank_transfer",
+    value: "Банковским переводом",
     title: <TransferIcon />,
     content: <Typography>Банковским переводом</Typography>,
   },
   {
     id: "5",
-    value: "card_place",
+    value: "С картой на месте",
     title: <PosIcon />,
     content: <Typography>С картой на месте</Typography>,
   },
 ];
 
-export const PaymentMethod = () => {
+type PaymentMethodProps = {
+  control: any;
+};
+
+export const PaymentMethod = ({ control }: PaymentMethodProps) => {
   return (
     <div className={s.payment}>
       <div className={s.title}>
@@ -59,7 +63,11 @@ export const PaymentMethod = () => {
         </Typography>
       </div>
       <div className={s.cardsContainer}>
-        <RadioCards options={radioOptions} />
+        <ControlledRadioCards
+          options={radioOptions}
+          control={control}
+          name="paymentMethod"
+        />
       </div>
     </div>
   );

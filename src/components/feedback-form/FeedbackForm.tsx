@@ -1,51 +1,37 @@
 import s from "./FeedbackForm.module.scss";
 import Image from "next/image";
 import { Typography, Variant } from "../ui/typography";
-import { TextField } from "../ui/text-field";
 import { Button } from "../ui/button";
-import { Checkbox } from "../ui/checkbox";
 import { SocialNetworks } from "../social-networks";
+import { useForm } from "react-hook-form";
+import { ControlledTextField } from "../ui/controlled-textfiled";
+import { ControlledCheckbox } from "../ui/controlled-checkbox";
+import { feedbackFormSchemeCreator } from "./model/feedback-form-scheme";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const FeedbackForm = () => {
-  //   const [isChecked, setIsChecked] = useState(false);
+  const {
+    handleSubmit,
+    formState: { isValid },
+    control,
+  } = useForm({
+    defaultValues: {
+      name: "",
+      phone: "",
+      agreement: false,
+    },
+    mode: "onTouched",
+    reValidateMode: "onChange",
+    resolver: zodResolver(feedbackFormSchemeCreator()),
+  });
 
-  //   const {
-  //     handleSubmit,
-  //     register,
-  //     formState: { errors },
-  //     reset,
-  //   } = useForm({
-  //     defaultValues: {
-  //       phone: "",
-  //       comment: "",
-  //     },
-  //   });
-
-  //   const handleCloseModal = () => {
-  //     setIsOpen((prev) => !prev);
-  //     setIsChecked(false);
-  //     reset();
-  //   };
-
-  //   const handleCheckboxChange = () => {
-  //     setIsChecked((prev) => !prev);
-  //   };
-
-  //   const handlePost = handleSubmit(async (data) => {
-  // const message = `Поступила заявка на обратную связь. Номер телефона: ${data.phone} | Комментарий: ${data.comment}`;
-  // try {
-  //   await sendMessage(message);
-  //   setIsChecked(false);
-  //   showToast({ message: "Ваше сообщене отправлено", variant: "success" });
-  //   reset();
-  // } catch (e) {
-  //   showToast({ message: e as string, variant: "error" });
-  // }
-  //   });
+  const formHandler = handleSubmit((data) => {
+    console.log(data);
+  });
 
   return (
     <div className={s.wrapper}>
-      <div className={s.container}>
+      <form className={s.container} onSubmit={formHandler}>
         <Typography as="h2" variant="h2" className={s.text}>
           Связаться с нами
         </Typography>
@@ -54,21 +40,36 @@ export const FeedbackForm = () => {
           вам в ближайшее время
         </Typography>
         <div className={s.inputsContainer}>
-          <TextField isRequired={true} placeholder="Имя" />
-          <TextField isRequired={true} placeholder="Телефон" />
+          <ControlledTextField
+            control={control}
+            name="name"
+            isRequired={true}
+            placeholder="Имя"
+          />
+          <ControlledTextField
+            control={control}
+            name="phone"
+            isRequired={true}
+            placeholder="Телефон"
+          />
         </div>
         <div className={s.submitContainer}>
-          <Button variant={"secondary"}>Отправить</Button>
-          <Checkbox
+          <Button variant={"secondary"} type="submit" disabled={!isValid}>
+            Отправить
+          </Button>
+          <ControlledCheckbox
+            control={control}
+            name="agreement"
             label="Согласие на обработку персональных данных"
             labelText={Variant.body_6}
+            className={s.checkbox}
           />
         </div>
         <Typography variant="body_2" className={s.text}>
           или свяжитесь с нами через социальные сети
         </Typography>
         <SocialNetworks />
-      </div>
+      </form>
       <Image
         src={"/images/image1.jpg"}
         width={440}
