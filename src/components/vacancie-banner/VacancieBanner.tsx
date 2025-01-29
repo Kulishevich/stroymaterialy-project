@@ -3,8 +3,11 @@ import s from "./VacancieBanner.module.scss";
 import Image from "next/image";
 import { Typography } from "../ui/typography";
 import { Logo } from "@/assets/icons/logo";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 export const VacancieBanner = () => {
+  const isMobile = useIsMobile("tablet");
+
   return (
     <div className={s.container}>
       <Typography variant="h1" as="h1">
@@ -13,13 +16,13 @@ export const VacancieBanner = () => {
       <div className={s.imageContainer}>
         <Image
           src={"/images/for-business/vacancie-banner.jpg"}
-          width={1296}
-          height={328}
+          width={!isMobile ? 1296 : 336}
+          height={!isMobile ? 328 : 335}
           alt="banner"
           className={s.image}
         />
         <div className={s.content}>
-          <Logo variant="dark" />
+          <Logo variant={!isMobile ? "dark" : "light"} />
           <Typography variant="h4" as="h4">
             Клуб Мастеров Domix – это рай для любого профессионала.
           </Typography>

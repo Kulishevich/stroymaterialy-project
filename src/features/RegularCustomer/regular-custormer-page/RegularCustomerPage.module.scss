@@ -4,4 +4,10 @@
     gap: 140px;
 
     margin-bottom: 140px;
+    @media (max-width: 768px) {
+        gap: 72px;
+        width: 336px;
+        margin: 0 auto;
+        margin-bottom: 72px;
+    }
 }

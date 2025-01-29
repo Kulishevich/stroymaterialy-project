@@ -1,0 +1,97 @@
+.tableDeliveryMobile {
+    width: 336px;
+    height: 394px;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    border-radius: 6px;
+    overflow: hidden;
+
+    & > thead {
+        border: 1px solid #2125311A;
+        & > tr > th {
+            background-color: var(--color-text);
+            box-sizing: border-box;
+            padding: 0;
+            height: 74px;
+            width: 170px;
+            &:not(:last-child){
+                border-right: 1px solid #2125311A;
+            }
+            & > p {
+                color: var(--color-bg);
+            }
+        }
+    }
+    
+    & > tbody > tr {
+        border: 1px solid #2125311A;
+    }
+
+    & > tbody > tr {
+        & > th {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            border-right: 1px solid #2125311A;
+            padding-left: 16px;
+        }
+        & > td {
+            text-align: center;
+            padding: 0 12px;
+            &:not(:last-child){
+                border-right: 1px solid #2125311A;
+            }
+        }
+
+    }
+}
+
+.trigger {
+    cursor: pointer;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    gap: 5px;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    & > div > p {
+        color: var(--color-bg);
+    }
+    & > svg {
+        color: var(--color-accent-orange);
+        transition: transform 0.3s ease;
+    }
+  }
+  
+  .trigger[data-state=open] {
+    & > svg {
+      transform: rotate(180deg);
+    }
+  }
+  
+  .content {
+    border: 1px solid #2125311A;
+    border-radius: 4px;
+    background-color: var(--color-bg);
+    padding: 18px 16px;
+  
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .item {
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: var(--color-grey-3);
+    text-decoration: none;
+    &:hover {
+      border: none;
+      outline: none;
+      color: var(--color-accent-orange);
+    }
+  }

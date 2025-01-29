@@ -1,11 +1,8 @@
 import { Typography } from "@/components/ui/typography";
 import React from "react";
 import s from "./Favoriter.module.scss";
-import Image from "next/image";
-import { Counter } from "@/components/counter";
-import { Button } from "@/components/ui/button";
-import { BagShoppingIcon } from "@/assets/icons";
 import { useGetFavoriteProductsQuery } from "@/api/products/products.api";
+import { FavoriteItem } from "./favorite-item";
 
 const favorites = [
   {
@@ -39,30 +36,17 @@ export const Favorites = () => {
   console.log(data);
   return (
     <div className={s.container}>
-      <Typography variant="h3" as="h3">
-        Избранное
-      </Typography>
+      <div className={s.title}>
+        <Typography variant="h3" as="h3">
+          Избранное
+        </Typography>
+        <Typography variant="body_6" className={s.countFav}>
+          {favorites.length} товаров
+        </Typography>
+      </div>
       <div className={s.cardsContainer}>
         {favorites.map((favorite) => (
-          <div className={s.card} key={favorite.id}>
-            <Image
-              src={favorite.image}
-              width={177}
-              height={177}
-              alt="favorite card"
-              className={s.image}
-            />
-            <Typography variant="body_6" as="h3">
-              {favorite.title}
-            </Typography>
-            <Typography variant="body_7">{favorite.price}</Typography>
-            <div className={s.buttonsContainer}>
-              <Counter size="s" />
-              <Button className={s.shopButton}>
-                <BagShoppingIcon />
-              </Button>
-            </div>
-          </div>
+          <FavoriteItem favorite={favorite} key={favorite.id} />
         ))}
       </div>
     </div>

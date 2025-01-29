@@ -6,6 +6,7 @@ import { CloseIcon } from "@/assets/icons";
 import { Typography } from "@/components/ui/typography";
 import { TextField } from "@/components/ui/text-field";
 import { Select } from "@/components/ui/select";
+import { TextArea } from "@/components/ui/text-area";
 
 const districtOptions = [
   {
@@ -57,7 +58,7 @@ export const AddAddressPopup = ({
           </div>
           <div className={s.inputContainer}>
             <Typography variant="body_5">Детали адреса доставки</Typography>
-            <TextField />
+            <TextArea className={s.textarea} />
           </div>
         </div>
 

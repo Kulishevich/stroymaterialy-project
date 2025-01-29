@@ -3,6 +3,11 @@
     align-items: center;
     gap: 51px;
     width: 100%;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 24px;
+    }
 }
 
 .form {
@@ -11,10 +16,23 @@
     gap: 24px;
 
     width: 374px;
+
+    @media (max-width: 768px) {
+        gap: 16px;
+        width: 100%;
+
+        & > button {
+            width: 100%;
+        }
+    }
 }
 
 .inputContainer {
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+.input {
+    height: 58px;
 }

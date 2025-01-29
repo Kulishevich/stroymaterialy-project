@@ -60,7 +60,6 @@
   }
 
   @media (max-width: $mobile) {
-    font-family: var(--font-onest);
     font-size: 16px;
     font-weight: 400;
     line-height: 22.4px;
@@ -118,7 +117,7 @@
 
 .errorMessage {
   position: absolute;
-  bottom: -20px;
+  bottom: -15px;
   left: 0;
   color: var(--color-accent-red);
 }

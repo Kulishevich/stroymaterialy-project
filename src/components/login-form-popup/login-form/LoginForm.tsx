@@ -1,7 +1,6 @@
 import React from "react";
 import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
 import { useForm } from "react-hook-form";
 import { loginSchemeCreator } from "../model/login-scheme";
@@ -10,7 +9,11 @@ import { useLoginMutation } from "@/api/auth/auth.api";
 import { LoginArgs } from "@/api/auth/auth.types";
 import s from "./LoginForm.module.scss";
 
-export const LoginForm = () => {
+type LoginFormProps = {
+  setIsPasswordRecovery: (value: boolean) => void;
+};
+
+export const LoginForm = ({ setIsPasswordRecovery }: LoginFormProps) => {
   const [login] = useLoginMutation();
 
   const {
@@ -56,9 +59,8 @@ export const LoginForm = () => {
       </div>
       <Typography
         variant="button"
-        as={Link}
-        href={"/password-recovery"}
         className={s.passwordRecovery}
+        onClick={() => setIsPasswordRecovery(true)}
       >
         Восстановить пароль
       </Typography>

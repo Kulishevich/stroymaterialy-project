@@ -27,21 +27,21 @@
 .h2 {
   @include typography(36px, 42.66px, 600);
   @media (max-width: $mobile) {
-    @include typography(26px, 33.8px, 600);
+    @include typography(22px, 26.07px, 600);
   }
 }
 
 .h3 {
   @include typography(22px, 30.8px, 500);
   @media (max-width: $mobile) {
-    @include typography(22px, 30.8px, 600);
+    @include typography(19px, 26.6px, 500);
   }
 }
 
 .h4 {
   @include typography(20px, 23.7px, 500);
   @media (max-width: $mobile) {
-    @include typography(18px, 25.2px, 500);
+    @include typography(18px, 21.33px, 500);
   }
 }
 
@@ -55,7 +55,7 @@
 .body_1 {
   @include typography(18px, 25.2px, 400);
   @media (max-width: $mobile) {
-    @include typography(16px, 24px, 400);
+    @include typography(16px, 22.4px, 400);
   }
 }
 
@@ -76,7 +76,7 @@
 .body_4 {
   @include typography(16px, 18.96px, 400);
   @media (max-width: $mobile) {
-    @include typography(12px, 16.8px, 600);
+    @include typography(14px, 16.6px, 400);
   }
 }
 
@@ -90,14 +90,14 @@
 .body_6 {
   @include typography(14px, 19.6px, 400);
   @media (max-width: $mobile) {
-    @include typography(14px, 19.6px, 400);
+    @include typography(11px, 15.4px, 400);
   }
 }
 
 .body_7 {
   @include typography(14px, 19.6px, 600);
   @media (max-width: $mobile) {
-    @include typography(14px, 19.6px, 600);
+    @include typography(11px, 15.4px, 600);
   }
 }
 
@@ -112,7 +112,7 @@
   @include typography(20px, 28px, 400);
   cursor: pointer;
   @media (max-width: $mobile) {
-    @include typography(20px, 28px, 500);
+    @include typography(16px, 22.4px, 500);
   }
 }
 

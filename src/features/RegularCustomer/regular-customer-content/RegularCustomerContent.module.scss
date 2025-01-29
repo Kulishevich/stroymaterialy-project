@@ -10,12 +10,19 @@
 .content {
     display: flex;
     gap: 45px;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 36px;
+    }
 }
 
 .navigate {
     width: 306px;
     display: flex;
     flex-direction: column;
+    @media (max-width: 768px) {
+        width: 336px;
+    }
 }
 .navItem {
     display: flex;

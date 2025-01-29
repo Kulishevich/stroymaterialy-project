@@ -1,0 +1,54 @@
+.rootClass {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+
+  padding: 16px 24px;
+
+  border-radius: 6px;
+
+  &.success {
+    background-color: var(--color-accent-green);
+    border: 2px solid var(--color-accent-green);
+  }
+
+  &.error {
+    background-color: var(--color-accent-red);
+    border: 2px solid var(--color-accent-red);
+  }
+
+  .contentWrapper {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      & > p {
+        text-wrap: nowrap;
+        color: var(--color-bg);
+      }
+    }
+  }
+}
+
+.closeButton {
+  cursor: pointer;
+  display: flex;
+}
+
+@keyframes progress-bar {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0;
+  }
+}

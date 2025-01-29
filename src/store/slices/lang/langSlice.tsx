@@ -6,7 +6,7 @@ const langs = [
 ];
 
 // const lang = localStorage.getItem("i18nextLng") === "ru" ? "ru" : "hy";
-const lang = "ru";
+const lang = "hy";
 
 const initialState = [
   langs.find((item) => item.val === lang),

@@ -4,6 +4,7 @@ import { LayoutFonts } from "@/components/layouts/LayoutFonts";
 import { MainLayout } from "@/components/layouts/main-layout";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
+import "../i18n";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

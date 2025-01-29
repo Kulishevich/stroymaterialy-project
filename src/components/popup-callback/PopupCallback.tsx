@@ -10,6 +10,7 @@ import { ControlledCheckbox } from "../ui/controlled-checkbox";
 import { callbackSchemeCreator } from "./model/callback-scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
 import s from "./PopupCallback.module.scss";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 type PopupCallbackProps = {
   isOpen: boolean;
@@ -20,6 +21,7 @@ export const PopupCallback = ({
   isOpen = true,
   setIsOpen,
 }: PopupCallbackProps) => {
+  const isMobile = useIsMobile("tablet");
   const {
     control,
     formState: { isValid },
@@ -49,13 +51,15 @@ export const PopupCallback = ({
     <Dialog.Root open={isOpen} onOpenChange={handleCloseModal}>
       <Dialog.Overlay className={s.overlay} />
       <Dialog.Content className={s.content}>
-        <Image
-          src="/images/popup-callback.png"
-          alt="image"
-          width={502}
-          height={502}
-          className={s.image}
-        />
+        {!isMobile && (
+          <Image
+            src="/images/popup-callback.png"
+            alt="image"
+            width={502}
+            height={502}
+            className={s.image}
+          />
+        )}
         <Button
           className={s.closeIcon}
           onClick={() => setIsOpen(false)}
@@ -104,10 +108,19 @@ export const PopupCallback = ({
               className={s.checkbox}
             />
           </div>
-          <Button onClick={handlePost} disabled={!isValid}>
+          <Button onClick={handlePost} disabled={!isValid} fullWidth={isMobile}>
             Отправить
           </Button>
         </div>
+        {isMobile && (
+          <Image
+            src="/images/popup-callback.png"
+            alt="image"
+            width={190}
+            height={190}
+            className={s.imageMobile}
+          />
+        )}
       </Dialog.Content>
     </Dialog.Root>
   );

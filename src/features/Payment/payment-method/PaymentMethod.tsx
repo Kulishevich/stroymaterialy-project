@@ -10,6 +10,7 @@ import {
 import { Typography } from "@/components/ui/typography";
 import s from "./PaymentMethod.module.scss";
 import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
+import { Control } from "react-hook-form";
 
 const radioOptions = [
   {
@@ -45,7 +46,7 @@ const radioOptions = [
 ];
 
 type PaymentMethodProps = {
-  control: any;
+  control: Control;
 };
 
 export const PaymentMethod = ({ control }: PaymentMethodProps) => {

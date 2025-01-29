@@ -9,6 +9,11 @@
     background-color: var(--color-bg);
     border: 1px solid #2125314D;
     border-radius: 6px;
+
+    @media (max-width: 768px) {
+        width: 336px;
+        padding: 20px 16px;
+    }
 }
 
 .imageContainer {
@@ -22,6 +27,14 @@
 
     background-color: var(--color-grey-1);
     border-radius: 6px;
+
+    & > p {
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        padding: 12px;
+    }
 }
 
 .image {
@@ -39,6 +52,11 @@
     gap: 16px;
 
     width: 252px;
+
+    @media (max-width: 768px) {
+        width: 168px;
+        gap: 12px;
+    }
 }
 
 .container {
@@ -50,4 +68,17 @@
 .flexContainer {
     display: flex;
     gap: 12px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+.button {
+    width: 140px;
+    height: 36px;
+    @media (max-width: 768px) {
+        width: 128px;
+    }
 }

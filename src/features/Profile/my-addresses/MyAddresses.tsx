@@ -28,6 +28,26 @@ const addressesOptions = [
       </>
     ),
   },
+  {
+    id: "2",
+    value: "express_delivery",
+    title: (
+      <>
+        <Typography variant="body_5">Эдвард</Typography>
+        <Typography variant="body_3">Основной адрес</Typography>
+      </>
+    ),
+    content: (
+      <>
+        <Typography variant="body_6">
+          8F9P+XJF, Charents St, Yeghvard, Армения
+        </Typography>
+        <Typography variant="body_6" as="button" className={s.editButton}>
+          Редактировать
+        </Typography>
+      </>
+    ),
+  },
 ];
 
 export const MyAddresses = () => {
@@ -46,7 +66,7 @@ export const MyAddresses = () => {
       <Typography variant="h3" as="h3">
         Мои адреса
       </Typography>
-      {addressesOptions.length > 0 ? (
+      {!!addressesOptions && addressesOptions?.length > 0 ? (
         <div className={s.addressContainer}>
           <div className={s.cards}>
             <RadioCards options={addressesOptions} className={s.radioAddress} />

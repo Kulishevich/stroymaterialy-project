@@ -2,11 +2,12 @@ import React from "react";
 import { Typography } from "@/components/ui/typography";
 import { Select } from "@/components/ui/select";
 import { RhombIcon } from "@/assets/icons";
-import s from "./PayerDetails.module.scss";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
+import { Control } from "react-hook-form";
+import s from "./PayerDetails.module.scss";
 
 type PayerDetailsProps = {
-  control: any;
+  control: Control;
 };
 
 export const PayerDetails = ({ control }: PayerDetailsProps) => {
@@ -20,7 +21,7 @@ export const PayerDetails = ({ control }: PayerDetailsProps) => {
           <RhombIcon />
         </div>
         <Typography variant="h3" as="h3">
-          Дополнительные услуги
+          Данные плательщика
         </Typography>
       </div>
       <div className={s.inputsContainer}>

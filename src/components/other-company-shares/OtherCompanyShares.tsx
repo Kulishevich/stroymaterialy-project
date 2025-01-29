@@ -2,6 +2,7 @@ import React from "react";
 import s from "./OtherCompanyShares.module.scss";
 import { Typography } from "../ui/typography";
 import { Discount } from "../discount";
+import { Button } from "../ui/button";
 
 export const OtherCompanyShares = () => {
   return (
@@ -13,6 +14,7 @@ export const OtherCompanyShares = () => {
         <Discount />
         <Discount />
       </div>
+      <Button>Все акции</Button>
     </div>
   );
 };

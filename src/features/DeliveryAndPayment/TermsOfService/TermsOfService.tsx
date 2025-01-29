@@ -60,9 +60,8 @@ export const TermsOfService = () => {
       </div>
 
       <div className={s.elem}>
-        <Typography variant="body_2" as="h4">
-          В услугу доставки (кроме курьерской) не входит разгрузка (выгрузка из
-          автомобиля), подъем и пронос товара — это отдельные услуги.
+        <Typography variant="h4" as="h4">
+          Стоимость услуги
         </Typography>
         <ul>
           <Typography variant="body_3" as="li">

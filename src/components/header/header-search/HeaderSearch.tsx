@@ -37,7 +37,7 @@ export const HeaderSearch = () => {
         <div className={s.buttonsContainer}>
           <div className={s.favorites}>
             <div className={s.iconContainer}>
-              <HeartOutlineIcon width={48} height={48} />
+              <HeartOutlineIcon width={28} height={28} />
             </div>
             <div className={s.textContainer}>
               <Typography as="h6">Избранное</Typography>

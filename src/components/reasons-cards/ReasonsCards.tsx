@@ -2,6 +2,7 @@ import React from "react";
 import s from "./ReasonsCards.module.scss";
 import { Typography } from "../ui/typography";
 import Image from "next/image";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 const cards = [
   {
@@ -28,6 +29,8 @@ const cards = [
 ];
 
 export const ReasonsCards = () => {
+  const isMobile = useIsMobile("tablet");
+
   return (
     <div className={s.container}>
       <Typography variant="h2" as="h2">
@@ -38,8 +41,8 @@ export const ReasonsCards = () => {
           <div className={s.card} key={card.id}>
             <Image
               src={card.image}
-              width={281}
-              height={313}
+              width={!isMobile ? 281 : 336}
+              height={!isMobile ? 313 : 180}
               alt="vacancie card"
               className={s.image}
             />

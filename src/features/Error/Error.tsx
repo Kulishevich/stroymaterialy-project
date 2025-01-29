@@ -4,8 +4,12 @@ import Image from "next/image";
 import { Typography } from "../../components/ui/typography";
 import { Button } from "../../components/ui/button";
 import Link from "next/link";
+import { Paths } from "@/shared/enums";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 export const Error = () => {
+  const isMobile = useIsMobile("tablet");
+
   return (
     <div className={s.container}>
       <div className={s.content}>
@@ -16,7 +20,7 @@ export const Error = () => {
           К сожалению, страница не найдена. Возможно, она была удалена или Вы
           ввели некорректный адрес (ошибка 404).
         </Typography>
-        <Button as={Link} href={"/"}>
+        <Button as={Link} href={Paths.home}>
           На главную
         </Button>
       </div>
@@ -38,8 +42,8 @@ export const Error = () => {
         <Image
           className={s.image3}
           src={"/images/error/404.png"}
-          width={704}
-          height={270}
+          width={!isMobile ? 704 : 332}
+          height={!isMobile ? 270 : 120}
           alt="error"
         />
       </div>

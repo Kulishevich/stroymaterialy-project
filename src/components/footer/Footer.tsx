@@ -65,7 +65,9 @@ export const Footer = () => {
             </div>
           </div>
           <div className={s.navigate}>
-            <Typography variant="h4">Компания</Typography>
+            <Typography variant="h4" as="h4">
+              Компания
+            </Typography>
             <nav className={s.navigateContainer}>
               <Typography as={Link} href={Paths.home} variant="body_3">
                 Главная
@@ -89,7 +91,7 @@ export const Footer = () => {
               <Dropdown
                 placeholder="Сотрудничество"
                 items={cooperationOptions}
-                className={s.navLink}
+                className={(s.navLink, s.dropdown)}
               />
               <Typography as={Link} href={Paths.about} variant="body_3">
                 О нас
@@ -125,7 +127,7 @@ export const Footer = () => {
                 Время работы:
               </Typography>
               <Typography variant="h3" as="p">
-                с 09:00 до 22:00 ежедневно{" "}
+                с 09:00 до 22:00 ежедневно
               </Typography>
             </div>
           </div>

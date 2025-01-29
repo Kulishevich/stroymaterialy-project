@@ -24,8 +24,20 @@
                 height: 7px;
                 background-color: var(--color-accent-orange);
                 border-radius: 1px;
-              }
+            }
+
+            @media (max-width: 768px) {
+                padding-left: 26px;
+            }
         }
+
+        @media (max-width: 768px) {
+            gap: 8px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        gap: 12px;
     }
 }
 
@@ -34,6 +46,10 @@
     flex-direction: column;
     gap: 32px;
     align-items: center;
+
+    @media (max-width: 768px) {
+        gap: 24px;
+    }
 }
 
 .nav {
@@ -44,9 +60,17 @@
         padding: 6px 10px;
         border-radius: 4px;
         background-color: var(--color-grey-1);
+        width: fit-content;
         &.active {
             color: var(--color-bg);
             background-color: var(--color-accent-orange);
         }
+    }
+
+    @media (max-width: 768px) {
+        margin-top: 36px;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
     }
 }

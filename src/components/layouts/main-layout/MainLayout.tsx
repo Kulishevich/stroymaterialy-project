@@ -7,6 +7,7 @@ import PhoneAnimation from "@/components/phone-animation/PhoneAnimation";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { HeaderMobile } from "@/components/header-mobile/HeaderMobile";
+import { Toaster } from "sonner";
 
 export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [isOpenPopup, setIsOpenPopup] = useState(false);
@@ -23,6 +24,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <Footer />
       <PhoneAnimation onClick={handleOpenPopup} />
       <PopupCallback isOpen={isOpenPopup} setIsOpen={setIsOpenPopup} />
+      <Toaster />
     </div>
   );
 };

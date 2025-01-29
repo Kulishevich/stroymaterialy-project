@@ -2,6 +2,14 @@
     position: relative;
     height: 720px;
     display: flex;
+
+    @media (max-width: 768px) {
+        flex-direction: column-reverse;
+        height: fit-content;
+        width: 336px;
+        align-items: center;
+        margin: 140px auto;
+    }
 }
 
 .content {
@@ -16,6 +24,11 @@
     & > p {
         margin: 20px 0 32px;
     }
+
+    @media (max-width: 768px) {
+        margin-top: 0;
+        width: fit-content;
+    }
 }
 
 .imageContainer {
@@ -23,6 +36,10 @@
     height: 100%;
     position: absolute;
     z-index: -1;
+    @media (max-width: 768px) {
+        position: static;
+        height: fit-content;
+    }
 }
 
 .image1 {
@@ -30,6 +47,10 @@
     bottom: 505px;
     right: 365px;
     z-index: -1;
+    @media (max-width: 768px) {
+        display: none;
+        position: static;
+    }
 }
 
 .image2 {
@@ -37,6 +58,10 @@
     bottom: -12px;
     right: -100px;
     z-index: -1;
+    @media (max-width: 768px) {
+        display: none;
+        position: static;
+    }
 }
 
 .image3 {
@@ -44,4 +69,8 @@
     bottom: 250px;
     right: 102px;
     z-index: 1;
+
+    @media (max-width: 768px) {
+        position: static;
+    }
 }

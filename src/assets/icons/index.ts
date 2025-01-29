@@ -43,3 +43,7 @@ export { default as EyeOffOutlineIcon } from "./EyeOffOutlineIcon";
 export { default as HeartOutlineIcon } from "./HeartOutlineIcon";
 export { default as RuIcon } from "./RuIcon";
 export { default as AmIcon } from "./AmIcon";
+export { default as VisaSecureIcon } from "./VisaSecureIcon";
+export { default as BePaidIcon } from "./BePaidIcon";
+export { default as ErrorIcon } from "./ErrorIcon";
+export { default as SuccessIcon } from "./SuccessIcon";

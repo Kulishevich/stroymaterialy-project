@@ -1,13 +1,12 @@
 import React from "react";
 import s from "./BenefitsOfWorking.module.scss";
 import { Typography } from "../ui/typography";
-import Image from "next/image";
 
 const cards = [
   {
     id: "1",
     title: "Обслуживание",
-    image: "/images/for-business/image1.png",
+    image: "/images/for-business/image1.jpg",
     values: [
       "Профессиональная консультация и ответственное отношение",
       "Самая больная онлайн платформа - более 10 000 наименований продукции",
@@ -18,7 +17,7 @@ const cards = [
   {
     id: "2",
     title: "Доступные цены",
-    image: "/images/for-business/image2.png",
+    image: "/images/for-business/image2.jpg",
     values: [
       "Конкурентные цены",
       "Гибкая система рассрочки",
@@ -31,7 +30,7 @@ const cards = [
   {
     id: "3",
     title: "Подход",
-    image: "/images/for-business/image3.png",
+    image: "/images/for-business/image3.jpg",
     values: [
       "Учитываем все желания и потребности клиента",
       "Отслеживание истории заказов в личном кабинете",
@@ -43,7 +42,7 @@ const cards = [
   {
     id: "4",
     title: "Мнгожество преимуществ с Domix",
-    image: "/images/for-business/image4.png",
+    image: "/images/for-business/image4.jpg",
     values: [
       "Гибкая система оплаты",
       "Общие пакеты и предложения",
@@ -64,13 +63,7 @@ export const BenefitsOfWorking = () => {
       <div className={s.cards}>
         {cards.map((card) => (
           <div className={s.card} key={card.id}>
-            <Image
-              src={card.image}
-              width={281}
-              height={399}
-              alt="image"
-              className={s.image}
-            />
+            <img src={card.image} alt="image" className={s.image} />
             <div className={s.content}>
               <Typography variant="h3" as="h3">
                 {card.title}

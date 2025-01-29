@@ -3,8 +3,11 @@ import s from "./SharesInfo.module.scss";
 import { Typography } from "../ui/typography";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 export const SharesInfo = () => {
+  const isMobile = useIsMobile("tablet");
+
   return (
     <div className={s.container}>
       <Typography variant="h1" as="h1">
@@ -21,12 +24,12 @@ export const SharesInfo = () => {
             с 01 по 31 декабря 2024 года. Акция ограничена, поэтому торопитесь,
             чтобы не пропустить выгодное предложение!
           </Typography>
-          <Button variant={"secondary"}>В каталог</Button>
+          {!isMobile && <Button variant={"secondary"}>В каталог</Button>}
         </div>
         <Image
           src={"/images/middle-banner.png"}
-          width={636}
-          height={260}
+          width={!isMobile ? 636 : 336}
+          height={!isMobile ? 260 : 180}
           alt="banner"
         />
       </div>

@@ -9,6 +9,10 @@
     flex-direction: column;
     width: 1296px;
     margin: 0 auto;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        width: 100%;
+    }
 }
 
 .phone {

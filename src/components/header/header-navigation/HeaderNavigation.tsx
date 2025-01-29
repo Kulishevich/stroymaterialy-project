@@ -13,6 +13,7 @@ import { changeLang } from "@/store/slices/lang/langSlice";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { RootState } from "@/store/store";
+import { showToast } from "@/components/ui/toast";
 
 const headerOptions = [
   {
@@ -25,24 +26,6 @@ const headerOptions = [
   },
 ];
 
-const cooperationOptions = [
-  {
-    value: (
-      <Typography as={Link} href={Paths.forBusiness} variant="placeholder_big">
-        Для бизнеса
-      </Typography>
-    ),
-    id: "value1",
-  },
-  {
-    value: (
-      <Typography as={Link} href={Paths.vacancies} variant="placeholder_big">
-        Вакансии
-      </Typography>
-    ),
-    id: "value2",
-  },
-];
 export const HeaderNavigation = () => {
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
   const router = useRouter();
@@ -51,9 +34,37 @@ export const HeaderNavigation = () => {
   const dispatch = useDispatch();
   console.log(lang, langs);
 
+  const cooperationOptions = [
+    {
+      value: (
+        <Typography
+          as={Link}
+          href={Paths.forBusiness}
+          variant="placeholder_big"
+        >
+          {t("header.navigation.for_business")}
+        </Typography>
+      ),
+      id: "value1",
+    },
+    {
+      value: (
+        <Typography as={Link} href={Paths.vacancies} variant="placeholder_big">
+          {t("header.navigation.vacancies")}
+        </Typography>
+      ),
+      id: "value2",
+    },
+  ];
+
   const changeLanguage = (value: string) => {
     dispatch(changeLang(value));
     i18n.changeLanguage(value);
+    showToast({
+      message: "Язык сменён",
+      variant: "success",
+      description: "Скоро с вами свяжется наш менеджер.",
+    });
   };
 
   return (
@@ -68,8 +79,7 @@ export const HeaderNavigation = () => {
               router.pathname === Paths.home && s.active
             )}
           >
-            {t("header.main")}
-            {t("texts.deliveryHeaderMessage")}
+            {t("header.navigation.main")}
           </Typography>
           <Typography
             as={Link}
@@ -79,7 +89,7 @@ export const HeaderNavigation = () => {
               router.pathname === Paths.deliveryAndPayment && s.active
             )}
           >
-            Доставка и оплата
+            {t("header.navigation.delivery_and_payment")}
           </Typography>
           <Typography
             as={Link}
@@ -89,7 +99,7 @@ export const HeaderNavigation = () => {
               router.pathname === Paths.regularСustomer && s.active
             )}
           >
-            Постоянный клиент
+            {t("header.navigation.regular_customer")}
           </Typography>
           <Typography
             as={Link}
@@ -101,7 +111,7 @@ export const HeaderNavigation = () => {
             )}
           >
             <PercentIcon />
-            Акции
+            {t("header.navigation.shares")}
           </Typography>
           <Dropdown
             placeholder="Сотрудничество"
@@ -116,7 +126,7 @@ export const HeaderNavigation = () => {
               router.pathname === Paths.about && s.active
             )}
           >
-            О нас
+            {t("header.navigation.about_us")}
           </Typography>
           <Typography
             as={Link}
@@ -126,7 +136,7 @@ export const HeaderNavigation = () => {
               router.pathname === Paths.contacts && s.active
             )}
           >
-            Контакты
+            {t("header.navigation.contacts")}
           </Typography>
         </nav>
         <SelectIcons
@@ -142,7 +152,7 @@ export const HeaderNavigation = () => {
           variant="body_3"
         >
           <ProfileIcon />
-          Личный кабинет
+          {t("header.navigation.personal_account")}
         </Typography>
         <LoginFormPopup
           isOpen={isLoginFormOpen}

@@ -3,14 +3,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Radio } from "@/components/ui/radio";
 import { Select } from "@/components/ui/select";
 import { TextField } from "@/components/ui/text-field";
-// import { TextFieldFile } from "@/components/ui/text-field-file";
 import { Typography } from "@/components/ui/typography";
-import s from "./MastersClubForm.module.scss";
 import { TextArea } from "@/components/ui/text-area";
 import { TextFieldFile } from "@/components/ui/text-field-file";
 import { useState } from "react";
 import { useGetProfessionQuery } from "@/api/professions/professions.api";
 import { useGetSpheresQuery } from "@/api/spheres/spheres.api";
+import s from "./MastersClubForm.module.scss";
 
 const options = [
   {

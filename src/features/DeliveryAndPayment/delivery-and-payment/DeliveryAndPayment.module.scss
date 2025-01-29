@@ -12,6 +12,9 @@
     width: 306px;
     display: flex;
     flex-direction: column;
+    @media (max-width: 768px) {
+        margin: 0 auto;
+    }
 }
 .navItem {
     display: flex;
@@ -22,6 +25,10 @@
     padding: 16px 12px;
     & > h4 {
         width: 248px;
+    }
+    &:hover{
+        cursor: pointer;
+        background-color: var(--color-grey-1);
     }
 }
 
@@ -44,4 +51,9 @@
 .wrapper {
     display: flex;
     gap: 45px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 36px;
+    }
 }

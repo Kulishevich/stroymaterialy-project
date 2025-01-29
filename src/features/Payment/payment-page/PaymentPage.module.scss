@@ -7,6 +7,10 @@
     & > h1 {
         text-align: center;
     }
+    @media (max-width: 768px) {
+        width: 336px;
+        margin: 0 auto 72px;
+    }
 }
 
 .price {
@@ -15,7 +19,7 @@
     flex-direction: column;
 
     width: 306px;
-    height: 261px;
+    height: fit-content;
     padding: 32px 24px;
 
     border: 1px solid #2125314D;
@@ -24,6 +28,14 @@
 
     & > button {
         height: 58px;
+    }
+
+    @media (max-width: 768px) {
+        width: 336px;
+        padding: 24px 16px;
+        & > button {
+            height: 42px;
+        }
     }
 }
 .total {
@@ -40,6 +52,11 @@
 .content {
     display: flex;
     gap: 66px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 20px;
+    }
 }
 
 .form {
@@ -47,5 +64,9 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+    @media (max-width: 768px) {
+        width: 100%;
+        gap: 20px;
+    }
 }
 

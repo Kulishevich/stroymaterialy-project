@@ -3,7 +3,6 @@
     background: #21253180;
     inset: 0;
     z-index: 999;
-    overflow-y: auto;
     animation: fadeIn 0.3s ease-out;
 }
 
@@ -49,6 +48,11 @@
         background-color: transparent;
         border-radius: 4px;
     }
+
+    @media (max-width: 768px) {
+        width: 336px;
+        padding: 46px 16px;
+    }
 }
 
 .orderTitle {
@@ -70,7 +74,9 @@
             font-weight: 700;
         }
     }
-    
+    @media (max-width: 768px) {
+        gap: 8px;
+    }
 }
 
 .cardsContainer {
@@ -79,6 +85,8 @@
     min-height: 192px;
 
     overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 5px;
     margin-bottom: 32px;
 
     &::-webkit-scrollbar{

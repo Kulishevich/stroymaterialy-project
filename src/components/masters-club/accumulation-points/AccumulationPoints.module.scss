@@ -3,39 +3,53 @@
     flex-direction: column;
     gap: 32px;
     align-items: center;
-    ul {    
-            width: 945px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
+    ul {
+        width: 945px;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        list-style: none;
         
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            & > li {    
-                    position: relative;
-                    padding-left: 16px;
-                    &::before {
-                            box-sizing: border-box;
-                            content: "";
-                            position: absolute;
-                            top: 50%;
-                            left: 0;
-                            transform: translateY(-50%) rotate(45deg);
-                            width: 7px;
-            height: 7px;
-            background-color: var(--color-accent-orange);
-            border-radius: 1px;
-          }
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        & > li {    
+            position: relative;
+            padding-left: 16px;
+            &::before {
+                box-sizing: border-box;
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%) rotate(45deg);
+                width: 7px;
+        height: 7px;
+        background-color: var(--color-accent-orange);
+        border-radius: 1px;
+
+            }
+        }
+
+        @media (max-width: 768px) {
+            width: 336px;
+            gap: 8px;
+        }
     }
-}
+    @media (max-width: 768px) {
+        width: 336px;
+        gap: 24px;
+    }
 }
 
 .title {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    text-align: center;  
+    text-align: center; 
+    @media (max-width: 768px) {
+        gap: 12px;
+    }
 }
 
 .footer {
@@ -45,4 +59,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    @media (max-width: 768px) {
+        width: 336px;
+    }
 }

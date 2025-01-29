@@ -8,8 +8,10 @@ import { ControlledTextField } from "../ui/controlled-textfiled";
 import { ControlledCheckbox } from "../ui/controlled-checkbox";
 import { feedbackFormSchemeCreator } from "./model/feedback-form-scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 export const FeedbackForm = () => {
+  const isMobile = useIsMobile("tablet");
   const {
     handleSubmit,
     formState: { isValid },
@@ -72,8 +74,8 @@ export const FeedbackForm = () => {
       </form>
       <Image
         src={"/images/image1.jpg"}
-        width={440}
-        height={464}
+        width={!isMobile ? 440 : 336}
+        height={!isMobile ? 464 : 220}
         alt="image"
         className={s.image}
       />

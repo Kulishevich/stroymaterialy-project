@@ -1,15 +1,23 @@
 .container {
-    width: 1296px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 36px;
     align-items: center;
+
+    @media (max-width: 768px) {
+        gap: 32px;
+    }
 }
 .sharesContainer {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 колонки одинаковой ширины */
-    grid-auto-rows: auto; /* Ряды автоматически подстраиваются под содержимое */
-    column-gap: 24px; /* Расстояние между колонками */
-    row-gap: 42px; /* Расстояние между строками */
+    grid-template-columns: repeat(2, 1fr); 
+    grid-auto-rows: auto; 
+    column-gap: 24px;
+    row-gap: 42px;
+
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+    }
 }

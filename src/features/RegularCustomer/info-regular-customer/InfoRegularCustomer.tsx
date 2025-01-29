@@ -7,8 +7,12 @@ import {
   MaleIcon,
   TruckOutlinedIcon,
 } from "@/assets/icons";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { PaymentTableMobile } from "./payment-table-mobile";
 
 export const InfoRegularCustomer = () => {
+  const isMobile = useIsMobile("tablet");
+
   return (
     <div className={s.container}>
       <Typography variant="h3" as="h3">
@@ -51,73 +55,76 @@ export const InfoRegularCustomer = () => {
           также указан в товарном чеке.
         </Typography>
       </ul>
-
-      <table className={s.tablePayment}>
-        <thead>
-          <tr>
-            <th>
-              <DollarOutlinedIcon />
-              <Typography variant={"body_2"}>Стоимость покупки</Typography>
-            </th>
-            <th>
-              <BagOutlinedIcon />
-              <Typography variant={"body_2"}>Следующие покупки</Typography>
-            </th>
-            <th>
-              <TruckOutlinedIcon />
-              <Typography variant={"body_2"}>Доставка</Typography>
-            </th>
-            <th>
-              <MaleIcon />
-              <Typography variant={"body_2"}>Услуги грузчика</Typography>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <Typography variant={"body_2"} as="td">
-              0 до 1 млн драм
-            </Typography>
-            <Typography variant={"body_2"} as="td">
-              3% скидка
-            </Typography>
-            <Typography variant={"body_2"} as="td">
-              -
-            </Typography>
-            <Typography variant={"body_2"} as="td">
-              -
-            </Typography>
-          </tr>
-          <tr>
-            <Typography variant={"body_2"} as="td">
-              от 1 до 3 млн драм
-            </Typography>
-            <Typography variant={"body_2"} as="td">
-              5% скидка
-            </Typography>
-            <Typography variant={"body_2"} as="td">
-              бесплатно
-            </Typography>
-            <Typography variant={"body_2"} as="td">
-              -
-            </Typography>
-          </tr>
-          <tr>
-            <Typography variant={"body_2"} as="td">
-              3 млн драм
-            </Typography>
-            <Typography variant={"body_2"} as="td">
-              10% скидка
-            </Typography>
-            <Typography variant={"body_2"} as="td">
-              бесплатно
-            </Typography>
-            <Typography variant={"body_2"} as="td">
-              бесплатно
-            </Typography>
-          </tr>
-        </tbody>
-      </table>
+      {!isMobile ? (
+        <table className={s.tablePayment}>
+          <thead>
+            <tr>
+              <th>
+                <DollarOutlinedIcon />
+                <Typography variant={"body_2"}>Стоимость покупки</Typography>
+              </th>
+              <th>
+                <BagOutlinedIcon />
+                <Typography variant={"body_2"}>Следующие покупки</Typography>
+              </th>
+              <th>
+                <TruckOutlinedIcon />
+                <Typography variant={"body_2"}>Доставка</Typography>
+              </th>
+              <th>
+                <MaleIcon />
+                <Typography variant={"body_2"}>Услуги грузчика</Typography>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <Typography variant={"body_2"} as="td">
+                0 до 1 млн драм
+              </Typography>
+              <Typography variant={"body_2"} as="td">
+                3% скидка
+              </Typography>
+              <Typography variant={"body_2"} as="td">
+                -
+              </Typography>
+              <Typography variant={"body_2"} as="td">
+                -
+              </Typography>
+            </tr>
+            <tr>
+              <Typography variant={"body_2"} as="td">
+                от 1 до 3 млн драм
+              </Typography>
+              <Typography variant={"body_2"} as="td">
+                5% скидка
+              </Typography>
+              <Typography variant={"body_2"} as="td">
+                бесплатно
+              </Typography>
+              <Typography variant={"body_2"} as="td">
+                -
+              </Typography>
+            </tr>
+            <tr>
+              <Typography variant={"body_2"} as="td">
+                3 млн драм
+              </Typography>
+              <Typography variant={"body_2"} as="td">
+                10% скидка
+              </Typography>
+              <Typography variant={"body_2"} as="td">
+                бесплатно
+              </Typography>
+              <Typography variant={"body_2"} as="td">
+                бесплатно
+              </Typography>
+            </tr>
+          </tbody>
+        </table>
+      ) : (
+        <PaymentTableMobile />
+      )}
     </div>
   );
 };

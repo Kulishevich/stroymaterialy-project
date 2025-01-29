@@ -3,10 +3,26 @@
     width: fit-content;
     margin: 0 auto;
     box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        border-radius: 6px;
+        overflow: hidden;
+        height: 210px;
+    }
 }
 
 .button {  
     position: absolute;
     right: 24px;
     bottom: 28px;
+    @media (max-width: 768px) {
+        left: 15px;
+        top: 72px;
+    }
+}
+.image {
+    @media (max-width: 768px) {
+        object-fit: cover;
+        object-position: left;
+    }
 }

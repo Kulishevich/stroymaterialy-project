@@ -115,7 +115,7 @@ export const ProfilePersonalData = () => {
       <Typography
         variant="button"
         as="button"
-        className={s.secondButton}
+        className={s.button}
         onClick={() => setIsEditPassword(true)}
       >
         Редактировать

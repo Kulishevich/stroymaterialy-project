@@ -1,13 +1,14 @@
-.container {
-    width: 1296px;
-    margin: 0 auto;
-
+.container {    
     display: flex;
     flex-direction: column;
     gap: 32px;
 
     & > h1 {
         text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        width:336px;
     }
 }
 
@@ -26,6 +27,21 @@
     & > h4 {
         margin-top: 29px;
         margin-bottom: 16px;
+    }
+    
+    @media (max-width: 768px) {
+        box-sizing: border-box;
+        width:336px;
+        padding: 24px 16px;
+
+        background-color: #00000099;
+        & > p,h4 {
+            color: var(--color-bg);
+        }
+        & > h4 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
     }
 }
 

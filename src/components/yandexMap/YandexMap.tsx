@@ -1,10 +1,14 @@
-import { FC } from "react";
 import s from "./YandexMap.module.scss";
+import clsx from "clsx";
 
-export const YandexMap: FC = () => {
+type YandexMapProps = {
+  className?: string;
+};
+
+export const YandexMap = ({ className }: YandexMapProps) => {
   return (
     <div className={s.wrapper}>
-      <div className={s.mapContainer}>
+      <div className={clsx(s.mapContainer, className)}>
         <a
           href="https://yandex.by/maps/157/minsk/?utm_medium=mapframe&utm_source=maps"
           className={s.mapLink}

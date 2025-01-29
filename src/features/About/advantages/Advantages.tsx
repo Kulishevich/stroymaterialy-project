@@ -10,6 +10,7 @@ import {
   WalletMoneyCash,
 } from "@/assets/icons/advantages";
 import Image from "next/image";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 const advantages = [
   {
@@ -69,6 +70,8 @@ const advantages = [
 ];
 
 export const Advantages = () => {
+  const isMobile = useIsMobile("tablet");
+
   return (
     <div className={s.container}>
       <div className={s.aboutUs}>
@@ -83,8 +86,8 @@ export const Advantages = () => {
         </Typography>
         <Image
           src={"/images/about-us.jpg"}
-          width={856}
-          height={494}
+          width={!isMobile ? 856 : 336}
+          height={!isMobile ? 494 : 220}
           alt="about us"
         />
       </div>
@@ -97,10 +100,12 @@ export const Advantages = () => {
             <Typography variant="h2" as="h2">
               {index + 1}
             </Typography>
-            <Typography variant="h3" as="h3">
-              {advantage.title}
-            </Typography>
-            <Typography variant="body_3">{advantage.value}</Typography>
+            <div className={s.infoContainer}>
+              <Typography variant="h3" as="h3">
+                {advantage.title}
+              </Typography>
+              <Typography variant="body_3">{advantage.value}</Typography>
+            </div>
             {advantage.icon}
           </div>
         ))}

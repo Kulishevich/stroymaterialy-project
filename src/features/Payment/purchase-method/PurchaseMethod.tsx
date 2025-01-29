@@ -6,6 +6,7 @@ import { Select } from "@/components/ui/select";
 import { TextField } from "@/components/ui/text-field";
 import { Button } from "@/components/ui/button";
 import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 const deliveryMethodOprions = [
   {
@@ -68,6 +69,7 @@ type PurchaseMethodProps = {
 };
 
 export const PurchaseMethod = ({ addresses, control }: PurchaseMethodProps) => {
+  const isMobile = useIsMobile("tablet");
   const [isAddAddress, setIsAddAddress] = useState(false);
   console.log("Адреса:", addresses);
   const radioOptions =
@@ -153,9 +155,11 @@ export const PurchaseMethod = ({ addresses, control }: PurchaseMethodProps) => {
           <Typography variant="h4" as="h4">
             Способ доставки:
           </Typography>
-          <Typography variant="body_4" className={s.button}>
-            Подробнее о доставке
-          </Typography>
+          {!isMobile && (
+            <Typography variant="body_4" className={s.button}>
+              Подробнее о доставке
+            </Typography>
+          )}
         </div>
         <div className={s.cardsContainer}>
           <ControlledRadioCards
@@ -164,6 +168,11 @@ export const PurchaseMethod = ({ addresses, control }: PurchaseMethodProps) => {
             name="orderType"
           />
         </div>
+        {isMobile && (
+          <Typography variant="body_4" className={s.button}>
+            Подробнее о доставке
+          </Typography>
+        )}
       </div>
     </div>
   );

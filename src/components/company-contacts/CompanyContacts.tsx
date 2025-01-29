@@ -51,7 +51,7 @@ export const CompanyContacts = ({
         Контакты компании
       </Typography>
       <div className={s[variant]}>
-        <YandexMap />
+        <YandexMap className={s.map} />
         <div
           className={clsx(
             s.cardsContainer,

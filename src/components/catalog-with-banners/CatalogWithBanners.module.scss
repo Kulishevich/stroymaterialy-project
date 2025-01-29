@@ -3,13 +3,35 @@
 
     display: flex;
     gap: 24px;
+    
+    @media (max-width: 768px) {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
 }
 .banner {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    
+    & > img {
+        object-fit: cover;
+        border-radius: 6px;
+        object-position: left;
+    }
 }
 .smallBannerContainer {
     display: flex;
     gap: 24px;
+
+    @media (max-width: 768px) {
+        
+        display: grid;
+        grid-template-rows: auto auto; /* Две строки */
+        grid-template-columns: 1fr 1fr; /* Два столбца */
+        gap: 12px;
+        & > img:first-child {
+            grid-column: span 2; /* Занимает две колонки */
+        }
+    }
 }

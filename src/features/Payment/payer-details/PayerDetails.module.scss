@@ -8,6 +8,9 @@
     border: 1px solid #2125314D;
     border-radius: 6px;
     box-shadow: 6px 12px 13px 0px #2225310A;
+    @media (max-width: 768px) {
+        padding: 24px 16px;
+    }
 }
 
 .title {
@@ -16,6 +19,9 @@
     gap: 8px;
 
     margin-bottom: 20px;
+    @media (max-width: 768px) {
+        gap: 6px;
+    }
 }
 
 .numCard {
@@ -28,12 +34,24 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }  
+    @media (max-width: 768px) {
+        & > svg {
+            width: 42px;
+            height: 42px;
+        }
+    }
 }
 
 .inputsContainer {
     display: grid;
     grid-template-columns: repeat(3, 276px);
     gap: 24px;
+
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
 }
 
 .inputContainer {
@@ -44,8 +62,17 @@
     & > input {
         height: 58px !important;
     }
+
+    @media (max-width: 768px) {
+        & > button {
+            height: 50px;
+        }
+    }
 }
 
 .input {
     height: 58px;
+    @media (max-width: 768px) {
+        height: 50px;
+    }
 }

@@ -5,6 +5,7 @@ import { Typography } from "@/components/ui/typography";
 import { Counter } from "@/components/counter";
 import { TextField } from "@/components/ui/text-field";
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 type MySuggestedPricesCard = {
   product: {
@@ -16,13 +17,15 @@ type MySuggestedPricesCard = {
 };
 
 export const MySuggestedPricesCard = ({ product }: MySuggestedPricesCard) => {
+  const isMobile = useIsMobile("tablet");
+
   return (
     <div className={s.card}>
       <div className={s.imageContainer}>
         <Image
           src={product.image}
-          width={120}
-          height={120}
+          width={!isMobile ? 120 : 100}
+          height={!isMobile ? 120 : 100}
           alt="product card"
           className={s.image}
         />
@@ -51,7 +54,7 @@ export const MySuggestedPricesCard = ({ product }: MySuggestedPricesCard) => {
           <Typography variant="body_6">Отправлено</Typography>
         </div>
 
-        <Button>Купить</Button>
+        <Button className={s.button}>Купить</Button>
       </div>
     </div>
   );

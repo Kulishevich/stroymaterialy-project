@@ -1,7 +1,4 @@
 .container {
-    width: 1296px;
-    margin: 0 auto;
-
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -9,13 +6,23 @@
     & > h2 {
         text-align: center;
     }
+
+    @media (max-width: 768px) {
+        gap: 24px;
+    }
 }
 .cardsContainer {
     display: grid;
-    grid-template-columns: repeat(2, auto); /* Две колонки одинаковой ширины */
-    column-gap: 24px; /* Расстояние между элементами в колонках */
-    row-gap: 32px; /* Расстояние между строками */
-    justify-content: center; /* Центрирует элементы по горизонтали */
+    grid-template-columns: repeat(2, auto);
+    column-gap: 24px; 
+    row-gap: 32px; 
+    justify-content: center; 
+
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
   }
 .card {
     display: flex;
@@ -31,12 +38,26 @@
         grid-column: 1 / -1; /* Третий элемент занимает всю строку */
         justify-self: center; /* Центрирует третий элемент */
     }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        
+        width: 336px;
+        height: fit-content;    
+    }
 }
 .image {
     object-fit: cover;
     border-radius: 6px;
 }
 .content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     padding: 36px;
     padding-bottom: 0;
+    @media (max-width: 768px) {
+        padding: 24px 24px 32px;
+        gap: 12px;
+    }
 }

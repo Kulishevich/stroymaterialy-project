@@ -1,7 +1,12 @@
 import React from "react";
 import s from "./PaymentMethod.module.scss";
 import { Typography } from "@/components/ui/typography";
-import { IdramIcon, MasterCardIcon, VisaIcon } from "@/assets/icons";
+import {
+  BePaidIcon,
+  MasterCardIcon,
+  VisaIcon,
+  VisaSecureIcon,
+} from "@/assets/icons";
 
 export const PaymentMethod = () => {
   return (
@@ -12,14 +17,14 @@ export const PaymentMethod = () => {
       <Typography variant="body_1">
         Оплата банковской картой возможна через системы электронных платежей.
         Номер карты должен иметь от 15 до 19 символов.
-      </Typography>
-      <Typography>
+        <br />
         Мы принимаем платежи с сайта по следующим банковским картам:
       </Typography>
       <div className={s.icons}>
         <MasterCardIcon />
         <VisaIcon />
-        <IdramIcon />
+        <VisaSecureIcon />
+        <BePaidIcon />
       </div>
     </div>
   );

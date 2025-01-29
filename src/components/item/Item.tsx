@@ -10,6 +10,7 @@ import s from "./Item.module.scss";
 import Link from "next/link";
 import { useAddItemCartMutation } from "@/api/cart/cart.api";
 import { useAddInFavoriteMutation } from "@/api/products/products.api";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 export type ItemProps = {
   variant?: "vertical" | "horizontal";
@@ -19,7 +20,8 @@ export type ItemProps = {
 export const Item = ({ variant = "vertical", product }: ItemProps) => {
   const [count, setCount] = useState(1);
   const vertical = variant === "vertical";
-  const sizeImage = vertical ? 306 : 110;
+  const isMobile = useIsMobile("tablet");
+  const sizeImage = !isMobile ? (vertical ? 306 : 110) : 160;
   const [addItemCart] = useAddItemCartMutation();
   const [addInFavorite] = useAddInFavoriteMutation();
   const increment = () => {

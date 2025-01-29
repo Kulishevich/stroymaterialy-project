@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Services.module.scss";
 import { Typography } from "../ui/typography";
 import Image from "next/image";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 type ServiceProps = {
   image: string;
@@ -30,6 +31,8 @@ const Service = ({ image, title, width, hight }: ServiceProps) => {
 };
 
 export const Services = () => {
+  const isMobile = useIsMobile("tablet");
+
   return (
     <div className={s.container}>
       <Typography variant="h2" as="h2">
@@ -39,28 +42,28 @@ export const Services = () => {
         <Service
           image={"/images/for-business/service1.jpg"}
           title={"Доставка и подъём"}
-          width={416}
-          hight={600}
+          width={!isMobile ? 416 : 336}
+          hight={!isMobile ? 600 : 214}
         />
         <div>
           <Service
             image={"/images/for-business/service2.jpg"}
             title={"Консультация"}
-            width={416}
-            hight={288}
+            width={!isMobile ? 416 : 336}
+            hight={!isMobile ? 288 : 214}
           />
           <Service
             image={"/images/for-business/service3.jpg"}
             title={"Перевозка строительного мусора"}
-            width={416}
-            hight={288}
+            width={!isMobile ? 416 : 336}
+            hight={!isMobile ? 288 : 214}
           />
         </div>
         <Service
           image={"/images/for-business/service4.jpg"}
           title={"Предоставление рабочей силы и опытных работников"}
-          width={416}
-          hight={600}
+          width={!isMobile ? 416 : 336}
+          hight={!isMobile ? 600 : 214}
         />
       </div>
     </div>
