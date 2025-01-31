@@ -25,11 +25,7 @@
     position: relative;
     display: flex;
     gap: 42px;
-}
-
-.inputSearch {
-    width: 685px;
-    height: 50px;
+    align-items: center;
 }
 
 .buttonsContainer {
@@ -40,14 +36,18 @@
 .favorites {
     display: flex;
     width: 144px;
+    height: 70px;
     gap: 8px;
+    padding: 0;
 }
 .shoppingCart {
     display: flex;
     width: 183px;
+    height: 70px;
     gap: 8px;
+    padding: 0;
 
-    text-decoration: none;
+    text-decoration: none; 
 }
 
 .iconContainer {
@@ -65,12 +65,13 @@
 }
 
 .textContainer {
-    color: var(--color-bg);
     & > h6 {
         font-family: var(--font-rubik);
         font-size: 16px;
         font-weight: 500;
         line-height: 22.4px;
+        text-align: left;
+        color: var(--color-bg);
     }
     & > p {
         opacity: 0.7;
@@ -78,5 +79,7 @@
         font-size: 14px;
         font-weight: 400;
         line-height: 18.2px;
+        text-align: left;
+        color: var(--color-bg);
     }
 }

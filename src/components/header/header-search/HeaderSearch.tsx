@@ -1,20 +1,33 @@
 import { BagShoppingIcon, BurgerIcon, HeartOutlineIcon } from "@/assets/icons";
-import { TextField } from "@/components/ui/text-field";
 import { Typography } from "@/components/ui/typography";
 import React, { useState } from "react";
-import s from "./HeaderSearch.module.scss";
 import { Button } from "@/components/ui/button";
 import { CatalogPopup } from "@/components/catalog-popup";
 import Link from "next/link";
 import { Paths } from "@/shared/enums";
 import { Search } from "@/components/search";
 import { useGetCartQuery } from "@/api/cart/cart.api";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { toggleLoginModal } from "@/store/slices/auth-modal-slice/authModalSlice";
+import s from "./HeaderSearch.module.scss";
 
 export const HeaderSearch = () => {
   const [isActiveCatalog, setIsActiveCatalog] = useState<boolean>(false);
-  const [searchIsOpen, setSearchIsOpen] = useState(false);
+  const router = useRouter();
+  const token = useSelector((state: RootState) => state.auth.token);
+  const dispatch = useDispatch();
 
   const { data: cart } = useGetCartQuery();
+
+  const handleFavoritesClick = () => {
+    if (token) {
+      router.push(`${Paths.profile}?tab=favorites`);
+    } else {
+      dispatch(toggleLoginModal());
+    }
+  };
 
   return (
     <div className={s.container}>
@@ -27,15 +40,9 @@ export const HeaderSearch = () => {
         <Typography variant="body_2">Каталог</Typography>
       </Button>
       <div className={s.search}>
-        <TextField
-          variant="search"
-          className={s.inputSearch}
-          placeholder="Поиск по сайту"
-          onFocus={() => setSearchIsOpen(true)}
-        />
-        <Search isOpen={searchIsOpen} setIsOpen={setSearchIsOpen} />
+        <Search />
         <div className={s.buttonsContainer}>
-          <div className={s.favorites}>
+          <Button className={s.favorites} onClick={handleFavoritesClick}>
             <div className={s.iconContainer}>
               <HeartOutlineIcon width={28} height={28} />
             </div>
@@ -43,8 +50,8 @@ export const HeaderSearch = () => {
               <Typography as="h6">Избранное</Typography>
               <Typography as="p">Товаров: 0</Typography>
             </div>
-          </div>
-          <Typography
+          </Button>
+          <Button
             as={Link}
             href={Paths.shoppingCart}
             className={s.shoppingCart}
@@ -59,7 +66,7 @@ export const HeaderSearch = () => {
                 {cart?.data.total ? cart?.data.total : 0})
               </Typography>
             </div>
-          </Typography>
+          </Button>
         </div>
       </div>
       <CatalogPopup isOpen={isActiveCatalog} setIsOpen={setIsActiveCatalog} />

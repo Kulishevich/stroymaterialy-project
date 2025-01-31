@@ -46,17 +46,18 @@
     cursor: pointer;
     height: 33px;
     width: 171px;
-    margin-left: 12px;
+    box-sizing: border-box;
+    padding: 0 11px;
 
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 9px;
+    justify-content: space-between;
 
     border-radius: 4px;
     background-color: var(--color-grey-4);
     color: var(--color-text);
     text-decoration: none;
+    text-wrap: nowrap;
 
     &:hover {
         color: var(--color-accent-orange);

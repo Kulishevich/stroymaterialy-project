@@ -4,11 +4,11 @@ import { Typography } from "../ui/typography";
 import s from "./Subcategory.module.scss";
 import clsx from "clsx";
 import Link from "next/link";
-import { CategoryTag } from "@/features/Category/category-tags/CategoryTags";
+import { CategoryArgs } from "@/api/categories/categories.types";
 
 type SubcategoryProps = {
   variant?: "light" | "orange";
-  category: CategoryTag;
+  category: CategoryArgs;
 };
 
 export const Subcategory = ({

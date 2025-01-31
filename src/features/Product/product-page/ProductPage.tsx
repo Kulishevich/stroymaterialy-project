@@ -5,7 +5,10 @@ import { ProductImages } from "../product-images";
 import { ProductInfo } from "../product-info";
 import { FeedbackForm } from "@/components/feedback-form";
 import { useRouter } from "next/router";
-import { useGetProductQuery } from "@/api/products/products.api";
+import {
+  useGetProductQuery,
+  useGetRatingQuery,
+} from "@/api/products/products.api";
 import { SimilarProducts } from "@/components/similar-products";
 
 const productImages = {
@@ -30,10 +33,13 @@ export const ProductPage = () => {
     }
   }, [product, router.isReady, router]);
 
+  const { data: rating } = useGetRatingQuery({ id: product as string });
   const { data: prod, isLoading } = useGetProductQuery({
     id: product as string,
     perPage: 20,
   });
+
+  console.log(rating);
 
   if (isLoading || !prod) return;
 

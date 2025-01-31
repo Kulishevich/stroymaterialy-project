@@ -24,6 +24,7 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
   const sizeImage = !isMobile ? (vertical ? 306 : 110) : 160;
   const [addItemCart] = useAddItemCartMutation();
   const [addInFavorite] = useAddInFavoriteMutation();
+
   const increment = () => {
     setCount((prev) => prev + 1);
   };
@@ -46,17 +47,8 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
   };
 
   const handleAddFavorite = async () => {
-    const fetchData = {
-      products: [
-        [
-          "9dfe6d73-ae2c-4cb0-8cb3-79fc7cd6f447",
-          "9dfe515f-0cd7-4ebe-9a47-303490c6dd65",
-          "9dfe52cf-ec8d-4781-bba0-a3e386c68ed7",
-        ],
-      ],
-    };
     try {
-      const res = await addInFavorite(fetchData).unwrap();
+      const res = await addInFavorite({ products: [product?.id] }).unwrap();
       console.log(res);
     } catch (err: unknown) {
       console.error(err);

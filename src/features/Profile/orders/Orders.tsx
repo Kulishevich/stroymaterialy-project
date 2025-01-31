@@ -39,9 +39,9 @@ export const Orders = () => {
   const [isOrderOpen, setIsOrderOpen] = useState<boolean>(false);
   const [activeOrder, setActiveOrder] = useState<number>(0);
 
-  const { data } = useGetUserOrdersQuery({
-    perPage: 20,
-  });
+  const { data: orderss } = useGetUserOrdersQuery();
+
+  console.log("orders:", orderss);
 
   const handleOpenModal = (index: number) => {
     setActiveOrder(index);

@@ -17,13 +17,18 @@
 }
 
 .nav {
-    width: 336px;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 768px) {   
+        width: 336px;
+    }
 }
 .navItem {
+    cursor: pointer;
     display: flex;
     align-items: center;
+    text-align: left;
     gap: 12px;
 
     border-radius: 6px;
@@ -34,6 +39,10 @@
 
     @media (max-width: 768px) {
         justify-content: space-between;
+    }
+
+    &:hover {
+        background-color: var(--color-grey-1);
     }
 }
 

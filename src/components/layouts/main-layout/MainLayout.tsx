@@ -8,14 +8,25 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { HeaderMobile } from "@/components/header-mobile/HeaderMobile";
 import { Toaster } from "sonner";
+import { LoginFormPopup } from "@/components/login-form-popup";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleLoginModal } from "@/store/slices/auth-modal-slice/authModalSlice";
+import { RootState } from "@/store/store";
 
 export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const isMobile = useIsMobile("tablet");
+  const isOpen = useSelector((state: RootState) => state.authModal.isOpen);
+  const dispatch = useDispatch();
+
   const handleOpenPopup = () => {
     setIsOpenPopup(true);
   };
-  console.log(isMobile);
+
+  const handleOpenLogin = () => {
+    dispatch(toggleLoginModal());
+  };
+
   return (
     <div className={s.main}>
       {!isMobile ? <Header /> : <HeaderMobile />}
@@ -24,6 +35,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <Footer />
       <PhoneAnimation onClick={handleOpenPopup} />
       <PopupCallback isOpen={isOpenPopup} setIsOpen={setIsOpenPopup} />
+      <LoginFormPopup isOpen={isOpen} setIsOpen={handleOpenLogin} />
       <Toaster />
     </div>
   );

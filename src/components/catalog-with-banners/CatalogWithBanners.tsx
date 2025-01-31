@@ -1,15 +1,15 @@
 import React from "react";
 import s from "./CatalogWithBanners.module.scss";
 import Image from "next/image";
-import { CatalogMenu } from "@/features/Catalog/catalog-menu/CatalogMenu";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { CatalogHome } from "../catalog-home/CatalogHome";
 
 export const CatalogWithBanners = () => {
   const isMobile = useIsMobile("tablet");
 
   return (
     <div className={s.container}>
-      <CatalogMenu />
+      <CatalogHome />
       <div className={s.banner}>
         <img
           src={"/images/banner.png"}

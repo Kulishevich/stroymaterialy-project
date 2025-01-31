@@ -5,7 +5,7 @@ import { useGetUserGiftsQuery } from "@/api/user/user.api";
 
 export const GiftCards = () => {
   const { data } = useGetUserGiftsQuery();
-
+  console.log(data);
   return (
     <div className={s.container}>
       <Typography variant="h3" as="h3">

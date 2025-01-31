@@ -1,5 +1,6 @@
 import { domixApi } from "../domix.api";
 import {
+  ChangeOrderResponse,
   CreateOrderArgs,
   CreateOrderResponse,
   ExtraOptionsResponse,
@@ -14,7 +15,10 @@ export const ordersApi = domixApi.injectEndpoints({
           url: "/orders/extra-options",
         }),
       }),
-      createOrder: builder.mutation<CreateOrderResponse, CreateOrderArgs>({
+      createOrder: builder.mutation<
+        CreateOrderResponse,
+        { items: CreateOrderArgs }
+      >({
         query: (args) => ({
           url: "/orders",
           method: "POST",
@@ -26,9 +30,10 @@ export const ordersApi = domixApi.injectEndpoints({
           url: `/orders/${id}`,
         }),
       }),
-      changeOrder: builder.mutation({
-        query: ({ args }) => ({
-          url: "/orders/process",
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      changeOrder: builder.mutation<ChangeOrderResponse, any>({
+        query: ({ args, orderId }) => ({
+          url: `/orders/${orderId}/process`,
           method: "PUT",
           body: { ...args },
         }),
@@ -41,4 +46,5 @@ export const {
   useGetExtraOptionsQuery,
   useCreateOrderMutation,
   useGetOrderQuery,
+  useChangeOrderMutation,
 } = ordersApi;

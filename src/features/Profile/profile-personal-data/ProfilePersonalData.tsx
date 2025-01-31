@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
 import { profileSettingScheme } from "./model/profile-setting-scheme";
+import { showToast } from "@/components/ui/toast";
 
 export const ProfilePersonalData = () => {
   const [isEditPassword, setIsEditPassword] = useState<boolean>(false);
@@ -44,12 +45,19 @@ export const ProfilePersonalData = () => {
   }, [data, reset]);
 
   const formHandler = handleSubmit(async (data) => {
-    console.log(data);
+    const fetchData = {
+      name: `${data.name} ${data.surname}`,
+      email: data.email,
+      phone: data.phone,
+    };
+    console.log(fetchData);
     try {
-      const res = await changeSetting(data).unwrap();
+      const res = await changeSetting(fetchData).unwrap();
       console.log(res);
+      showToast({ message: "Отредачено", variant: "success" });
     } catch (err: unknown) {
       console.error(err);
+      showToast({ message: "Ошибка", variant: "error" });
     }
   });
 

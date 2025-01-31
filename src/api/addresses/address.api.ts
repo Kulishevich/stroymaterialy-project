@@ -1,5 +1,11 @@
 import { domixApi } from "../domix.api";
-import { GetAddressesResponse } from "./address.types";
+import {
+  CreateAddressArgs,
+  CreateAddressResponse,
+  GetAddressesResponse,
+  UpdateAddressArgs,
+  UpdateAddressResponse,
+} from "./address.types";
 
 export const addressesApi = domixApi.injectEndpoints({
   endpoints: (builder) => {
@@ -9,8 +15,42 @@ export const addressesApi = domixApi.injectEndpoints({
           url: `/users/addresses/?perPage=${perPage}`,
         }),
       }),
+      createAddress: builder.mutation<CreateAddressResponse, CreateAddressArgs>(
+        {
+          query: (args) => ({
+            url: "/users/addresses",
+            method: "POST",
+            body: { ...args },
+          }),
+        }
+      ),
+      updateAddress: builder.mutation<
+        UpdateAddressResponse,
+        { args: UpdateAddressArgs; id: number }
+      >({
+        query: ({ args, id }) => ({
+          url: `/users/addresses/${id}`,
+          method: "PUT",
+          body: { ...args },
+        }),
+      }),
+      setDefaultAddress: builder.mutation<
+        UpdateAddressResponse,
+        { args: UpdateAddressArgs; id: number }
+      >({
+        query: (id) => ({
+          url: `/users/addresses/${id}/set-default`,
+          method: "PUT",
+          // body: { ...args },
+        }),
+      }),
     };
   },
 });
 
-export const { useGetAddressesQuery } = addressesApi;
+export const {
+  useGetAddressesQuery,
+  useCreateAddressMutation,
+  useUpdateAddressMutation,
+  useSetDefaultAddressMutation,
+} = addressesApi;

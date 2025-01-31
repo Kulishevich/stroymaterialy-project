@@ -112,3 +112,23 @@ export type DiscountDetailsTypes = {
   isFreeWorkerService: boolean;
   level: number;
 };
+
+export type addInFavoriteArgs = { products: string[] };
+
+export type addInFavoriteResponse = {
+  discountDetails: DiscountDetailsType;
+  email: string;
+  favorites: Product[];
+  firstName: string;
+  fullName: string;
+  isPartner: boolean;
+  lastName: string;
+  phone: string;
+};
+
+export type DiscountDetailsType = {
+  discountPercent: number;
+  isFreeDelivery: boolean;
+  isFreeWorkerService: boolean;
+  level: number;
+};

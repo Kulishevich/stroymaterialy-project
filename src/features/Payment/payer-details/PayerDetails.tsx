@@ -1,14 +1,25 @@
 import React from "react";
 import { Typography } from "@/components/ui/typography";
-import { Select } from "@/components/ui/select";
 import { RhombIcon } from "@/assets/icons";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
-import { Control } from "react-hook-form";
 import s from "./PayerDetails.module.scss";
+import { ControlledSelect } from "@/components/ui/controlled-select";
 
 type PayerDetailsProps = {
-  control: Control;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  control: any;
 };
+
+const payerType = [
+  {
+    name: "Физическое лицо",
+    id: "individual",
+  },
+  {
+    name: "Юридическое лицо",
+    id: "entity",
+  },
+];
 
 export const PayerDetails = ({ control }: PayerDetailsProps) => {
   return (
@@ -27,7 +38,12 @@ export const PayerDetails = ({ control }: PayerDetailsProps) => {
       <div className={s.inputsContainer}>
         <div className={s.inputContainer}>
           <Typography variant="body_5">Тип плательщика</Typography>
-          <Select placeHolder="Физическое лицо" />
+          <ControlledSelect
+            control={control}
+            name="payerType"
+            placeHolder="Физическое лицо"
+            options={payerType}
+          />
         </div>
         <div className={s.inputContainer}>
           <Typography variant="body_5">Имя</Typography>

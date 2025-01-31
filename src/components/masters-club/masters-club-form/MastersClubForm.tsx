@@ -32,6 +32,7 @@ export const MastersClubForm = () => {
   if (profession) console.log(profession);
   if (spheres) console.log(spheres);
 
+  if (!profession || !spheres) return;
   return (
     <>
       <Typography variant="body_2" className={s.title}>

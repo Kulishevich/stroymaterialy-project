@@ -1,10 +1,9 @@
-"use client";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import cn from "clsx";
 import s from "./Breadcrumbs.module.scss";
 import { ArrowRightIcon } from "@/assets/icons";
 import { Typography } from "../typography";
+import { useRouter } from "next/router";
 
 interface DynamicPath {
   href: string;
@@ -17,8 +16,14 @@ interface Props {
 }
 
 export const Breadcrumbs = ({ className, dynamicPath }: Props) => {
-  const pathname = usePathname();
-  if (!pathname || pathname === "/") return null;
+  const { pathname } = useRouter();
+  if (
+    !pathname ||
+    pathname === "/" ||
+    pathname === "/_error" ||
+    pathname === "/404"
+  )
+    return null;
 
   const pathNames = pathname.split("/");
 

@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./CatalogPopup.module.scss";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CatalogMenu } from "@/features/Catalog/catalog-menu/CatalogMenu";
+import { CatalogMenu } from "@/features/CatalogHeader/catalog-menu/CatalogMenu";
 
 type CatalogPopupProps = {
   isOpen: boolean;

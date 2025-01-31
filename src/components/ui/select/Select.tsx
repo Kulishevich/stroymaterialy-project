@@ -38,7 +38,7 @@ export const Select = forwardRef<
       label,
       onValueChange,
       options = [],
-      placeHolder = options[0].name,
+      placeHolder = options?.[0]?.name || "Выберите значение",
       value,
       ...rest
     },
@@ -61,7 +61,9 @@ export const Select = forwardRef<
 
     return (
       <RadixSelect.Root
-        defaultValue={defaultValue}
+        defaultValue={
+          defaultValue || (options.length > 0 ? options[0].id : undefined)
+        }
         disabled={disabled}
         onValueChange={onValueChange}
         value={value}
@@ -75,7 +77,9 @@ export const Select = forwardRef<
           )}
           ref={ref}
         >
-          <RadixSelect.Value placeholder={placeHolder} />
+          <RadixSelect.Value className={s.placeholder}>
+            {options.find((option) => option.id === value)?.name || placeHolder}
+          </RadixSelect.Value>
           <RadixSelect.Icon asChild>
             <ArrowDownIcon className={s.icon} />
           </RadixSelect.Icon>

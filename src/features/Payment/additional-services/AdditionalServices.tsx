@@ -2,11 +2,11 @@ import React from "react";
 import s from "./AdditionalServices.module.scss";
 import { Typography } from "@/components/ui/typography";
 import { RhombIcon } from "@/assets/icons";
-import { Radio } from "@/components/ui/radio";
 import { useGetExtraOptionsQuery } from "@/api/orders/orders.api";
 import { ControlledRadio } from "@/components/ui/controlled-radio";
 
 type AdditionalServicesProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: any;
 };
 

@@ -16,6 +16,10 @@
   &.error {
     background-color: var(--color-accent-red);
     border: 2px solid var(--color-accent-red);
+
+    @media (max-width: 768px) {
+      max-width: 315px;
+    }
   }
 
   .contentWrapper {
@@ -33,6 +37,14 @@
       & > p {
         text-wrap: nowrap;
         color: var(--color-bg);
+      }
+    }
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+      & > svg {
+        width: 32px;
+        height: 32px;
       }
     }
   }

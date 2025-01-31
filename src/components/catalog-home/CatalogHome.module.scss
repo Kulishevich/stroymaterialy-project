@@ -13,6 +13,9 @@
     border-radius: 6px;
     width: 306px;
     height: 100%;
+    @media (max-width: 768px) {
+        width: 336px;
+    }
 }
 
 .category {
@@ -23,6 +26,16 @@
     padding: 12px;
     background-color: var(--color-grey-1);
     border-bottom: 1px solid #7D7D7D33;
+    text-decoration: none;
+    &:hover {
+        background-color: var(--color-text);
+        & > p {
+            color: var(--color-bg);
+        }
+        & > svg {
+            color: var(--color-accent-orange);
+        }
+    }
 }
 
 .active {

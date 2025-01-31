@@ -1,0 +1,28 @@
+{
+  "header": {
+    "navigation": {
+      "main": "Գլխավոր",
+      "delivery_and_payment": "Առաքում և վճարում",
+      "regular_customer": "Մշտական հաճախորդ",
+      "shares": "Ակցիաներ",
+      "cooperation": "Համագործակցություն",
+      "for_business": "Բիզնեսի համար",
+      "vacancies": "Աշխատանքներ",
+      "about_us": "Մեր մասին",
+      "contacts": "Կապ",
+      "personal_account": "Անձնական հաշիվ"
+    },
+    "info": {
+      "work_time": "Աշխատանքային ժամեր",
+      "time": "Ամեն օր 09:00-ից 22:00",
+      "phone": "Հեռախոս"
+    },
+    "search": {
+      "catalog": "Կատալոգ",
+      "search": "Որոնում կայքում",
+      "favorites": "Գլխավոր",
+      "shopping_cart": "Գլխավոր",
+      "products": "Ապրանքներ"
+    }
+  }
+}

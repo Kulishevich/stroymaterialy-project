@@ -89,3 +89,60 @@ export type OrderItem = {
   subtotal: string;
   total: string;
 };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type ChangeOrderArgs = any;
+
+export type ChangeOrderResponse = {
+  data: [
+    {
+      id: string;
+      subtotal: string;
+      discount: string;
+      total: string;
+      customer: {
+        email: string;
+        phone: string;
+        firstName: string;
+        lastName: string;
+      };
+      items: [
+        {
+          count: string;
+          subtotal: string;
+          total: string;
+          product: [
+            {
+              id: string;
+              name: string;
+              description: string;
+              unit: {
+                name: string;
+                value: number;
+                type: string;
+                alternative: {
+                  name: string;
+                  value: number;
+                };
+                step: number;
+              };
+              category: {
+                id: string;
+                address: string;
+                latitude: string;
+                longitude: string;
+              };
+              price: number;
+              discount: number;
+              images: {
+                main: {
+                  src: string;
+                  isMain: boolean;
+                };
+              };
+            }
+          ];
+        }
+      ];
+    }
+  ];
+};

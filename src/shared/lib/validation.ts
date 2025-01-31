@@ -26,11 +26,4 @@ export const surnameScheme = () =>
   z.string().trim().min(1, { message: validation.requiredField });
 
 export const phoneScheme = () =>
-  z
-    .string()
-    .trim()
-    .min(1, { message: validation.requiredField })
-    .regex(
-      /^\+7\d{10}$|^\+375\d{9}$|^\+7[()\s-]*\d{3}[()\s-]*\d{3}[()\s-]*\d{2}[()\s-]*\d{2}$|^\+375[()\s-]*\d{2}[()\s-]*\d{3}[()\s-]*\d{2}[()\s-]*\d{2}$/,
-      validation.phone
-    );
+  z.string().trim().min(1, { message: validation.requiredField });

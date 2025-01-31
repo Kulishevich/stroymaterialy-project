@@ -1,5 +1,7 @@
 import { domixApi } from "../domix.api";
 import {
+  addInFavoriteArgs,
+  addInFavoriteResponse,
   GetFavotireResponse,
   Product,
   RequestParams,
@@ -35,9 +37,26 @@ export const productsApi = domixApi.injectEndpoints({
           url: "/products/favorites",
         }),
       }),
-      addInFavorite: builder.mutation<any, any>({
+      addInFavorite: builder.mutation<
+        { data: addInFavoriteResponse },
+        addInFavoriteArgs
+      >({
         query: (args) => ({
           url: "/products/favorites",
+          method: "POST",
+          body: { ...args },
+        }),
+      }),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      getRating: builder.query<any, { id: string }>({
+        query: (id) => ({
+          url: `/products/${id}/ratings`,
+        }),
+      }),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      addRating: builder.mutation<any, { args: any; id: string }>({
+        query: ({ args, id }) => ({
+          url: `/products/${id}/ratings`,
           method: "POST",
           body: { ...args },
         }),
@@ -52,4 +71,6 @@ export const {
   useGetTrendsProductsQuery,
   useGetFavoriteProductsQuery,
   useAddInFavoriteMutation,
+  useGetRatingQuery,
+  useAddRatingMutation,
 } = productsApi;

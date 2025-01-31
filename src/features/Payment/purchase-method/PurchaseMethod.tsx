@@ -64,7 +64,9 @@ const deliveryMethodOprions = [
 ];
 
 type PurchaseMethodProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   addresses: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: any;
 };
 
@@ -74,7 +76,8 @@ export const PurchaseMethod = ({ addresses, control }: PurchaseMethodProps) => {
   console.log("Адреса:", addresses);
   const radioOptions =
     !!addresses?.length &&
-    addresses.map((address) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    addresses.map((address: any) => {
       return {
         id: address.id,
         value: address.address,

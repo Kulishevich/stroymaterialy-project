@@ -1,65 +1,66 @@
 import React, { useState } from "react";
-import s from "./MyAddresses.module.scss";
 import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { AddAddressPopup } from "../add-address-popup";
 import { RadioCards } from "@/components/ui/radio-cards";
-import { useGetAddressesQuery } from "@/api/addresses/address.api";
-import { useGetRegionsQuery } from "@/api/regions/regions.api";
-
-const addressesOptions = [
-  {
-    id: "1",
-    value: "express_delivery",
-    title: (
-      <>
-        <Typography variant="body_5">Эдвард</Typography>
-        <Typography variant="body_3">Основной адрес</Typography>
-      </>
-    ),
-    content: (
-      <>
-        <Typography variant="body_6">
-          8F9P+XJF, Charents St, Yeghvard, Армения
-        </Typography>
-        <Typography variant="body_6" as="button" className={s.editButton}>
-          Редактировать
-        </Typography>
-      </>
-    ),
-  },
-  {
-    id: "2",
-    value: "express_delivery",
-    title: (
-      <>
-        <Typography variant="body_5">Эдвард</Typography>
-        <Typography variant="body_3">Основной адрес</Typography>
-      </>
-    ),
-    content: (
-      <>
-        <Typography variant="body_6">
-          8F9P+XJF, Charents St, Yeghvard, Армения
-        </Typography>
-        <Typography variant="body_6" as="button" className={s.editButton}>
-          Редактировать
-        </Typography>
-      </>
-    ),
-  },
-];
+import {
+  useGetAddressesQuery,
+  useSetDefaultAddressMutation,
+} from "@/api/addresses/address.api";
+import { EditAddressPopup } from "../edit-address-popup";
+import { Address } from "@/api/addresses/address.types";
+import s from "./MyAddresses.module.scss";
 
 export const MyAddresses = () => {
   const [isAddAddressOpen, setIsAddAddressOpen] = useState(false);
+  const [isEditAddressOpen, setIsEditAddressOpen] = useState(false);
+  const [editAddress, setEditAddress] = useState<Address | null>(null);
+  const [setDefaultAddress] = useSetDefaultAddressMutation();
   const { data: addresses } = useGetAddressesQuery({
     perPage: 20,
   });
-  // const { data: regions } = useGetRegionsQuery({
-  //   perPage: 20,
-  // });
-  // console.log("Regions:", regions);
-  console.log("Addresses:", addresses);
+  const defaultAddress = addresses?.data.find((elem) => elem.isDefault);
+
+  const addressesOptions = addresses?.data.map((address) => {
+    return {
+      id: address.id,
+      value: address.id,
+      title: (
+        <>
+          <Typography variant="body_5">Эдвард</Typography>
+          <Typography variant="body_3">Основной адрес</Typography>
+        </>
+      ),
+      content: (
+        <>
+          <Typography variant="body_6">
+            {address.address}, {address.region.name}, {address.details}
+          </Typography>
+          <Typography
+            variant="body_6"
+            as="button"
+            className={s.editButton}
+            onClick={() => handleOpenEditAddress(address)}
+          >
+            Редактировать
+          </Typography>
+        </>
+      ),
+    };
+  });
+
+  const handleOpenEditAddress = (address: Address) => {
+    setIsEditAddressOpen(true);
+    setEditAddress(address);
+  };
+
+  const changeDefaultAddress = async (id: number) => {
+    try {
+      await setDefaultAddress(id).unwrap();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className={s.container}>
@@ -69,7 +70,12 @@ export const MyAddresses = () => {
       {!!addressesOptions && addressesOptions?.length > 0 ? (
         <div className={s.addressContainer}>
           <div className={s.cards}>
-            <RadioCards options={addressesOptions} className={s.radioAddress} />
+            <RadioCards
+              options={addressesOptions}
+              className={s.radioAddress}
+              defaultValue={defaultAddress?.id}
+              onValueChange={(value) => changeDefaultAddress(Number(value))}
+            />
           </div>
           <Button
             className={s.button}
@@ -95,6 +101,13 @@ export const MyAddresses = () => {
         isOpen={isAddAddressOpen}
         setIsOpen={setIsAddAddressOpen}
       />
+      {!!editAddress && (
+        <EditAddressPopup
+          isOpen={isEditAddressOpen}
+          setIsOpen={setIsEditAddressOpen}
+          address={editAddress}
+        />
+      )}
     </div>
   );
 };

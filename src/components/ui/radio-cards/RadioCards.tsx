@@ -25,7 +25,7 @@ type RadioGroupRef = ElementRef<typeof RadixRadio.Root>;
 
 export const RadioCards = forwardRef<RadioGroupRef, RadioCardsProps>(
   (props, ref) => {
-    const { className, disabled, options, ...rest } = props;
+    const { className, disabled, options, defaultValue, ...rest } = props;
 
     const radioGroupId = useId();
 
@@ -33,7 +33,14 @@ export const RadioCards = forwardRef<RadioGroupRef, RadioCardsProps>(
       <RadixRadio.Root
         className={clsx(s.root, className)}
         disabled={disabled}
-        defaultValue={options.length > 0 ? options[0].value : undefined}
+        // defaultValue={options.length > 0 ? options[0].value : undefined}
+        defaultValue={
+          defaultValue
+            ? defaultValue
+            : options.length > 0
+            ? options[0].value
+            : undefined
+        }
         ref={ref}
         {...rest}
       >

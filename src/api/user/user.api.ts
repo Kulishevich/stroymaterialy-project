@@ -20,9 +20,10 @@ export const userApi = domixApi.injectEndpoints({
           body: { ...args },
         }),
       }),
-      getUserOrders: builder.query<any, { perPage: number }>({
-        query: ({ perPage }) => ({
-          url: `/users/orders?perPage=${perPage}`,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      getUserOrders: builder.query<any, void>({
+        query: () => ({
+          url: "/users/orders",
         }),
       }),
       getUserGifts: builder.query<{ data: UserSettingResponse }, void>({

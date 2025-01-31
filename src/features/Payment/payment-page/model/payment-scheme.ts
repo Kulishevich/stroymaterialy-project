@@ -16,5 +16,6 @@ export const paymentSchemeCreator = () => {
     address: z.string().nonempty("Адрес обязателен"), // Обязательное поле
     orderType: z.string().nonempty("Выберите тип заказа"), // Просто строка
     extraOptions: z.string().optional(), // Допускаем пустое или отсутствующее значение
+    payerType: z.string().nonempty("Выберите тип плательщика"),
   });
 };

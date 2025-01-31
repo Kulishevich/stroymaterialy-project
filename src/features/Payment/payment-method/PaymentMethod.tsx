@@ -10,7 +10,6 @@ import {
 import { Typography } from "@/components/ui/typography";
 import s from "./PaymentMethod.module.scss";
 import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
-import { Control } from "react-hook-form";
 
 const radioOptions = [
   {
@@ -46,7 +45,8 @@ const radioOptions = [
 ];
 
 type PaymentMethodProps = {
-  control: Control;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  control: any;
 };
 
 export const PaymentMethod = ({ control }: PaymentMethodProps) => {
