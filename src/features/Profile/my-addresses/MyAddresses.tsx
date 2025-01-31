@@ -23,8 +23,8 @@ export const MyAddresses = () => {
 
   const addressesOptions = addresses?.data.map((address) => {
     return {
-      id: address.id,
-      value: address.id,
+      id: String(address.id),
+      value: String(address.id),
       title: (
         <>
           <Typography variant="body_5">Эдвард</Typography>
@@ -56,7 +56,7 @@ export const MyAddresses = () => {
 
   const changeDefaultAddress = async (id: number) => {
     try {
-      await setDefaultAddress(id).unwrap();
+      await setDefaultAddress({ id: id }).unwrap();
     } catch (err) {
       console.log(err);
     }
@@ -73,7 +73,7 @@ export const MyAddresses = () => {
             <RadioCards
               options={addressesOptions}
               className={s.radioAddress}
-              defaultValue={defaultAddress?.id}
+              defaultValue={String(defaultAddress?.id)}
               onValueChange={(value) => changeDefaultAddress(Number(value))}
             />
           </div>

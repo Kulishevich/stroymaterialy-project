@@ -16,7 +16,7 @@ export const ordersApi = domixApi.injectEndpoints({
         }),
       }),
       createOrder: builder.mutation<
-        CreateOrderResponse,
+        { data: CreateOrderResponse },
         { items: CreateOrderArgs }
       >({
         query: (args) => ({

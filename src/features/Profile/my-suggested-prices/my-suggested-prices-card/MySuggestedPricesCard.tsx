@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./MySuggestedPricesCard.module.scss";
 import Image from "next/image";
 import { Typography } from "@/components/ui/typography";
@@ -17,6 +17,16 @@ type MySuggestedPricesCard = {
 };
 
 export const MySuggestedPricesCard = ({ product }: MySuggestedPricesCard) => {
+  const [count, setCount] = useState(1);
+
+  const increment = () => {
+    setCount((prev) => prev + 1);
+  };
+
+  const decrement = () => {
+    setCount((prev) => prev - 1);
+  };
+
   const isMobile = useIsMobile("tablet");
 
   return (
@@ -45,7 +55,12 @@ export const MySuggestedPricesCard = ({ product }: MySuggestedPricesCard) => {
             </div>
             <div className={s.container}>
               <Typography variant="body_8">Количество</Typography>
-              <Counter size="s" />
+              <Counter
+                size="s"
+                countCurrent={count}
+                increment={increment}
+                decrement={decrement}
+              />
             </div>
           </div>
         </div>

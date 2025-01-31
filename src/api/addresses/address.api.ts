@@ -34,14 +34,10 @@ export const addressesApi = domixApi.injectEndpoints({
           body: { ...args },
         }),
       }),
-      setDefaultAddress: builder.mutation<
-        UpdateAddressResponse,
-        { args: UpdateAddressArgs; id: number }
-      >({
+      setDefaultAddress: builder.mutation<void, { id: number }>({
         query: (id) => ({
           url: `/users/addresses/${id}/set-default`,
           method: "PUT",
-          // body: { ...args },
         }),
       }),
     };
