@@ -12,6 +12,8 @@ import {
 } from "@/assets/icons";
 import { Product } from "@/api/products/products.types";
 import { useAddItemCartMutation } from "@/api/cart/cart.api";
+import { useAddInFavoriteMutation } from "@/api/products/products.api";
+import { showToast } from "@/components/ui/toast";
 
 type ProductInfoProps = {
   item: Product;
@@ -20,6 +22,7 @@ type ProductInfoProps = {
 export const ProductInfo = ({ item }: ProductInfoProps) => {
   const [count, setCount] = useState(1);
   const [addItemCart] = useAddItemCartMutation();
+  const [addInFavorite] = useAddInFavoriteMutation();
 
   console.log(item);
 
@@ -39,8 +42,21 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
     try {
       await addItemCart(fetchData).unwrap();
       setCount(1);
+      showToast({ message: "Добавлено в корзину", variant: "success" });
     } catch (err: unknown) {
       console.error(err);
+      showToast({ message: "Ошибка", variant: "error" });
+    }
+  };
+
+  const handleAddFavorite = async () => {
+    try {
+      const res = await addInFavorite({ products: [item?.id] }).unwrap();
+      console.log(res);
+      showToast({ message: "Добавлено в избранное", variant: "success" });
+    } catch (err: unknown) {
+      console.error(err);
+      showToast({ message: "Ошибка", variant: "error" });
     }
   };
 
@@ -94,7 +110,11 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
             <Button className={s.basketButton} onClick={handleAddItemInCart}>
               В корзину
             </Button>
-            <Button variant={"icon"} className={s.iconButton}>
+            <Button
+              variant={"icon"}
+              className={s.iconButton}
+              onClick={handleAddFavorite}
+            >
               <HeartIcon />
             </Button>
             <Button fullWidth={true} variant={"secondary"}>

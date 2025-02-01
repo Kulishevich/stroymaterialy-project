@@ -4,6 +4,7 @@ import s from "./Textfield.module.scss";
 import { Button } from "../button/Button";
 import { Typography } from "../typography";
 import { UploadIcon } from "@/assets/icons";
+import { showToast } from "../toast";
 
 type Props = {
   setSelectedImage: (image: File) => void;
@@ -13,12 +14,23 @@ export const TextFieldFile = ({ setSelectedImage, ...rest }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const selectFileHandler = () => {
-    // inputRef && inputRef.current?.click();
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
   };
+
   const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
+    const file = e.target.files?.[0];
+
+    if (file) {
+      if (!["image/png", "image/jpeg", "image/jpg"].includes(file.type)) {
+        showToast({
+          message: "Можно загружать только PNG, JPG или JPEG файлы.",
+          variant: "error",
+        });
+        return;
+      }
 
       setSelectedImage(file);
     }

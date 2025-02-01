@@ -13,6 +13,7 @@ import {
 import Image from "next/image";
 import { Paths } from "@/shared/enums";
 import { Dropdown } from "../ui/dropdown";
+import { useGetCategoriesQuery } from "@/api/categories/categories.api";
 
 const cooperationOptions = [
   {
@@ -34,6 +35,8 @@ const cooperationOptions = [
 ];
 
 export const Footer = () => {
+  const { data: categories } = useGetCategoriesQuery();
+
   return (
     <div className={s.wrapper}>
       <div className={s.containerMain}>
@@ -48,20 +51,18 @@ export const Footer = () => {
               Категории
             </Typography>
             <div className={s.categoryesContainer}>
-              <Typography variant="body_3">
-                Материалы, используемые в бытовых и строительных работах
-              </Typography>
-              <Typography variant="body_3">Электрика</Typography>
-              <Typography variant="body_3">Инструменты</Typography>
-              <Typography variant="body_3">
-                Спецодежда и средства защиты
-              </Typography>
-              <Typography variant="body_3">Крепёж</Typography>
-              <Typography variant="body_3">Интерьер и отделка</Typography>
-              <Typography variant="body_3">Сантехника</Typography>
-              <Typography variant="body_3">Стройматериалы</Typography>
-              <Typography variant="body_3">Сад и огород</Typography>
-              <Typography variant="body_3">Инженерные системы</Typography>
+              {categories?.data.map((category) => (
+                <Typography
+                  as={Link}
+                  href={`/${
+                    category.subcategoriesCount !== 0 ? "category" : "products"
+                  }/${category.id}`}
+                  variant="body_3"
+                  key={category.id}
+                >
+                  {category.name}
+                </Typography>
+              ))}
             </div>
           </div>
           <div className={s.navigate}>

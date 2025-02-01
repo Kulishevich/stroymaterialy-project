@@ -1,38 +1,151 @@
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Radio } from "@/components/ui/radio";
-import { Select } from "@/components/ui/select";
-import { TextField } from "@/components/ui/text-field";
-import { Typography } from "@/components/ui/typography";
-import { TextArea } from "@/components/ui/text-area";
+import { Typography, Variant } from "@/components/ui/typography";
 import { TextFieldFile } from "@/components/ui/text-field-file";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetProfessionQuery } from "@/api/professions/professions.api";
 import { useGetSpheresQuery } from "@/api/spheres/spheres.api";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { ControlledSelect } from "@/components/ui/controlled-select";
+import { ControlledRadio } from "@/components/ui/controlled-radio";
+import { ControlledTextField } from "@/components/ui/controlled-textfiled";
+import { ControlledTextArea } from "@/components/ui/controlled-text-area";
+import { ControlledCheckbox } from "@/components/ui/controlled-checkbox";
+import {
+  useCreatePartnerExistUserMutation,
+  useCreatePartnerFileMutation,
+  useCreatePartnerMutation,
+} from "@/api/partners/partners.api";
+import { masterClubFormScheme } from "./model/master-club-form-scheme";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { useGetUserSettingQuery } from "@/api/user/user.api";
 import s from "./MastersClubForm.module.scss";
 
 const options = [
   {
-    id: "1",
+    id: "individual",
     name: "Физическое лицо",
   },
   {
-    id: "2",
+    id: "entity",
     name: "Юридическое лицо",
   },
 ];
 
 export const MastersClubForm = () => {
-  const [image, setImage] = useState<File | null>(null);
-
-  console.log(image);
-
-  const { data: profession } = useGetProfessionQuery();
+  const [file, setFile] = useState<File | null>(null);
+  const [createPartner] = useCreatePartnerMutation();
+  const [createPartnerExistUser] = useCreatePartnerExistUserMutation();
+  const [createPartnerFile] = useCreatePartnerFileMutation();
+  const token = useSelector((state: RootState) => state.auth.token);
+  const { data: user } = useGetUserSettingQuery();
+  console.log(user);
+  const { data: professions } = useGetProfessionQuery();
   const { data: spheres } = useGetSpheresQuery();
-  if (profession) console.log(profession);
-  if (spheres) console.log(spheres);
 
-  if (!profession || !spheres) return;
+  console.log(professions);
+  console.log(spheres);
+
+  const { control, handleSubmit, reset, watch } = useForm({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      password: "",
+      passwordConfirmation: "",
+      profession: "",
+      sphere: "",
+      about: "",
+      tin: "",
+      company: "",
+      confirmation: false,
+      memberType: options[0].id,
+    },
+    mode: "onTouched",
+    reValidateMode: "onChange",
+    resolver: zodResolver(masterClubFormScheme(!!token)),
+  });
+
+  const memberType = watch("memberType");
+
+  useEffect(() => {
+    if (professions && spheres) {
+      const defaultValues = {
+        profession: professions.data[0].id,
+        sphere: spheres.data[0].id,
+      };
+
+      if (user && token) {
+        Object.assign(defaultValues, {
+          firstName: user.data.firstName,
+          lastName: user.data.lastName,
+          email: user.data.email,
+          phone: user.data.phone,
+        });
+      }
+
+      reset(defaultValues);
+    }
+  }, [professions, spheres, user?.data, token, reset, user]);
+
+  const uploadFile = async (file: File) => {
+    try {
+      const formData = new FormData();
+      formData.append("certificate", file);
+      const response = await createPartnerFile(formData).unwrap();
+      console.log(response);
+    } catch (error) {
+      console.error("Ошибка загрузки файла", error);
+    }
+  };
+
+  const formHandler = handleSubmit(async (data) => {
+    const isEntity = data.memberType === "entity";
+
+    if (!!token && !!user) {
+      const fetchData = {
+        profession: data.profession,
+        sphere: data.sphere,
+        about: data.about,
+        memberType: data.memberType,
+        company: isEntity ? data.company : "",
+        tin: isEntity ? data.tin : "",
+      };
+      console.log(fetchData);
+      try {
+        const res = await createPartnerExistUser(fetchData).unwrap();
+        console.log(res);
+        if (file) await uploadFile(file);
+      } catch (err: unknown) {
+        console.error(err);
+      }
+    } else {
+      const fetchData = {
+        fullName: `${data.firstName} ${data.lastName}`,
+        email: data.email,
+        phone: data.phone,
+        password: data.password,
+        passwordConfirmation: data.passwordConfirmation,
+        profession: data.profession,
+        sphere: data.sphere,
+        about: data.about,
+        memberType: data.memberType,
+        company: isEntity ? data.company : "",
+        tin: isEntity ? data.tin : "",
+      };
+      console.log(fetchData);
+      try {
+        const res = await createPartner(fetchData).unwrap();
+        if (file) await uploadFile(file);
+        localStorage.setItem("accessToken", res.data.token.trim());
+      } catch (err: unknown) {
+        console.error(err);
+      }
+    }
+  });
+
   return (
     <>
       <Typography variant="body_2" className={s.title}>
@@ -47,13 +160,25 @@ export const MastersClubForm = () => {
             <Typography variant="h4" as="h4" isRequired={true}>
               1. Ваша профессия
             </Typography>
-            <Select options={profession?.data} />
+            {!!professions && (
+              <ControlledSelect
+                control={control}
+                name="profession"
+                options={professions?.data}
+                defaultValue={professions?.data[0].name}
+                className={s.professionSelect}
+              />
+            )}
           </div>
           <div className={s.elem}>
             <Typography variant="h4" as="h4">
               2. Форма деятельности
             </Typography>
-            <Radio options={options} />
+            <ControlledRadio
+              control={control}
+              name="memberType"
+              options={options}
+            />
           </div>
         </div>
         <div className={s.elem}>
@@ -61,66 +186,134 @@ export const MastersClubForm = () => {
             3. Контактные данные
           </Typography>
           <div className={s.inputsWrapper}>
+            {memberType === "entity" && (
+              <>
+                <div className={s.inputContainer}>
+                  <Typography variant="body_5">ИНН</Typography>
+                  <ControlledTextField
+                    control={control}
+                    name="tin"
+                    placeholder="ИНН"
+                    className={s.input}
+                  />
+                </div>
+                <div className={s.inputContainer}>
+                  <Typography variant="body_5">Компания</Typography>
+                  <ControlledTextField
+                    control={control}
+                    name="company"
+                    placeholder="Компания"
+                    className={s.input}
+                  />
+                </div>
+              </>
+            )}
             <div className={s.inputContainer}>
               <Typography variant="body_5">Имя</Typography>
-              <TextField placeholder="Имя" className={s.input} />
+              <ControlledTextField
+                disabled={!!token && !!user}
+                control={control}
+                name="firstName"
+                placeholder="Имя"
+                className={s.input}
+              />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Фамилия</Typography>
-              <TextField placeholder="Фамилия" className={s.input} />
+              <ControlledTextField
+                disabled={!!token && !!user}
+                control={control}
+                name="lastName"
+                placeholder="Фамилия"
+                className={s.input}
+              />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Телефон</Typography>
-              <TextField placeholder="(+374) 12 34 56 78" className={s.input} />
+              <ControlledTextField
+                disabled={!!token && !!user}
+                control={control}
+                name="phone"
+                placeholder="(+374) 12 34 56 78"
+                className={s.input}
+              />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Электронный адрес</Typography>
-              <TextField placeholder="Электронный адрес" className={s.input} />
+              <ControlledTextField
+                disabled={!!token && !!user}
+                control={control}
+                name="email"
+                placeholder="Электронный адрес"
+                className={s.input}
+              />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Область работы</Typography>
-              <Select options={spheres?.data} />
+              {!!spheres && (
+                <ControlledSelect
+                  control={control}
+                  name="sphere"
+                  options={spheres?.data}
+                />
+              )}
             </div>
-            <div className={s.inputContainer}>
-              <Typography variant="body_5">Пароль</Typography>
-              <TextField
-                placeholder=""
-                variant="password"
-                className={s.input}
-              />
-            </div>
-            <div className={s.inputContainer}>
-              <Typography variant="body_5">Подтвердить пароль</Typography>
-              <TextField
-                placeholder=""
-                variant="password"
-                className={s.input}
-              />
-            </div>
+            {!token && (
+              <>
+                <div className={s.inputContainer}>
+                  <Typography variant="body_5">Пароль</Typography>
+                  <ControlledTextField
+                    control={control}
+                    name="password"
+                    placeholder=""
+                    variant="password"
+                    className={s.input}
+                  />
+                </div>
+                <div className={s.inputContainer}>
+                  <Typography variant="body_5">Подтвердить пароль</Typography>
+                  <ControlledTextField
+                    control={control}
+                    name="passwordConfirmation"
+                    placeholder=""
+                    variant="password"
+                    className={s.input}
+                  />
+                </div>
+              </>
+            )}
           </div>
         </div>
         <div className={s.elem}>
           <Typography variant="h4" as="h4">
             4. О вас
           </Typography>
-          <TextArea className={s.about} />
+          <ControlledTextArea
+            control={control}
+            name="about"
+            className={s.about}
+          />
         </div>
         <div className={s.elem}>
           <Typography variant="h4" as="h4">
             5. Загрузить файл
           </Typography>
-          <TextFieldFile setSelectedImage={setImage} />
+          <TextFieldFile setSelectedImage={setFile} />
         </div>
         <div className={s.elem}>
           <div className={s.checkboxContainer}>
-            <Checkbox />
-            <Typography variant="body_6">
-              Согласие на обработку персональных данных
-            </Typography>
+            <ControlledCheckbox
+              control={control}
+              name="confirmation"
+              label="Согласие на обработку персональных данных"
+              labelText={Variant.body_6}
+            />
           </div>
           <div className={s.buttonsContainer}>
-            <Button>Отправить</Button>
-            <Button variant={"secondary"}>Отменить</Button>
+            <Button onClick={formHandler}>Отправить</Button>
+            <Button variant={"secondary"} onClick={reset}>
+              Отменить
+            </Button>
           </div>
         </div>
       </div>

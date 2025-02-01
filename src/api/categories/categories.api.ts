@@ -1,6 +1,6 @@
 import { domixApi } from "../domix.api";
 import { RequestParams } from "../products/products.types";
-import { CategoryArgs } from "./categories.types";
+import { CategoriesBreadcrumbs, CategoryArgs } from "./categories.types";
 
 export const categoriesApi = domixApi.injectEndpoints({
   endpoints: (builder) => {
@@ -15,9 +15,20 @@ export const categoriesApi = domixApi.injectEndpoints({
           url: `/categories/${id}?perPage=${perPage}`,
         }),
       }),
+      getBreadcrumbsCategories: builder.query<
+        { data: CategoriesBreadcrumbs },
+        string
+      >({
+        query: (id) => ({
+          url: `/categories/${id}/breadcrumbs`,
+        }),
+      }),
     };
   },
 });
 
-export const { useGetCategoriesQuery, useGetSubCategoriesQuery } =
-  categoriesApi;
+export const {
+  useGetCategoriesQuery,
+  useGetSubCategoriesQuery,
+  useGetBreadcrumbsCategoriesQuery,
+} = categoriesApi;

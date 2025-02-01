@@ -12,7 +12,7 @@ export const domixApi = createApi({
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
-      headers.set("Accept-Language", lang);
+      headers.set("Accept-Language", "RU-ru");
       return headers;
     },
   }),

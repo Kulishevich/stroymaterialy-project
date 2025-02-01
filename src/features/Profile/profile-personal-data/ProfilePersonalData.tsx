@@ -118,7 +118,12 @@ export const ProfilePersonalData = () => {
       </Typography>
       <div className={s.inputContainer}>
         <Typography variant="body_5">Пароль</Typography>
-        <TextField placeholder="Пароль" variant="password" />
+        <TextField
+          placeholder="Пароль"
+          variant="password"
+          value={12345678}
+          disabled={true}
+        />
       </div>
       <Typography
         variant="button"

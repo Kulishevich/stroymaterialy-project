@@ -3,11 +3,17 @@ import s from "./SubcategoryPage.module.scss";
 import { CategoryTags } from "@/features/Category/category-tags/CategoryTags";
 import { BestSellingProducts } from "@/components/best-selling-products";
 import { useRouter } from "next/router";
-import { useGetSubCategoriesQuery } from "@/api/categories/categories.api";
+import {
+  useGetBreadcrumbsCategoriesQuery,
+  useGetSubCategoriesQuery,
+} from "@/api/categories/categories.api";
+import { useDispatch } from "react-redux";
+import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
 
 export const SubcategoryPage = () => {
   const router = useRouter();
   const { subcategory } = router.query;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (router.isReady) {
@@ -22,13 +28,24 @@ export const SubcategoryPage = () => {
     perPage: 20,
   });
 
+  const { data: breadcrumbs } = useGetBreadcrumbsCategoriesQuery(
+    subcategory as string
+  );
+  console.log(breadcrumbs);
+
   console.log("SubcategoryPage:", products);
+
+  useEffect(() => {
+    if (breadcrumbs?.data.breadcrumb) {
+      dispatch(setBreadcrumbs(breadcrumbs.data.breadcrumb));
+    }
+  }, [breadcrumbs, dispatch]);
 
   return (
     <div className={s.container}>
-      {!isLoading && products && (
+      {!isLoading && products && breadcrumbs && (
         <CategoryTags
-          title={"Скотч, изолента, клейкая лента"}
+          title={breadcrumbs.data.name}
           categories={products.data}
         />
       )}

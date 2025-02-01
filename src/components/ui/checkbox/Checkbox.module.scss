@@ -57,7 +57,7 @@
 
 .label {
   color: var(--color-grey-3);
-  width: 160px;
+  width: fit-content;
   &.disabled {
     color: var(--color-accent-red);
   }
@@ -73,4 +73,5 @@
   position: absolute;
   left: 0;
   bottom: -15px;
+  text-wrap: nowrap;
 }

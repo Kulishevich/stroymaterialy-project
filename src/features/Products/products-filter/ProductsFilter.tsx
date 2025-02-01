@@ -28,16 +28,32 @@ const brandFilter = [
   },
 ];
 
-export const ProductsFilter = () => {
+type ProductsFilterProps = {
+  filters: {
+    "category.filters.price.label": {
+      "category.filters.price.max": number;
+      "category.filters.price.min": number;
+    };
+    "category.filters.brand.label": string[] | Record<string, string | number>;
+  };
+};
+
+export const ProductsFilter = ({ filters }: ProductsFilterProps) => {
+  console.log(filters);
+
   return (
     <div className={s.container}>
       <Typography as="h3" variant="h3">
         Фильтр
       </Typography>
       <Accordion title={"Бренд"}>
-        {brandFilter.map((brand) => (
-          <Checkbox key={brand.id} label={brand.value} />
-        ))}
+        {Array.isArray(filters["category.filters.brand.label"])
+          ? filters["category.filters.brand.label"].map((brand, index) => (
+              <Checkbox key={brand + index} label={brand} />
+            ))
+          : Object.entries(filters["category.filters.brand.label"] || {}).map(
+              ([key, value]) => <Checkbox key={key} label={value} />
+            )}
       </Accordion>
       <Accordion title={"Ширина"}>
         {brandFilter.map((brand) => (

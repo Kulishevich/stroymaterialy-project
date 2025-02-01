@@ -3,7 +3,8 @@ import { domixApi } from "@/api/domix.api";
 import { configureStore } from "@reduxjs/toolkit";
 import langReducer from "./slices/lang/langSlice";
 import authReducer from "./slices/auth/authSlice";
-import authModalReducer from "./slices/auth-modal-slice/authModalSlice";
+import authModalReducer from "./slices/auth-modal/authModalSlice";
+import breadcrumbsReducer from "./slices/breadcrumbs/breadcrumbsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     lang: langReducer,
     auth: authReducer,
     authModal: authModalReducer,
+    breadcrumbs: breadcrumbsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(domixApi.middleware),

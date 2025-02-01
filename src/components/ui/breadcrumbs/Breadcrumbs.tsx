@@ -4,19 +4,20 @@ import s from "./Breadcrumbs.module.scss";
 import { ArrowRightIcon } from "@/assets/icons";
 import { Typography } from "../typography";
 import { useRouter } from "next/router";
-
-interface DynamicPath {
-  href: string;
-  name: string;
-}
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 interface Props {
   className?: string;
-  dynamicPath?: DynamicPath | DynamicPath[];
 }
 
-export const Breadcrumbs = ({ className, dynamicPath }: Props) => {
+export const Breadcrumbs = ({ className }: Props) => {
   const { pathname } = useRouter();
+  const dynamicPath = useSelector(
+    (state: RootState) => state.breadcrumbs.breadcrumbs
+  );
+
+  console.log(dynamicPath);
   if (
     !pathname ||
     pathname === "/" ||
@@ -90,8 +91,12 @@ export const Breadcrumbs = ({ className, dynamicPath }: Props) => {
                 <ArrowRightIcon className={s.icon} />
                 <Typography
                   as={Link}
-                  href={item.href}
-                  className={cn(idx + 1 !== dynamicPath.length && s.link)}
+                  href={
+                    item.is_subcategory
+                      ? `/subcategory/${item.uuid}`
+                      : `/category/${item.uuid}`
+                  }
+                  className={cn(s.link)}
                   variant="body_4"
                 >
                   {item.name}
@@ -100,14 +105,14 @@ export const Breadcrumbs = ({ className, dynamicPath }: Props) => {
             );
           })}
 
-        {dynamicPath && !Array.isArray(dynamicPath) && (
+        {/* {dynamicPath && !Array.isArray(dynamicPath) && (
           <li className={s.elem}>
             <ArrowRightIcon className={s.icon} />
             <Typography as={Link} href={dynamicPath.href} variant="body_4">
               {dynamicPath.name}
             </Typography>
           </li>
-        )}
+        )} */}
       </ul>
     </div>
   );

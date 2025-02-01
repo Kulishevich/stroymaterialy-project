@@ -1,22 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import s from "./ProductImages.module.scss";
 import Image from "next/image";
 import { Typography } from "@/components/ui/typography";
+import { ProductImagesType } from "@/api/products/products.types";
 
 type ProductImagesProps = {
-  product: {
-    images: string[];
-  };
+  images: ProductImagesType;
 };
 
-export const ProductImages = ({ product }: ProductImagesProps) => {
-  const [activeImage, setActiveImage] = useState(0);
-
-  const selectedImage = product.images[activeImage];
+export const ProductImages = ({ images }: ProductImagesProps) => {
   return (
     <div className={s.container}>
       <div className={s.imagesContainer}>
-        {product.images.map((image, index) => (
+        {images.additional.map((image, index) => (
           <Image
             key={index}
             src={image}
@@ -24,13 +20,12 @@ export const ProductImages = ({ product }: ProductImagesProps) => {
             height={86}
             alt="product image"
             className={s.image}
-            onClick={() => setActiveImage(index)}
           />
         ))}
       </div>
       <div className={s.imageContainer}>
         <Image
-          src={selectedImage}
+          src={images.main.src}
           width={416}
           height={416}
           alt="product image"

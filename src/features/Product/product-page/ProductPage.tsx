@@ -10,20 +10,13 @@ import {
   useGetRatingQuery,
 } from "@/api/products/products.api";
 import { SimilarProducts } from "@/components/similar-products";
-
-const productImages = {
-  images: [
-    "/images/products/product1.png",
-    "/images/products/product2.png",
-    "/images/products/product3.png",
-    "/images/products/product4.png",
-    "/images/products/product5.png",
-  ],
-};
+import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
+import { useDispatch } from "react-redux";
 
 export const ProductPage = () => {
   const router = useRouter();
   const { product } = router.query;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (router.isReady) {
@@ -39,7 +32,21 @@ export const ProductPage = () => {
     perPage: 20,
   });
 
-  console.log(rating);
+  useEffect(() => {
+    if (prod?.data.breadcrumb) {
+      dispatch(
+        setBreadcrumbs([
+          ...prod?.data.breadcrumb,
+          {
+            name: prod?.data.name,
+            uuid: prod?.data.id,
+          },
+        ])
+      );
+    }
+  }, [prod]);
+
+  console.log("Рейтинг", rating);
 
   if (isLoading || !prod) return;
 
@@ -55,7 +62,7 @@ export const ProductPage = () => {
       </div>
       <div className={s.container}>
         <div className={s.content}>
-          <ProductImages product={productImages} />
+          <ProductImages images={prod.data.images} />
           <ProductInfo item={prod?.data} />
         </div>
         <SimilarProducts similars={prod.data.similars} />

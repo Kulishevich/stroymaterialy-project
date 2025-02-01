@@ -1,37 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import s from "./ProductsContent.module.scss";
 import { Item } from "@/components/item";
-import { useGetProductsByCategoryQuery } from "@/api/products/products.api";
-import { useRouter } from "next/router";
+import { Product } from "@/api/products/products.types";
 
-export const ProductContent = () => {
-  const router = useRouter();
-  const { products } = router.query;
+type ProductContentProps = {
+  products: Product[];
+};
 
-  useEffect(() => {
-    if (router.isReady) {
-      if (!products || typeof products !== "string") {
-        router.push("/404");
-      }
-    }
-  }, [products, router.isReady, router]);
-
-  const { data: productsItems, isLoading } = useGetProductsByCategoryQuery({
-    id: products as string,
-    perPage: 20,
-  });
-
-  if (!isLoading && productsItems) {
-    console.log("Продукты:", productsItems);
-  }
-
+export const ProductContent = ({ products }: ProductContentProps) => {
   return (
     <div className={s.container}>
-      {!isLoading &&
-        productsItems &&
-        productsItems.data.products.data.map((product) => (
-          <Item product={product} key={product.id} />
-        ))}
+      {products &&
+        products.map((product) => <Item product={product} key={product.id} />)}
     </div>
   );
 };

@@ -10,8 +10,9 @@ import { useGetCartQuery } from "@/api/cart/cart.api";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { toggleLoginModal } from "@/store/slices/auth-modal-slice/authModalSlice";
+import { toggleLoginModal } from "@/store/slices/auth-modal/authModalSlice";
 import s from "./HeaderSearch.module.scss";
+import { useGetFavoriteProductsQuery } from "@/api/products/products.api";
 
 export const HeaderSearch = () => {
   const [isActiveCatalog, setIsActiveCatalog] = useState<boolean>(false);
@@ -19,6 +20,7 @@ export const HeaderSearch = () => {
   const token = useSelector((state: RootState) => state.auth.token);
   const dispatch = useDispatch();
 
+  const { data: favorites } = useGetFavoriteProductsQuery();
   const { data: cart } = useGetCartQuery();
 
   const handleFavoritesClick = () => {
@@ -48,7 +50,9 @@ export const HeaderSearch = () => {
             </div>
             <div className={s.textContainer}>
               <Typography as="h6">Избранное</Typography>
-              <Typography as="p">Товаров: 0</Typography>
+              <Typography as="p">
+                Товаров: {favorites?.data.favorites.length}
+              </Typography>
             </div>
           </Button>
           <Button

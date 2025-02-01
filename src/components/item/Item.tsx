@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useAddItemCartMutation } from "@/api/cart/cart.api";
 import { useAddInFavoriteMutation } from "@/api/products/products.api";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { showToast } from "../ui/toast";
 
 export type ItemProps = {
   variant?: "vertical" | "horizontal";
@@ -41,8 +42,10 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
     try {
       await addItemCart(fetchData).unwrap();
       setCount(1);
+      showToast({ message: "Добавлено в корзину", variant: "success" });
     } catch (err: unknown) {
       console.error(err);
+      showToast({ message: "Ошибка", variant: "error" });
     }
   };
 
@@ -50,8 +53,10 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
     try {
       const res = await addInFavorite({ products: [product?.id] }).unwrap();
       console.log(res);
+      showToast({ message: "Добавлено в избранное", variant: "success" });
     } catch (err: unknown) {
       console.error(err);
+      showToast({ message: "Ошибка", variant: "error" });
     }
   };
 

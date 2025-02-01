@@ -21,6 +21,13 @@
     }
 }
 
+.professionSelect {
+    width: 522px;
+    @media (max-width: 768px) {
+        width: 304px;
+    }
+}
+
 .flexContainer {
     display: flex;
     gap: 32px;

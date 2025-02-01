@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeLang } from "@/store/slices/lang/langSlice";
 import clsx from "clsx";
 import { RootState } from "@/store/store";
-import { toggleLoginModal } from "@/store/slices/auth-modal-slice/authModalSlice";
+import { toggleLoginModal } from "@/store/slices/auth-modal/authModalSlice";
 import s from "./HeaderNavigation.module.scss";
 
 const headerOptions = [

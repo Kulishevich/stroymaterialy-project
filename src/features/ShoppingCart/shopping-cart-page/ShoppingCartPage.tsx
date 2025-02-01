@@ -28,8 +28,7 @@ export const ShoppingCartPage = () => {
     };
     console.log("Ложим в заказ:", fetchData);
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { data } = await createOrder(fetchData as any).unwrap();
+      const { data } = await createOrder(fetchData).unwrap();
       console.log("Созданный заказ:", data);
       router.push(`${Paths.payment}/${data.id}`);
     } catch (err: unknown) {

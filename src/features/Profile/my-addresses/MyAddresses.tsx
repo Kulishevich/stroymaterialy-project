@@ -28,7 +28,9 @@ export const MyAddresses = () => {
       title: (
         <>
           <Typography variant="body_5">Эдвард</Typography>
-          <Typography variant="body_3">Основной адрес</Typography>
+          {address.isDefault && (
+            <Typography variant="body_3">Основной адрес</Typography>
+          )}
         </>
       ),
       content: (
@@ -56,7 +58,7 @@ export const MyAddresses = () => {
 
   const changeDefaultAddress = async (id: number) => {
     try {
-      await setDefaultAddress({ id: id }).unwrap();
+      await setDefaultAddress(id).unwrap();
     } catch (err) {
       console.log(err);
     }

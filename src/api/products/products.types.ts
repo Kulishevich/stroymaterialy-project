@@ -23,7 +23,8 @@ export type ProductCategory = {
   name: string;
 };
 
-export type ProductImages = {
+export type ProductImagesType = {
+  additional: [];
   main: {
     isMain: boolean;
     src: string;
@@ -44,7 +45,7 @@ export type Product = {
   bonus: string;
   bonusPercent: string;
   brand: string;
-  breadcrumbs: Breadcrumbs[];
+  breadcrumb: Breadcrumbs[];
   category: ProductCategory;
   characteristics: [];
   code: string;
@@ -54,7 +55,7 @@ export type Product = {
   discountedPrice: string;
   feedbacks: [];
   id: string;
-  images: ProductImages;
+  images: ProductImagesType;
   isNew: number;
   isPopular: number;
   name: string;
@@ -66,17 +67,11 @@ export type Product = {
 };
 
 export type Filters = {
-  brand: {
-    label: {
-      [key: number]: string;
-    };
+  "category.filters.price.label": {
+    "category.filters.price.max": number;
+    "category.filters.price.min": number;
   };
-  price: {
-    label: {
-      min: number;
-      max: number;
-    };
-  };
+  "category.filters.brand.label": string[] | Record<string, string | number>;
 };
 
 export type ProductsData = {

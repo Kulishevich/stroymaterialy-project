@@ -1,15 +1,17 @@
 import { domixApi } from "../domix.api";
+import { GetSearchItemsResponse } from "./search.types";
 
 export const searchApi = domixApi.injectEndpoints({
   endpoints: (builder) => {
     return {
-      getSearchItems: builder.query<void, { keyword: string; perPage: string }>(
-        {
-          query: ({ keyword, perPage }) => ({
-            url: `/search/${keyword}?perPage=${perPage}`,
-          }),
-        }
-      ),
+      getSearchItems: builder.query<
+        GetSearchItemsResponse,
+        { keyword: string; perPage: string }
+      >({
+        query: ({ keyword, perPage }) => ({
+          url: `/search/${keyword}?perPage=${perPage}`,
+        }),
+      }),
     };
   },
 });
