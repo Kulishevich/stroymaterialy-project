@@ -6,10 +6,6 @@ export type ExtraOptionsResponse = {
   name: string;
 };
 
-export type CreateOrderArgs = {
-  items: CreateOrderItem[];
-};
-
 export type CreateOrderItem = {
   count: number;
   id: string;

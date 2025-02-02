@@ -18,6 +18,7 @@ export type CheckboxProps = {
   isRequired?: boolean;
   label?: ReactNode;
   labelText?: Variant;
+  variant?: "primary" | "secondary";
 } & ComponentPropsWithoutRef<typeof RadixCheckbox.Root>;
 
 type CheckboxRef = ElementRef<typeof RadixCheckbox.Root>;
@@ -30,6 +31,7 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>((props, ref) => {
     isRequired,
     label,
     labelText = "body_3",
+    variant = "primary",
     ...rest
   } = props;
   const checkboxId = useId();
@@ -37,23 +39,32 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>((props, ref) => {
   return (
     <div className={s.container}>
       <RadixCheckbox.Root
-        className={clsx(s.root, error && s.error)}
+        className={clsx(s.root, s[variant], error && s.error)}
         disabled={disabled}
         id={checkboxId}
         ref={ref}
         {...rest}
       >
         <RadixCheckbox.Indicator
-          className={clsx(s.indicator, disabled && s.disabled)}
+          className={clsx(s.indicator, s[variant], disabled && s.disabled)}
         >
-          <CheckMarkIcon className={clsx(s.icon, disabled && s.disabledIcon)} />
+          {variant === "primary" && (
+            <CheckMarkIcon
+              className={clsx(s.icon, disabled && s.disabledIcon)}
+            />
+          )}
         </RadixCheckbox.Indicator>
       </RadixCheckbox.Root>
       {label && (
         <Typography
           as={"label"}
           variant={labelText}
-          className={clsx(s.label, className, disabled && s.disabled)}
+          className={clsx(
+            s.label,
+            s[variant],
+            className,
+            disabled && s.disabled
+          )}
           htmlFor={checkboxId}
           isRequired={isRequired}
         >

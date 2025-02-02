@@ -1,7 +1,7 @@
 import { domixApi } from "../domix.api";
 import {
   ChangeOrderResponse,
-  CreateOrderArgs,
+  CreateOrderItem,
   CreateOrderResponse,
   ExtraOptionsResponse,
   GetOrderResponse,
@@ -17,7 +17,7 @@ export const ordersApi = domixApi.injectEndpoints({
       }),
       createOrder: builder.mutation<
         { data: CreateOrderResponse },
-        { items: CreateOrderArgs }
+        { items: CreateOrderItem[] }
       >({
         query: (args) => ({
           url: "/orders",
@@ -35,7 +35,13 @@ export const ordersApi = domixApi.injectEndpoints({
         query: ({ args, orderId }) => ({
           url: `/orders/${orderId}/process`,
           method: "PUT",
-          body: { ...args },
+          body: args,
+        }),
+      }),
+      changePayMethod: builder.mutation<void, { id: string; method: string }>({
+        query: ({ id, method }) => ({
+          url: `/orders/${id}/pay/${method}`,
+          method: "POST",
         }),
       }),
     };
@@ -47,4 +53,5 @@ export const {
   useCreateOrderMutation,
   useGetOrderQuery,
   useChangeOrderMutation,
+  useChangePayMethodMutation,
 } = ordersApi;

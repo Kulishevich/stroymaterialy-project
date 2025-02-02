@@ -19,12 +19,12 @@ export const ShoppingCartPage = () => {
 
   const handleCreateOrder = async () => {
     const fetchData = {
-      items: cart?.data.list.map((elem) => {
-        return {
-          count: elem.count,
-          id: elem.product.id,
-        };
-      }),
+      items: cart?.data.list
+        ? cart.data.list.map((elem) => ({
+            count: elem.count,
+            id: elem.product.id,
+          }))
+        : [],
     };
     console.log("Ложим в заказ:", fetchData);
     try {
@@ -93,6 +93,10 @@ export const ShoppingCartPage = () => {
           <div className={s.total}>
             <Typography variant="body_3">Цена</Typography>
             <Typography variant="body_3">{cart?.data.subtotal}</Typography>
+          </div>
+          <div className={s.total}>
+            <Typography variant="body_3">Скидка</Typography>
+            <Typography variant="body_3">{cart?.data.discount}</Typography>
           </div>
           <div className={s.total}>
             <Typography variant="h4">Сумма</Typography>

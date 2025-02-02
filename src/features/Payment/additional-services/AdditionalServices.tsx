@@ -1,9 +1,10 @@
 import React from "react";
 import s from "./AdditionalServices.module.scss";
-import { Typography } from "@/components/ui/typography";
+import { Typography, Variant } from "@/components/ui/typography";
 import { RhombIcon } from "@/assets/icons";
 import { useGetExtraOptionsQuery } from "@/api/orders/orders.api";
-import { ControlledRadio } from "@/components/ui/controlled-radio";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Controller } from "react-hook-form";
 
 type AdditionalServicesProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,13 +32,38 @@ export const AdditionalServices = ({ control }: AdditionalServicesProps) => {
       <Typography variant="body_2">
         Стоимость дополнительных услуг уточнит оператор.
       </Typography>
-      {extraOptions && (
-        <ControlledRadio
-          control={control}
-          name="extraOptions"
-          options={extraOptions.data}
-          className={s.radioService}
-        />
+
+      {!isLoading && extraOptions?.data && (
+        <div className={s.options}>
+          <Controller
+            control={control}
+            name="extraOptions"
+            render={({ field: { value, onChange } }) => (
+              <>
+                {extraOptions.data.map((option) => {
+                  const isChecked = value.includes(option.id);
+
+                  return (
+                    <Checkbox
+                      key={option.id}
+                      variant="secondary"
+                      label={option.name}
+                      labelText={Variant.body_1}
+                      checked={isChecked}
+                      onCheckedChange={(checked) => {
+                        onChange(
+                          checked
+                            ? [...value, option.id] // Добавляем id в массив
+                            : value.filter((id: string) => id !== option.id) // Убираем id из массива
+                        );
+                      }}
+                    />
+                  );
+                })}
+              </>
+            )}
+          />
+        </div>
       )}
     </div>
   );

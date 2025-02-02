@@ -12,10 +12,14 @@ export const paymentSchemeCreator = () => {
     lastName: surnameScheme(),
     email: emailScheme(),
     phone: phoneScheme(),
-    paymentMethod: z.string().nonempty("Выберите способ оплаты"), // Просто строка, но обязательное поле
-    address: z.string().nonempty("Адрес обязателен"), // Обязательное поле
-    orderType: z.string().nonempty("Выберите тип заказа"), // Просто строка
-    extraOptions: z.string().optional(), // Допускаем пустое или отсутствующее значение
+    paymentMethod: z.string().nonempty("Выберите способ оплаты"),
+    addressId: z.number().int().positive("Адрес обязателен"),
+    orderType: z.string().nonempty("Выберите тип заказа"),
     payerType: z.string().nonempty("Выберите тип плательщика"),
+    extraOptions: z
+      .array(z.string().uuid())
+      .optional()
+      .default([])
+      .transform((arr) => arr.map((id) => ({ extraOptionId: id }))),
   });
 };

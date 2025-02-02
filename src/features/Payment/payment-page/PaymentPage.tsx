@@ -1,5 +1,4 @@
 import React from "react";
-import s from "./PaymentPage.module.scss";
 import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { PayerDetails } from "../payer-details";
@@ -9,18 +8,32 @@ import { AdditionalServices } from "../additional-services";
 import { useRouter } from "next/router";
 import {
   useChangeOrderMutation,
+  useChangePayMethodMutation,
   useGetOrderQuery,
 } from "@/api/orders/orders.api";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { paymentSchemeCreator } from "./model/payment-scheme";
-// import { useCreateCustomerMutation } from "@/api/customer/customer.api";
+import { useCreateCustomerMutation } from "@/api/customer/customer.api";
+import s from "./PaymentPage.module.scss";
+
+const payerType = [
+  {
+    name: "Физическое лицо",
+    id: "individual",
+  },
+  {
+    name: "Юридическое лицо",
+    id: "entity",
+  },
+];
 
 export const PaymentPage = () => {
   const router = useRouter();
   const { orderId } = router.query;
-  // const [createCustomer] = useCreateCustomerMutation();
+  const [createCustomer] = useCreateCustomerMutation();
   const [changeOrder] = useChangeOrderMutation();
+  const [changePayMethod] = useChangePayMethodMutation();
   const { data: order } = useGetOrderQuery({
     id: orderId as string,
   });
@@ -37,46 +50,43 @@ export const PaymentPage = () => {
       lastName: "",
       email: "",
       phone: "",
-      paymentMethod: "",
-      address: "",
-      orderType: "",
-      payerType: "",
-      extraOptions: "",
+      paymentMethod: "", //способ оплаты
+      addressId: null,
+      orderType: "", //способ доставки
+      payerType: payerType[0].id, //тип плательщика
+      extraOptions: [], //доп услуги
     },
     mode: "onTouched",
     resolver: zodResolver(paymentSchemeCreator()),
   });
 
   const formHandler = handleSubmit(async (data) => {
-    console.log("Отправка заказа", data);
+    console.log("data:", data);
 
-    // const processData = {
-    // extraOptions: 1,
-    // addressId = selectedAddress?.id;
-    // regionId = city.id;
-    // gift = giftCard;
-    // orderTypeId = purchaseType.id;
-    // date = moment(deliveryDate).format("YYYY-MM-DD");
-    // start = selectedHours?.start;
-    // end = selectedHours?.end;
-    // };
+    const customer = {
+      orderId: orderId,
+      email: data.email,
+      phone: data.phone,
+      type: data.payerType,
+      referralCode: "",
+      tin: "",
+      fullName: `${data.firstName} ${data.lastName}`,
+    };
+    console.log(customer);
+    // try {
+    //   const res = await createCustomer(customer).unwrap();
+    //   console.log("Customer", res);
+    // } catch (err) {
+    //   console.error("Error customer", err);
+    // }
 
     const changeOrderArgs = {
-      items: [
-        {
-          addressId: 1,
-          regionId: 1,
-          address: "address",
-          additional: "daasd",
-          orderTypeId: 2,
-          extraOptions: [
-            {
-              extraOptionId: "1",
-            },
-          ],
-        },
-      ],
+      addressId: data.addressId,
+      orderTypeId: data.orderType,
+      // gift
+      extraOptions: data.extraOptions,
     };
+    console.log(changeOrderArgs);
 
     try {
       const res = await changeOrder({
@@ -85,23 +95,19 @@ export const PaymentPage = () => {
       }).unwrap();
       console.log("Result", res);
     } catch (err) {
-      console.error(err);
+      console.error("Ошибка при создании заказа:", err);
     }
 
-    // const customer = {
-    //   orderId: orderId,
-    //   email: data.email,
-    //   phone: data.phone,
-    //   type: data.payerType,
-    //   tin: "",
-    //   referralCode: "",
-    // };
-
+    const payMethodArgs = {
+      id: orderId as string,
+      method: data.paymentMethod,
+    };
+    console.log(payMethodArgs);
     // try {
-    //   const res = await createCustomer(customer).unwrap();
-    //   console.log("Customer", res);
-    // } catch (err) {
-    //   console.error(err);
+    //   const res = await changePayMethod(payMethodArgs).unwrap();
+    //   console.log("Payment", res);
+    // } catch (err: unknown) {
+    //   console.error("Payment error", err);
     // }
   });
 
@@ -113,9 +119,15 @@ export const PaymentPage = () => {
 
       <div className={s.content}>
         <form className={s.form}>
-          <PayerDetails control={control} />
-          <PaymentMethod control={control} />
-          <PurchaseMethod control={control} addresses={order?.data.addresses} />
+          <PayerDetails control={control} payerType={payerType} />
+          <PaymentMethod
+            control={control}
+            paymentMethod={order?.data.paymentMethods}
+          />
+          <PurchaseMethod
+            controlForm={control}
+            addresses={order?.data.addresses}
+          />
           <AdditionalServices control={control} />
         </form>
         <div className={s.price}>

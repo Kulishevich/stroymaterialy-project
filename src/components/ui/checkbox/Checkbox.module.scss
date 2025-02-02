@@ -16,18 +16,42 @@
   outline: none;
   width: 32px;
   height: 32px;
-
+  padding: 0;
   border: 1px solid #2125311A;
   border-radius: 4px;
   background-color: var(--color-bg);
-
+  
   & > button {
     all: unset;
+  }
+
+  &.secondary {
+    border-radius: 50%; //secondary
+    border-color: #2125314D;
+
+    &:hover {
+      border-color: var(--color-text);
+    }
+
+    &:focus-visible {
+      border-color: var(--color-text);
+    }
+  
+    &[data-state='checked'] {
+      border-color: var(--color-text);
+      &:disabled {
+        border-color: #2125311A;
+      }
+    }
   }
 
   &:disabled {
     cursor: default;
     background-color: var(--color-grey-1);
+  }
+
+  &:hover {
+    border-color: var(--color-text);
   }
 
   &:focus-visible {
@@ -48,6 +72,18 @@
   align-items: center;
   justify-content: center;
   color: var(--color-accent-orange);
+
+  &.secondary {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    &[data-state='checked'] {
+      background-color: var(--color-accent-orange);
+      &:disabled {
+        opacity: 0.7;
+      }
+    }
+  }
 }
 
 .icon {
@@ -62,6 +98,9 @@
     color: var(--color-accent-red);
   }
   
+  &.secondary {
+    color: var(--color-text);
+  }
 }
 
 .disabledIcon {

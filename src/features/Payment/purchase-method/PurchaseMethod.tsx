@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import s from "./PurchaseMethod.module.scss";
 import { Typography } from "@/components/ui/typography";
 import { RhombIcon } from "@/assets/icons";
-import { Select } from "@/components/ui/select";
-import { TextField } from "@/components/ui/text-field";
 import { Button } from "@/components/ui/button";
 import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { useGetRegionsQuery } from "@/api/regions/regions.api";
+import { useForm } from "react-hook-form";
+import { ControlledSelect } from "@/components/ui/controlled-select";
+import { ControlledTextField } from "@/components/ui/controlled-textfiled";
+import { useCreateAddressMutation } from "@/api/addresses/address.api";
+import { addAddressScheme } from "@/features/Profile/add-address-popup/model/add-address-scheme";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const deliveryMethodOprions = [
   {
@@ -67,13 +72,22 @@ type PurchaseMethodProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   addresses: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control: any;
+  controlForm: any;
 };
 
-export const PurchaseMethod = ({ addresses, control }: PurchaseMethodProps) => {
+export const PurchaseMethod = ({
+  addresses,
+  controlForm,
+}: PurchaseMethodProps) => {
   const isMobile = useIsMobile("tablet");
   const [isAddAddress, setIsAddAddress] = useState(false);
+  const { data: regions } = useGetRegionsQuery();
+  const [createAddress] = useCreateAddressMutation();
+
+  console.log(regions?.data);
   console.log("Адреса:", addresses);
+  console.log("render");
+
   const radioOptions =
     !!addresses?.length &&
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -89,6 +103,53 @@ export const PurchaseMethod = ({ addresses, control }: PurchaseMethodProps) => {
         ),
       };
     });
+
+  const {
+    control,
+    formState: { isValid },
+    handleSubmit,
+    reset,
+    watch,
+  } = useForm({
+    defaultValues: {
+      regionId: "",
+      address: "",
+      details: "",
+    },
+    mode: "onTouched",
+    reValidateMode: "onChange",
+    resolver: zodResolver(addAddressScheme()),
+  });
+
+  useEffect(() => {
+    if (regions?.data?.length) {
+      reset(
+        (prev) => ({
+          ...prev,
+          regionId: regions.data[0].id,
+        }),
+        { keepDefaultValues: true }
+      );
+    }
+  }, [regions, reset]);
+
+  const addNewAddressForm = handleSubmit(async (data) => {
+    console.log(data);
+    try {
+      const res = await createAddress({
+        ...data,
+        regionId: Number(data.regionId),
+      }).unwrap();
+      console.log("add new address", res);
+      reset();
+      setIsAddAddress(false);
+    } catch (err: unknown) {
+      console.log(err);
+    }
+  });
+
+  const selectedRegion = watch("regionId"); // Проверим текущее значение
+  console.log(selectedRegion);
 
   return (
     <div className={s.payment}>
@@ -111,24 +172,45 @@ export const PurchaseMethod = ({ addresses, control }: PurchaseMethodProps) => {
           <div className={s.addressFields}>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Округ</Typography>
-              <Select placeHolder="округ" />
+              {regions && (
+                <ControlledSelect
+                  control={control}
+                  key={regions?.data?.length}
+                  name="regionId"
+                  options={regions?.data}
+                />
+              )}
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Адрес доставки</Typography>
-              <TextField placeholder="Адрес доставки" />
+              <ControlledTextField
+                control={control}
+                name="address"
+                placeholder="Адрес доставки"
+              />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="body_5">Детали адреса доставки</Typography>
-              <TextField placeholder="Детали адреса доставки" />
+              <ControlledTextField
+                control={control}
+                name="details"
+                placeholder="Детали адреса доставки"
+              />
             </div>
           </div>
           <Button
             className={s.saveAdressButton}
-            onClick={() => setIsAddAddress(false)}
+            onClick={addNewAddressForm}
+            disabled={!isValid}
           >
             Сохранить адрес
           </Button>
-          <Typography variant="button" as="button" className={s.buttonBack}>
+          <Typography
+            variant="button"
+            as="button"
+            onClick={() => setIsAddAddress(false)}
+            className={s.buttonBack}
+          >
             Назад
           </Typography>
         </div>
@@ -139,8 +221,8 @@ export const PurchaseMethod = ({ addresses, control }: PurchaseMethodProps) => {
           </Typography>
           {radioOptions && (
             <ControlledRadioCards
-              control={control}
-              name="address"
+              control={controlForm}
+              name="addressId"
               options={radioOptions}
             />
           )}
@@ -167,7 +249,7 @@ export const PurchaseMethod = ({ addresses, control }: PurchaseMethodProps) => {
         <div className={s.cardsContainer}>
           <ControlledRadioCards
             options={deliveryMethodOprions}
-            control={control}
+            control={controlForm}
             name="orderType"
           />
         </div>

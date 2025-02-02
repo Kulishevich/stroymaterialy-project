@@ -8,20 +8,13 @@ import { ControlledSelect } from "@/components/ui/controlled-select";
 type PayerDetailsProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: any;
+  payerType: {
+    name: string;
+    id: string;
+  }[];
 };
 
-const payerType = [
-  {
-    name: "Физическое лицо",
-    id: "individual",
-  },
-  {
-    name: "Юридическое лицо",
-    id: "entity",
-  },
-];
-
-export const PayerDetails = ({ control }: PayerDetailsProps) => {
+export const PayerDetails = ({ control, payerType }: PayerDetailsProps) => {
   return (
     <div className={s.payment}>
       <div className={s.title}>
@@ -41,7 +34,6 @@ export const PayerDetails = ({ control }: PayerDetailsProps) => {
           <ControlledSelect
             control={control}
             name="payerType"
-            placeHolder="Физическое лицо"
             options={payerType}
           />
         </div>

@@ -38,7 +38,7 @@ export const RadioCards = forwardRef<RadioGroupRef, RadioCardsProps>(
           defaultValue
             ? defaultValue
             : options.length > 0
-            ? options[0].value
+            ? options[0].id
             : undefined
         }
         ref={ref}
@@ -52,7 +52,7 @@ export const RadioCards = forwardRef<RadioGroupRef, RadioCardsProps>(
                 className={s.item}
                 id={radioGroupId + option.id}
                 tabIndex={+option.id}
-                value={option.value}
+                value={option.id}
               >
                 <RadixRadio.Indicator className={s.indicator} />
               </RadixRadio.Item>

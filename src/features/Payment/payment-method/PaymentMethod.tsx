@@ -11,45 +11,44 @@ import { Typography } from "@/components/ui/typography";
 import s from "./PaymentMethod.module.scss";
 import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
 
-const radioOptions = [
+const icons = [
   {
-    id: "1",
-    value: "Оплатить картой",
     title: <CreditCardIcon />,
-    content: <Typography>Оплатить картой</Typography>,
   },
   {
-    id: "2",
-    value: "Оплатить Идрамом",
     title: <IdramIcon width={126} height={38} />,
-    content: <Typography>Оплатить Идрамом</Typography>,
   },
   {
-    id: "3",
-    value: "Оплатить наличными",
     title: <CashIcon />,
-    content: <Typography>Оплатить наличными</Typography>,
   },
   {
-    id: "4",
-    value: "Банковским переводом",
     title: <TransferIcon />,
-    content: <Typography>Банковским переводом</Typography>,
   },
   {
-    id: "5",
-    value: "С картой на месте",
     title: <PosIcon />,
-    content: <Typography>С картой на месте</Typography>,
   },
 ];
 
 type PaymentMethodProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: any;
+  paymentMethod: any;
 };
 
-export const PaymentMethod = ({ control }: PaymentMethodProps) => {
+export const PaymentMethod = ({
+  control,
+  paymentMethod,
+}: PaymentMethodProps) => {
+  console.log(paymentMethod);
+
+  const radioOptions = paymentMethod?.map((option, index) => {
+    return {
+      id: option.slug,
+      value: option.name,
+      title: icons[index].title,
+      content: <Typography>{option.name}</Typography>,
+    };
+  });
   return (
     <div className={s.payment}>
       <div className={s.title}>
@@ -63,13 +62,15 @@ export const PaymentMethod = ({ control }: PaymentMethodProps) => {
           Способ оплаты
         </Typography>
       </div>
-      <div className={s.cardsContainer}>
-        <ControlledRadioCards
-          options={radioOptions}
-          control={control}
-          name="paymentMethod"
-        />
-      </div>
+      {!!radioOptions && (
+        <div className={s.cardsContainer}>
+          <ControlledRadioCards
+            options={radioOptions}
+            control={control}
+            name="paymentMethod"
+          />
+        </div>
+      )}
     </div>
   );
 };
