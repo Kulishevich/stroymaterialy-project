@@ -1,10 +1,10 @@
 import { domixApi } from "../domix.api";
+import { BrandesResponse } from "./brandes.types";
 
 export const brandesApi = domixApi.injectEndpoints({
   endpoints: (builder) => {
     return {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      getBrandes: builder.query<any, void>({
+      getBrandes: builder.query<{ data: BrandesResponse[] }, void>({
         query: () => ({
           url: "/brandes",
         }),

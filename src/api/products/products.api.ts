@@ -33,6 +33,7 @@ export const productsApi = domixApi.injectEndpoints({
         }),
       }),
       getFavoriteProducts: builder.query<{ data: GetFavotireResponse }, void>({
+        providesTags: ["Favorites"],
         query: () => ({
           url: "/products/favorites",
         }),
@@ -41,6 +42,7 @@ export const productsApi = domixApi.injectEndpoints({
         { data: addInFavoriteResponse },
         addInFavoriteArgs
       >({
+        invalidatesTags: ["Favorites"],
         query: (args) => ({
           url: "/products/favorites",
           method: "POST",

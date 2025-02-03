@@ -28,6 +28,20 @@ const payerType = [
   },
 ];
 
+export type PaymentFormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  paymentMethod: string;
+  addressId: number | null;
+  orderType: string;
+  payerType: string;
+  extraOptions: {
+    extraOptionId: string;
+  }[];
+};
+
 export const PaymentPage = () => {
   const router = useRouter();
   const { orderId } = router.query;
@@ -44,7 +58,7 @@ export const PaymentPage = () => {
     control,
     formState: { isValid },
     handleSubmit,
-  } = useForm({
+  } = useForm<PaymentFormValues>({
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -64,7 +78,7 @@ export const PaymentPage = () => {
     console.log("data:", data);
 
     const customer = {
-      orderId: orderId,
+      orderId: orderId as string,
       email: data.email,
       phone: data.phone,
       type: data.payerType,
@@ -73,16 +87,16 @@ export const PaymentPage = () => {
       fullName: `${data.firstName} ${data.lastName}`,
     };
     console.log(customer);
-    // try {
-    //   const res = await createCustomer(customer).unwrap();
-    //   console.log("Customer", res);
-    // } catch (err) {
-    //   console.error("Error customer", err);
-    // }
+    try {
+      const res = await createCustomer(customer).unwrap();
+      console.log("Customer", res);
+    } catch (err) {
+      console.error("Error customer", err);
+    }
 
     const changeOrderArgs = {
-      addressId: data.addressId,
-      orderTypeId: data.orderType,
+      addressId: Number(data.addressId),
+      orderTypeId: Number(data.orderType),
       // gift
       extraOptions: data.extraOptions,
     };
@@ -103,12 +117,12 @@ export const PaymentPage = () => {
       method: data.paymentMethod,
     };
     console.log(payMethodArgs);
-    // try {
-    //   const res = await changePayMethod(payMethodArgs).unwrap();
-    //   console.log("Payment", res);
-    // } catch (err: unknown) {
-    //   console.error("Payment error", err);
-    // }
+    try {
+      const res = await changePayMethod(payMethodArgs).unwrap();
+      console.log("Payment", res);
+    } catch (err: unknown) {
+      console.error("Payment error", err);
+    }
   });
 
   return (
@@ -120,14 +134,18 @@ export const PaymentPage = () => {
       <div className={s.content}>
         <form className={s.form}>
           <PayerDetails control={control} payerType={payerType} />
-          <PaymentMethod
-            control={control}
-            paymentMethod={order?.data.paymentMethods}
-          />
-          <PurchaseMethod
-            controlForm={control}
-            addresses={order?.data.addresses}
-          />
+          {order?.data.paymentMethods && (
+            <PaymentMethod
+              control={control}
+              paymentMethod={order?.data.paymentMethods}
+            />
+          )}
+          {order?.data.addresses && (
+            <PurchaseMethod
+              controlForm={control}
+              addresses={order?.data.addresses}
+            />
+          )}
           <AdditionalServices control={control} />
         </form>
         <div className={s.price}>

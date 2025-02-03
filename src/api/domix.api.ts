@@ -7,14 +7,15 @@ export const domixApi = createApi({
     baseUrl: process.env.NEXT_PUBLIC_DOMIX_BASE_URL,
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem("accessToken");
-      const lang = (getState() as RootState).lang[0];
+      const lang = (getState() as RootState).lang;
 
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
-      headers.set("Accept-Language", "RU-ru");
+      headers.set("Accept-Language", lang);
       return headers;
     },
   }),
   endpoints: () => ({}),
+  tagTypes: ["Cart", "Addresses", "Favorites", "Setting"],
 });

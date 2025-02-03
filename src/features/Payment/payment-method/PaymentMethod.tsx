@@ -10,6 +10,9 @@ import {
 import { Typography } from "@/components/ui/typography";
 import s from "./PaymentMethod.module.scss";
 import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
+import { Control } from "react-hook-form";
+import { PaymentFormValues } from "../payment-page";
+import { PaymentMethodsType } from "@/api/orders/orders.types";
 
 const icons = [
   {
@@ -30,9 +33,8 @@ const icons = [
 ];
 
 type PaymentMethodProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control: any;
-  paymentMethod: any;
+  control: Control<PaymentFormValues>;
+  paymentMethod: PaymentMethodsType[];
 };
 
 export const PaymentMethod = ({

@@ -1,5 +1,6 @@
 import { domixApi } from "../domix.api";
 import {
+  ChangeOrderArgs,
   ChangeOrderResponse,
   CreateOrderItem,
   CreateOrderResponse,
@@ -30,8 +31,10 @@ export const ordersApi = domixApi.injectEndpoints({
           url: `/orders/${id}`,
         }),
       }),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      changeOrder: builder.mutation<ChangeOrderResponse, any>({
+      changeOrder: builder.mutation<
+        ChangeOrderResponse,
+        { args: ChangeOrderArgs; orderId: string }
+      >({
         query: ({ args, orderId }) => ({
           url: `/orders/${orderId}/process`,
           method: "PUT",

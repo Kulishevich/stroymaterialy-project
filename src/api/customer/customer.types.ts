@@ -3,8 +3,9 @@ export type CustomerArgs = {
   email: string;
   phone: string;
   type: string;
-  tin: string;
-  referralCode: string;
+  referralCode?: string;
+  tin?: string;
+  fullName: string;
 };
 
 export type CustomerResponse = {

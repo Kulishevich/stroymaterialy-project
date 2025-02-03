@@ -1,14 +1,14 @@
 import React from "react";
-import s from "./AdditionalServices.module.scss";
 import { Typography, Variant } from "@/components/ui/typography";
 import { RhombIcon } from "@/assets/icons";
 import { useGetExtraOptionsQuery } from "@/api/orders/orders.api";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Controller } from "react-hook-form";
+import { Control, Controller } from "react-hook-form";
+import { PaymentFormValues } from "../payment-page";
+import s from "./AdditionalServices.module.scss";
 
 type AdditionalServicesProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control: any;
+  control: Control<PaymentFormValues>;
 };
 
 export const AdditionalServices = ({ control }: AdditionalServicesProps) => {
@@ -41,7 +41,9 @@ export const AdditionalServices = ({ control }: AdditionalServicesProps) => {
             render={({ field: { value, onChange } }) => (
               <>
                 {extraOptions.data.map((option) => {
-                  const isChecked = value.includes(option.id);
+                  const isChecked = value.some(
+                    (item) => item.extraOptionId === option.id
+                  );
 
                   return (
                     <Checkbox
@@ -53,8 +55,10 @@ export const AdditionalServices = ({ control }: AdditionalServicesProps) => {
                       onCheckedChange={(checked) => {
                         onChange(
                           checked
-                            ? [...value, option.id] // Добавляем id в массив
-                            : value.filter((id: string) => id !== option.id) // Убираем id из массива
+                            ? [...value, { extraOptionId: option.id }]
+                            : value.filter(
+                                (item) => item.extraOptionId !== option.id
+                              )
                         );
                       }}
                     />

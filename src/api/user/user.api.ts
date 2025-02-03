@@ -9,11 +9,13 @@ export const userApi = domixApi.injectEndpoints({
   endpoints: (builder) => {
     return {
       getUserSetting: builder.query<{ data: UserSettingResponse }, void>({
+        providesTags: ["Setting"],
         query: () => ({
           url: "/users/settings",
         }),
       }),
       changeSetting: builder.mutation<void, ChangeSettingParams>({
+        invalidatesTags: ["Setting"],
         query: (args) => ({
           url: "/auth/settings",
           method: "PUT",

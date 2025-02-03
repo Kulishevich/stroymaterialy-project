@@ -4,10 +4,11 @@ import { RhombIcon } from "@/assets/icons";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
 import s from "./PayerDetails.module.scss";
 import { ControlledSelect } from "@/components/ui/controlled-select";
+import { Control } from "react-hook-form";
+import { PaymentFormValues } from "../payment-page";
 
 type PayerDetailsProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control: any;
+  control: Control<PaymentFormValues>;
   payerType: {
     name: string;
     id: string;

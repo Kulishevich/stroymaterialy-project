@@ -6,12 +6,14 @@ import { Button } from "@/components/ui/button";
 import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { useGetRegionsQuery } from "@/api/regions/regions.api";
-import { useForm } from "react-hook-form";
+import { Control, useForm } from "react-hook-form";
 import { ControlledSelect } from "@/components/ui/controlled-select";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
 import { useCreateAddressMutation } from "@/api/addresses/address.api";
 import { addAddressScheme } from "@/features/Profile/add-address-popup/model/add-address-scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { PaymentFormValues } from "../payment-page";
+import { Address } from "@/api/addresses/address.types";
 
 const deliveryMethodOprions = [
   {
@@ -69,10 +71,8 @@ const deliveryMethodOprions = [
 ];
 
 type PurchaseMethodProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  addresses: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  controlForm: any;
+  addresses: Address[];
+  controlForm: Control<PaymentFormValues>;
 };
 
 export const PurchaseMethod = ({
@@ -90,10 +90,9 @@ export const PurchaseMethod = ({
 
   const radioOptions =
     !!addresses?.length &&
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    addresses.map((address: any) => {
+    addresses.map((address) => {
       return {
-        id: address.id,
+        id: String(address.id),
         value: address.address,
         title: "",
         content: (

@@ -1,33 +1,32 @@
 import { domixApi } from "../domix.api";
 import {
   CreateAddressArgs,
-  CreateAddressResponse,
   GetAddressesResponse,
   UpdateAddressArgs,
-  UpdateAddressResponse,
 } from "./address.types";
 
 export const addressesApi = domixApi.injectEndpoints({
   endpoints: (builder) => {
     return {
       getAddresses: builder.query<GetAddressesResponse, { perPage: number }>({
+        providesTags: ["Addresses"],
         query: ({ perPage }) => ({
           url: `/users/addresses/?perPage=${perPage}`,
         }),
       }),
-      createAddress: builder.mutation<CreateAddressResponse, CreateAddressArgs>(
-        {
-          query: (args) => ({
-            url: "/users/addresses",
-            method: "POST",
-            body: { ...args },
-          }),
-        }
-      ),
+      createAddress: builder.mutation<void, CreateAddressArgs>({
+        invalidatesTags: ["Addresses"],
+        query: (args) => ({
+          url: "/users/addresses",
+          method: "POST",
+          body: { ...args },
+        }),
+      }),
       updateAddress: builder.mutation<
-        UpdateAddressResponse,
+        void,
         { args: UpdateAddressArgs; id: number }
       >({
+        invalidatesTags: ["Addresses"],
         query: ({ args, id }) => ({
           url: `/users/addresses/${id}`,
           method: "PUT",

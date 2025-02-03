@@ -85,8 +85,14 @@ export type OrderItem = {
   subtotal: string;
   total: string;
 };
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ChangeOrderArgs = any;
+
+export type ChangeOrderArgs = {
+  addressId: number;
+  orderTypeId: number;
+  extraOptions: {
+    extraOptionId: string;
+  }[];
+};
 
 export type ChangeOrderResponse = {
   data: [

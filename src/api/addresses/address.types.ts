@@ -22,13 +22,9 @@ export type CreateAddressArgs = {
   address: string;
   details: string;
 };
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type CreateAddressResponse = any;
 
 export type UpdateAddressArgs = {
   regionId: number;
   address: string;
   details: string;
 };
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type UpdateAddressResponse = any;
