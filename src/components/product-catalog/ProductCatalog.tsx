@@ -27,7 +27,7 @@ export const ProductCatalog = () => {
   const [activeSort, setActiveSort] = useState<string>(sort[0].value);
   const { data: products, isLoading } = useGetTrendsProductsQuery({
     trend: activeSort,
-    perPage: 4,
+    perPage: 12,
   });
 
   console.log(products);

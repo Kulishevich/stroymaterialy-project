@@ -5,6 +5,7 @@ import langReducer from "./slices/lang/langSlice";
 import authReducer from "./slices/auth/authSlice";
 import authModalReducer from "./slices/auth-modal/authModalSlice";
 import breadcrumbsReducer from "./slices/breadcrumbs/breadcrumbsSlice";
+import favoritesReduces from "./slices/favorites/favoritesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     auth: authReducer,
     authModal: authModalReducer,
     breadcrumbs: breadcrumbsReducer,
+    favorites: favoritesReduces,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(domixApi.middleware),

@@ -47,6 +47,12 @@ export const ordersApi = domixApi.injectEndpoints({
           method: "POST",
         }),
       }),
+      deleteOrder: builder.mutation<void, { id: string }>({
+        query: ({ id }) => ({
+          url: `/orders/${id}`,
+          method: "DELETE",
+        }),
+      }),
     };
   },
 });
@@ -57,4 +63,5 @@ export const {
   useGetOrderQuery,
   useChangeOrderMutation,
   useChangePayMethodMutation,
+  useDeleteOrderMutation,
 } = ordersApi;

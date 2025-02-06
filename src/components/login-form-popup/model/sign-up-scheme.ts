@@ -5,8 +5,8 @@ import {
   passwordScheme,
   phoneScheme,
   surnameScheme,
-} from "@/shared/lib/validation";
-import { validation } from "@/shared/lib/validation.errors";
+} from "@/shared/validation/validation";
+import { validation } from "@/shared/validation/validation.errors";
 import { z } from "zod";
 
 export const signUpSchemeCreator = () => {

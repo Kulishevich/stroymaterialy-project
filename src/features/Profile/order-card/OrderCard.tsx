@@ -3,9 +3,14 @@ import s from "./OrderCard.module.scss";
 import Image from "next/image";
 import { Typography } from "@/components/ui/typography";
 import { Counter } from "@/components/counter";
+import { OrderItem } from "@/api/orders/orders.types";
 
-export const OrderCard = () => {
-  const [count, setCount] = useState(1);
+type OrderCardProps = {
+  orderItem: OrderItem;
+};
+
+export const OrderCard = ({ orderItem }: OrderCardProps) => {
+  const [count, setCount] = useState(Number(orderItem.count));
 
   const increment = () => {
     setCount((prev) => prev + 1);
@@ -18,13 +23,13 @@ export const OrderCard = () => {
   return (
     <div className={s.container}>
       <Image
-        src={"/images/profile-card.png"}
+        src={orderItem.product.images.main.src}
         width={120}
         height={120}
         alt="order image"
         className={s.image}
       />
-      <Typography variant="body_7">500,00 AMD / шт</Typography>
+      <Typography variant="body_7">{orderItem.total}</Typography>
       <Counter
         size="s"
         countCurrent={count}

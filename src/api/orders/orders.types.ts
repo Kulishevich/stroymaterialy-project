@@ -30,32 +30,35 @@ export type CreateOrderResponse = {
 };
 
 export type GetOrderResponse = {
-  data: {
-    address: string | null;
-    addresses: Address[];
-    customer: string | null;
-    date: string;
-    deliveryPrice: string;
-    discount: string;
-    end: string;
-    extraOptions: ExtraOptionsResponse[] | [];
-    giftCards: [];
-    id: string;
-    isCancelable: boolean;
-    isReversable: boolean;
-    items: OrderItem[];
-    method: string;
-    orderTypes: OrderTypes[];
-    paymentMethods: PaymentMethodsType[];
-    receiptLink: null;
-    regions: RegionType[];
-    reverses: [];
-    start: string;
-    status: string;
-    subtotal: string;
-    total: string;
-    totalWithDelivery: string;
-  };
+  data: OrderItemResponse;
+};
+
+export type OrderItemResponse = {
+  address: string | null;
+  addresses: Address[];
+  customer: string | null;
+  date: string;
+  deliveryPrice: string;
+  discount: string;
+  end: string;
+  extraOptions: ExtraOptionsResponse[] | [];
+  giftCards?: [];
+  id: string;
+  isCancelable: boolean;
+  isReversable: boolean;
+  items?: OrderItem[];
+  method: string;
+  orderTypes?: OrderTypes[];
+  paymentMethods?: PaymentMethodsType[];
+  receiptLink: string | null;
+  regions?: RegionType[];
+  reverses?: [];
+  revenrsesCount: number;
+  start: string;
+  status: string;
+  subtotal: string;
+  total: string;
+  totalWithDelivery: string;
 };
 
 export type OrderTypes = {
@@ -87,11 +90,18 @@ export type OrderItem = {
 };
 
 export type ChangeOrderArgs = {
-  addressId: number;
+  addressId?: number;
   orderTypeId: number;
   extraOptions: {
     extraOptionId: string;
   }[];
+
+  additional: string;
+  address: string;
+  date: string;
+  start: string;
+  end: string;
+  regionId: number;
 };
 
 export type ChangeOrderResponse = {

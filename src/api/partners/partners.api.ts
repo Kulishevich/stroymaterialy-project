@@ -1,10 +1,5 @@
 import { domixApi } from "../domix.api";
-import {
-  CreatePartnerArgs,
-  CreatePartnerExistUserArgs,
-  CreatePartnerResponse,
-  GetPartnerResponse,
-} from "./partners.types";
+import { CreatePartnerResponse, GetPartnerResponse } from "./partners.types";
 
 export const partnersApi = domixApi.injectEndpoints({
   endpoints: (builder) => {
@@ -14,25 +9,22 @@ export const partnersApi = domixApi.injectEndpoints({
           url: "/partners/users",
         }),
       }),
-      createPartner: builder.mutation<CreatePartnerResponse, CreatePartnerArgs>(
+      createPartner: builder.mutation<CreatePartnerResponse, FormData>({
+        query: (formData) => ({
+          url: "/partners",
+          method: "POST",
+          body: formData,
+        }),
+      }),
+      createPartnerExistUser: builder.mutation<CreatePartnerResponse, FormData>(
         {
-          query: (args) => ({
-            url: "/partners",
+          query: (formData) => ({
+            url: "/parners/users",
             method: "POST",
-            body: { ...args },
+            body: formData,
           }),
         }
       ),
-      createPartnerExistUser: builder.mutation<
-        CreatePartnerResponse,
-        CreatePartnerExistUserArgs
-      >({
-        query: (args) => ({
-          url: "/parners/users",
-          method: "POST",
-          body: { ...args },
-        }),
-      }),
       createPartnerFile: builder.mutation<void, FormData>({
         query: (args) => ({
           url: "/partners/certificate",

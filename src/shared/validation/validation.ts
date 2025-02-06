@@ -26,4 +26,13 @@ export const surnameScheme = () =>
   z.string().trim().min(1, { message: validation.requiredField });
 
 export const phoneScheme = () =>
-  z.string().trim().min(1, { message: validation.requiredField });
+  z
+    .string()
+    .trim()
+    .min(1, { message: validation.requiredField })
+    .refine((phone) => phone.startsWith("+374"), {
+      message: "Номер должен начинаться с +374",
+    })
+    .refine((phone) => /^\+374\d{8}$/.test(phone), {
+      message: "Номер должен содержать 8 цифр после кода страны",
+    });

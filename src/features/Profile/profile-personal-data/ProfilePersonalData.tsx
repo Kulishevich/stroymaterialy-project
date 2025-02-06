@@ -14,12 +14,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
 import { profileSettingScheme } from "./model/profile-setting-scheme";
 import { showToast } from "@/components/ui/toast";
+import { useRouter } from "next/router";
+import { Paths } from "@/shared/enums";
+import { useDispatch } from "react-redux";
+import { logout } from "@/store/slices/auth/authSlice";
 
 export const ProfilePersonalData = () => {
   const [isEditPassword, setIsEditPassword] = useState<boolean>(false);
   const { data } = useGetUserSettingQuery();
   const [changeSetting] = useChangeSettingMutation();
   const [deleteUser] = useDeleteUserMutation();
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -64,6 +70,8 @@ export const ProfilePersonalData = () => {
   const handleDeleteUser = async () => {
     try {
       await deleteUser().unwrap();
+      dispatch(logout());
+      router.push(Paths.home);
     } catch (err: unknown) {
       console.error(err);
     }

@@ -13,7 +13,7 @@ import { ControlledTextArea } from "@/components/ui/controlled-text-area";
 import { ControlledCheckbox } from "@/components/ui/controlled-checkbox";
 import {
   useCreatePartnerExistUserMutation,
-  useCreatePartnerFileMutation,
+  // useCreatePartnerFileMutation,
   useCreatePartnerMutation,
 } from "@/api/partners/partners.api";
 import { masterClubFormScheme } from "./model/master-club-form-scheme";
@@ -37,7 +37,7 @@ export const MastersClubForm = () => {
   const [file, setFile] = useState<File | null>(null);
   const [createPartner] = useCreatePartnerMutation();
   const [createPartnerExistUser] = useCreatePartnerExistUserMutation();
-  const [createPartnerFile] = useCreatePartnerFileMutation();
+  // const [createPartnerFile] = useCreatePartnerFileMutation();
   const token = useSelector((state: RootState) => state.auth.token);
   const { data: user } = useGetUserSettingQuery();
   console.log(user);
@@ -90,55 +90,47 @@ export const MastersClubForm = () => {
     }
   }, [professions, spheres, user?.data, token, reset, user]);
 
-  const uploadFile = async (file: File) => {
-    try {
-      const formData = new FormData();
-      formData.append("certificate", file);
-      const response = await createPartnerFile(formData).unwrap();
-      console.log(response);
-    } catch (error) {
-      console.error("Ошибка загрузки файла", error);
-    }
-  };
-
   const formHandler = handleSubmit(async (data) => {
     const isEntity = data.memberType === "entity";
 
-    if (!!token && !!user) {
-      const fetchData = {
-        profession: data.profession,
-        sphere: data.sphere,
-        about: data.about,
-        memberType: data.memberType,
-        company: isEntity ? data.company : "",
-        tin: isEntity ? data.tin : "",
-      };
-      console.log(fetchData);
-      try {
-        const res = await createPartnerExistUser(fetchData).unwrap();
-        console.log(res);
-        if (file) await uploadFile(file);
-      } catch (err: unknown) {
-        console.error(err);
-      }
-    } else {
-      const fetchData = {
-        fullName: `${data.firstName} ${data.lastName}`,
+    const fetchData = {
+      profession: data.profession,
+      sphere: data.sphere,
+      about: data.about,
+      ...(!token && {
         email: data.email,
         phone: data.phone,
         password: data.password,
         passwordConfirmation: data.passwordConfirmation,
-        profession: data.profession,
-        sphere: data.sphere,
-        about: data.about,
-        memberType: data.memberType,
-        company: isEntity ? data.company : "",
-        tin: isEntity ? data.tin : "",
-      };
-      console.log(fetchData);
+        fullName: `${data.firstName} ${data.lastName}`,
+      }),
+      ...(isEntity && {
+        company: data.company,
+        tin: data.tin,
+      }),
+    };
+
+    const formData = new FormData();
+    Object.entries(fetchData).forEach(([key, value]) => {
+      if (value) {
+        formData.append(key, value);
+      }
+    });
+
+    if (file) {
+      formData.append("certificate", file);
+    }
+
+    if (!!token && !!user) {
       try {
-        const res = await createPartner(fetchData).unwrap();
-        if (file) await uploadFile(file);
+        const res = await createPartnerExistUser(formData).unwrap();
+        console.log(res);
+      } catch (err: unknown) {
+        console.error(err);
+      }
+    } else {
+      try {
+        const res = await createPartner(formData).unwrap();
         localStorage.setItem("accessToken", res.data.token.trim());
       } catch (err: unknown) {
         console.error(err);

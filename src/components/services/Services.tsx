@@ -20,6 +20,7 @@ const Service = ({ image, title, width, hight }: ServiceProps) => {
         height={hight}
         alt="service"
         className={s.image}
+        quality={100}
       />
       <div className={s.overlay}>
         <Typography variant="h3" as="h3">

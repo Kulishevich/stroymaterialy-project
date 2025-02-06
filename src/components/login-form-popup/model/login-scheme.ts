@@ -1,4 +1,4 @@
-import { emailScheme, passwordScheme } from "@/shared/lib/validation";
+import { emailScheme, passwordScheme } from "@/shared/validation/validation";
 import { z } from "zod";
 
 export const loginSchemeCreator = () => {

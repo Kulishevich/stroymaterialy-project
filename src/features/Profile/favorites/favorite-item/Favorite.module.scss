@@ -1,4 +1,5 @@
 .card {
+    position: relative;
     width: 177px;
 
     & > h3 {
@@ -37,4 +38,26 @@
     padding: 0;
     width: 36px;
     height: 36px;
+}
+
+.favoriteButton {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    z-index: 1000;
+    padding: 0;
+    color: #21253126;
+
+}
+.active {
+    color: var(--color-accent-red);
+}
+
+.discount {
+    color: var(--color-accent-red);
+    & > span {
+        color: var(--color-grey-2);
+        text-decoration: line-through;
+        margin-left: 8px;
+    }
 }

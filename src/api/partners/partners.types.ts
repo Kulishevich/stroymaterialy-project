@@ -10,19 +10,6 @@ export type GetPartnerResponse = {
   };
 };
 
-export type CreatePartnerArgs = {
-  fullName: string;
-  email: string;
-  phone: string;
-  password: string;
-  passwordConfirmation: string;
-  profession: string;
-  sphere: string;
-  about: string;
-  tin: string;
-  company: string;
-};
-
 export type CreatePartnerResponse = {
   errors: boolean;
   message: string;
@@ -37,12 +24,4 @@ export type CreatePartnerResponse = {
       isPartner: boolean;
     };
   };
-};
-
-export type CreatePartnerExistUserArgs = {
-  profession: string;
-  sphere: string;
-  about: string;
-  tin: string;
-  company: string;
 };

@@ -16,7 +16,6 @@ export const authApi = domixApi.injectEndpoints({
 
             localStorage.setItem("accessToken", data.data.token.trim());
           } catch (e) {
-            // todo: error is catches in baseQueryWithReauth & sigInPage component
             console.error(e, "Error in login: builder.mutation");
           }
         },
@@ -27,6 +26,15 @@ export const authApi = domixApi.injectEndpoints({
         }),
       }),
       signUp: builder.mutation<SignUpResponce, SignUpArgs>({
+        async onQueryStarted(_, { queryFulfilled }) {
+          try {
+            const { data } = await queryFulfilled;
+
+            localStorage.setItem("accessToken", data.data.token.trim());
+          } catch (e) {
+            console.error(e, "Error in login: builder.mutation");
+          }
+        },
         query: (args) => ({
           body: { ...args },
           method: "POST",

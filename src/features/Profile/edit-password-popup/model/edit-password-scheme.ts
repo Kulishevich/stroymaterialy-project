@@ -1,5 +1,8 @@
-import { confirmPasswordScheme, passwordScheme } from "@/shared/lib/validation";
-import { validation } from "@/shared/lib/validation.errors";
+import {
+  confirmPasswordScheme,
+  passwordScheme,
+} from "@/shared/validation/validation";
+import { validation } from "@/shared/validation/validation.errors";
 import { z } from "zod";
 
 export const editPasswordScheme = () => {

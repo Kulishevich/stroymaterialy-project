@@ -14,8 +14,16 @@ import { addAddressScheme } from "@/features/Profile/add-address-popup/model/add
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PaymentFormValues } from "../payment-page";
 import { Address } from "@/api/addresses/address.types";
+import { OptionsValue } from "@/components/ui/select";
 
-const deliveryMethodOprions = [
+type PurchaseMethodProps = {
+  addresses: Address[];
+  controlForm: Control<PaymentFormValues>;
+  deliveryTimeOptions: OptionsValue[];
+  deliveryDataOptions: OptionsValue[];
+};
+
+const deliveryMethodOptions = [
   {
     id: "1",
     value: "Стандартная доставка",
@@ -70,23 +78,18 @@ const deliveryMethodOprions = [
   },
 ];
 
-type PurchaseMethodProps = {
-  addresses: Address[];
-  controlForm: Control<PaymentFormValues>;
-};
-
 export const PurchaseMethod = ({
   addresses,
   controlForm,
+  deliveryTimeOptions,
+  deliveryDataOptions,
 }: PurchaseMethodProps) => {
   const isMobile = useIsMobile("tablet");
   const [isAddAddress, setIsAddAddress] = useState(false);
   const { data: regions } = useGetRegionsQuery();
   const [createAddress] = useCreateAddressMutation();
 
-  console.log(regions?.data);
   console.log("Адреса:", addresses);
-  console.log("render");
 
   const radioOptions =
     !!addresses?.length &&
@@ -247,9 +250,21 @@ export const PurchaseMethod = ({
         </div>
         <div className={s.cardsContainer}>
           <ControlledRadioCards
-            options={deliveryMethodOprions}
+            options={deliveryMethodOptions}
             control={controlForm}
             name="orderType"
+          />
+        </div>
+        <div className={s.deliveryTimeContainer}>
+          <ControlledSelect
+            control={controlForm}
+            name="deliveryTime"
+            options={deliveryTimeOptions}
+          />
+          <ControlledSelect
+            control={controlForm}
+            name="deliveryData"
+            options={deliveryDataOptions}
           />
         </div>
         {isMobile && (

@@ -9,9 +9,14 @@ import { Product } from "@/api/products/products.types";
 import s from "./Item.module.scss";
 import Link from "next/link";
 import { useAddItemCartMutation } from "@/api/cart/cart.api";
-import { useAddInFavoriteMutation } from "@/api/products/products.api";
+import {
+  useAddInFavoriteMutation,
+  useDeleteFavoriteMutation,
+} from "@/api/products/products.api";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { showToast } from "../ui/toast";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export type ItemProps = {
   variant?: "vertical" | "horizontal";
@@ -23,8 +28,15 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
   const vertical = variant === "vertical";
   const isMobile = useIsMobile("tablet");
   const sizeImage = !isMobile ? (vertical ? 306 : 110) : 160;
+  const favoritesItems = useSelector(
+    (state: RootState) => state.favorites.favorites
+  );
+  const isFavorite = favoritesItems.includes(product.id);
+  const isDiscount = !!Number(product.discount.split(" ")[0]);
+
   const [addItemCart] = useAddItemCartMutation();
   const [addInFavorite] = useAddInFavoriteMutation();
+  const [deleteFavorite] = useDeleteFavoriteMutation();
 
   const increment = () => {
     setCount((prev) => prev + 1);
@@ -50,13 +62,24 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
   };
 
   const handleAddFavorite = async () => {
-    try {
-      const res = await addInFavorite({ products: [product?.id] }).unwrap();
-      console.log(res);
-      showToast({ message: "Добавлено в избранное", variant: "success" });
-    } catch (err: unknown) {
-      console.error(err);
-      showToast({ message: "Ошибка", variant: "error" });
+    if (isFavorite) {
+      try {
+        const res = await deleteFavorite(product?.id).unwrap();
+        console.log(res);
+        showToast({ message: "Удалено из избранное", variant: "success" });
+      } catch (err: unknown) {
+        console.error(err);
+        showToast({ message: "Ошибка", variant: "error" });
+      }
+    } else {
+      try {
+        const res = await addInFavorite({ products: [product?.id] }).unwrap();
+        console.log(res);
+        showToast({ message: "Добавлено в избранное", variant: "success" });
+      } catch (err: unknown) {
+        console.error(err);
+        showToast({ message: "Ошибка", variant: "error" });
+      }
     }
   };
 
@@ -75,7 +98,7 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
         {variant !== "horizontal" && (
           <>
             <div className={s.tagsContainer}>
-              {!!product.discountedPrice && (
+              {isDiscount && (
                 <Typography className={s.promotion} variant="body_6">
                   Акция
                 </Typography>
@@ -95,7 +118,7 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
             <Button
               variant="only_icon"
               onClick={handleAddFavorite}
-              className={s.favoriteButton}
+              className={clsx(s.favoriteButton, isFavorite && s.active)}
             >
               <HeartIcon />
             </Button>
@@ -107,16 +130,28 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
           {product.name}
         </Typography>
         <div className={s.priceContainer}>
-          <Typography variant={vertical ? "h3" : "body_5"} as="h3">
-            {product.discountedPrice}
-          </Typography>
-          <Typography
-            variant={vertical ? "body_3" : "body_6"}
-            className={s.sale}
-            as="span"
-          >
-            {product.price}
-          </Typography>
+          {isDiscount ? (
+            <>
+              <Typography
+                variant={vertical ? "h3" : "body_5"}
+                as="h3"
+                className={s.discount}
+              >
+                {product.discountedPrice}
+              </Typography>
+              <Typography
+                variant={vertical ? "body_3" : "body_6"}
+                className={s.sale}
+                as="span"
+              >
+                {product.price}
+              </Typography>
+            </>
+          ) : (
+            <Typography variant={vertical ? "h3" : "body_5"} as="h3">
+              {product.price}
+            </Typography>
+          )}
         </div>
         <div className={vertical ? s.buttonContainer : s.horizontalContainer}>
           <Counter

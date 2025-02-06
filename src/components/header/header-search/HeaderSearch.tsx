@@ -1,6 +1,6 @@
 import { BagShoppingIcon, BurgerIcon, HeartOutlineIcon } from "@/assets/icons";
 import { Typography } from "@/components/ui/typography";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CatalogPopup } from "@/components/catalog-popup";
 import Link from "next/link";
@@ -13,6 +13,7 @@ import { RootState } from "@/store/store";
 import { toggleLoginModal } from "@/store/slices/auth-modal/authModalSlice";
 import s from "./HeaderSearch.module.scss";
 import { useGetFavoriteProductsQuery } from "@/api/products/products.api";
+import { setFavorites } from "@/store/slices/favorites/favoritesSlice";
 
 export const HeaderSearch = () => {
   const [isActiveCatalog, setIsActiveCatalog] = useState<boolean>(false);
@@ -22,6 +23,12 @@ export const HeaderSearch = () => {
 
   const { data: favorites } = useGetFavoriteProductsQuery();
   const { data: cart } = useGetCartQuery();
+
+  useEffect(() => {
+    if (favorites?.data?.favorites) {
+      dispatch(setFavorites(favorites.data.favorites.map((elem) => elem.id)));
+    }
+  }, [favorites, dispatch]);
 
   const handleFavoritesClick = () => {
     if (token) {

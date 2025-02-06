@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Typography } from "../ui/typography";
 import Image from "next/image";
 import { debounce } from "lodash";
@@ -10,11 +10,31 @@ import s from "./Search.module.scss";
 export const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
-
+  const searchRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const debouncedSearch = useCallback(
     debounce((query) => setDebouncedQuery(query), 500),
     []
   );
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(target) &&
+        inputRef.current &&
+        !inputRef.current.contains(target)
+      ) {
+        setSearchQuery("");
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     debouncedSearch(searchQuery);
@@ -25,7 +45,6 @@ export const Search = () => {
     perPage: "10",
   });
 
-  console.log(searchQuery, debouncedQuery);
   console.log("Поиск", data);
 
   return (
@@ -36,10 +55,11 @@ export const Search = () => {
         placeholder="Поиск по сайту"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
+        ref={inputRef}
       />
 
       {searchQuery && (
-        <div className={s.content}>
+        <div className={s.content} ref={searchRef}>
           <Typography variant="body_2" as="h2">
             Поиск по категориям
           </Typography>

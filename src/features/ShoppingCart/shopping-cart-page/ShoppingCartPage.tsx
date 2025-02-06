@@ -12,9 +12,9 @@ import { useRouter } from "next/router";
 export const ShoppingCartPage = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const { data: cart } = useGetCartQuery();
+  const { data: cart, error } = useGetCartQuery();
   const [clearCart] = useClearCartMutation();
-
+  console.log("error:", error);
   const [createOrder] = useCreateOrderMutation();
 
   const handleCreateOrder = async () => {

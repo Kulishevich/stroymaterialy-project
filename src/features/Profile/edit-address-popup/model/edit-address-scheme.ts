@@ -1,4 +1,4 @@
-import { validation } from "@/shared/lib/validation.errors";
+import { validation } from "@/shared/validation/validation.errors";
 import { z } from "zod";
 
 export const editAddressScheme = () => {

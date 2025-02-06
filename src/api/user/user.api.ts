@@ -2,6 +2,8 @@ import { domixApi } from "../domix.api";
 import {
   ChangePasswordParams,
   ChangeSettingParams,
+  GetGiftsReponse,
+  GetOrdersResponse,
   UserSettingResponse,
 } from "./user.types";
 
@@ -17,25 +19,24 @@ export const userApi = domixApi.injectEndpoints({
       changeSetting: builder.mutation<void, ChangeSettingParams>({
         invalidatesTags: ["Setting"],
         query: (args) => ({
-          url: "/auth/settings",
+          url: "/users/settings",
           method: "PUT",
           body: { ...args },
         }),
       }),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      getUserOrders: builder.query<any, void>({
+      getUserOrders: builder.query<GetOrdersResponse, void>({
         query: () => ({
           url: "/users/orders",
         }),
       }),
-      getUserGifts: builder.query<{ data: UserSettingResponse }, void>({
+      getUserGifts: builder.query<{ data: GetGiftsReponse }, void>({
         query: () => ({
           url: "/users/gifts",
         }),
       }),
       changePassword: builder.mutation<void, ChangePasswordParams>({
         query: (args) => ({
-          url: "/auth/settings/password",
+          url: "/users/settings/password",
           method: "PUT",
           body: { ...args },
         }),

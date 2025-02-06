@@ -1,4 +1,4 @@
-import { nameScheme, phoneScheme } from "@/shared/lib/validation";
+import { nameScheme, phoneScheme } from "@/shared/validation/validation";
 import { z } from "zod";
 
 export const callbackSchemeCreator = () => {

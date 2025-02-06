@@ -6,8 +6,8 @@ import { useForm, useWatch } from "react-hook-form";
 import { signUpSchemeCreator } from "../model/sign-up-scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
-import { validation } from "@/shared/lib/validation.errors";
 import { useSignUpMutation } from "@/api/auth/auth.api";
+import { validation } from "@/shared/validation/validation.errors";
 
 export const Registration = () => {
   const [signUp] = useSignUpMutation();
@@ -52,7 +52,7 @@ export const Registration = () => {
       console.log(resData);
       reset();
     } catch (err: unknown) {
-      console.log(err);
+      console.error(err);
     }
   });
 

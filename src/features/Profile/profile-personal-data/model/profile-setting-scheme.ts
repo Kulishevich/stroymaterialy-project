@@ -3,7 +3,7 @@ import {
   nameScheme,
   phoneScheme,
   surnameScheme,
-} from "@/shared/lib/validation";
+} from "@/shared/validation/validation";
 import { z } from "zod";
 
 export const profileSettingScheme = () => {

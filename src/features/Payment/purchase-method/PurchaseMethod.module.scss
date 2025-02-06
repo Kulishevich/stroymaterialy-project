@@ -136,3 +136,11 @@
         opacity: 1;
     }
 }
+
+.deliveryTimeContainer {
+    display: flex;
+    gap: 24px;
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}

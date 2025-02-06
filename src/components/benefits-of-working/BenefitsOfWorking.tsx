@@ -1,6 +1,8 @@
 import React from "react";
 import s from "./BenefitsOfWorking.module.scss";
 import { Typography } from "../ui/typography";
+import Image from "next/image";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 const cards = [
   {
@@ -55,6 +57,7 @@ const cards = [
 ];
 
 export const BenefitsOfWorking = () => {
+  const isMobile = useIsMobile("tablet");
   return (
     <div className={s.container}>
       <Typography variant="h2" as="h2">
@@ -63,7 +66,14 @@ export const BenefitsOfWorking = () => {
       <div className={s.cards}>
         {cards.map((card) => (
           <div className={s.card} key={card.id}>
-            <img src={card.image} alt="image" className={s.image} />
+            <Image
+              src={card.image}
+              alt="image"
+              className={s.image}
+              width={!isMobile ? 281 : 336}
+              height={!isMobile ? 399 : 180}
+              unoptimized
+            />
             <div className={s.content}>
               <Typography variant="h3" as="h3">
                 {card.title}

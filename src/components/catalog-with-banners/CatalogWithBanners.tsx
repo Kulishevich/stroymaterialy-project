@@ -3,19 +3,23 @@ import s from "./CatalogWithBanners.module.scss";
 import Image from "next/image";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { CatalogHome } from "../catalog-home/CatalogHome";
+import { useGetContentQuery } from "@/api/content/content.api";
 
 export const CatalogWithBanners = () => {
   const isMobile = useIsMobile("tablet");
+  const { data } = useGetContentQuery({ key: "secondBanner" });
 
+  console.log(data?.data);
   return (
     <div className={s.container}>
       <CatalogHome />
       <div className={s.banner}>
-        <img
+        <Image
           src={"/images/banner.png"}
           width={!isMobile ? 966 : 336}
           height={!isMobile ? 380 : 248}
           alt="banner"
+          unoptimized
         />
         <div className={s.smallBannerContainer}>
           <Image

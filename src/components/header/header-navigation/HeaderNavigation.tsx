@@ -12,6 +12,7 @@ import clsx from "clsx";
 import { RootState } from "@/store/store";
 import { toggleLoginModal } from "@/store/slices/auth-modal/authModalSlice";
 import s from "./HeaderNavigation.module.scss";
+import { useTranslations } from "next-intl";
 
 const headerOptions = [
   {
@@ -25,6 +26,8 @@ const headerOptions = [
 ];
 
 export const HeaderNavigation = () => {
+  const t = useTranslations("header");
+  console.log("Translations:", t.raw);
   const router = useRouter();
   // const lang = useSelector((state: RootState) => state.lang);
   const token = useSelector((state: RootState) => state.auth.token);
@@ -81,8 +84,8 @@ export const HeaderNavigation = () => {
               router.pathname === Paths.home && s.active
             )}
           >
-            Главная
-            {/* {t("header.navigation.main")} */}
+            {/* Главная */}
+            {t("header.navigation.main")}
           </Typography>
           <Typography
             as={Link}

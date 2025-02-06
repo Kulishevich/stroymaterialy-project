@@ -49,6 +49,12 @@ export const productsApi = domixApi.injectEndpoints({
           body: { ...args },
         }),
       }),
+      deleteFavorite: builder.mutation<void, string>({
+        query: (id) => ({
+          url: `/products/favorites/${id}`,
+          method: "DETELE",
+        }),
+      }),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       getRating: builder.query<any, { id: string }>({
         query: (id) => ({
@@ -73,6 +79,7 @@ export const {
   useGetTrendsProductsQuery,
   useGetFavoriteProductsQuery,
   useAddInFavoriteMutation,
+  useDeleteFavoriteMutation,
   useGetRatingQuery,
   useAddRatingMutation,
 } = productsApi;

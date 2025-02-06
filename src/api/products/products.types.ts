@@ -24,11 +24,13 @@ export type ProductCategory = {
 };
 
 export type ProductImagesType = {
-  additional: [];
-  main: {
-    isMain: boolean;
-    src: string;
-  };
+  additional: Image[];
+  main: Image;
+};
+
+export type Image = {
+  isMain: boolean;
+  src: string;
 };
 
 export type ProductUnit = {
@@ -93,7 +95,7 @@ export type ResponseProductsByCategory = {
 export type GetFavotireResponse = {
   discountDetails: DiscountDetailsTypes;
   email: string;
-  favorites: [];
+  favorites: Product[];
   firstName: string;
   fullName: string;
   isPartner: boolean;

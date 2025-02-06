@@ -16,6 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { paymentSchemeCreator } from "./model/payment-scheme";
 import { useCreateCustomerMutation } from "@/api/customer/customer.api";
 import s from "./PaymentPage.module.scss";
+import { useGetNextSevenDays } from "@/shared/hooks/useGetNextSevenDays";
 
 const payerType = [
   {
@@ -25,6 +26,21 @@ const payerType = [
   {
     name: "Юридическое лицо",
     id: "entity",
+  },
+];
+
+const deliveryTimeOptions = [
+  {
+    id: "08:00-12:00",
+    name: "08:00-12:00",
+  },
+  {
+    id: "12:00-16:00",
+    name: "12:00-16:00",
+  },
+  {
+    id: "16:00-20:00",
+    name: "16:00-20:00",
   },
 ];
 
@@ -40,6 +56,8 @@ export type PaymentFormValues = {
   extraOptions: {
     extraOptionId: string;
   }[];
+  deliveryTime: string;
+  deliveryData: string;
 };
 
 export const PaymentPage = () => {
@@ -51,8 +69,8 @@ export const PaymentPage = () => {
   const { data: order } = useGetOrderQuery({
     id: orderId as string,
   });
-
-  console.log(order);
+  const deliveryDataOptions = useGetNextSevenDays();
+  console.log("Order:", order);
 
   const {
     control,
@@ -69,21 +87,21 @@ export const PaymentPage = () => {
       orderType: "", //способ доставки
       payerType: payerType[0].id, //тип плательщика
       extraOptions: [], //доп услуги
+      deliveryTime: deliveryTimeOptions[0].id,
+      deliveryData: deliveryDataOptions[0].id,
     },
     mode: "onTouched",
     resolver: zodResolver(paymentSchemeCreator()),
   });
 
   const formHandler = handleSubmit(async (data) => {
-    console.log("data:", data);
-
     const customer = {
       orderId: orderId as string,
       email: data.email,
       phone: data.phone,
       type: data.payerType,
-      referralCode: "",
-      tin: "",
+      // referralCode: "2313", //можно кидать
+      // tin: "12352", //можно кидать только если тип юр лицо
       fullName: `${data.firstName} ${data.lastName}`,
     };
     console.log(customer);
@@ -93,15 +111,21 @@ export const PaymentPage = () => {
     } catch (err) {
       console.error("Error customer", err);
     }
-
+    const selectedAddress = order?.data.addresses.find(
+      (elem) => elem.id === Number(data.addressId)
+    );
     const changeOrderArgs = {
-      addressId: Number(data.addressId),
+      additional: selectedAddress?.details as string,
+      address: selectedAddress?.address as string,
+      date: data.deliveryData,
+      start: data.deliveryTime.split("-")[0],
+      end: data.deliveryTime.split("-")[1],
+      regionId: selectedAddress?.region.id as number,
       orderTypeId: Number(data.orderType),
-      // gift
       extraOptions: data.extraOptions,
+      // gift
     };
     console.log(changeOrderArgs);
-
     try {
       const res = await changeOrder({
         args: changeOrderArgs,
@@ -144,6 +168,8 @@ export const PaymentPage = () => {
             <PurchaseMethod
               controlForm={control}
               addresses={order?.data.addresses}
+              deliveryTimeOptions={deliveryTimeOptions}
+              deliveryDataOptions={deliveryDataOptions}
             />
           )}
           <AdditionalServices control={control} />

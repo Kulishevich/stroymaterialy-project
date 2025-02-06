@@ -13,7 +13,7 @@ import { SimilarProducts } from "@/components/similar-products";
 import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
 import { useDispatch } from "react-redux";
 
-export const ProductPage = () => {
+export const ProductPage = ({}) => {
   const router = useRouter();
   const { product } = router.query;
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ export const ProductPage = () => {
       </div>
       <div className={s.container}>
         <div className={s.content}>
-          <ProductImages images={prod.data.images} />
+          <ProductImages item={prod?.data} />
           <ProductInfo item={prod?.data} />
         </div>
         <SimilarProducts similars={prod.data.similars} />

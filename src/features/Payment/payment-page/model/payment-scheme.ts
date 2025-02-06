@@ -3,7 +3,7 @@ import {
   nameScheme,
   phoneScheme,
   surnameScheme,
-} from "@/shared/lib/validation";
+} from "@/shared/validation/validation";
 import { z } from "zod";
 
 export const paymentSchemeCreator = () => {
@@ -13,13 +13,14 @@ export const paymentSchemeCreator = () => {
     email: emailScheme(),
     phone: phoneScheme(),
     paymentMethod: z.string().nonempty("Выберите способ оплаты"),
-    addressId: z.number().int().positive("Адрес обязателен"),
+    addressId: z.string().nonempty("Адрес обязателен"),
     orderType: z.string().nonempty("Выберите тип заказа"),
     payerType: z.string().nonempty("Выберите тип плательщика"),
+    deliveryTime: z.string().nonempty("Выберите время доставки"),
+    deliveryData: z.string().nonempty("Выберите дату доставки"),
     extraOptions: z
-      .array(z.string().uuid())
+      .array(z.object({ extraOptionId: z.string() }))
       .optional()
-      .default([])
-      .transform((arr) => arr.map((id) => ({ extraOptionId: id }))),
+      .default([]),
   });
 };

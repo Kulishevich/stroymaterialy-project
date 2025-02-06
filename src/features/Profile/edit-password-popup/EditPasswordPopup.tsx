@@ -6,10 +6,10 @@ import { Typography } from "@/components/ui/typography";
 import { useChangePasswordMutation } from "@/api/user/user.api";
 import { useForm, useWatch } from "react-hook-form";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
-import { validation } from "@/shared/lib/validation.errors";
 import { editPasswordScheme } from "./model/edit-password-scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
 import s from "./EditPasswordPopup.module.scss";
+import { validation } from "@/shared/validation/validation.errors";
 
 type EditPasswordPopupProps = {
   isOpen: boolean;

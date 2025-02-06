@@ -2,6 +2,7 @@ import React from "react";
 import s from "./BusinessBanner.module.scss";
 import { Typography } from "../ui/typography";
 import { Logo } from "@/assets/icons/logo";
+import Image from "next/image";
 
 export const BusinessBanner = () => {
   return (
@@ -10,10 +11,11 @@ export const BusinessBanner = () => {
         Для бизнеса
       </Typography>
       <div className={s.imageContainer}>
-        <img
+        <Image
           src={"/images/for-business/for-business.jpg"}
           alt="for business banner"
           className={s.image}
+          fill
         />
         <Logo />
         <Typography variant="h4" as="h4">
