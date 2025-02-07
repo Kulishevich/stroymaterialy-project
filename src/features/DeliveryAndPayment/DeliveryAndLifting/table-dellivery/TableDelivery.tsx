@@ -11,122 +11,130 @@ import React from "react";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import s from "./TableDelivery.module.scss";
 import { TableDelliveryMobile } from "./TableDelliveryMobile/TableDelliveryMobile";
+import { useTranslations } from "next-intl";
 
 export const TableDelivery = () => {
   const isMobile = useIsMobile("tablet");
-
+  const t = useTranslations(
+    "delivery_and_payment.delivery_and_lifting_payment.table_delivery"
+  );
   return (
     <div className={s.tableContainer}>
       <Typography variant="h3" as="h3">
-        Стоимость доставки
+        {t("delivery_price")}
       </Typography>
       {!isMobile ? (
         <table className={s.tableDelivery}>
           <thead>
             <tr>
               <th>
-                <Typography variant="body_2">Вид доставки</Typography>
+                <Typography variant="body_2">{t("delivery_type")}</Typography>
               </th>
               <th>
                 <TruckSpeedIcon />
-                <Typography variant="body_2">Экспресс</Typography>
-                <Typography variant="body_4">машина 0,7-2,5 т</Typography>
+                <Typography variant="body_2">{t("express")}</Typography>
+                <Typography variant="body_4">{t("express_details")}</Typography>
               </th>
               <th>
                 <TruckSpeedIcon />
-                <Typography variant="body_2">Стандартная</Typography>
-                <Typography variant="body_4">машина 0,7-2,5 т</Typography>
+                <Typography variant="body_2">{t("standard")}</Typography>
+                <Typography variant="body_4">
+                  {t("standard_details")}
+                </Typography>
               </th>
               <th>
                 <MotorbikeSideIcon />
-                <Typography variant="body_2">Курьер</Typography>
-                <Typography variant="body_4">мопед</Typography>
+                <Typography variant="body_2">{t("courier")}</Typography>
+                <Typography variant="body_4">{t("courier_details")}</Typography>
               </th>
               <th>
                 <DeliveryPackageIcon />
-                <Typography variant="body_2">Доставка</Typography>
-                <Typography variant="body_4">Ай пост</Typography>
+                <Typography variant="body_2">{t("post_delivery")}</Typography>
+                <Typography variant="body_4">
+                  {t("post_delivery_details")}
+                </Typography>
               </th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <Typography as="th" variant="h4" scope="row">
-                <AddressLocationIcon /> Место
+                <AddressLocationIcon /> {t("location")}
               </Typography>
               <td>
-                <Typography variant={"body_4"}>Город</Typography>
-                <Typography variant={"body_2"}>Ереван</Typography>
+                <Typography variant="body_4">{t("city")}</Typography>
+                <Typography variant="body_2">{t("yerevan")}</Typography>
               </td>
               <td>
-                <Typography variant={"body_4"}>Город</Typography>
-                <Typography variant={"body_2"}>Ереван</Typography>
+                <Typography variant="body_4">{t("city")}</Typography>
+                <Typography variant="body_2">{t("yerevan")}</Typography>
               </td>
               <td>
-                <Typography variant={"body_4"}>Город</Typography>
-                <Typography variant={"body_2"}>Ереван</Typography>
+                <Typography variant="body_4">{t("city")}</Typography>
+                <Typography variant="body_2">{t("yerevan")}</Typography>
               </td>
               <td>
-                <Typography variant={"body_4"}>Город</Typography>
-                <Typography variant={"body_2"}>все регионы</Typography>
+                <Typography variant="body_4">{t("city")}</Typography>
+                <Typography variant="body_2">{t("all_regions")}</Typography>
               </td>
             </tr>
             <tr>
               <Typography as="th" variant="h4" scope="row">
-                <ClockIcon /> Время
+                <ClockIcon /> {t("time")}
               </Typography>
               <td>
-                <Typography variant={"body_4"}>день в день</Typography>
-                <Typography variant={"body_2"}>в течение 2-4 часов</Typography>
+                <Typography variant="body_4">{t("same_day")}</Typography>
+                <Typography variant="body_2">
+                  {t("within_2_4_hours")}
+                </Typography>
               </td>
               <td>
-                <Typography variant={"body_2"}>в течение 1-2 дней</Typography>
+                <Typography variant="body_2">{t("within_1_2_days")}</Typography>
               </td>
               <td>
-                <Typography variant={"body_4"}>день в день</Typography>
-                <Typography variant={"body_2"}>в течение 2 часов</Typography>
+                <Typography variant="body_4">{t("same_day")}</Typography>
+                <Typography variant="body_2">{t("within_2_hours")}</Typography>
               </td>
               <td>
-                <Typography variant={"body_2"}>в течение 1-3 дней</Typography>
+                <Typography variant="body_2">{t("within_1_3_days")}</Typography>
               </td>
             </tr>
             <tr>
               <Typography as="th" variant="h4" scope="row">
-                <DollarIcon />
-                Цены
+                <DollarIcon /> {t("prices")}
               </Typography>
               <td>
-                <Typography variant={"body_4"}>Начиная</Typography>
-                <Typography variant={"body_2"}>с 2000 драм</Typography>
+                <Typography variant="body_4">{t("starting_from")}</Typography>
+                <Typography variant="body_2">{t("from_2000_dram")}</Typography>
               </td>
               <td>
-                <Typography variant={"body_2"}>Бесплатная</Typography>
+                <Typography variant="body_2">{t("free")}</Typography>
               </td>
               <td>
-                <Typography variant={"body_2"}>1500 драм</Typography>
+                <Typography variant="body_2">{t("1500_dram")}</Typography>
               </td>
               <td>
-                <Typography variant={"body_2"}>700 драм</Typography>
+                <Typography variant="body_2">{t("700_dram")}</Typography>
               </td>
             </tr>
             <tr>
               <Typography as="th" variant="h4" scope="row">
-                Особые примечания
+                {t("special_notes")}
               </Typography>
               <td>
-                <Typography variant={"body_2"}>-</Typography>
+                <Typography variant="body_2">-</Typography>
               </td>
               <td>
-                <Typography variant={"body_4"}>Исключение</Typography>
-                <Typography variant={"body_2"}>Цемент, гипсокартон</Typography>
+                <Typography variant="body_4">{t("exception")}</Typography>
+                <Typography variant="body_2">{t("cement_gypsum")}</Typography>
               </td>
               <td>
-                <Typography variant={"body_4"}>Вес</Typography>
-                <Typography variant={"body_2"}>до 10 кг</Typography>
+                <Typography variant="body_4">{t("weight_limit")}</Typography>
+                <Typography variant="body_2">{t("up_to_10kg")}</Typography>
               </td>
               <td>
-                <Typography variant={"body_4"}>Вес</Typography>
-                <Typography variant={"body_2"}>до 5 кг</Typography>
+                <Typography variant="body_4">{t("weight_limit")}</Typography>
+                <Typography variant="body_2">{t("up_to_5kg")}</Typography>
               </td>
             </tr>
           </tbody>

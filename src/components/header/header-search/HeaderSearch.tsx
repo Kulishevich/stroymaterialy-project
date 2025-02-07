@@ -14,8 +14,10 @@ import { toggleLoginModal } from "@/store/slices/auth-modal/authModalSlice";
 import s from "./HeaderSearch.module.scss";
 import { useGetFavoriteProductsQuery } from "@/api/products/products.api";
 import { setFavorites } from "@/store/slices/favorites/favoritesSlice";
+import { useTranslations } from "next-intl";
 
 export const HeaderSearch = () => {
+  const t = useTranslations("header.search");
   const [isActiveCatalog, setIsActiveCatalog] = useState<boolean>(false);
   const router = useRouter();
   const token = useSelector((state: RootState) => state.auth.token);
@@ -46,7 +48,7 @@ export const HeaderSearch = () => {
         active={isActiveCatalog}
       >
         <BurgerIcon />
-        <Typography variant="body_2">Каталог</Typography>
+        <Typography variant="body_2">{t("catalog")}</Typography>
       </Button>
       <div className={s.search}>
         <Search />
@@ -56,9 +58,12 @@ export const HeaderSearch = () => {
               <HeartOutlineIcon width={28} height={28} />
             </div>
             <div className={s.textContainer}>
-              <Typography as="h6">Избранное</Typography>
+              <Typography as="h6">{t("favorites")}</Typography>
               <Typography as="p">
-                Товаров: {favorites?.data.favorites.length}
+                {t("products")}:{" "}
+                {!!favorites?.data.favorites.length
+                  ? favorites?.data.favorites.length
+                  : 0}
               </Typography>
             </div>
           </Button>
@@ -71,9 +76,9 @@ export const HeaderSearch = () => {
               <BagShoppingIcon width={28} height={28} />
             </div>
             <div className={s.textContainer}>
-              <Typography as="h6">Корзина</Typography>
+              <Typography as="h6">{t("cart")}</Typography>
               <Typography as="p">
-                Товаров: {cart?.data.count ? cart?.data.count : 0} (
+                {t("products")}: {cart?.data.count ? cart?.data.count : 0} (
                 {cart?.data.total ? cart?.data.total : 0})
               </Typography>
             </div>

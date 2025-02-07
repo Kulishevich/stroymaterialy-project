@@ -1,28 +1,28 @@
 {
   "header": {
     "navigation": {
-      "main": "Главная",
-      "delivery_and_payment": "Доставка и оплата",
-      "regular_customer": "Постоянный клиент",
-      "shares": "Акции",
-      "cooperation": "Сотрудничество",
-      "for_business": "Для бизнеса",
-      "vacancies": "Вакансии",
-      "about_us": "О нас",
-      "contacts": "Контакты",
-      "personal_account": "Личный кабинет"
+      "main": "Home",
+      "delivery_and_payment": "Delivery and Payment",
+      "regular_customer": "Regular Customer",
+      "shares": "Promotions",
+      "cooperation": "Cooperation",
+      "for_business": "For Business",
+      "vacancies": "Vacancies",
+      "about_us": "About Us",
+      "contacts": "Contacts",
+      "personal_account": "Personal Account"
     },
     "info": {
-      "work_time": "Время работы",
-      "time": "с 09:00 до 22:00 ежедневно",
-      "phone": "Телефон"
+      "work_time": "Working Hours",
+      "time": "From 09:00 AM to 10:00 PM daily",
+      "phone": "Phone"
     },
     "search": {
-      "catalog": "Каталог",
-      "search": "Поиск по сайту",
-      "favorites": "Главная",
-      "shopping_cart": "Главная",
-      "products": "Товаров"
+      "catalog": "Catalog",
+      "search": "Search on the site",
+      "favorites": "Favorites",
+      "shopping_cart": "Shopping Cart",
+      "products": "Products"
     }
   }
 }

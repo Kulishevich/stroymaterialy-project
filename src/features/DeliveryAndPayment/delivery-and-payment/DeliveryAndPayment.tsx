@@ -7,37 +7,42 @@ import { DeliveryAndLifting } from "../DeliveryAndLifting";
 import { PaymentMethod } from "../PaymentMethod";
 import { TermsOfService } from "../TermsOfService";
 import { LiftingConditions } from "../LiftingConditions";
-
-const categories = [
-  {
-    id: "1",
-    title: "Стоимость доставки и подъёма",
-  },
-  {
-    id: "2",
-    title: "Способы оплаты",
-  },
-  {
-    id: "3",
-    title: "Условия предоставления услуг",
-  },
-  {
-    id: "4",
-    title: "Условия подъёма",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export const DeliveryAndPayment = () => {
-  const [activeCategory, setActiveCategory] = useState(categories[0].id);
+  const t = useTranslations("delivery_and_payment");
+  const navigation = [
+    {
+      id: "1",
+      title: t("navigation.delivery_and_lifting_payment"),
+      value: <DeliveryAndLifting />,
+    },
+    {
+      id: "2",
+      title: t("navigation.payment_method"),
+      value: <PaymentMethod />,
+    },
+    {
+      id: "3",
+      title: t("navigation.terms_of_service"),
+      value: <TermsOfService />,
+    },
+    {
+      id: "4",
+      title: t("navigation.lifting_conditions"),
+      value: <LiftingConditions />,
+    },
+  ];
+  const [activeCategory, setActiveCategory] = useState(navigation[0].id);
 
   return (
     <div className={s.container}>
       <Typography variant="h1" as="h1">
-        Доставка и оплата
+        {t("title")}
       </Typography>
       <div className={s.wrapper}>
         <div className={s.navigate}>
-          {categories.map((elem) => (
+          {navigation.map((elem) => (
             <div
               className={clsx(
                 s.navItem,
@@ -53,10 +58,7 @@ export const DeliveryAndPayment = () => {
             </div>
           ))}
         </div>
-        {activeCategory === "1" && <DeliveryAndLifting />}
-        {activeCategory === "2" && <PaymentMethod />}
-        {activeCategory === "3" && <TermsOfService />}
-        {activeCategory === "4" && <LiftingConditions />}
+        {navigation.find((navItem) => activeCategory === navItem.id)?.value}
       </div>
     </div>
   );

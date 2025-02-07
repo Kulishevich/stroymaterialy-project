@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import { Typography } from "../ui/typography";
-import s from "./ProductCatalog.module.scss";
 import { Item } from "../item";
 import clsx from "clsx";
 import { useGetTrendsProductsQuery } from "@/api/products/products.api";
-
-const sort = [
-  {
-    id: "1",
-    title: "Самые продаваемые товары",
-    value: "popular",
-  },
-  {
-    id: "2",
-    title: "Акции",
-    value: "discounted",
-  },
-  {
-    id: "3",
-    title: "Новинки",
-    value: "newest",
-  },
-];
+import { useTranslations } from "next-intl";
+import s from "./ProductCatalog.module.scss";
 
 export const ProductCatalog = () => {
+  const t = useTranslations("home.products_catalog");
+  const sort = [
+    {
+      id: "1",
+      value: "popular",
+      title: t("popular"),
+    },
+    {
+      id: "2",
+      value: "discounted",
+      title: t("discounted"),
+    },
+    {
+      id: "3",
+      value: "newest",
+      title: t("newest"),
+    },
+  ];
   const [activeSort, setActiveSort] = useState<string>(sort[0].value);
   const { data: products, isLoading } = useGetTrendsProductsQuery({
     trend: activeSort,
@@ -35,7 +36,7 @@ export const ProductCatalog = () => {
   return (
     <div className={s.container}>
       <Typography variant="h2" as="h2">
-        Каталог продукции
+        {t("title")}
       </Typography>
       <div className={s.sort}>
         {sort.map((elem) => (

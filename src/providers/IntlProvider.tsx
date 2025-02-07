@@ -9,6 +9,9 @@ const messages = { en: enMessages, ru: ruMessages };
 export function IntlProviderComponent({ children }: { children: ReactNode }) {
   const { locale = "en" } = useRouter();
   const safeLocale = (locale as keyof typeof messages) || "en";
+
+  console.log("🌍 Current Locale:", safeLocale);
+  console.log("📜 Loaded Messages:", messages[safeLocale]); // До
   return (
     <IntlProvider locale={safeLocale} messages={messages[safeLocale]}>
       {children}

@@ -20,10 +20,87 @@
     "search": {
       "catalog": "Каталог",
       "search": "Поиск по сайту",
-      "favorites": "Главная",
-      "shopping_cart": "Главная",
-      "products": "Товаров"
+      "favorites": "Избранное",
+      "cart": "Корзина",
+      "products": "Товаров",
+      "search_category": "Поиск по категориям",
+      "search_products": "Поиск по продуктам"
     }
   },
-  "home": "Дом"
+  "home": {
+    "products_catalog": {
+      "title": "Каталог продукции",
+      "popular": "Самые продаваемые товары",
+      "discounted": "Акции",
+      "newest": "Новинки"
+    },
+    "latest_company_promotions": {
+      "title": "Последне акции компании",
+      "mobile_button": "Все акции"
+    },
+    "contacts": {
+      "title": "Контакты компании",
+      "address": "Адрес компании",
+      "address_content": "ул. Наири Заряна 22а, Ереван 0051",
+      "phone": "Телефон",
+      "email": "Электронная почта",
+      "social_media": "Социальные сети"
+    }
+  },
+  "delivery_and_payment": {
+    "title": "Доставка и оплата",
+    "navigation": {
+      "delivery_and_lifting_payment": "Стоимость доставки и подъёма",
+      "payment_method": "Способы оплаты",
+      "terms_of_service": "Условия предоставления услуг",
+      "lifting_conditions": "Условия подъёма"
+    },
+    "delivery_and_lifting_payment": {
+      "table_delivery": {
+        "delivery_price": "Стоимость доставки",
+        "delivery_type": "Вид доставки",
+        "express": "Экспресс",
+        "express_details": "машина 0,7-2,5 т",
+        "standard": "Стандартная",
+        "standard_details": "машина 0,7-2,5 т",
+        "courier": "Курьер",
+        "courier_details": "мопед",
+        "post_delivery": "Доставка",
+        "post_delivery_details": "Ай пост",
+        "location": "Место",
+        "city": "Город",
+        "yerevan": "Ереван",
+        "all_regions": "все регионы",
+        "time": "Время",
+        "same_day": "день в день",
+        "within_2_4_hours": "в течение 2-4 часов",
+        "within_1_2_days": "в течение 1-2 дней",
+        "within_2_hours": "в течение 2 часов",
+        "within_1_3_days": "в течение 1-3 дней",
+        "prices": "Цены",
+        "starting_from": "Начиная",
+        "from_2000_dram": "с 2000 драм",
+        "free": "Бесплатная",
+        "1500_dram": "1500 драм",
+        "700_dram": "700 драм",
+        "special_notes": "Особые примечания",
+        "no_notes": "-",
+        "exception": "Исключение",
+        "cement_gypsum": "Цемент, гипсокартон",
+        "weight_limit": "Вес",
+        "up_to_10kg": "до 10 кг",
+        "up_to_5kg": "до 5 кг"
+      },
+      "lifting_table": {}
+    },
+    "payment_method": {
+      "title": "a"
+    },
+    "terms_of_service": {
+      "title": "a"
+    },
+    "lifting_conditions": {
+      "title": "a"
+    }
+  }
 }

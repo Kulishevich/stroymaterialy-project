@@ -4,8 +4,11 @@ import React from "react";
 import s from "./HeaderInfo.module.scss";
 import { Logo } from "@/assets/icons/logo";
 import { SocialNetworks } from "@/components/social-networks";
+import { useTranslations } from "next-intl";
 
 export const HeaderInfo = () => {
+  const t = useTranslations("header.info");
+
   return (
     <div className={s.info}>
       <Logo variant="dark" />
@@ -13,15 +16,15 @@ export const HeaderInfo = () => {
         <SocialNetworks />
         <div className={s.workTime}>
           <Typography variant="body_6" as="h6">
-            Время работы:
+            {t("work_time")}
           </Typography>
           <Typography variant="body_5" as="p">
-            с 09:00 до 22:00 ежедневно
+            {t("time")}
           </Typography>
         </div>
         <div className={s.workPhone}>
           <Typography variant="body_6" as="h6">
-            Телефон:
+            {t("phone")}
           </Typography>
           <div className={s.phoneContainer}>
             <Image

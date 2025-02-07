@@ -26,9 +26,9 @@ const headerOptions = [
 ];
 
 export const HeaderNavigation = () => {
-  const t = useTranslations("header");
-  console.log("Translations:", t.raw);
+  const t = useTranslations("header.navigation");
   const router = useRouter();
+  console.log("🛠 Translations (header):", t.raw);
   // const lang = useSelector((state: RootState) => state.lang);
   const token = useSelector((state: RootState) => state.auth.token);
   const dispatch = useDispatch();
@@ -41,8 +41,7 @@ export const HeaderNavigation = () => {
           href={Paths.forBusiness}
           variant="placeholder_big"
         >
-          {/* {t("header.navigation.for_business")} */}
-          Для бизнеса
+          {t("for_business")}
         </Typography>
       ),
       id: "value1",
@@ -50,8 +49,7 @@ export const HeaderNavigation = () => {
     {
       value: (
         <Typography as={Link} href={Paths.vacancies} variant="placeholder_big">
-          {/* {t("header.navigation.vacancies")} */}
-          Вакансии
+          {t("vacancies")}
         </Typography>
       ),
       id: "value2",
@@ -84,8 +82,7 @@ export const HeaderNavigation = () => {
               router.pathname === Paths.home && s.active
             )}
           >
-            {/* Главная */}
-            {t("header.navigation.main")}
+            {t("main")}
           </Typography>
           <Typography
             as={Link}
@@ -95,8 +92,7 @@ export const HeaderNavigation = () => {
               router.pathname === Paths.deliveryAndPayment && s.active
             )}
           >
-            Доставка и оплата
-            {/* {t("header.navigation.delivery_and_payment")} */}
+            {t("delivery_and_payment")}
           </Typography>
           <Typography
             as={Link}
@@ -106,8 +102,7 @@ export const HeaderNavigation = () => {
               router.pathname === Paths.regularСustomer && s.active
             )}
           >
-            Постоянный покупатель
-            {/* {t("header.navigation.regular_customer")} */}
+            {t("regular_customer")}
           </Typography>
           <Typography
             as={Link}
@@ -119,11 +114,10 @@ export const HeaderNavigation = () => {
             )}
           >
             <PercentIcon />
-            Акции
-            {/* {t("header.navigation.shares")} */}
+            {t("shares")}
           </Typography>
           <Dropdown
-            placeholder="Сотрудничество"
+            placeholder={t("cooperation")}
             items={cooperationOptions}
             className={s.navLink}
           />
@@ -135,8 +129,7 @@ export const HeaderNavigation = () => {
               router.pathname === Paths.about && s.active
             )}
           >
-            О нас
-            {/* {t("header.navigation.about_us")} */}
+            {t("about_us")}
           </Typography>
           <Typography
             as={Link}
@@ -146,8 +139,7 @@ export const HeaderNavigation = () => {
               router.pathname === Paths.contacts && s.active
             )}
           >
-            Контакты
-            {/* {t("header.navigation.contacts")} */}
+            {t("contacts")}
           </Typography>
         </nav>
         <SelectIcons
@@ -163,8 +155,7 @@ export const HeaderNavigation = () => {
           variant="body_3"
         >
           <ProfileIcon width={20} height={20} />
-          Личный кабинет
-          {/* {t("header.navigation.personal_account")} */}
+          {t("personal_account")}
         </Typography>
       </div>
     </header>

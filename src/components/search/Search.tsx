@@ -5,9 +5,11 @@ import { debounce } from "lodash";
 import { TextField } from "../ui/text-field";
 import { useGetSearchItemsQuery } from "@/api/search/search.api";
 import { Item } from "../item";
+import { useTranslations } from "next-intl";
 import s from "./Search.module.scss";
 
 export const Search = () => {
+  const t = useTranslations("header.search");
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const searchRef = useRef<HTMLDivElement | null>(null);
@@ -52,7 +54,7 @@ export const Search = () => {
       <TextField
         variant="search"
         className={s.inputSearch}
-        placeholder="Поиск по сайту"
+        placeholder={t("search")}
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         ref={inputRef}
@@ -61,7 +63,7 @@ export const Search = () => {
       {searchQuery && (
         <div className={s.content} ref={searchRef}>
           <Typography variant="body_2" as="h2">
-            Поиск по категориям
+            {t("search_category")}
           </Typography>
           <div className={s.categoryContainer}>
             {data?.data?.categories?.data?.data?.map((item) => (
@@ -80,7 +82,7 @@ export const Search = () => {
             ))}
           </div>
           <Typography variant="body_2" as="h2">
-            Поиск по товарам
+            {t("search_products")}
           </Typography>
           <div className={s.productsContainer}>
             {data?.data?.products?.data?.data?.map((item) => (

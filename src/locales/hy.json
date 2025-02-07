@@ -1,28 +1,28 @@
 {
   "header": {
     "navigation": {
-      "main": "Главная",
-      "delivery_and_payment": "Доставка и оплата",
-      "regular_customer": "Постоянный клиент",
+      "main": "Գլխավոր",
+      "delivery_and_payment": "Առաքում և վճարում",
+      "regular_customer": "Պարբերական հաճախորդ",
       "shares": "Акции",
-      "cooperation": "Сотрудничество",
-      "for_business": "Для бизнеса",
-      "vacancies": "Вакансии",
-      "about_us": "О нас",
-      "contacts": "Контакты",
-      "personal_account": "Личный кабинет"
+      "cooperation": "Համագործակցություն",
+      "for_business": "Համագործակցություն բիզնեսի համար",
+      "vacancies": "Թափուր աշխատատեղեր",
+      "about_us": "Մեր մասին",
+      "contacts": "Հարցումներ",
+      "personal_account": "Անձնական հաշիվ"
     },
     "info": {
-      "work_time": "Время работы",
-      "time": "с 09:00 до 22:00 ежедневно",
-      "phone": "Телефон"
+      "work_time": "Աշխատանքային ժամանակ",
+      "time": "ցերեկվա ժամը 09:00-ից մինչև 22:00",
+      "phone": "Հեռախոս"
     },
     "search": {
-      "catalog": "Каталог",
-      "search": "Поиск по сайту",
-      "favorites": "Главная",
-      "shopping_cart": "Главная",
-      "products": "Товаров"
+      "catalog": "Կատալոգ",
+      "search": "Փնտրել կայքում",
+      "favorites": "Սիրվածները",
+      "shopping_cart": "Գնումներ",
+      "products": "Ապրանքներ"
     }
   }
 }
