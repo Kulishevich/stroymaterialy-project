@@ -5,31 +5,32 @@ import { ArrowRightIcon } from "@/assets/icons";
 import { GiftCards } from "../gift-cards";
 import { InfoRegularCustomer } from "../info-regular-customer";
 import s from "./RegularCustomerContent.module.scss";
-
-const categories = [
-  {
-    id: "1",
-    title: "Информация для постоянных клиентов",
-    value: <InfoRegularCustomer />,
-  },
-  {
-    id: "2",
-    title: "Подарочные карты",
-    value: <GiftCards />,
-  },
-];
+import { useTranslations } from "next-intl";
 
 export const RegularCustomerContent = () => {
-  const [activeCategory, setActiveCategory] = useState(categories[0].id);
+  const t = useTranslations("regular_customer");
+  const navigation = [
+    {
+      id: "1",
+      title: t("navigation.info"),
+      value: <InfoRegularCustomer />,
+    },
+    {
+      id: "2",
+      title: t("navigation.gift_cards"),
+      value: <GiftCards />,
+    },
+  ];
+  const [activeCategory, setActiveCategory] = useState(navigation[0].id);
 
   return (
     <div className={s.container}>
       <Typography variant="h1" as="h1">
-        Постоянный клиент
+        {t("title")}
       </Typography>
       <div className={s.content}>
         <div className={s.navigate}>
-          {categories.map((elem) => (
+          {navigation.map((elem) => (
             <div
               className={clsx(
                 s.navItem,
@@ -45,7 +46,7 @@ export const RegularCustomerContent = () => {
             </div>
           ))}
         </div>
-        {categories.find((elem) => elem.id === activeCategory)?.value}
+        {navigation.find((elem) => elem.id === activeCategory)?.value}
       </div>
     </div>
   );

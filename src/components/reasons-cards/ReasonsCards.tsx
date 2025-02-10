@@ -3,38 +3,37 @@ import s from "./ReasonsCards.module.scss";
 import { Typography } from "../ui/typography";
 import Image from "next/image";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
-
-const cards = [
-  {
-    id: "1",
-    title: "Зарабатывайте на заказах",
-    value:
-      "По желанию мастера, скидка может быть применена сразу, переведена на личный счет для будущих покупок или выведена наличными по договору с магазином. Клиенты получают материалы по розничным ценам без накруток, обеспечивая прозрачность сделки.",
-    image: "/images/for-business/vacancie-card1.jpg",
-  },
-  {
-    id: "2",
-    title: "Делитесь своими знаниями и становитесь известным",
-    value:
-      "Ваши глаза горят от того, что вы делаете своими руками? У вас большой опыт и много «фишек»? Станьте автором статей и обзоров, и мы опубликуем их на нашем сайте и в социальных сетях.    ",
-    image: "/images/for-business/vacancie-card2.jpg",
-  },
-  {
-    id: "3",
-    title: "Получайте новые заказы, не отходя от кассы!",
-    value:
-      "Большинство наших покупателей делают ремонт, строят дом или дачу. Подключайтесь к Клубу мастеров domix.am и получайте заявки на услуги по вашей специализации.",
-    image: "/images/for-business/vacancie-card3.jpg",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export const ReasonsCards = () => {
+  const t = useTranslations("cooperation.vacancies.reasons_cards");
   const isMobile = useIsMobile("tablet");
+
+  const cards = [
+    {
+      id: "1",
+      title: t("cards.card1.title"),
+      value: t("cards.card1.value"),
+      image: "/images/for-business/vacancie-card1.jpg",
+    },
+    {
+      id: "2",
+      title: t("cards.card2.title"),
+      value: t("cards.card2.value"),
+      image: "/images/for-business/vacancie-card2.jpg",
+    },
+    {
+      id: "3",
+      title: t("cards.card3.title"),
+      value: t("cards.card3.value"),
+      image: "/images/for-business/vacancie-card3.jpg",
+    },
+  ];
 
   return (
     <div className={s.container}>
       <Typography variant="h2" as="h2">
-        3 причины стать участником
+        {t("title")}
       </Typography>
       <div className={s.cardsContainer}>
         {cards.map((card) => (

@@ -4,14 +4,16 @@ import Image from "next/image";
 import { Typography } from "../ui/typography";
 import { Logo } from "@/assets/icons/logo";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { useTranslations } from "next-intl";
 
 export const VacancieBanner = () => {
+  const t = useTranslations("cooperation.vacancies");
   const isMobile = useIsMobile("tablet");
 
   return (
     <div className={s.container}>
       <Typography variant="h1" as="h1">
-        Domix Клуб
+        {t("title")}
       </Typography>
       <div className={s.imageContainer}>
         <Image
@@ -24,13 +26,10 @@ export const VacancieBanner = () => {
         <div className={s.content}>
           <Logo variant={!isMobile ? "dark" : "light"} />
           <Typography variant="h4" as="h4">
-            Клуб Мастеров Domix – это рай для любого профессионала.
+            {t("vacancie_banner.title")}
           </Typography>
           <Typography variant="body_1">
-            Shinmag.am приглашает в клуб специалистов по ремонту и
-            строительству. Занимаетесь отделочными работами, сантехникой,
-            электрикой или оказываете другие строительные услуги?
-            Присоединяйтесь к участникам клуба и получайте максимальную выгоду!{" "}
+            {t("vacancie_banner.content")}
           </Typography>
         </div>
       </div>

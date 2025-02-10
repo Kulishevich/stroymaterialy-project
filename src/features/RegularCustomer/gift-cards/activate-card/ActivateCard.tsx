@@ -3,8 +3,11 @@ import s from "./ActivateCard.module.scss";
 import { Typography } from "@/components/ui/typography";
 import { TextField } from "@/components/ui/text-field";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 export const ActivateCard = () => {
+  const t = useTranslations("regular_customer.gift_card");
+
   return (
     <div className={s.container}>
       <div className={s.inputContainer}>
@@ -12,7 +15,7 @@ export const ActivateCard = () => {
         <TextField placeholder="12345678" />
       </div>
       <Button variant={"secondary"} className={s.button}>
-        Активировать
+        {t("activate")}
       </Button>
     </div>
   );

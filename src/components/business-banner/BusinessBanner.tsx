@@ -3,12 +3,15 @@ import s from "./BusinessBanner.module.scss";
 import { Typography } from "../ui/typography";
 import { Logo } from "@/assets/icons/logo";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export const BusinessBanner = () => {
+  const t = useTranslations("cooperation.for_business.business_banner");
+
   return (
     <div className={s.container}>
       <Typography variant="h1" as="h1">
-        Для бизнеса
+        {t("title")}
       </Typography>
       <div className={s.imageContainer}>
         <Image
@@ -19,26 +22,20 @@ export const BusinessBanner = () => {
         />
         <Logo />
         <Typography variant="h4" as="h4">
-          Самая большая, надёжная, быстрая и удобная строительная
-          онлайн-площадка
+          {t("subtitle")}
+        </Typography>
+        <Typography variant="body_1">{t("description.materials")}</Typography>
+        <Typography variant="body_1">
+          {t("description.about_company")}
         </Typography>
         <Typography variant="body_1">
-          Каждое строительство начинается со строительных материалов.
+          {t("description.responsibility")}
         </Typography>
         <Typography variant="body_1">
-          &ldquo;Domix.am&ldquo; – молодая, динамичная, развивающаяся компания,
-          пришедшая на строительный рынок с тем, чтобы предоставить потребителю
-          качественные строительные товары и услуги.
+          {t("description.modern_methods")}
         </Typography>
         <Typography variant="body_1">
-          Мы полностью принимаем всю ответственность и конкуренцию на растущем
-          строительном рынке.
-        </Typography>
-        <Typography variant="body_1">
-          Стремимся к максимально эффективным и современным рабочим методам.
-        </Typography>
-        <Typography variant="body_1">
-          Уверяем, что с нами удобно и быстро.
+          {t("description.fast_and_convenient")}
         </Typography>
       </div>
     </div>

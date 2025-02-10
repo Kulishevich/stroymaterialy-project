@@ -4,21 +4,22 @@ import { Typography } from "../ui/typography";
 import clsx from "clsx";
 import { MastersClubForm } from "./masters-club-form";
 import { AccumulationPoints } from "./accumulation-points";
-
-const tags = [
-  {
-    id: "1",
-    title: "Как присоединиться",
-    value: <MastersClubForm />,
-  },
-  {
-    id: "2",
-    title: "Накопление баллов",
-    value: <AccumulationPoints />,
-  },
-];
+import { useTranslations } from "next-intl";
 
 export const MastersClub = () => {
+  const t = useTranslations("cooperation.vacancies.masters_club");
+  const tags = [
+    {
+      id: "1",
+      title: t("how_to_join"),
+      value: <MastersClubForm />,
+    },
+    {
+      id: "2",
+      title: t("accumulation_of_points"),
+      value: <AccumulationPoints />,
+    },
+  ];
   const [activeTag, setActiveTag] = useState<string>(tags[0].id);
 
   return (

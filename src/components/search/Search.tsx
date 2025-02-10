@@ -47,8 +47,6 @@ export const Search = () => {
     perPage: "10",
   });
 
-  console.log("Поиск", data);
-
   return (
     <>
       <TextField

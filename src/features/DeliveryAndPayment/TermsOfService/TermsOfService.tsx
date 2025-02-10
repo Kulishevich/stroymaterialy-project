@@ -1,90 +1,64 @@
 import React from "react";
 import s from "./TermsOfService.module.scss";
 import { Typography } from "@/components/ui/typography";
+import { useTranslations } from "next-intl";
 
 export const TermsOfService = () => {
+  const t = useTranslations("delivery_and_payment.terms_of_service");
+
   return (
     <div className={s.container}>
       <Typography variant="h3" as="h3">
-        Условия предоставления услуг
+        {t("title")}
       </Typography>
       <div className={s.elem}>
         <Typography variant="body_2" as="h4">
-          В услугу доставки (кроме курьерской) не входит разгрузка (выгрузка из
-          автомобиля), подъем и пронос товара — это отдельные услуги.
+          {t("delivery_info")}
         </Typography>
         <ul>
           <Typography variant="body_3" as="li">
-            Доставка осуществляется после того, как Вы подтвердите готовность
-            получить товар. В день доставки просим оставаться на связи по
-            указанному в заказе номеру телефона.
+            {t("delivery_rules.rule1")}
           </Typography>
           <Typography variant="body_3" as="li">
-            Отправляясь на адрес, водитель обязательно Вам позвонит, если вы
-            выбрали любой вид доставки, кроме «Экспресс»,которая гарантирует
-            своевременную доставку в выбранном интервале.
+            {t("delivery_rules.rule2")}
           </Typography>
           <Typography variant="body_3" as="li">
-            Если Вы выбрали доставку «Экспресс», машина прибудет на адрес даже
-            без предварительного подтверждения заказа по телефону.
+            {t("delivery_rules.rule3")}
           </Typography>
           <Typography variant="body_3" as="li">
-            Вы можете перенести время доставки или скорректировать заказ,
-            обратившись в Контакт-центр по номеру 012440440.
+            {t("delivery_rules.rule4")}
           </Typography>
           <Typography variant="body_3" as="li">
-            Если подъезд к месту разгрузки затруднен, то машина остановится на
-            максимально близком от него расстоянии, не нарушая ПДД и исключая
-            вероятность повреждения транспорта. Для разгрузки автомобиля весом
-            до 1,8 тонн включительно отводится 30 минут, весом свыше 1,8 тонн –
-            60 минут.
+            {t("delivery_rules.rule5")}
           </Typography>
           <Typography variant="body_3" as="li">
-            Оплатить доставку можно заранее любым удобным способом (на сайте, по
-            телефону), а также на месте наличными или банковской картой до
-            начала момента разгрузки.
+            {t("delivery_rules.rule6")}
           </Typography>
           <Typography variant="body_3" as="li">
-            Если возникли вопросы по качеству или количеству товара, Вы можете
-            обратиться к представителю компании на месте или в Службу поддержки
-            клиентов по телефону 012440440. Номер телефона также указан в
-            товарном чеке.
-          </Typography>
-          <Typography variant="body_3" as="li">
-            Если возникли вопросы по качеству или количеству товара, Вы можете
-            обратиться к представителю компании на месте или в Службу поддержки
-            клиентов по телефону 012440440. Номер телефона также указан в
-            товарном чеке.
+            {t("delivery_rules.rule7")}
           </Typography>
         </ul>
       </div>
 
       <div className={s.elem}>
         <Typography variant="h4" as="h4">
-          Стоимость услуги
+          {t("service_cost.title")}
         </Typography>
         <ul>
           <Typography variant="body_3" as="li">
-            Стоимость услуги зависит от веса, объемов и габаритов приобретенного
-            товара, а также выбранного вида доставки. Мы предлагаем машины
-            грузоподъемностью от 0,7 до 15 тонн . При расчете стоимости услуги
-            учитывается количество адресов и точек разгрузки
+            {t("service_cost.info1")}
           </Typography>
           <Typography variant="body_3" as="li">
-            Услуги по разгрузке товара, его проносу и подъему оплачиваются
-            отдельно.
+            {t("service_cost.info2")}
           </Typography>
         </ul>
       </div>
+
       <div className={s.info}>
         <Typography variant="h4" as="h4">
-          Особенности
+          {t("features.title")}
         </Typography>
-        <Typography variant="body_2">
-          Суммарный вес заказа «Курьерской доставки» не может превышать 10 кг, а
-          габаритные размеры — 110х45х30 см. Стоимость подъема в данном случае
-          включена в стоимость доставки.
-        </Typography>
+        <Typography variant="body_2">{t("features.info")}</Typography>
       </div>
     </div>
   );

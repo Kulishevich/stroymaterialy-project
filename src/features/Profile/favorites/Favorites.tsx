@@ -5,8 +5,10 @@ import { FavoriteItem } from "./favorite-item";
 import { useDispatch } from "react-redux";
 import s from "./Favoriter.module.scss";
 import { setFavorites } from "@/store/slices/favorites/favoritesSlice";
+import { useTranslations } from "next-intl";
 
 export const Favorites = () => {
+  const t = useTranslations("profile.favorites");
   const dispatch = useDispatch();
   const { data: favorites } = useGetFavoriteProductsQuery();
 
@@ -20,10 +22,10 @@ export const Favorites = () => {
     <div className={s.container}>
       <div className={s.title}>
         <Typography variant="h3" as="h3">
-          Избранное
+          {t("title")}
         </Typography>
         <Typography variant="body_6" className={s.countFav}>
-          {favorites?.data.favorites.length} товаров
+          {favorites?.data.favorites.length} {t("products")}
         </Typography>
       </div>
       <div className={s.cardsContainer}>

@@ -3,15 +3,14 @@ import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import enMessages from "@/locales/en.json";
 import ruMessages from "@/locales/ru.json";
+import hyMessages from "@/locales/hy.json";
 
-const messages = { en: enMessages, ru: ruMessages };
+const messages = { en: enMessages, ru: ruMessages, hy: hyMessages };
 
 export function IntlProviderComponent({ children }: { children: ReactNode }) {
-  const { locale = "en" } = useRouter();
-  const safeLocale = (locale as keyof typeof messages) || "en";
+  const { locale = "hy" } = useRouter();
+  const safeLocale = (locale as keyof typeof messages) || "hy";
 
-  console.log("🌍 Current Locale:", safeLocale);
-  console.log("📜 Loaded Messages:", messages[safeLocale]); // До
   return (
     <IntlProvider locale={safeLocale} messages={messages[safeLocale]}>
       {children}

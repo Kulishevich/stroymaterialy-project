@@ -4,51 +4,54 @@ import React, { useState } from "react";
 
 import s from "./OrderItem.module.scss";
 import { OrderPopup } from "../order-popup";
+import { useTranslations } from "next-intl";
 
 type OrderItemProps = {
   order: OrderItemResponse;
 };
 
 export const OrderItem = ({ order }: OrderItemProps) => {
+  const t = useTranslations("profile.orders.order");
   const [isOrderOpen, setIsOrderOpen] = useState(false);
 
   return (
     <div className={s.orderCard}>
       <div className={s.orderTitle}>
         <Typography variant="body_1">
-          Заказ №{" "}
+          {t("order_id")}
           <Typography as="span" variant="body_2">
-            {order.id}
+            {" "}
+            №{order.id}
           </Typography>
         </Typography>
       </div>
       <div className={s.orderFields}>
         <Typography variant="body_3">
-          Статус заказа:
+          {t("status")}
           <Typography as="span" variant="body_3">
             {order.status}
           </Typography>
         </Typography>
         <Typography variant="body_3">
-          Способ оплаты:
+          {t("payment_method")}
           <Typography as="span" variant="body_3">
             {order.method}
           </Typography>
         </Typography>
         <Typography variant="body_3">
-          Адрес:
+          {t("address")}
           <Typography as="span" variant="body_3">
             {order.address}
           </Typography>
         </Typography>
         <Typography variant="body_3">
-          День доставки:
+          {t("delivery_date")}
           <Typography as="span" variant="body_3">
             {order.date}
           </Typography>
         </Typography>
         <Typography variant="body_3">
-          Цена:
+          {t("price")}
           <Typography as="span" variant="body_3">
             {order.totalWithDelivery}
           </Typography>
@@ -60,7 +63,7 @@ export const OrderItem = ({ order }: OrderItemProps) => {
         className={s.button}
         onClick={() => setIsOrderOpen(true)}
       >
-        Подробнее
+        {t("read_more")}
       </Typography>
       <OrderPopup
         isOpen={isOrderOpen}

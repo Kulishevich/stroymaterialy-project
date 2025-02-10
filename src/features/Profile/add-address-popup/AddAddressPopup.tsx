@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { addAddressScheme } from "./model/add-address-scheme";
 import { useCreateAddressMutation } from "@/api/addresses/address.api";
 import { showToast } from "@/components/ui/toast";
+import { useTranslations } from "next-intl";
 
 type AddAddressPopupProps = {
   isOpen: boolean;
@@ -23,6 +24,7 @@ export const AddAddressPopup = ({
   isOpen,
   setIsOpen,
 }: AddAddressPopupProps) => {
+  const t = useTranslations("profile.my_addresses.add_address_popup");
   const [createAddress] = useCreateAddressMutation();
   const { data: regions } = useGetRegionsQuery();
   console.log("Regions:", regions);
@@ -71,12 +73,12 @@ export const AddAddressPopup = ({
       <Dialog.Overlay className={s.overlay} />
       <Dialog.Content className={s.content}>
         <Typography variant="h3" as="h3">
-          Добавить адрес
+          {t("title")}
         </Typography>
 
         <div className={s.inputsContainer}>
           <div className={s.inputContainer}>
-            <Typography variant="body_5">Округ</Typography>
+            <Typography variant="body_5">{t("region_label")}</Typography>
             <ControlledSelect
               control={control}
               name="regionId"
@@ -84,11 +86,11 @@ export const AddAddressPopup = ({
             />
           </div>
           <div className={s.inputContainer}>
-            <Typography variant="body_5">Адрес доставки</Typography>
+            <Typography variant="body_5">{t("address_label")}</Typography>
             <ControlledTextField control={control} name="address" />
           </div>
           <div className={s.inputContainer}>
-            <Typography variant="body_5">Детали адреса доставки</Typography>
+            <Typography variant="body_5">{t("details_label")}</Typography>
             <ControlledTextArea
               className={s.textarea}
               control={control}
@@ -103,7 +105,7 @@ export const AddAddressPopup = ({
           className={s.button}
           onClick={formHandler}
         >
-          Сохранить
+          {t("save_button")}
         </Button>
 
         <Button

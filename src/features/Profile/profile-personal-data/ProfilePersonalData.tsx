@@ -18,8 +18,10 @@ import { useRouter } from "next/router";
 import { Paths } from "@/shared/enums";
 import { useDispatch } from "react-redux";
 import { logout } from "@/store/slices/auth/authSlice";
+import { useTranslations } from "next-intl";
 
 export const ProfilePersonalData = () => {
+  const t = useTranslations("profile.profile_personal_data");
   const [isEditPassword, setIsEditPassword] = useState<boolean>(false);
   const { data } = useGetUserSettingQuery();
   const [changeSetting] = useChangeSettingMutation();
@@ -80,27 +82,27 @@ export const ProfilePersonalData = () => {
   return (
     <div className={s.container}>
       <Typography variant="h3" as="h3">
-        Персональные данные
+        {t("title")}
       </Typography>
       <form className={s.inputsContainer}>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Имя</Typography>
+          <Typography variant="body_5">{t("name_label")}</Typography>
           <ControlledTextField
             control={control}
             name="name"
-            placeholder="Имя"
+            placeholder={t("name_label")}
           />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Фамилия</Typography>
+          <Typography variant="body_5">{t("surname_label")}</Typography>
           <ControlledTextField
             control={control}
             name="surname"
-            placeholder="Фамилия"
+            placeholder={t("surname_label")}
           />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Телефон</Typography>
+          <Typography variant="body_5">{t("phone_label")}</Typography>
           <ControlledTextField
             control={control}
             name="phone"
@@ -108,11 +110,11 @@ export const ProfilePersonalData = () => {
           />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Эл. адрес</Typography>
+          <Typography variant="body_5">{t("email_label")}</Typography>
           <ControlledTextField
             control={control}
             name="email"
-            placeholder="Эл. адрес"
+            placeholder={t("email_label")}
           />
         </div>
       </form>
@@ -122,12 +124,12 @@ export const ProfilePersonalData = () => {
         className={s.button}
         onClick={formHandler}
       >
-        Редактировать
+        {t("edit_button")}
       </Typography>
       <div className={s.inputContainer}>
-        <Typography variant="body_5">Пароль</Typography>
+        <Typography variant="body_5">{t("password_label")}</Typography>
         <TextField
-          placeholder="Пароль"
+          placeholder={t("password_label")}
           variant="password"
           value={12345678}
           disabled={true}
@@ -139,14 +141,14 @@ export const ProfilePersonalData = () => {
         className={s.button}
         onClick={() => setIsEditPassword(true)}
       >
-        Редактировать
+        {t("edit_button")}
       </Typography>
       <Button
         variant="secondary"
         className={s.deleteButton}
         onClick={handleDeleteUser}
       >
-        Удалить страницу
+        {t("delete_button")}
       </Button>
       <EditPasswordPopup
         isOpen={isEditPassword}

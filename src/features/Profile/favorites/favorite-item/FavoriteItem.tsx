@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/ui/typography";
 import Image from "next/image";
 import React, { useState } from "react";
-import s from "./Favorite.module.scss";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { Product } from "@/api/products/products.types";
 import { useAddItemCartMutation } from "@/api/cart/cart.api";
@@ -17,6 +16,7 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import clsx from "clsx";
+import s from "./Favorite.module.scss";
 
 type FavoriteItemProps = {
   favorite: Product;

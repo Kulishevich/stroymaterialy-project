@@ -10,8 +10,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { giftCartScheme } from "./model/create-gift-cart-scheme";
 import { showToast } from "@/components/ui/toast";
+import { useTranslations } from "next-intl";
 
 export const CardForm = () => {
+  const t = useTranslations("regular_customer.gift_card.order_card");
   const isMobile = useIsMobile("tablet");
   const [createGiftCard] = useCreateGiftMutation();
 
@@ -44,16 +46,16 @@ export const CardForm = () => {
     <div className={s.container}>
       <div className={s.form}>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Имя</Typography>
+          <Typography variant="body_5">{t("name")}</Typography>
           <ControlledTextField
             control={control}
             name="fullName"
             className={s.input}
-            placeholder="Имя"
+            placeholder={t("name")}
           />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Телефон</Typography>
+          <Typography variant="body_5">{t("phone")}</Typography>
           <ControlledTextField
             control={control}
             name="phone"
@@ -62,7 +64,7 @@ export const CardForm = () => {
           />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Сумма (драм)</Typography>
+          <Typography variant="body_5">{t("sum")}</Typography>
           <ControlledTextField
             control={control}
             name="balance"
@@ -70,7 +72,7 @@ export const CardForm = () => {
             placeholder="20000"
           />
         </div>
-        <Button onClick={formHandler}> Отправить</Button>
+        <Button onClick={formHandler}> {t("send")}</Button>
       </div>
       <Image
         src={"/images/domix-card.png"}

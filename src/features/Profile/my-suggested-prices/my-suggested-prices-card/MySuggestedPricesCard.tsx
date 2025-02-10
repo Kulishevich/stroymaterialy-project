@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import s from "./MySuggestedPricesCard.module.scss";
 import Image from "next/image";
 import { Typography } from "@/components/ui/typography";
 import { Counter } from "@/components/counter";
 import { TextField } from "@/components/ui/text-field";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { useTranslations } from "next-intl";
+import s from "./MySuggestedPricesCard.module.scss";
 
 type MySuggestedPricesCard = {
   product: {
@@ -17,6 +18,7 @@ type MySuggestedPricesCard = {
 };
 
 export const MySuggestedPricesCard = ({ product }: MySuggestedPricesCard) => {
+  const t = useTranslations("profile.my_suggested_prices");
   const [count, setCount] = useState(1);
 
   const increment = () => {
@@ -43,18 +45,18 @@ export const MySuggestedPricesCard = ({ product }: MySuggestedPricesCard) => {
       </div>
       <div className={s.productInfo}>
         <div className={s.container}>
-          <Typography variant="body_5">Товар</Typography>
+          <Typography variant="body_5">{t("product")}</Typography>
           <Typography variant="body_6">{product.title}</Typography>
         </div>
         <div className={s.container}>
-          <Typography variant="body_5">Моя предложенная цена</Typography>
+          <Typography variant="body_5">{t("my_suggested_price")}</Typography>
           <div className={s.flexContainer}>
             <div className={s.container}>
-              <Typography variant="body_8">Цена</Typography>
+              <Typography variant="body_8">{t("price")}</Typography>
               <TextField defaultValue={product.price} className={s.input} />
             </div>
             <div className={s.container}>
-              <Typography variant="body_8">Количество</Typography>
+              <Typography variant="body_8">{t("quantity")}</Typography>
               <Counter
                 size="s"
                 countCurrent={count}
@@ -65,11 +67,11 @@ export const MySuggestedPricesCard = ({ product }: MySuggestedPricesCard) => {
           </div>
         </div>
         <div className={s.container}>
-          <Typography variant="body_5">Статус</Typography>
-          <Typography variant="body_6">Отправлено</Typography>
+          <Typography variant="body_5">{t("status")}</Typography>
+          <Typography variant="body_6">{t("sent")}</Typography>
         </div>
 
-        <Button className={s.button}>Купить</Button>
+        <Button className={s.button}>{t("buy")}</Button>
       </div>
     </div>
   );

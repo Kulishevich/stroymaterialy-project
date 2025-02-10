@@ -65,7 +65,7 @@ export const ProductPage = ({}) => {
           <ProductImages item={prod?.data} />
           <ProductInfo item={prod?.data} />
         </div>
-        <SimilarProducts similars={prod.data.similars} />
+        <SimilarProducts similars={prod?.data.similars} />
         <FeedbackForm />
       </div>
     </div>

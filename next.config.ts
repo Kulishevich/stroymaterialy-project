@@ -3,8 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   i18n: {
-    locales: ["en", "ru", "hy"], // Доступные языки
-    defaultLocale: "en", // Язык по умолчанию
+    locales: ["ru", "en", "hy"],
+    defaultLocale: "hy",
+    localeDetection: false,
   },
 };
 

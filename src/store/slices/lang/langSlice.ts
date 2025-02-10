@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// const langs = ["hy", "ru"];
-
 const getInitialLang = () => {
   if (typeof window !== "undefined") {
-    return localStorage.getItem("i18nextLng") === "ru" ? "ru" : "hy";
+    return localStorage.getItem("language") === "ru" ? "ru" : "hy";
   }
   return "hy";
 };
@@ -19,7 +17,7 @@ export const langSlice = createSlice({
   reducers: {
     changeLang: (state, action) => {
       if (typeof window !== "undefined") {
-        localStorage.setItem("i18nextLng", action.payload);
+        localStorage.setItem("language", action.payload);
       }
       return action.payload;
     },

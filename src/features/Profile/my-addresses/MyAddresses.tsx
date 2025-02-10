@@ -10,8 +10,10 @@ import {
 import { EditAddressPopup } from "../edit-address-popup";
 import { Address } from "@/api/addresses/address.types";
 import s from "./MyAddresses.module.scss";
+import { useTranslations } from "next-intl";
 
 export const MyAddresses = () => {
+  const t = useTranslations("profile.my_addresses");
   const [isAddAddressOpen, setIsAddAddressOpen] = useState(false);
   const [isEditAddressOpen, setIsEditAddressOpen] = useState(false);
   const [editAddress, setEditAddress] = useState<Address | null>(null);
@@ -29,7 +31,9 @@ export const MyAddresses = () => {
         <>
           <Typography variant="body_5">Эдвард</Typography>
           {address.isDefault && (
-            <Typography variant="body_3">Основной адрес</Typography>
+            <Typography variant="body_3">
+              {t("default_address_label")}
+            </Typography>
           )}
         </>
       ),
@@ -44,7 +48,7 @@ export const MyAddresses = () => {
             className={s.editButton}
             onClick={() => handleOpenEditAddress(address)}
           >
-            Редактировать
+            {t("edit_button")}
           </Typography>
         </>
       ),
@@ -67,7 +71,7 @@ export const MyAddresses = () => {
   return (
     <div className={s.container}>
       <Typography variant="h3" as="h3">
-        Мои адреса
+        {t("title")}
       </Typography>
       {!!addressesOptions && addressesOptions?.length > 0 ? (
         <div className={s.addressContainer}>
@@ -83,19 +87,17 @@ export const MyAddresses = () => {
             className={s.button}
             onClick={() => setIsAddAddressOpen(true)}
           >
-            Новый адрес
+            {t("new_address_button")}
           </Button>
         </div>
       ) : (
         <div className={s.addAddress}>
-          <Typography variant="body_5">
-            Вы не добавили ни какой адрес.
-          </Typography>
+          <Typography variant="body_5">{t("no_address_message")}</Typography>
           <Button
             className={s.button}
             onClick={() => setIsAddAddressOpen(true)}
           >
-            Добавить адрес
+            {t("add_address_button")}
           </Button>
         </div>
       )}

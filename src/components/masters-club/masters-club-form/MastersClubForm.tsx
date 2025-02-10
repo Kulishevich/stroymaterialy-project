@@ -21,19 +21,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { useGetUserSettingQuery } from "@/api/user/user.api";
 import s from "./MastersClubForm.module.scss";
-
-const options = [
-  {
-    id: "individual",
-    name: "Физическое лицо",
-  },
-  {
-    id: "entity",
-    name: "Юридическое лицо",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export const MastersClubForm = () => {
+  const t = useTranslations("cooperation.vacancies.masters_club.form");
   const [file, setFile] = useState<File | null>(null);
   const [createPartner] = useCreatePartnerMutation();
   const [createPartnerExistUser] = useCreatePartnerExistUserMutation();
@@ -44,8 +35,16 @@ export const MastersClubForm = () => {
   const { data: professions } = useGetProfessionQuery();
   const { data: spheres } = useGetSpheresQuery();
 
-  console.log(professions);
-  console.log(spheres);
+  const options = [
+    {
+      id: "individual",
+      name: t("activity_type.options.individual"),
+    },
+    {
+      id: "entity",
+      name: t("activity_type.options.entity"),
+    },
+  ];
 
   const { control, handleSubmit, reset, watch } = useForm({
     defaultValues: {
@@ -141,16 +140,15 @@ export const MastersClubForm = () => {
   return (
     <>
       <Typography variant="body_2" className={s.title}>
-        Хотите вступить в наш клуб мастеров?
+        {t("title")}
         <br />
-        Свяжитесь с нами по одному из контактных номеров или отправьте онлайн
-        заявку ниже.
+        {t("title_description")}
       </Typography>
       <div className={s.form}>
         <div className={s.flexContainer}>
           <div className={s.elem}>
             <Typography variant="h4" as="h4" isRequired={true}>
-              1. Ваша профессия
+              {t("profession.label")}
             </Typography>
             {!!professions && (
               <ControlledSelect
@@ -164,7 +162,7 @@ export const MastersClubForm = () => {
           </div>
           <div className={s.elem}>
             <Typography variant="h4" as="h4">
-              2. Форма деятельности
+              {t("activity_type.label")}
             </Typography>
             <ControlledRadio
               control={control}
@@ -175,53 +173,63 @@ export const MastersClubForm = () => {
         </div>
         <div className={s.elem}>
           <Typography isRequired={true} variant="h4" as="h4">
-            3. Контактные данные
+            {t("contacts.label")}
           </Typography>
           <div className={s.inputsWrapper}>
             {memberType === "entity" && (
               <>
                 <div className={s.inputContainer}>
-                  <Typography variant="body_5">ИНН</Typography>
+                  <Typography variant="body_5">
+                    {t("contacts.fields.tin")}
+                  </Typography>
                   <ControlledTextField
                     control={control}
                     name="tin"
-                    placeholder="ИНН"
+                    placeholder={t("contacts.fields.tin")}
                     className={s.input}
                   />
                 </div>
                 <div className={s.inputContainer}>
-                  <Typography variant="body_5">Компания</Typography>
+                  <Typography variant="body_5">
+                    {t("contacts.fields.company")}
+                  </Typography>
                   <ControlledTextField
                     control={control}
                     name="company"
-                    placeholder="Компания"
+                    placeholder={t("contacts.fields.company")}
                     className={s.input}
                   />
                 </div>
               </>
             )}
             <div className={s.inputContainer}>
-              <Typography variant="body_5">Имя</Typography>
+              <Typography variant="body_5">
+                {t("contacts.fields.first_name")}
+              </Typography>
               <ControlledTextField
                 disabled={!!token && !!user}
                 control={control}
                 name="firstName"
-                placeholder="Имя"
+                placeholder={t("contacts.fields.first_name")}
                 className={s.input}
               />
             </div>
             <div className={s.inputContainer}>
-              <Typography variant="body_5">Фамилия</Typography>
+              <Typography variant="body_5">
+                {t("contacts.fields.last_name")}
+              </Typography>
               <ControlledTextField
                 disabled={!!token && !!user}
                 control={control}
                 name="lastName"
-                placeholder="Фамилия"
+                placeholder={t("contacts.fields.last_name")}
                 className={s.input}
               />
             </div>
             <div className={s.inputContainer}>
-              <Typography variant="body_5">Телефон</Typography>
+              <Typography variant="body_5">
+                {t("contacts.fields.phone")}
+              </Typography>
               <ControlledTextField
                 disabled={!!token && !!user}
                 control={control}
@@ -231,17 +239,21 @@ export const MastersClubForm = () => {
               />
             </div>
             <div className={s.inputContainer}>
-              <Typography variant="body_5">Электронный адрес</Typography>
+              <Typography variant="body_5">
+                {t("contacts.fields.email")}
+              </Typography>
               <ControlledTextField
                 disabled={!!token && !!user}
                 control={control}
                 name="email"
-                placeholder="Электронный адрес"
+                placeholder={t("contacts.fields.email")}
                 className={s.input}
               />
             </div>
             <div className={s.inputContainer}>
-              <Typography variant="body_5">Область работы</Typography>
+              <Typography variant="body_5">
+                {t("contacts.fields.sphere")}
+              </Typography>
               {!!spheres && (
                 <ControlledSelect
                   control={control}
@@ -253,7 +265,9 @@ export const MastersClubForm = () => {
             {!token && (
               <>
                 <div className={s.inputContainer}>
-                  <Typography variant="body_5">Пароль</Typography>
+                  <Typography variant="body_5">
+                    {t("contacts.fields.password")}
+                  </Typography>
                   <ControlledTextField
                     control={control}
                     name="password"
@@ -263,7 +277,9 @@ export const MastersClubForm = () => {
                   />
                 </div>
                 <div className={s.inputContainer}>
-                  <Typography variant="body_5">Подтвердить пароль</Typography>
+                  <Typography variant="body_5">
+                    {t("contacts.fields.password_confirmation")}
+                  </Typography>
                   <ControlledTextField
                     control={control}
                     name="passwordConfirmation"
@@ -278,7 +294,7 @@ export const MastersClubForm = () => {
         </div>
         <div className={s.elem}>
           <Typography variant="h4" as="h4">
-            4. О вас
+            {t("about")}
           </Typography>
           <ControlledTextArea
             control={control}
@@ -288,7 +304,7 @@ export const MastersClubForm = () => {
         </div>
         <div className={s.elem}>
           <Typography variant="h4" as="h4">
-            5. Загрузить файл
+            {t("file")}
           </Typography>
           <TextFieldFile setSelectedImage={setFile} />
         </div>
@@ -297,14 +313,14 @@ export const MastersClubForm = () => {
             <ControlledCheckbox
               control={control}
               name="confirmation"
-              label="Согласие на обработку персональных данных"
+              label={t("confirmation")}
               labelText={Variant.body_6}
             />
           </div>
           <div className={s.buttonsContainer}>
-            <Button onClick={formHandler}>Отправить</Button>
+            <Button onClick={formHandler}>{t("button_submit")}</Button>
             <Button variant={"secondary"} onClick={reset}>
-              Отменить
+              {t("button_reset")}
             </Button>
           </div>
         </div>

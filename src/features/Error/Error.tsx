@@ -6,22 +6,23 @@ import { Button } from "../../components/ui/button";
 import Link from "next/link";
 import { Paths } from "@/shared/enums";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { useTranslations } from "next-intl";
 
 export const Error = () => {
+  const t = useTranslations("error");
   const isMobile = useIsMobile("tablet");
 
   return (
     <div className={s.container}>
       <div className={s.content}>
         <Typography variant="h1" as="h1">
-          Страница не найдена
+          {t("title")}
         </Typography>
         <Typography variant="body_1" as="p">
-          К сожалению, страница не найдена. Возможно, она была удалена или Вы
-          ввели некорректный адрес (ошибка 404).
+          {t("description")}
         </Typography>
         <Button as={Link} href={Paths.home}>
-          На главную
+          {t("button")}
         </Button>
       </div>
       <div className={s.imageContainer}>

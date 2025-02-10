@@ -14,6 +14,7 @@ import { editAddressScheme } from "./model/edit-address-scheme";
 import { Address } from "@/api/addresses/address.types";
 import { showToast } from "@/components/ui/toast";
 import s from "./EditAddressPopup.module.scss";
+import { useTranslations } from "next-intl";
 
 type AddAddressPopupProps = {
   isOpen: boolean;
@@ -26,10 +27,9 @@ export const EditAddressPopup = ({
   setIsOpen,
   address,
 }: AddAddressPopupProps) => {
+  const t = useTranslations("profile.my_addresses.edit_address_popup");
   const [updateAddress] = useUpdateAddressMutation();
   const { data: regions } = useGetRegionsQuery();
-  console.log("Regions:", regions);
-  console.log("adres:", address);
 
   const {
     control,
@@ -73,12 +73,12 @@ export const EditAddressPopup = ({
       <Dialog.Overlay className={s.overlay} />
       <Dialog.Content className={s.content}>
         <Typography variant="h3" as="h3">
-          Редактировать адрес
+          {t("title")}
         </Typography>
 
         <div className={s.inputsContainer}>
           <div className={s.inputContainer}>
-            <Typography variant="body_5">Округ</Typography>
+            <Typography variant="body_5">{t("region_label")}</Typography>
             <ControlledSelect
               control={control}
               name="regionId"
@@ -86,11 +86,11 @@ export const EditAddressPopup = ({
             />
           </div>
           <div className={s.inputContainer}>
-            <Typography variant="body_5">Адрес доставки</Typography>
+            <Typography variant="body_5">{t("address_label")}</Typography>
             <ControlledTextField control={control} name="address" />
           </div>
           <div className={s.inputContainer}>
-            <Typography variant="body_5">Детали адреса доставки</Typography>
+            <Typography variant="body_5">{t("details_label")}</Typography>
             <ControlledTextArea
               className={s.textarea}
               control={control}
@@ -105,7 +105,7 @@ export const EditAddressPopup = ({
           className={s.button}
           onClick={formHandler}
         >
-          Сохранить
+          {t("save_button")}
         </Button>
 
         <Button

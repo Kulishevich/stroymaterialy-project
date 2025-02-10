@@ -7,18 +7,20 @@ import {
   VisaIcon,
   VisaSecureIcon,
 } from "@/assets/icons";
+import { useTranslations } from "next-intl";
 
 export const PaymentMethod = () => {
+  const t = useTranslations("delivery_and_payment.payment_method");
+
   return (
     <div className={s.container}>
       <Typography variant="h3" as="h3">
-        Способы оплаты
+        {t("title")}
       </Typography>
       <Typography variant="body_1">
-        Оплата банковской картой возможна через системы электронных платежей.
-        Номер карты должен иметь от 15 до 19 символов.
+        {t("info")}
         <br />
-        Мы принимаем платежи с сайта по следующим банковским картам:
+        {t("description")}
       </Typography>
       <div className={s.icons}>
         <MasterCardIcon />

@@ -1,6 +1,6 @@
 import { Typography } from "@/components/ui/typography";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { SelectIcons } from "@/components/ui/select-icons";
 import { AmIcon, PercentIcon, ProfileIcon, RuIcon } from "@/assets/icons";
 import { Paths } from "@/shared/enums";
@@ -28,8 +28,7 @@ const headerOptions = [
 export const HeaderNavigation = () => {
   const t = useTranslations("header.navigation");
   const router = useRouter();
-  console.log("🛠 Translations (header):", t.raw);
-  // const lang = useSelector((state: RootState) => state.lang);
+  const lang = useSelector((state: RootState) => state.lang);
   const token = useSelector((state: RootState) => state.auth.token);
   const dispatch = useDispatch();
 
@@ -56,10 +55,17 @@ export const HeaderNavigation = () => {
     },
   ];
 
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      router.push(router.asPath, router.asPath, { locale: savedLanguage });
+    }
+  }, []);
+
   const changeLanguage = (value: string) => {
     console.log(value); // Проверяем, что передается правильное значение
     dispatch(changeLang(value));
-    // i18n.changeLanguage("ru");
+    router.push(router.asPath, router.asPath, { locale: value });
   };
 
   const handleProfileClick = () => {
@@ -145,7 +151,10 @@ export const HeaderNavigation = () => {
         <SelectIcons
           options={headerOptions}
           className={s.selectHeader}
-          placeHolder={headerOptions[0].icon}
+          value={String(lang)}
+          placeHolder={
+            headerOptions.find((elem) => elem.value === String(lang))?.icon
+          }
           onValueChange={(value) => changeLanguage(value)}
         />
         <Typography

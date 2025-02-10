@@ -3,10 +3,11 @@ import s from "./Banner.module.scss";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { useTranslations } from "next-intl";
 
 export const Banner = () => {
   const isMobile = useIsMobile("tablet");
-
+  const t = useTranslations("about");
   return (
     <div className={s.container}>
       <Image
@@ -16,7 +17,7 @@ export const Banner = () => {
         alt="big banner"
         className={s.image}
       />
-      <Button className={s.button}>В каталог</Button>
+      <Button className={s.button}>{t("banner")}</Button>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Typography } from "@/components/ui/typography";
-import s from "./OrderPopup.module.scss";
 import { Button } from "@/components/ui/button";
 import { CloseIcon } from "@/assets/icons";
 import { OrderCard } from "../order-card";
@@ -9,6 +8,8 @@ import {
   useDeleteOrderMutation,
   useGetOrderQuery,
 } from "@/api/orders/orders.api";
+import { useTranslations } from "next-intl";
+import s from "./OrderPopup.module.scss";
 
 type OrderPopupProps = {
   isOpen: boolean;
@@ -17,9 +18,9 @@ type OrderPopupProps = {
 };
 
 export const OrderPopup = ({ isOpen, setIsOpen, orderId }: OrderPopupProps) => {
+  const t = useTranslations("profile.orders.order");
   const [isOpenCloseModal, setIsOpenCloseModal] = useState(false);
   const { data: order } = useGetOrderQuery({ id: orderId });
-  console.log(order);
 
   const [deleteOrder] = useDeleteOrderMutation();
 
@@ -47,7 +48,7 @@ export const OrderPopup = ({ isOpen, setIsOpen, orderId }: OrderPopupProps) => {
           <>
             <div className={s.orderTitle}>
               <Typography variant="body_1">
-                Заказ{" "}
+                {t("order_id")}{" "}
                 <Typography as="span" variant="body_2">
                   № {order?.data.id}
                 </Typography>
@@ -55,31 +56,31 @@ export const OrderPopup = ({ isOpen, setIsOpen, orderId }: OrderPopupProps) => {
             </div>
             <div className={s.orderFields}>
               <Typography variant="body_3">
-                Статус заказа:
+                {t("status")}
                 <Typography as="span" variant="body_3">
                   {order?.data.status}
                 </Typography>
               </Typography>
               <Typography variant="body_3">
-                Способ оплаты:
+                {t("payment_method")}
                 <Typography as="span" variant="body_3">
                   {order?.data.method}
                 </Typography>
               </Typography>
               <Typography variant="body_3">
-                Адрес:
+                {t("address")}
                 <Typography as="span" variant="body_3">
                   {order?.data.address}
                 </Typography>
               </Typography>
               <Typography variant="body_3">
-                День доставки:
+                {t("delivery_date")}
                 <Typography as="span" variant="body_3">
                   {order?.data.date}
                 </Typography>
               </Typography>
               <Typography variant="body_3">
-                Цена:
+                {t("price")}
                 <Typography as="span" variant="body_3">
                   {order?.data.totalWithDelivery}
                 </Typography>
@@ -95,19 +96,21 @@ export const OrderPopup = ({ isOpen, setIsOpen, orderId }: OrderPopupProps) => {
             <div className={s.buttonsContainer}>
               <Button onClick={() => setIsOpen(false)}>Назад</Button>
               <Button variant="secondary" onClick={setIsOpenCloseModal}>
-                Отменить
+                {t("cancel")}
               </Button>
             </div>
           </>
         ) : (
           <>
             <Typography variant="h3" as="h3">
-              Вы уверены, что хотите отменить заказ?
+              {t("confirmation")}
             </Typography>
             <div className={s.buttonsContainer}>
-              <Button onClick={() => setIsOpenCloseModal(false)}>Нет</Button>
+              <Button onClick={() => setIsOpenCloseModal(false)}>
+                {t("yes")}
+              </Button>
               <Button variant="secondary" onClick={handleDeleteOrder}>
-                Да
+                {t("no")}
               </Button>
             </div>
           </>

@@ -11,71 +11,75 @@ import { Typography } from "@/components/ui/typography";
 import React, { useState } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import s from "./TableDelliveryMobile.module.scss";
-
-const deliveryData = [
-  {
-    type: {
-      icon: <TruckSpeedIcon />,
-      title: "Экспресс",
-      description: "машина 0,7-2,5 т",
-    },
-    details: {
-      place: { title: "Город", value: "Ереван" },
-      time: { title: "день в день", value: "в течение 2-4 часов" },
-      price: { title: "Начиная", value: "с 2000 драм" },
-      notes: { title: "", value: "-" },
-    },
-  },
-  {
-    type: {
-      icon: <TruckSpeedIcon />,
-      title: "Стандартная",
-      description: "машина 0,7-2,5 т",
-    },
-    details: {
-      place: { title: "Город", value: "Ереван" },
-      time: { title: "", value: "в течение 1-2 дней" },
-      price: { title: "", value: "Бесплатная" },
-      notes: { title: "Исключение", value: "Цемент, гипсокартон" },
-    },
-  },
-  {
-    type: {
-      icon: <MotorbikeSideIcon />,
-      title: "Курьер",
-      description: "мопед",
-    },
-    details: {
-      place: { title: "Город", value: "Ереван" },
-      time: { title: "день в день", value: "в течение 2 часов" },
-      price: { title: "", value: "1500 драм" },
-      notes: { title: "Вес", value: "до 10 кг" },
-    },
-  },
-  {
-    type: {
-      icon: <DeliveryPackageIcon />,
-      title: "Доставка",
-      description: "Ай пост",
-    },
-    details: {
-      place: { title: "Город", value: "все регионы" },
-      time: { title: "", value: "в течение 1-3 дней" },
-      price: { title: "", value: "700 драм" },
-      notes: { title: "Вес", value: "до 5 кг" },
-    },
-  },
-];
+import { useTranslations } from "next-intl";
 
 export const TableDelliveryMobile = () => {
   const [activeColumn, setActiveColumn] = useState(0);
+  const t = useTranslations(
+    "delivery_and_payment.delivery_and_lifting_payment.table_delivery"
+  );
+
+  const deliveryData = [
+    {
+      type: {
+        icon: <TruckSpeedIcon />,
+        title: t("express"),
+        description: t("express_details"),
+      },
+      details: {
+        place: { title: t("city"), value: t("yerevan") },
+        time: { title: t("same_day"), value: t("within_2_4_hours") },
+        price: { title: t("starting_from"), value: t("from_2000_dram") },
+        notes: { title: "", value: "-" },
+      },
+    },
+    {
+      type: {
+        icon: <TruckSpeedIcon />,
+        title: t("standard"),
+        description: t("standard_details"),
+      },
+      details: {
+        place: { title: t("city"), value: t("yerevan") },
+        time: { title: "", value: t("within_1_2_days") },
+        price: { title: "", value: t("free") },
+        notes: { title: t("exception"), value: t("cement_gypsum") },
+      },
+    },
+    {
+      type: {
+        icon: <MotorbikeSideIcon />,
+        title: t("courier"),
+        description: t("courier_details"),
+      },
+      details: {
+        place: { title: t("city"), value: t("yerevan") },
+        time: { title: t("same_day"), value: t("within_2_hours") },
+        price: { title: "", value: t("1500_dram") },
+        notes: { title: t("weight_limit"), value: t("up_to_10kg") },
+      },
+    },
+    {
+      type: {
+        icon: <DeliveryPackageIcon />,
+        title: t("post_delivery"),
+        description: t("post_delivery_details"),
+      },
+      details: {
+        place: { title: t("city"), value: t("all_regions") },
+        time: { title: "", value: t("within_1_3_days") },
+        price: { title: "", value: t("700_dram") },
+        notes: { title: t("weight_limit"), value: t("up_to_5kg") },
+      },
+    },
+  ];
 
   return (
     <table className={s.tableDeliveryMobile}>
       <thead>
         <tr>
           <th>
-            <Typography variant="body_2">Вид доставки</Typography>
+            <Typography variant="body_2">{t("delivery_type")}</Typography>
           </th>
           <th>
             <DropdownMenu.Root>
@@ -107,7 +111,7 @@ export const TableDelliveryMobile = () => {
       <tbody>
         <tr>
           <Typography as="th" variant="h4" scope="row">
-            <AddressLocationIcon /> Место
+            <AddressLocationIcon /> {t("location")}
           </Typography>
           <td>
             <Typography variant={"body_4"}>
@@ -120,7 +124,7 @@ export const TableDelliveryMobile = () => {
         </tr>
         <tr>
           <Typography as="th" variant="h4" scope="row">
-            <ClockIcon /> Время
+            <ClockIcon /> {t("time")}
           </Typography>
           <td>
             <Typography variant={"body_4"}>
@@ -134,7 +138,7 @@ export const TableDelliveryMobile = () => {
         <tr>
           <Typography as="th" variant="h4" scope="row">
             <DollarIcon />
-            Цены
+            {t("prices")}
           </Typography>
           <td>
             <Typography variant={"body_4"}>
@@ -147,7 +151,7 @@ export const TableDelliveryMobile = () => {
         </tr>
         <tr>
           <Typography as="th" variant="h4" scope="row">
-            Особые примечания
+            {t("special_notes")}
           </Typography>
           <td>
             <Typography variant={"body_4"}>

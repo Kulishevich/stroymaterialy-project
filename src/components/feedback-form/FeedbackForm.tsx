@@ -9,9 +9,11 @@ import { ControlledCheckbox } from "../ui/controlled-checkbox";
 import { feedbackFormSchemeCreator } from "./model/feedback-form-scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { useTranslations } from "next-intl";
 
 export const FeedbackForm = () => {
   const isMobile = useIsMobile("tablet");
+  const t = useTranslations("feedback_form");
   const {
     handleSubmit,
     formState: { isValid },
@@ -35,40 +37,39 @@ export const FeedbackForm = () => {
     <div className={s.wrapper}>
       <form className={s.container} onSubmit={formHandler}>
         <Typography as="h2" variant="h2" className={s.text}>
-          Связаться с нами
+          {t("title")}
         </Typography>
         <Typography variant="body_2" className={s.text}>
-          Для связи заполните форму обратной связи, и наш специалист позвонит
-          вам в ближайшее время
+          {t("description")}
         </Typography>
         <div className={s.inputsContainer}>
           <ControlledTextField
             control={control}
             name="name"
             isRequired={true}
-            placeholder="Имя"
+            placeholder={t("name_placeholder")}
           />
           <ControlledTextField
             control={control}
             name="phone"
             isRequired={true}
-            placeholder="Телефон"
+            placeholder={t("phone_placeholder")}
           />
         </div>
         <div className={s.submitContainer}>
           <Button variant={"secondary"} type="submit" disabled={!isValid}>
-            Отправить
+            {t("submit_button")}
           </Button>
           <ControlledCheckbox
             control={control}
             name="agreement"
-            label="Согласие на обработку персональных данных"
+            label={t("agreement_label")}
             labelText={Variant.body_6}
             className={s.checkbox}
           />
         </div>
         <Typography variant="body_2" className={s.text}>
-          или свяжитесь с нами через социальные сети
+          {t("social_text")}
         </Typography>
         <SocialNetworks />
       </form>

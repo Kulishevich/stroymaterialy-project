@@ -11,53 +11,54 @@ import { MySuggestedPrices } from "../my-suggested-prices";
 import { GiftCards } from "../gift-cards";
 import { useRouter } from "next/router";
 import { Paths } from "@/shared/enums";
-
-const navigate = [
-  {
-    id: "personal_data",
-    title: "Персональные данные",
-    value: <ProfilePersonalData />,
-  },
-  {
-    id: "my_addresses",
-    title: "Мои адреса",
-    value: <MyAddresses />,
-  },
-  {
-    id: "orders",
-    title: "Заказы",
-    value: <Orders />,
-  },
-  {
-    id: "favorites",
-    title: "Избранные",
-    value: <Favorites />,
-  },
-  {
-    id: "my_suggested_prices",
-    title: "Мои предложенные цены",
-    value: <MySuggestedPrices />,
-  },
-  {
-    id: "gift_cards",
-    title: "Подарочные карты",
-    value: <GiftCards />,
-  },
-];
+import { useTranslations } from "next-intl";
 
 export const ProfilePage = () => {
+  const t = useTranslations("profile");
   const router = useRouter();
   const { tab } = router.query;
+
+  const navigate = [
+    {
+      id: "personal_data",
+      title: t("navigation.profile_personal_data"),
+      value: <ProfilePersonalData />,
+    },
+    {
+      id: "my_addresses",
+      title: t("navigation.my_addresses"),
+      value: <MyAddresses />,
+    },
+    {
+      id: "orders",
+      title: t("navigation.orders"),
+      value: <Orders />,
+    },
+    {
+      id: "favorites",
+      title: t("navigation.favorites"),
+      value: <Favorites />,
+    },
+    {
+      id: "my_suggested_prices",
+      title: t("navigation.my_suggested_prices"),
+      value: <MySuggestedPrices />,
+    },
+    {
+      id: "gift_cards",
+      title: t("navigation.gift_cards"),
+      value: <GiftCards />,
+    },
+  ];
 
   const handleNavigateTab = (id: string) => {
     router.push(`${Paths.profile}?tab=${id}`, undefined, { scroll: false });
   };
 
-  console.log(tab);
   return (
     <div className={s.container}>
       <Typography variant="h1" as="h1">
-        Личный кабинет
+        {t("title")}
       </Typography>
       <div className={s.content}>
         <div className={s.nav}>

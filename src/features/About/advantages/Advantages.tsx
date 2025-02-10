@@ -11,79 +11,64 @@ import {
 } from "@/assets/icons/advantages";
 import Image from "next/image";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
-
-const advantages = [
-  {
-    id: "1",
-    title: "Бесплатная доставка",
-    value: "Мы доставим совершенно бесплатно на территории Еревана все товары",
-    icon: <DeliveryTruck />,
-  },
-  {
-    id: "2",
-    title: "Собственный автопарк",
-    value:
-      "Автомобили любой грузоподъемности Так же в наличии автомобили грузоподьемностью до 800кг,для которых разрешено вьезд  в центр города ",
-    icon: <StoreShopHours />,
-  },
-  {
-    id: "3",
-    title: "Собственный склад",
-    value:
-      "Мы обеспечиваем правильное хранение всех товаров, а представленные на сайте позиции всегда имеются в наличии",
-    icon: <OpenBox />,
-  },
-  {
-    id: "4",
-    title: "Предоставление квалифицированных грузчиков ",
-    value: "Мы поможем безопасно поднять ваши товары на любой этаж",
-    icon: <ChatComments />,
-  },
-  {
-    id: "5",
-    title: "Разные способы доставки",
-    value: (
-      <>
-        - самовывоз
-        <br />
-        - доставка автомобилями разной грузоподъемности
-        <br />
-        - курьерская доставка
-        <br />- доставка в регионы через компанию Айпост
-      </>
-    ),
-    icon: <FastDeliveryTruck />,
-  },
-  {
-    id: "6",
-    title: "Цены",
-    value: "Низкие цены, чем в любых строительных магазинах",
-    icon: <WalletMoneyCash />,
-  },
-  {
-    id: "7",
-    title: "Консультация специалистов",
-    value:
-      "Наши специалисты помогут вам выбрать нужный вам товар ,а так же оптимизируют ваши расходы по приобретению",
-    icon: <ChatComments />,
-  },
-];
+import { useTranslations } from "next-intl";
 
 export const Advantages = () => {
+  const t = useTranslations("about.advantages");
   const isMobile = useIsMobile("tablet");
+
+  const advantages = [
+    {
+      id: "1",
+      title: t("advantage1_title"),
+      value: t("advantage1_value"),
+      icon: <DeliveryTruck />,
+    },
+    {
+      id: "2",
+      title: t("advantage2_title"),
+      value: t("advantage2_value"),
+      icon: <StoreShopHours />,
+    },
+    {
+      id: "3",
+      title: t("advantage3_title"),
+      value: t("advantage3_value"),
+      icon: <OpenBox />,
+    },
+    {
+      id: "4",
+      title: t("advantage4_title"),
+      value: t("advantage4_value"),
+      icon: <ChatComments />,
+    },
+    {
+      id: "5",
+      title: t("advantage5_title"),
+      value: t("advantage5_value"),
+      icon: <FastDeliveryTruck />,
+    },
+    {
+      id: "6",
+      title: t("advantage6_title"),
+      value: t("advantage6_value"),
+      icon: <WalletMoneyCash />,
+    },
+    {
+      id: "7",
+      title: t("advantage7_title"),
+      value: t("advantage7_value"),
+      icon: <ChatComments />,
+    },
+  ];
 
   return (
     <div className={s.container}>
       <div className={s.aboutUs}>
         <Typography variant="h1" as="h1">
-          О нас
+          {t("about_title")}
         </Typography>
-        <Typography variant="body_2">
-          Domix-молодая команда с амбициям и с высоким потенциалом,
-          специализирующаяся на продаже строительных материалов для внутренней
-          и внешней отделки дома или квартиры, которая поможет вам благоустроить
-          свое жизненное пространство и построить свой дом мечты.
-        </Typography>
+        <Typography variant="body_2">{t("about_description")}</Typography>
         <Image
           src={"/images/about-us.jpg"}
           width={!isMobile ? 856 : 336}
@@ -92,7 +77,7 @@ export const Advantages = () => {
         />
       </div>
       <Typography variant="h2" as="h2">
-        Наши преимущества
+        {t("advantages_title")}
       </Typography>
       <div className={s.cardsContainer}>
         {advantages.map((advantage, index) => (

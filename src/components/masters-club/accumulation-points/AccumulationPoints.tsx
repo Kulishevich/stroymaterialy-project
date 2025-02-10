@@ -1,59 +1,54 @@
 import { Typography } from "@/components/ui/typography";
 import React from "react";
 import s from "./AccumulationPoints.module.scss";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { Paths } from "@/shared/enums";
 
 export const AccumulationPoints = () => {
+  const t = useTranslations(
+    "cooperation.vacancies.masters_club.accumulation_points"
+  );
+
   return (
     <div className={s.container}>
       <div className={s.title}>
         <Typography variant="h4" as="h4">
-          Возвращайте до 10% от стоимости товара!
+          {t("title")}
         </Typography>
-        <Typography variant="body_1">
-          Правила накопления баллов в Domix-club’е
-        </Typography>
+        <Typography variant="body_1">{t("subtitle")}</Typography>
       </div>
       <ul>
         <Typography variant="body_3" as="li">
-          Для получения накопительных баллов в системе Вам необходимо пройти
-          простую регистрацию на нашем сайте, перейдя по данной ссылке (ссылка
-          кликабельна). https://shinmag.am/shinmag-club
+          {t("rules.rule1")}
+          <Link href={Paths.home}>https://shinmag.am/shinmag-club</Link>
         </Typography>
         <Typography variant="body_3" as="li">
-          После регистрации на сайте Вы можете собирать и оформлять свои заказы.
+          {t("rules.rule2")}
         </Typography>
         <Typography variant="body_3" as="li">
-          Около стоимости каждого товара Вы увидите соответствующее количество
-          накопительных баллов.
+          {t("rules.rule3")}
         </Typography>
         <Typography variant="body_3" as="li">
-          1 накопительный балл равен 1 драму.
+          {t("rules.rule4")}
         </Typography>
         <Typography variant="body_3" as="li">
-          Все выбранные товары в количестве отобразятся у Вас в корзине.
+          {t("rules.rule5")}
         </Typography>
         <Typography variant="body_3" as="li">
-          Около итоговой суммы заказа в корзине будет высвечено количество
-          накопительных баллов,которые Вы получите после совершения покупки. Эти
-          баллы будут отображаться в Вашем личном кабинете в графе
-          &quot;Накопительные баллы&quot;.
+          {t("rules.rule6")}
         </Typography>
         <Typography variant="body_3" as="li">
-          Накопительные баллы Вы можете при запросе вывести в виде наличных
-          денежных средств либо на карту ЧЕРЕЗ ДЕНЬ после совершения покупки. А
-          также, Вы можете их использовать в дальнейшем при совершении покупок в
-          Shinmag.
+          {t("rules.rule7")}
         </Typography>
         <Typography variant="body_3" as="li">
-          Возврат можно осуществить в размере до 10% от стоимости товара!
+          {t("rules.rule8")}
         </Typography>
       </ul>
 
       <div className={s.footer}>
-        <Typography variant="body_2">
-          Совершайте покупки комфортно с выгодой для себя!
-        </Typography>
-        <Typography variant="body_1">Ваш Domix.</Typography>
+        <Typography variant="body_2">{t("footer.text")}</Typography>
+        <Typography variant="body_1">{t("footer.signature")}</Typography>
       </div>
     </div>
   );
