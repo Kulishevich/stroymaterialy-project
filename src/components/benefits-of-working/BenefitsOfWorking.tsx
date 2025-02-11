@@ -16,7 +16,56 @@ export const BenefitsOfWorking = () => {
   const t = useTranslations("cooperation.for_business.benefits_of_working");
   const isMobile = useIsMobile("tablet");
 
-  const cards = t.raw("cards");
+  const cards = [
+    {
+      id: "1",
+      title: t("service.title"),
+      image: "/images/for-business/image1.jpg",
+      values: [
+        t("service.value_1"),
+        t("service.value_2"),
+        t("service.value_3"),
+        t("service.value_4"),
+      ],
+    },
+    {
+      id: "2",
+      title: t("pricing.title"),
+      image: "/images/for-business/image2.jpg",
+      values: [
+        t("pricing.value_1"),
+        t("pricing.value_2"),
+        t("pricing.value_3"),
+        t("pricing.value_4"),
+        t("pricing.value_5"),
+        t("pricing.value_6"),
+      ],
+    },
+    {
+      id: "3",
+      title: t("approach.title"),
+      image: "/images/for-business/image3.jpg",
+      values: [
+        t("approach.value_1"),
+        t("approach.value_2"),
+        t("approach.value_3"),
+        t("approach.value_4"),
+      ],
+    },
+    {
+      id: "4",
+      title: t("advantages.title"),
+      image: "/images/for-business/image4.jpg",
+      values: [
+        t("advantages.value_1"),
+        t("advantages.value_2"),
+        t("advantages.value_3"),
+        t("advantages.value_4"),
+        t("advantages.value_5"),
+        t("advantages.value_6"),
+      ],
+    },
+  ];
 
   return (
     <div className={s.container}>

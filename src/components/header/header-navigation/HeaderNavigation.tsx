@@ -63,8 +63,9 @@ export const HeaderNavigation = () => {
   }, []);
 
   const changeLanguage = (value: string) => {
-    console.log(value); // Проверяем, что передается правильное значение
     dispatch(changeLang(value));
+    document.cookie = `locale=${value}; path=/; max-age=31536000`;
+    console.log(document.cookie);
     router.push(router.asPath, router.asPath, { locale: value });
   };
 

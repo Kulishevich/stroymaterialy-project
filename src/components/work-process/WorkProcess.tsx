@@ -9,22 +9,31 @@ import {
 } from "@/assets/icons/advantages";
 import { useTranslations } from "next-intl";
 
-type WorkProcessCard = {
-  id: string;
-  title: string;
-};
-
 export const WorkProcess = () => {
   const t = useTranslations("cooperation.for_business.work_process");
 
-  const icons = [
-    <ChatComments key={1} />,
-    <StoreShopHours key={2} />,
-    <WalletMoneyCash key={3} />,
-    <FastDeliveryTruck key={4} />,
+  const cards = [
+    {
+      id: 1,
+      title: t("step_1"),
+      icon: <ChatComments />,
+    },
+    {
+      id: 2,
+      title: t("step_2"),
+      icon: <StoreShopHours />,
+    },
+    {
+      id: 3,
+      title: t("step_3"),
+      icon: <WalletMoneyCash />,
+    },
+    {
+      id: 4,
+      title: t("step_4"),
+      icon: <FastDeliveryTruck />,
+    },
   ];
-
-  const cards: WorkProcessCard[] = t.raw("cards"); // Получаем массив из JSON
 
   return (
     <div className={s.container}>
@@ -40,7 +49,7 @@ export const WorkProcess = () => {
             <Typography variant="h3" as="h3">
               {card.title}
             </Typography>
-            {icons[index]}
+            {card.icon}
           </div>
         ))}
       </div>

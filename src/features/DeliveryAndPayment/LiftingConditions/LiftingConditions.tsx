@@ -19,11 +19,13 @@ export const LiftingConditions = () => {
         </Typography>
         <Typography variant="body_2">{t("info_description")}</Typography>
         <ul>
-          {t.raw("info_list").map((item: string, index: number) => (
-            <Typography key={index} variant="body_3" as="li">
-              {item}
-            </Typography>
-          ))}
+          {Object.values(t.raw("info_list") as Record<string, string>).map(
+            (item, index) => (
+              <Typography key={index} variant="body_3" as="li">
+                {item}
+              </Typography>
+            )
+          )}
         </ul>
       </div>
 
@@ -33,11 +35,13 @@ export const LiftingConditions = () => {
         </Typography>
         <Typography variant="body_2">{t("cost_description")}</Typography>
         <ul>
-          {t.raw("cost_list").map((item: string, index: number) => (
-            <Typography key={index} variant="body_3" as="li">
-              {item}
-            </Typography>
-          ))}
+          {Object.values(t.raw("cost_list") as Record<string, string>).map(
+            (item, index) => (
+              <Typography key={index} variant="body_3" as="li">
+                {item}
+              </Typography>
+            )
+          )}
         </ul>
       </div>
 
@@ -47,22 +51,26 @@ export const LiftingConditions = () => {
         </Typography>
         <Typography variant="body_2">{t("safety_description")}</Typography>
         <ul>
-          {t.raw("safety_list").map((item: string, index: number) => (
-            <Typography key={index} variant="body_3" as="li">
-              {item}
-            </Typography>
-          ))}
+          {Object.values(t.raw("safety_list") as Record<string, string>).map(
+            (item, index) => (
+              <Typography key={index} variant="body_3" as="li">
+                {item}
+              </Typography>
+            )
+          )}
         </ul>
       </div>
 
       <div className={s.elem}>
         <Typography variant="body_2">{t("guarantee_title")}</Typography>
         <ul>
-          {t.raw("guarantee_list").map((item: string, index: number) => (
-            <Typography key={index} variant="body_3" as="li">
-              {item}
-            </Typography>
-          ))}
+          {Object.values(t.raw("guarantee_list") as Record<string, string>).map(
+            (item, index) => (
+              <Typography key={index} variant="body_3" as="li">
+                {item}
+              </Typography>
+            )
+          )}
         </ul>
       </div>
 
@@ -72,7 +80,9 @@ export const LiftingConditions = () => {
         </Typography>
         <Typography variant="body_2">{t("tariff_manual")}</Typography>
         <ul>
-          {t.raw("tariff_manual_list").map((item: string, index: number) => (
+          {Object.values(
+            t.raw("tariff_manual_list") as Record<string, string>
+          ).map((item, index) => (
             <Typography key={index} variant="body_3" as="li">
               {item}
             </Typography>
@@ -80,7 +90,9 @@ export const LiftingConditions = () => {
         </ul>
         <Typography variant="body_2">{t("tariff_elevator")}</Typography>
         <ul>
-          {t.raw("tariff_elevator_list").map((item: string, index: number) => (
+          {Object.values(
+            t.raw("tariff_elevator_list") as Record<string, string>
+          ).map((item, index) => (
             <Typography key={index} variant="body_3" as="li">
               {item}
             </Typography>
