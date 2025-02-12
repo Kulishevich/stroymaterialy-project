@@ -6,29 +6,18 @@ import {
   TelegramOutlinedIcon,
   WhatsappOutlined,
 } from "@/assets/icons";
-import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
-export const SocialNetworks = () => {
-  const isMobile = useIsMobile("tablet");
+type SocialNetworksProps = {
+  size?: number;
+};
 
+export const SocialNetworks = ({ size = 36 }: SocialNetworksProps) => {
   return (
     <div className={s.icons}>
-      <TelegramOutlinedIcon
-        height={!isMobile ? 36 : 24}
-        width={!isMobile ? 36 : 24}
-      />
-      <WhatsappOutlined
-        height={!isMobile ? 36 : 24}
-        width={!isMobile ? 36 : 24}
-      />
-      <InstagramOutlinedIcon
-        height={!isMobile ? 36 : 24}
-        width={!isMobile ? 36 : 24}
-      />
-      <FacebookOutlinedIcon
-        height={!isMobile ? 36 : 24}
-        width={!isMobile ? 36 : 24}
-      />
+      <TelegramOutlinedIcon height={size} width={size} />
+      <WhatsappOutlined height={size} width={size} />
+      <InstagramOutlinedIcon height={size} width={size} />
+      <FacebookOutlinedIcon height={size} width={size} />
     </div>
   );
 };

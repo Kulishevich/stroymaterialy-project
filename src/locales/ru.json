@@ -27,6 +27,23 @@
       "search_products": "Поиск по продуктам"
     }
   },
+  "footer": {
+    "categories_title": "Категории",
+    "company_title": "Компания",
+    "main_page": "Главная",
+    "delivery_and_payment": "Доставка и оплата",
+    "promotions": "Акции",
+    "cooperation": "Сотрудничество",
+    "for_business": "Для бизнеса",
+    "vacancies": "Вакансии",
+    "about_us": "О нас",
+    "contacts": "Контакты",
+    "privacy_policy": "Политика конфиденциальности",
+    "phone": "Телефон:",
+    "working_hours": "Время работы:",
+    "working_hours_value": "с 09:00 до 22:00 ежедневно",
+    "design_and_development": "Дизайн и разработка: Web-space.by"
+  },
   "feedback_form": {
     "title": "Связаться с нами",
     "description": "Для связи заполните форму обратной связи, и наш специалист позвонит вам в ближайшее время.",

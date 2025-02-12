@@ -2,14 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const getInitialLang = () => {
   if (typeof window !== "undefined") {
-    return localStorage.getItem("language") === "ru" ? "ru" : "hy";
+    const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
+      const [name, value] = cookie.split("=");
+      acc[name] = value;
+      return acc;
+    }, {} as Record<string, string>);
+
+    return cookies.locale || "hy";
   }
   return "hy";
 };
 
-const lang = getInitialLang();
-
-const initialState = lang;
+const initialState = getInitialLang();
 
 export const langSlice = createSlice({
   name: "langSlice",
@@ -17,7 +21,7 @@ export const langSlice = createSlice({
   reducers: {
     changeLang: (state, action) => {
       if (typeof window !== "undefined") {
-        localStorage.setItem("language", action.payload);
+        document.cookie = `locale=${action.payload}; path=/; max-age=31536000`;
       }
       return action.payload;
     },

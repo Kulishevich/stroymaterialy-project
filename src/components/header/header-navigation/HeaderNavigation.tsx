@@ -31,7 +31,6 @@ export const HeaderNavigation = () => {
   const lang = useSelector((state: RootState) => state.lang);
   const token = useSelector((state: RootState) => state.auth.token);
   const dispatch = useDispatch();
-
   const cooperationOptions = [
     {
       value: (
@@ -54,13 +53,6 @@ export const HeaderNavigation = () => {
       id: "value2",
     },
   ];
-
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      router.push(router.asPath, router.asPath, { locale: savedLanguage });
-    }
-  }, []);
 
   const changeLanguage = (value: string) => {
     dispatch(changeLang(value));

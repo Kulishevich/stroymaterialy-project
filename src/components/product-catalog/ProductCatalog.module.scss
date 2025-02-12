@@ -5,6 +5,10 @@
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
+    margin: 0 auto;
+    @media (max-width: 768px) {
+        width: 336px;
+    }
 }
 
 .sort {

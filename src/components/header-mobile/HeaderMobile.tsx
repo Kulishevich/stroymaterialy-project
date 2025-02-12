@@ -22,7 +22,7 @@ export const HeaderMobile = () => {
   return (
     <div className={s.container}>
       <div className={s.info}>
-        <SocialNetworks />
+        <SocialNetworks size={24} />
         <div className={s.phoneContainer}>
           <Image
             src={"/images/phone-operator.png"}

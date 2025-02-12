@@ -14,28 +14,34 @@ import Image from "next/image";
 import { Paths } from "@/shared/enums";
 import { Dropdown } from "../ui/dropdown";
 import { useGetCategoriesQuery } from "@/api/categories/categories.api";
-
-const cooperationOptions = [
-  {
-    value: (
-      <Typography as={Link} href={Paths.forBusiness} variant="placeholder_big">
-        Для бизнеса
-      </Typography>
-    ),
-    id: "value1",
-  },
-  {
-    value: (
-      <Typography as={Link} href={Paths.vacancies} variant="placeholder_big">
-        Вакансии
-      </Typography>
-    ),
-    id: "value2",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export const Footer = () => {
+  const t = useTranslations("footer");
   const { data: categories } = useGetCategoriesQuery();
+
+  const cooperationOptions = [
+    {
+      value: (
+        <Typography
+          as={Link}
+          href={Paths.forBusiness}
+          variant="placeholder_big"
+        >
+          {t("for_business")}
+        </Typography>
+      ),
+      id: "value1",
+    },
+    {
+      value: (
+        <Typography as={Link} href={Paths.vacancies} variant="placeholder_big">
+          {t("vacancies")}
+        </Typography>
+      ),
+      id: "value2",
+    },
+  ];
 
   return (
     <div className={s.wrapper}>
@@ -48,7 +54,7 @@ export const Footer = () => {
           </div>
           <div className={s.categoryes}>
             <Typography variant="h4" as="h4">
-              Категории
+              {t("categories_title")}
             </Typography>
             <div className={s.categoryesContainer}>
               {categories?.data.map((category) => (
@@ -67,18 +73,18 @@ export const Footer = () => {
           </div>
           <div className={s.navigate}>
             <Typography variant="h4" as="h4">
-              Компания
+              {t("company_title")}
             </Typography>
             <nav className={s.navigateContainer}>
               <Typography as={Link} href={Paths.home} variant="body_3">
-                Главная
+                {t("main_page")}
               </Typography>
               <Typography
                 as={Link}
                 href={Paths.deliveryAndPayment}
                 variant="body_3"
               >
-                Доставка и оплата
+                {t("delivery_and_payment")}
               </Typography>
               <Typography
                 as={Link}
@@ -87,28 +93,28 @@ export const Footer = () => {
                 className={s.promotion}
               >
                 <PercentIcon />
-                Акции
+                {t("promotions")}
               </Typography>
               <Dropdown
-                placeholder="Сотрудничество"
+                placeholder={t("cooperation")}
                 items={cooperationOptions}
                 className={(s.navLink, s.dropdown)}
               />
               <Typography as={Link} href={Paths.about} variant="body_3">
-                О нас
+                {t("about_us")}
               </Typography>
               <Typography as={Link} href={Paths.contacts} variant="body_3">
-                Контакты
+                {t("contacts")}
               </Typography>
               <Typography as={Link} href={"#"} variant="body_3">
-                Политика конфиденциальности
+                {t("privacy_policy")}
               </Typography>
             </nav>
           </div>
           <div className={s.phoneAndTime}>
             <div className={s.card}>
               <Typography variant="body_3" as="h6">
-                Телефон:
+                {t("phone")}
               </Typography>
               <div className={s.phoneContainer}>
                 <Image
@@ -125,10 +131,10 @@ export const Footer = () => {
             </div>
             <div className={s.card}>
               <Typography variant="body_3" as="h6">
-                Время работы:
+                {t("working_hours")}
               </Typography>
               <Typography variant="h3" as="p">
-                с 09:00 до 22:00 ежедневно
+                {t("working_hours_value")}
               </Typography>
             </div>
           </div>
@@ -143,7 +149,7 @@ export const Footer = () => {
             <IdramIcon />
           </div>
           <Typography variant="body_6">
-            Дизайн и разработка: Web-space.by
+            {t("design_and_development")}
           </Typography>
         </div>
       </div>

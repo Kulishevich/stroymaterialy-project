@@ -116,7 +116,7 @@ const BurgerMenu = () => {
           </Dialog.Close>
         </nav>
         <div className={s.info}>
-          <SocialNetworks />
+          <SocialNetworks size={24} />
           <Typography variant="h4" as="h4">
             +374 (33) 144-000
           </Typography>
