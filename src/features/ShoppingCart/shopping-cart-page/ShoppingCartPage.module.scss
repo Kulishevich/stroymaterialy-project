@@ -7,11 +7,30 @@
     & > h1 {
         text-align: center;
     }
+
+    @media (max-width: 768px) {
+        width: 336px;
+        margin: 0 auto;
+        margin-bottom: 72px;
+    }
 }
 
 .content {
     display: flex;
     justify-content: space-between;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 32px;
+
+        align-items: center;
+    }
+}
+
+.mobileContent {
+    width: 336px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 24px 16px;
 }
 
 .tableContainer {
@@ -70,6 +89,10 @@
     border: 1px solid #2125314D;
     border-radius: 6px;
     box-shadow: 6px 12px 13px 0px #2225310A;
+
+    @media (max-width: 768px) {
+        width: 336px;
+    }
 }
 .total {
     display: flex;

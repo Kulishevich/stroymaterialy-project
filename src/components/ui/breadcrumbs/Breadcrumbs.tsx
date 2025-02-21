@@ -16,8 +16,7 @@ export const Breadcrumbs = ({ className }: Props) => {
   const dynamicPath = useSelector(
     (state: RootState) => state.breadcrumbs.breadcrumbs
   );
-
-  console.log(dynamicPath);
+  console.log("dynamicPath", dynamicPath);
   if (
     !pathname ||
     pathname === "/" ||

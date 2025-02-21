@@ -5,8 +5,11 @@ import clsx from "clsx";
 import { useGetTrendsProductsQuery } from "@/api/products/products.api";
 import { useTranslations } from "next-intl";
 import s from "./ProductCatalog.module.scss";
+import { Slider } from "../slider";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 export const ProductCatalog = () => {
+  const isMobile = useIsMobile("tablet");
   const t = useTranslations("home.products_catalog");
   const sort = [
     {
@@ -28,7 +31,7 @@ export const ProductCatalog = () => {
   const [activeSort, setActiveSort] = useState<string>(sort[0].value);
   const { data: products, isLoading } = useGetTrendsProductsQuery({
     trend: activeSort,
-    perPage: 12,
+    perPage: !isMobile ? 12 : 4,
   });
 
   console.log(products);
@@ -51,13 +54,21 @@ export const ProductCatalog = () => {
           </Typography>
         ))}
       </div>
-      {!isLoading && products && (
-        <div className={s.itemsContainer}>
-          {products.data.map((product) => (
-            <Item product={product} key={product.id} />
-          ))}
-        </div>
-      )}
+      {!isLoading &&
+        products &&
+        (!isMobile ? (
+          <Slider itemWidth={330}>
+            {products.data.map((product) => (
+              <Item product={product} key={product.id} />
+            ))}
+          </Slider>
+        ) : (
+          <div className={s.mobileContainer}>
+            {products.data.map((product) => (
+              <Item product={product} key={product.id} />
+            ))}
+          </div>
+        ))}
     </div>
   );
 };

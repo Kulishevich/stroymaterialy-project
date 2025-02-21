@@ -1,34 +1,21 @@
 import { Typography } from "@/components/ui/typography";
 import Link from "next/link";
-import React, { useEffect } from "react";
-import { SelectIcons } from "@/components/ui/select-icons";
-import { AmIcon, PercentIcon, ProfileIcon, RuIcon } from "@/assets/icons";
+import React from "react";
+import { SelectLanguage } from "@/components/ui/select-icons";
+import { PercentIcon, ProfileIcon } from "@/assets/icons";
 import { Paths } from "@/shared/enums";
 import { Dropdown } from "@/components/ui/dropdown";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { changeLang } from "@/store/slices/lang/langSlice";
 import clsx from "clsx";
 import { RootState } from "@/store/store";
 import { toggleLoginModal } from "@/store/slices/auth-modal/authModalSlice";
-import s from "./HeaderNavigation.module.scss";
 import { useTranslations } from "next-intl";
-
-const headerOptions = [
-  {
-    icon: <AmIcon />,
-    value: "hy",
-  },
-  {
-    icon: <RuIcon />,
-    value: "ru",
-  },
-];
+import s from "./HeaderNavigation.module.scss";
 
 export const HeaderNavigation = () => {
   const t = useTranslations("header.navigation");
   const router = useRouter();
-  const lang = useSelector((state: RootState) => state.lang);
   const token = useSelector((state: RootState) => state.auth.token);
   const dispatch = useDispatch();
   const cooperationOptions = [
@@ -53,13 +40,6 @@ export const HeaderNavigation = () => {
       id: "value2",
     },
   ];
-
-  const changeLanguage = (value: string) => {
-    dispatch(changeLang(value));
-    document.cookie = `locale=${value}; path=/; max-age=31536000`;
-    console.log(document.cookie);
-    router.push(router.asPath, router.asPath, { locale: value });
-  };
 
   const handleProfileClick = () => {
     if (token) {
@@ -141,15 +121,7 @@ export const HeaderNavigation = () => {
             {t("contacts")}
           </Typography>
         </nav>
-        <SelectIcons
-          options={headerOptions}
-          className={s.selectHeader}
-          value={String(lang)}
-          placeHolder={
-            headerOptions.find((elem) => elem.value === String(lang))?.icon
-          }
-          onValueChange={(value) => changeLanguage(value)}
-        />
+        <SelectLanguage className={s.selectHeader} />
         <Typography
           onClick={handleProfileClick}
           className={s.profileButton}

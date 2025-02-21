@@ -41,9 +41,7 @@ export const AdditionalServices = ({ control }: AdditionalServicesProps) => {
             render={({ field: { value, onChange } }) => (
               <>
                 {extraOptions.data.map((option) => {
-                  const isChecked = value.some(
-                    (item) => item.extraOptionId === option.id
-                  );
+                  const isChecked = value.some((item) => item === option.id);
 
                   return (
                     <Checkbox
@@ -55,10 +53,8 @@ export const AdditionalServices = ({ control }: AdditionalServicesProps) => {
                       onCheckedChange={(checked) => {
                         onChange(
                           checked
-                            ? [...value, { extraOptionId: option.id }]
-                            : value.filter(
-                                (item) => item.extraOptionId !== option.id
-                              )
+                            ? [...value, option.id]
+                            : value.filter((item) => item !== option.id)
                         );
                       }}
                     />

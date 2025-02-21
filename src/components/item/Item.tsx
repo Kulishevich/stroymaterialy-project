@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Typography } from "../ui/typography";
 import { Button } from "../ui/button";
-import { HeartIcon } from "@/assets/icons";
+import { BagShoppingIcon, HeartIcon } from "@/assets/icons";
 import { Counter } from "../counter";
 import clsx from "clsx";
 import { Product } from "@/api/products/products.types";
@@ -120,7 +120,10 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
               onClick={handleAddFavorite}
               className={clsx(s.favoriteButton, isFavorite && s.active)}
             >
-              <HeartIcon />
+              <HeartIcon
+                width={!isMobile ? 28 : 22}
+                height={!isMobile ? 28 : 22}
+              />
             </Button>
           </>
         )}
@@ -155,16 +158,20 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
         </div>
         <div className={vertical ? s.buttonContainer : s.horizontalContainer}>
           <Counter
-            size={vertical ? "l" : "m"}
+            size={vertical ? (!isMobile ? "l" : "s") : "m"}
             countCurrent={count}
             increment={increment}
             decrement={decrement}
           />
           <Button
-            className={!vertical && s.buttonVertical}
+            className={!vertical ? s.buttonVertical : s.buttonHorizontal}
             onClick={handleAddItemInCart}
           >
-            В корзину
+            {!isMobile ? (
+              "В корзину"
+            ) : (
+              <BagShoppingIcon width={26} height={26} />
+            )}
           </Button>
         </div>
       </div>

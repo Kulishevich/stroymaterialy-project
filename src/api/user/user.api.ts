@@ -25,6 +25,7 @@ export const userApi = domixApi.injectEndpoints({
         }),
       }),
       getUserOrders: builder.query<GetOrdersResponse, void>({
+        providesTags: ["Orders"],
         query: () => ({
           url: "/users/orders",
         }),

@@ -8,9 +8,12 @@ import s from "./ShoppingCartPage.module.scss";
 import { ShoppingCartItemRow } from "../shopping-cart-item-row";
 import { useCreateOrderMutation } from "@/api/orders/orders.api";
 import { useRouter } from "next/router";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { Item } from "@/components/item";
 
 export const ShoppingCartPage = () => {
   const router = useRouter();
+  const isMobile = useIsMobile("tablet");
   const [isOpen, setIsOpen] = useState(false);
   const { data: cart, error } = useGetCartQuery();
   const [clearCart] = useClearCartMutation();
@@ -55,40 +58,58 @@ export const ShoppingCartPage = () => {
         Корзина
       </Typography>
       <div className={s.content}>
-        <div className={s.tableContainer}>
-          <table>
-            <thead>
-              <tr>
-                <Typography variant="h4" as="th" className={s.title}>
-                  Товар
-                </Typography>
-                <Typography variant="h4" as="th">
-                  Цена
-                </Typography>
-                <Typography variant="h4" as="th">
-                  Количество
-                </Typography>
-                <Typography variant="h4" as="th">
-                  Сумма
-                </Typography>
-                <Typography variant="h4" as="th"></Typography>
-              </tr>
-            </thead>
-            <tbody>
+        {!isMobile ? (
+          <div className={s.tableContainer}>
+            <table>
+              <thead>
+                <tr>
+                  <Typography variant="h4" as="th" className={s.title}>
+                    Товар
+                  </Typography>
+                  <Typography variant="h4" as="th">
+                    Цена
+                  </Typography>
+                  <Typography variant="h4" as="th">
+                    Количество
+                  </Typography>
+                  <Typography variant="h4" as="th">
+                    Сумма
+                  </Typography>
+                  <Typography variant="h4" as="th"></Typography>
+                </tr>
+              </thead>
+              <tbody>
+                {cart?.data.list.map((item) => (
+                  <ShoppingCartItemRow item={item} key={item.product.id} />
+                ))}
+              </tbody>
+            </table>
+            <Typography
+              variant="body_4"
+              as="button"
+              onClick={handleClearCart}
+              className={s.clearButton}
+            >
+              Очистить корзину
+            </Typography>
+          </div>
+        ) : (
+          <>
+            <div className={s.mobileContent}>
               {cart?.data.list.map((item) => (
-                <ShoppingCartItemRow item={item} key={item.product.id} />
+                <Item product={item.product} key={item.product.id} />
               ))}
-            </tbody>
-          </table>
-          <Typography
-            variant="body_4"
-            as="button"
-            onClick={handleClearCart}
-            className={s.clearButton}
-          >
-            Очистить корзину
-          </Typography>
-        </div>
+            </div>
+            <Typography
+              variant="body_4"
+              as="button"
+              onClick={handleClearCart}
+              className={s.clearButton}
+            >
+              Очистить корзину
+            </Typography>
+          </>
+        )}
         <div className={s.price}>
           <div className={s.total}>
             <Typography variant="body_3">Цена</Typography>

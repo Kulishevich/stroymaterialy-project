@@ -2,7 +2,7 @@ export type ContentItem = {
   key: string;
   type: string;
   src: string;
-  link: string | null;
+  link: string;
   description: string | null;
   value: string | null;
 };

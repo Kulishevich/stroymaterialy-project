@@ -2,6 +2,7 @@ import { domixApi } from "../domix.api";
 import {
   ChangeOrderArgs,
   ChangeOrderResponse,
+  ChangePayMethodResponse,
   CreateOrderItem,
   CreateOrderResponse,
   ExtraOptionsResponse,
@@ -41,16 +42,27 @@ export const ordersApi = domixApi.injectEndpoints({
           body: args,
         }),
       }),
-      changePayMethod: builder.mutation<void, { id: string; method: string }>({
+      changePayMethod: builder.mutation<
+        ChangePayMethodResponse,
+        { id: string; method: string }
+      >({
         query: ({ id, method }) => ({
           url: `/orders/${id}/pay/${method}`,
           method: "POST",
         }),
       }),
       deleteOrder: builder.mutation<void, { id: string }>({
+        invalidatesTags: ["Orders"],
         query: ({ id }) => ({
           url: `/orders/${id}`,
           method: "DELETE",
+        }),
+      }),
+      checkOrder: builder.mutation<any, any>({
+        query: ({ id, data }) => ({
+          url: `/orders/${id}/check/details`,
+          method: "POST",
+          body: data,
         }),
       }),
     };
@@ -64,4 +76,5 @@ export const {
   useChangeOrderMutation,
   useChangePayMethodMutation,
   useDeleteOrderMutation,
+  useCheckOrderMutation,
 } = ordersApi;

@@ -7,10 +7,9 @@
         text-align: center;
     }
 }
-.productContainer {
-    display: flex;
-    gap: 24px;
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
+
+.mobileContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 16px;
 }

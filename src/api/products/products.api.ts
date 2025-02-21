@@ -15,11 +15,14 @@ export const productsApi = domixApi.injectEndpoints({
         ResponseProductsByCategory,
         RequestParams
       >({
-        query: ({ id, perPage }) => ({
-          url: `/categories/${id}/products?perPage=${perPage}`,
+        query: ({ id, perPage, page, filters }) => ({
+          url: `/categories/${id}/products?perPage=${perPage}&page=${page}${filters}`,
         }),
       }),
-      getProduct: builder.query<{ data: Product }, RequestParams>({
+      getProduct: builder.query<
+        { data: Product },
+        { id: string; perPage: number }
+      >({
         query: ({ id, perPage }) => ({
           url: `/products/${id}?perPage=${perPage}`,
         }),
@@ -50,13 +53,14 @@ export const productsApi = domixApi.injectEndpoints({
         }),
       }),
       deleteFavorite: builder.mutation<void, string>({
+        invalidatesTags: ["Favorites"],
         query: (id) => ({
           url: `/products/favorites/${id}`,
-          method: "DETELE",
+          method: "DELETE",
         }),
       }),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      getRating: builder.query<any, { id: string }>({
+      getRating: builder.query<any, string>({
         query: (id) => ({
           url: `/products/${id}/ratings`,
         }),

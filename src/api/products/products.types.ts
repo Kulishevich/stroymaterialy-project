@@ -3,6 +3,8 @@ import { LinksTypes, MetaTypes } from "@/shared/types/types";
 export type RequestParams = {
   id: string;
   perPage: number;
+  page: number;
+  filters: string;
 };
 
 export type ExtraOptionsArgs = {
@@ -43,13 +45,18 @@ export type ProductUnit = {
   value: string;
 };
 
+export type Characteristic = {
+  name: string;
+  value: string;
+};
+
 export type Product = {
-  bonus: string;
+  bonus: string | null;
   bonusPercent: string;
   brand: string;
   breadcrumb: Breadcrumbs[];
   category: ProductCategory;
-  characteristics: [];
+  characteristics: Characteristic[];
   code: string;
   count: string;
   description: string;

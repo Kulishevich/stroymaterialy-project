@@ -13,9 +13,14 @@ type PayerDetailsProps = {
     name: string;
     id: string;
   }[];
+  payerTypeField: string;
 };
 
-export const PayerDetails = ({ control, payerType }: PayerDetailsProps) => {
+export const PayerDetails = ({
+  control,
+  payerType,
+  payerTypeField,
+}: PayerDetailsProps) => {
   return (
     <div className={s.payment}>
       <div className={s.title}>
@@ -74,6 +79,17 @@ export const PayerDetails = ({ control, payerType }: PayerDetailsProps) => {
             placeholder="(+374) 12 34 56 78"
           />
         </div>
+        {payerTypeField === "entity" && (
+          <div className={s.inputContainer}>
+            <Typography variant="body_5">ИНН</Typography>
+            <ControlledTextField
+              control={control}
+              name="tin"
+              className={s.input}
+              placeholder="ИНН"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

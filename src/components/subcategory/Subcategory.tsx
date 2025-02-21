@@ -7,14 +7,10 @@ import Link from "next/link";
 import { CategoryArgs } from "@/api/categories/categories.types";
 
 type SubcategoryProps = {
-  variant?: "light" | "orange";
   category: CategoryArgs;
 };
 
-export const Subcategory = ({
-  variant = "light",
-  category,
-}: SubcategoryProps) => {
+export const Subcategory = ({ category }: SubcategoryProps) => {
   return (
     <Link
       href={
@@ -22,7 +18,7 @@ export const Subcategory = ({
           ? `/products/${category.id}`
           : `/subcategory/${category.id}`
       }
-      className={clsx(s.card, variant === "light" ? s.light : s.orange)}
+      className={clsx(s.card)}
     >
       <Image src={category.image} width={160} height={122} alt="Subcategory" />
       <Typography variant="body_5">{category.name}</Typography>

@@ -47,3 +47,4 @@ export { default as VisaSecureIcon } from "./VisaSecureIcon";
 export { default as BePaidIcon } from "./BePaidIcon";
 export { default as ErrorIcon } from "./ErrorIcon";
 export { default as SuccessIcon } from "./SuccessIcon";
+export { default as FilterIcon } from "./FilterIcon";

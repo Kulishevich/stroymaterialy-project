@@ -1,7 +1,22 @@
 .container {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.content {
     width: 966px;
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap:24px;
+
+    padding-top: 51px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px 16px;
+        padding-top: 0;
+    }
 }

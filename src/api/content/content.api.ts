@@ -4,9 +4,9 @@ import { ContentResponse } from "./content.types";
 export const contentApi = domixApi.injectEndpoints({
   endpoints: (builder) => {
     return {
-      getContent: builder.query<{ data: ContentResponse[] }, { key: string }>({
+      getContent: builder.query<ContentResponse, string>({
         query: (key) => ({
-          url: `/contents?key=${key}`,
+          url: `/contents?keys[]=${key}`,
         }),
       }),
     };

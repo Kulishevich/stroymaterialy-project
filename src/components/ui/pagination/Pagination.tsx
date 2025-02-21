@@ -18,7 +18,7 @@ export const Pagination = ({ totalPages, currentPage = "1" }: Props) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
-  console.log(searchParams);
+
   const currentPageNumber = +currentPage;
   const totalPagesNumber = +totalPages;
 
@@ -48,15 +48,14 @@ export const Pagination = ({ totalPages, currentPage = "1" }: Props) => {
 
   return (
     <div className={s.container}>
-      {currentPageNumber !== 1 && (
-        <Button
-          variant={"icon"}
-          className={s.button}
-          onClick={handlePageChange(currentPageNumber - 1)}
-        >
-          <ArrowLeftIcon className={s.icon} />
-        </Button>
-      )}
+      <Button
+        variant={"icon"}
+        className={s.button}
+        onClick={handlePageChange(currentPageNumber - 1)}
+        disabled={currentPageNumber === 1}
+      >
+        <ArrowLeftIcon className={s.icon} />
+      </Button>
       <div className={s.pagination}>
         {paginationPages.map((page) => {
           const isActive = currentPageNumber == page;

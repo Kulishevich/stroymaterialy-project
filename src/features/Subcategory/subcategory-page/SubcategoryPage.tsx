@@ -31,9 +31,6 @@ export const SubcategoryPage = () => {
   const { data: breadcrumbs } = useGetBreadcrumbsCategoriesQuery(
     subcategory as string
   );
-  console.log(breadcrumbs);
-
-  console.log("SubcategoryPage:", products);
 
   useEffect(() => {
     if (breadcrumbs?.data.breadcrumb) {

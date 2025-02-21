@@ -15,18 +15,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PaymentFormValues } from "../payment-page";
 import { Address } from "@/api/addresses/address.types";
 import { OptionsValue } from "@/components/ui/select";
+import { OrderTypes } from "@/api/orders/orders.types";
 
 type PurchaseMethodProps = {
   addresses: Address[];
   controlForm: Control<PaymentFormValues>;
   deliveryTimeOptions: OptionsValue[];
   deliveryDataOptions: OptionsValue[];
+  orderTypes: OrderTypes[];
 };
 
 const deliveryMethodOptions = [
   {
-    id: "1",
-    value: "Стандартная доставка",
     title: <Typography variant="body_7">Стандартная доставка</Typography>,
     content: (
       <>
@@ -38,8 +38,6 @@ const deliveryMethodOptions = [
     ),
   },
   {
-    id: "2",
-    value: "Экспресс доставка",
     title: <Typography variant="body_7">Экспресс доставка</Typography>,
     content: (
       <>
@@ -51,8 +49,6 @@ const deliveryMethodOptions = [
     ),
   },
   {
-    id: "3",
-    value: "Курьер Мопед",
     title: <Typography variant="body_7">Курьер Мопед (до 10 кг)</Typography>,
     content: (
       <>
@@ -64,8 +60,6 @@ const deliveryMethodOptions = [
     ),
   },
   {
-    id: "4",
-    value: "Айпост Доставка",
     title: (
       <Typography variant="body_7">Айпост Доставка (вес до 5 кг)</Typography>
     ),
@@ -83,13 +77,20 @@ export const PurchaseMethod = ({
   controlForm,
   deliveryTimeOptions,
   deliveryDataOptions,
+  orderTypes,
 }: PurchaseMethodProps) => {
   const isMobile = useIsMobile("tablet");
   const [isAddAddress, setIsAddAddress] = useState(false);
   const { data: regions } = useGetRegionsQuery();
   const [createAddress] = useCreateAddressMutation();
-
-  console.log("Адреса:", addresses);
+  const orderTypesOptions = deliveryMethodOptions.map((orderType, index) => {
+    return {
+      ...orderType,
+      id: String(orderTypes[index].id),
+      value: orderTypes[index].name,
+    };
+  });
+  console.log("Order Types:", orderTypesOptions);
 
   const radioOptions =
     !!addresses?.length &&
@@ -250,7 +251,7 @@ export const PurchaseMethod = ({
         </div>
         <div className={s.cardsContainer}>
           <ControlledRadioCards
-            options={deliveryMethodOptions}
+            options={orderTypesOptions}
             control={controlForm}
             name="orderType"
           />

@@ -1,0 +1,30 @@
+.buttonIcon {
+  padding: 0;
+  color: var(--color-text);
+
+  &:hover {
+      color: var(--color-accent-orange);
+  }
+}
+  
+  .dialogContent {
+    z-index: 1002;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background-color: var(--color-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.closeButton {
+  position: absolute;
+  right: 17px;
+  top: 17px;
+}

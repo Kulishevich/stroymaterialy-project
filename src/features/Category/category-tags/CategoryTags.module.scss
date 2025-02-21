@@ -5,10 +5,19 @@
 
     & > h1 {
         text-align: center;
+        @media (max-width: 768px) {
+            font-weight: 600;
+            font-size: 22px;
+            line-height: 26.07px;
+        }
     }
 }
 .categoryContainer {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 32px 24px;
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 16px;
+    }
 }

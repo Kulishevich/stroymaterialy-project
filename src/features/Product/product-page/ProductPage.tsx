@@ -26,12 +26,12 @@ export const ProductPage = ({}) => {
     }
   }, [product, router.isReady, router]);
 
-  const { data: rating } = useGetRatingQuery({ id: product as string });
+  const { data: rating } = useGetRatingQuery(product as string);
   const { data: prod, isLoading } = useGetProductQuery({
     id: product as string,
     perPage: 20,
   });
-
+  console.log(prod);
   useEffect(() => {
     if (prod?.data.breadcrumb) {
       dispatch(
@@ -46,12 +46,10 @@ export const ProductPage = ({}) => {
     }
   }, [prod]);
 
-  console.log("Рейтинг", rating);
-
   if (isLoading || !prod) return;
 
   return (
-    <div>
+    <div className={s.wrapper}>
       <div className={s.title}>
         <Typography variant="h1" as="h1">
           {prod?.data.name}

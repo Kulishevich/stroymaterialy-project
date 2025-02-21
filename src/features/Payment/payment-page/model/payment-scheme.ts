@@ -12,15 +12,13 @@ export const paymentSchemeCreator = () => {
     lastName: surnameScheme(),
     email: emailScheme(),
     phone: phoneScheme(),
+    tin: z.string(),
     paymentMethod: z.string().nonempty("Выберите способ оплаты"),
     addressId: z.string().nonempty("Адрес обязателен"),
     orderType: z.string().nonempty("Выберите тип заказа"),
     payerType: z.string().nonempty("Выберите тип плательщика"),
     deliveryTime: z.string().nonempty("Выберите время доставки"),
     deliveryData: z.string().nonempty("Выберите дату доставки"),
-    extraOptions: z
-      .array(z.object({ extraOptionId: z.string() }))
-      .optional()
-      .default([]),
+    extraOptions: z.array(z.string()).optional().default([]),
   });
 };

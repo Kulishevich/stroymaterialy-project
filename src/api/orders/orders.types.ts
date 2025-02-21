@@ -34,7 +34,7 @@ export type GetOrderResponse = {
 };
 
 export type OrderItemResponse = {
-  address: string | null;
+  address: Address | null;
   addresses: Address[];
   customer: string | null;
   date: string;
@@ -62,7 +62,7 @@ export type OrderItemResponse = {
 };
 
 export type OrderTypes = {
-  is: number;
+  id: number;
   isFlexible: number;
   name: string;
 };
@@ -92,16 +92,13 @@ export type OrderItem = {
 export type ChangeOrderArgs = {
   addressId?: number;
   orderTypeId: number;
-  extraOptions: {
-    extraOptionId: string;
-  }[];
-
-  additional: string;
-  address: string;
+  extraOptions: string[];
+  additional?: string;
+  address?: string;
   date: string;
   start: string;
   end: string;
-  regionId: number;
+  regionId?: number;
 };
 
 export type ChangeOrderResponse = {
@@ -157,4 +154,16 @@ export type ChangeOrderResponse = {
       ];
     }
   ];
+};
+
+export type ChangePayMethodResponse = {
+  data: {
+    method: string;
+    methodDisplayName: string;
+    redirectUrl: string;
+    status: string;
+    statusDisplayName: string;
+  };
+  errors: boolean;
+  message: string;
 };

@@ -1,5 +1,5 @@
 import { FeedbackForm } from "@/components/feedback-form";
-import { Shares } from "@/components/shares";
+import { Shares } from "@/features/Shares/shares";
 import React from "react";
 import s from "./SharesPage.module.scss";
 

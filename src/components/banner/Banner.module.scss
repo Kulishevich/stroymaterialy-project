@@ -21,6 +21,7 @@
     }
 }
 .image {
+    border-radius: 6px;
     @media (max-width: 768px) {
         object-fit: cover;
         object-position: left;

@@ -10,6 +10,7 @@ import {
 } from "@/api/orders/orders.api";
 import { useTranslations } from "next-intl";
 import s from "./OrderPopup.module.scss";
+import { showToast } from "@/components/ui/toast";
 
 type OrderPopupProps = {
   isOpen: boolean;
@@ -33,10 +34,14 @@ export const OrderPopup = ({ isOpen, setIsOpen, orderId }: OrderPopupProps) => {
   };
 
   const handleDeleteOrder = async () => {
+    console.log("delete");
     try {
       await deleteOrder({ id: orderId });
+      showToast({ message: "Заказ успешно удалён", variant: "success" });
+      setIsOpen(false);
     } catch (err: unknown) {
-      console.error(err);
+      showToast({ message: "Ошибка удаления заказа", variant: "error" });
+      console.log(err);
     }
   };
 
@@ -70,7 +75,9 @@ export const OrderPopup = ({ isOpen, setIsOpen, orderId }: OrderPopupProps) => {
               <Typography variant="body_3">
                 {t("address")}
                 <Typography as="span" variant="body_3">
-                  {order?.data.address}
+                  {order?.data?.address?.address},
+                  {order?.data?.address?.region.name},
+                  {order?.data?.address?.details}
                 </Typography>
               </Typography>
               <Typography variant="body_3">
@@ -106,10 +113,11 @@ export const OrderPopup = ({ isOpen, setIsOpen, orderId }: OrderPopupProps) => {
               {t("confirmation")}
             </Typography>
             <div className={s.buttonsContainer}>
-              <Button onClick={() => setIsOpenCloseModal(false)}>
-                {t("yes")}
-              </Button>
-              <Button variant="secondary" onClick={handleDeleteOrder}>
+              <Button onClick={handleDeleteOrder}>{t("yes")}</Button>
+              <Button
+                variant="secondary"
+                onClick={() => setIsOpenCloseModal(false)}
+              >
                 {t("no")}
               </Button>
             </div>

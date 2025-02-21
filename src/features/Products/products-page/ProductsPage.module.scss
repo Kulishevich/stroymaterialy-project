@@ -3,10 +3,28 @@
     flex-direction: column;
     gap: 140px;
 
+    margin: 0 auto;
     margin-bottom: 140px;
+
+    @media (max-width: 768px) {
+        width: 336px;
+        margin-bottom: 72px;
+    }
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    & > h1,h2 {
+        text-align: center;
+    }
 }
 
 .products {
     display: flex;
     gap: 24px;
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 }

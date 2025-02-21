@@ -41,7 +41,8 @@ export const OrderItem = ({ order }: OrderItemProps) => {
         <Typography variant="body_3">
           {t("address")}
           <Typography as="span" variant="body_3">
-            {order.address}
+            {order?.address?.address},{order?.address?.region?.name},
+            {order?.address?.details}
           </Typography>
         </Typography>
         <Typography variant="body_3">

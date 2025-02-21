@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import s from "./ProductsPage.module.scss";
 import { ProductsFilter } from "../products-filter";
 import { ProductContent } from "../products-content";
@@ -9,11 +9,36 @@ import { useDispatch } from "react-redux";
 import { useGetProductsByCategoryQuery } from "@/api/products/products.api";
 import { useGetBreadcrumbsCategoriesQuery } from "@/api/categories/categories.api";
 import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
+import { Typography } from "@/components/ui/typography";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { useSearchParams } from "next/navigation";
+import FilterMobile from "@/components/filter-mobile/FilterMobile";
 
 export const ProductsPage = () => {
+  const [activeFilters, setActiveFilters] = useState("");
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page") || "1";
+  const isMobile = useIsMobile("tablet");
   const router = useRouter();
   const { products } = router.query;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const filtersString = searchParams.toString();
+
+    if (!filtersString) {
+      setActiveFilters("");
+      return;
+    }
+
+    setActiveFilters(
+      filtersString
+        .split("&")
+        .filter(Boolean)
+        .map((item) => "&" + item)
+        .join("")
+    );
+  }, [searchParams]);
 
   useEffect(() => {
     if (router.isReady) {
@@ -23,14 +48,12 @@ export const ProductsPage = () => {
     }
   }, [products, router.isReady, router]);
 
-  const { data: productsItems, isLoading } = useGetProductsByCategoryQuery({
+  const { data: productsItems } = useGetProductsByCategoryQuery({
     id: products as string,
-    perPage: 20,
+    perPage: 12,
+    page: Number(page),
+    filters: activeFilters,
   });
-
-  if (!isLoading && productsItems) {
-    console.log("Продукты:", productsItems);
-  }
 
   const { data: breadcrumbs } = useGetBreadcrumbsCategoriesQuery(
     products as string
@@ -40,17 +63,32 @@ export const ProductsPage = () => {
     if (breadcrumbs?.data.breadcrumb) {
       dispatch(setBreadcrumbs(breadcrumbs.data.breadcrumb));
     }
-  }, [breadcrumbs, dispatch]);
+  }, [breadcrumbs, dispatch, page]);
 
   return (
     <div className={s.container}>
-      <div className={s.products}>
-        {productsItems?.data.filters && (
-          <ProductsFilter filters={productsItems?.data.filters} />
-        )}
-        {productsItems?.data.products.data && (
-          <ProductContent products={productsItems?.data.products.data} />
-        )}
+      <div className={s.content}>
+        <Typography
+          variant={!isMobile ? "h1" : "h2"}
+          as={!isMobile ? "h1" : "h2"}
+        >
+          {breadcrumbs?.data.name}
+        </Typography>
+        <div className={s.products}>
+          {!isMobile
+            ? productsItems?.data.filters && (
+                <ProductsFilter filtersData={productsItems?.data.filters} />
+              )
+            : productsItems?.data.filters && (
+                <FilterMobile filtersData={productsItems?.data.filters} />
+              )}
+          {productsItems?.data.products.data && (
+            <ProductContent
+              products={productsItems?.data?.products}
+              page={page}
+            />
+          )}
+        </div>
       </div>
       <Banner />
       <FeedbackForm />

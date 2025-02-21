@@ -38,8 +38,6 @@ export const CategoryPage = () => {
     }
   }, [breadcrumbs, dispatch]);
 
-  console.log(breadcrumbs);
-  console.log("CategoryPage", subcategories);
   return (
     <div className={s.container}>
       {!isLoading && subcategories && breadcrumbs && (

@@ -12,19 +12,33 @@ import {
 } from "@/assets/icons";
 import { Product } from "@/api/products/products.types";
 import { useAddItemCartMutation } from "@/api/cart/cart.api";
-import { useAddInFavoriteMutation } from "@/api/products/products.api";
+import {
+  useAddInFavoriteMutation,
+  useDeleteFavoriteMutation,
+} from "@/api/products/products.api";
 import { showToast } from "@/components/ui/toast";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import clsx from "clsx";
+import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { TableDelliveryMobile } from "@/features/DeliveryAndPayment/DeliveryAndLifting/table-dellivery/TableDelliveryMobile/TableDelliveryMobile";
+import { TableLiftingMobile } from "@/features/DeliveryAndPayment/DeliveryAndLifting/table-lifting/table-lifting-mobile";
 
 type ProductInfoProps = {
   item: Product;
 };
 
 export const ProductInfo = ({ item }: ProductInfoProps) => {
+  const isMobile = useIsMobile("tablet");
   const [count, setCount] = useState(1);
   const [addItemCart] = useAddItemCartMutation();
   const [addInFavorite] = useAddInFavoriteMutation();
-
-  console.log(item);
+  const [deleteFavorite] = useDeleteFavoriteMutation();
+  const favoritesItems = useSelector(
+    (state: RootState) => state.favorites.favorites
+  );
+  const isFavorite = favoritesItems.includes(item.id);
+  const isDiscount = !!Number(item.discount.split(" ")[0]);
 
   const increment = () => {
     setCount((prev) => prev + 1);
@@ -50,13 +64,24 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
   };
 
   const handleAddFavorite = async () => {
-    try {
-      const res = await addInFavorite({ products: [item?.id] }).unwrap();
-      console.log(res);
-      showToast({ message: "Добавлено в избранное", variant: "success" });
-    } catch (err: unknown) {
-      console.error(err);
-      showToast({ message: "Ошибка", variant: "error" });
+    if (isFavorite) {
+      try {
+        const res = await deleteFavorite(item?.id).unwrap();
+        console.log(res);
+        showToast({ message: "Удалено из избранное", variant: "success" });
+      } catch (err: unknown) {
+        console.error(err);
+        showToast({ message: "Ошибка", variant: "error" });
+      }
+    } else {
+      try {
+        const res = await addInFavorite({ products: [item?.id] }).unwrap();
+        console.log(res);
+        showToast({ message: "Добавлено в избранное", variant: "success" });
+      } catch (err: unknown) {
+        console.error(err);
+        showToast({ message: "Ошибка", variant: "error" });
+      }
     }
   };
 
@@ -70,26 +95,12 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
               <span className={s.title}>Бренд</span>
               <span className={s.value}>{item.brand}</span>
             </Typography>
-            <Typography variant="body_3">
-              <span className={s.title}>Высота [мм]</span>
-              <span className={s.value}>78,0</span>
-            </Typography>
-            <Typography variant="body_3">
-              <span className={s.title}>Диаметр 1 [мм]</span>
-              <span className={s.value}>176</span>
-            </Typography>
-            <Typography variant="body_3">
-              <span className={s.title}>Диаметр 2 (мм)</span>
-              <span className={s.value}>142</span>
-            </Typography>
-            <Typography variant="body_3">
-              <span className={s.title}>Диаметр 3 (мм)</span>
-              <span className={s.value}>98</span>
-            </Typography>
-            <Typography variant="body_3">
-              <span className={s.title}>EAN</span>
-              <span className={s.value}>8010042116203</span>
-            </Typography>
+            {item.characteristics.map((characteristic) => (
+              <Typography variant="body_3" key={1}>
+                <span className={s.title}>{characteristic.name}</span>
+                <span className={s.value}>{characteristic.value}</span>
+              </Typography>
+            ))}
           </div>
         </div>
         <div className={s.priceContainer}>
@@ -99,12 +110,20 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
             decrement={decrement}
           />
           <div className={s.price}>
-            <Typography variant="h3" as="h3">
-              {item.discountedPrice}
-            </Typography>
-            <Typography variant="price_sale" as="span">
-              {item.price}
-            </Typography>
+            {isDiscount ? (
+              <>
+                <Typography variant="h3" as="h3">
+                  {item.discountedPrice}
+                </Typography>
+                <Typography variant="price_sale" as="span">
+                  {item.price}
+                </Typography>
+              </>
+            ) : (
+              <Typography variant={"h3"} as="h3" className={s.priceValue}>
+                {item.price}
+              </Typography>
+            )}
           </div>
           <div className={s.buttonsContainer}>
             <Button className={s.basketButton} onClick={handleAddItemInCart}>
@@ -112,7 +131,7 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
             </Button>
             <Button
               variant={"icon"}
-              className={s.iconButton}
+              className={clsx(s.iconButton, isFavorite && s.active)}
               onClick={handleAddFavorite}
             >
               <HeartIcon />
@@ -134,163 +153,175 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
           <Typography variant="h3" as="h3">
             Информация о доставке
           </Typography>
-          <table className={s.tableDelivery}>
-            <thead>
-              <tr>
-                <th className={s.tableTitle}>
-                  <Typography variant="body_5">Вид доставки</Typography>
-                </th>
-                <th className={s.tableTitle}>
-                  <Typography variant="body_5">Экспресс</Typography>
-                </th>
-                <th className={s.tableTitle}>
-                  <Typography variant="body_5">Стандартная</Typography>
-                </th>
-                <th className={s.tableTitle}>
-                  <Typography variant="body_5">Курьер</Typography>
-                </th>
-                <th className={s.tableTitle}>
-                  <Typography variant="body_5">Доставка</Typography>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <Typography as="th" variant="body_5" scope="row">
-                  <AddressLocationIcon /> Место
-                </Typography>
-                <td>
-                  <Typography variant="body_8">Город</Typography>
-                  <Typography variant="body_7">Ереван</Typography>
-                </td>
-                <td>
-                  <Typography variant="body_8">Город</Typography>
-                  <Typography variant="body_7">Ереван</Typography>
-                </td>
-                <td>
-                  <Typography variant="body_8">Город</Typography>
-                  <Typography variant="body_7">Ереван</Typography>
-                </td>
-                <td>
-                  <Typography variant="body_8">Город</Typography>
-                  <Typography variant="body_7">все регионы</Typography>
-                </td>
-              </tr>
-              <tr>
-                <Typography as="th" variant="body_5" scope="row">
-                  <ClockIcon /> Время
-                </Typography>
-                <td>
-                  <Typography variant="body_8">день в день</Typography>
-                  <Typography variant="body_7">в течение 2-4 часов</Typography>
-                </td>
-                <td>
-                  <Typography variant="body_7">в течение 1-2 дней</Typography>
-                </td>
-                <td>
-                  <Typography variant="body_8">день в день</Typography>
-                  <Typography variant="body_7">в течение 2 часов</Typography>
-                </td>
-                <td>
-                  <Typography variant="body_7">в течение 1-3 дней</Typography>
-                </td>
-              </tr>
-              <tr>
-                <Typography as="th" variant="body_5" scope="row">
-                  <DollarIcon />
-                  Цены
-                </Typography>
-                <td>
-                  <Typography variant="body_8">Начиная</Typography>
-                  <Typography variant="body_7">с 2000 драм</Typography>
-                </td>
-                <td>
-                  <Typography variant="body_7">Бесплатная</Typography>
-                </td>
-                <td>
-                  <Typography variant="body_7">1500 драм</Typography>
-                </td>
-                <td>
-                  <Typography variant="body_7">700 драм</Typography>
-                </td>
-              </tr>
-              <tr>
-                <Typography as="th" variant="body_5" scope="row">
-                  Особые примечания
-                </Typography>
-                <td>
-                  <Typography variant="body_5">-</Typography>
-                </td>
-                <td>
-                  <Typography variant="body_8">Исключение</Typography>
-                  <Typography variant="body_7">Цемент, гипсокартон</Typography>
-                </td>
-                <td>
-                  <Typography variant="body_8">Вес</Typography>
-                  <Typography variant="body_7">до 10 кг</Typography>
-                </td>
-                <td>
-                  <Typography variant="body_8">Вес</Typography>
-                  <Typography variant="body_7">до 5 кг</Typography>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          {!isMobile ? (
+            <table className={s.tableDelivery}>
+              <thead>
+                <tr>
+                  <th className={s.tableTitle}>
+                    <Typography variant="body_5">Вид доставки</Typography>
+                  </th>
+                  <th className={s.tableTitle}>
+                    <Typography variant="body_5">Экспресс</Typography>
+                  </th>
+                  <th className={s.tableTitle}>
+                    <Typography variant="body_5">Стандартная</Typography>
+                  </th>
+                  <th className={s.tableTitle}>
+                    <Typography variant="body_5">Курьер</Typography>
+                  </th>
+                  <th className={s.tableTitle}>
+                    <Typography variant="body_5">Доставка</Typography>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <Typography as="th" variant="body_5" scope="row">
+                    <AddressLocationIcon /> Место
+                  </Typography>
+                  <td>
+                    <Typography variant="body_8">Город</Typography>
+                    <Typography variant="body_7">Ереван</Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body_8">Город</Typography>
+                    <Typography variant="body_7">Ереван</Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body_8">Город</Typography>
+                    <Typography variant="body_7">Ереван</Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body_8">Город</Typography>
+                    <Typography variant="body_7">все регионы</Typography>
+                  </td>
+                </tr>
+                <tr>
+                  <Typography as="th" variant="body_5" scope="row">
+                    <ClockIcon /> Время
+                  </Typography>
+                  <td>
+                    <Typography variant="body_8">день в день</Typography>
+                    <Typography variant="body_7">
+                      в течение 2-4 часов
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body_7">в течение 1-2 дней</Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body_8">день в день</Typography>
+                    <Typography variant="body_7">в течение 2 часов</Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body_7">в течение 1-3 дней</Typography>
+                  </td>
+                </tr>
+                <tr>
+                  <Typography as="th" variant="body_5" scope="row">
+                    <DollarIcon />
+                    Цены
+                  </Typography>
+                  <td>
+                    <Typography variant="body_8">Начиная</Typography>
+                    <Typography variant="body_7">с 2000 драм</Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body_7">Бесплатная</Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body_7">1500 драм</Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body_7">700 драм</Typography>
+                  </td>
+                </tr>
+                <tr>
+                  <Typography as="th" variant="body_5" scope="row">
+                    Особые примечания
+                  </Typography>
+                  <td>
+                    <Typography variant="body_5">-</Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body_8">Исключение</Typography>
+                    <Typography variant="body_7">
+                      Цемент, гипсокартон
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body_8">Вес</Typography>
+                    <Typography variant="body_7">до 10 кг</Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body_8">Вес</Typography>
+                    <Typography variant="body_7">до 5 кг</Typography>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          ) : (
+            <TableDelliveryMobile />
+          )}
         </div>
         <div className={s.elem}>
           <Typography variant="h3" as="h3">
             Информация о подъёме
           </Typography>
-          <table className={s.tablePayment}>
-            <thead>
-              <tr>
-                <Typography as="th" variant={"body_6"} scope="row">
-                  Вид груза
-                </Typography>
-                <Typography variant={"body_6"} as="td">
-                  кг / штук
-                </Typography>
-                <Typography variant={"body_6"} as="td">
-                  цена
-                </Typography>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <Typography as="th" variant={"body_5"} scope="row">
-                  1 мешок
-                </Typography>
-                <Typography variant={"body_7"} as="td">
-                  25-50 кг
-                </Typography>
-                <Typography variant={"body_7"} as="td">
-                  100 драм/ этаж
-                </Typography>
-              </tr>
-              <tr>
-                <Typography as="th" variant={"body_5"} scope="row">
-                  Гипсокартон
-                </Typography>
-                <Typography variant={"body_7"} as="td">
-                  1200x2400 мм
-                </Typography>
-                <Typography variant={"body_7"} as="td">
-                  150 драм/ этаж
-                </Typography>
-              </tr>
-              <tr>
-                <Typography as="th" variant={"body_5"} scope="row">
-                  Профили
-                </Typography>
-                <Typography variant={"body_7"} as="td">
-                  20 штук
-                </Typography>
-                <Typography variant={"body_7"} as="td">
-                  150 драм/ этаж
-                </Typography>
-              </tr>
-            </tbody>
-          </table>
+          {!isMobile ? (
+            <table className={s.tablePayment}>
+              <thead>
+                <tr>
+                  <Typography as="th" variant={"body_6"} scope="row">
+                    Вид груза
+                  </Typography>
+                  <Typography variant={"body_6"} as="td">
+                    кг / штук
+                  </Typography>
+                  <Typography variant={"body_6"} as="td">
+                    цена
+                  </Typography>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <Typography as="th" variant={"body_5"} scope="row">
+                    1 мешок
+                  </Typography>
+                  <Typography variant={"body_7"} as="td">
+                    25-50 кг
+                  </Typography>
+                  <Typography variant={"body_7"} as="td">
+                    100 драм/ этаж
+                  </Typography>
+                </tr>
+                <tr>
+                  <Typography as="th" variant={"body_5"} scope="row">
+                    Гипсокартон
+                  </Typography>
+                  <Typography variant={"body_7"} as="td">
+                    1200x2400 мм
+                  </Typography>
+                  <Typography variant={"body_7"} as="td">
+                    150 драм/ этаж
+                  </Typography>
+                </tr>
+                <tr>
+                  <Typography as="th" variant={"body_5"} scope="row">
+                    Профили
+                  </Typography>
+                  <Typography variant={"body_7"} as="td">
+                    20 штук
+                  </Typography>
+                  <Typography variant={"body_7"} as="td">
+                    150 драм/ этаж
+                  </Typography>
+                </tr>
+              </tbody>
+            </table>
+          ) : (
+            <TableLiftingMobile />
+          )}
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
     position: absolute;
     top: 65px;
     left: 0;
-    z-index: 1000;
+    z-index: 1001;
     box-sizing: border-box;
     
     width: 685px;
@@ -23,6 +23,14 @@
 
     animation: fadeIn 0.3s ease-out;
 
+    @media (max-width: 768px) {
+        position: static;
+        width: 336px;
+        padding: 0;
+        gap: 12px;
+        border: none;
+    }
+
     &::-webkit-scrollbar{
         width: 5px;
     }
@@ -42,8 +50,13 @@
 }
 
 .inputSearch {
-    width: 685px !important;
+    width: 685px;
     height: 50px;
+    @media (max-width: 768px) {
+        width: 100vw;
+        border-radius: 0;
+        
+    }
 }
 
 .categoryContainer {
@@ -67,4 +80,9 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    @media (max-width: 768px) {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 24px 16px;
+    }
 }
