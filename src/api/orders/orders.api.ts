@@ -58,6 +58,7 @@ export const ordersApi = domixApi.injectEndpoints({
           method: "DELETE",
         }),
       }),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       checkOrder: builder.mutation<any, any>({
         query: ({ id, data }) => ({
           url: `/orders/${id}/check/details`,

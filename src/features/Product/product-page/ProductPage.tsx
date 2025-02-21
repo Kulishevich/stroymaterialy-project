@@ -7,7 +7,7 @@ import { FeedbackForm } from "@/components/feedback-form";
 import { useRouter } from "next/router";
 import {
   useGetProductQuery,
-  useGetRatingQuery,
+  // useGetRatingQuery,
 } from "@/api/products/products.api";
 import { SimilarProducts } from "@/components/similar-products";
 import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
@@ -26,7 +26,7 @@ export const ProductPage = ({}) => {
     }
   }, [product, router.isReady, router]);
 
-  const { data: rating } = useGetRatingQuery(product as string);
+  // const { data: rating } = useGetRatingQuery(product as string);
   const { data: prod, isLoading } = useGetProductQuery({
     id: product as string,
     perPage: 20,

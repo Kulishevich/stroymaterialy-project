@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { PayerDetails } from "../payer-details";
@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import {
   useChangeOrderMutation,
   useChangePayMethodMutation,
-  useCheckOrderMutation,
+  // useCheckOrderMutation,
   useGetOrderQuery,
 } from "@/api/orders/orders.api";
 import { useForm } from "react-hook-form";
@@ -69,7 +69,7 @@ export const PaymentPage = () => {
   const [changeOrder] = useChangeOrderMutation();
   const [changePayMethod] = useChangePayMethodMutation();
   const [clearCart] = useClearCartMutation();
-  const [checkOrder] = useCheckOrderMutation();
+  // const [checkOrder] = useCheckOrderMutation();
 
   const { data: order } = useGetOrderQuery({
     id: orderId as string,

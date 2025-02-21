@@ -1,7 +1,6 @@
 import React from "react";
 import s from "./Discount.module.scss";
 import Image from "next/image";
-import { Typography } from "../ui/typography";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { ContentItem } from "@/api/content/content.types";
 import Link from "next/link";
@@ -24,14 +23,6 @@ export const Discount = ({ discount }: DiscountProps) => {
           alt="banner"
         />
       </Link>
-      <div className={s.content}>
-        <Typography className={s.data} variant="body_5">
-          01 декабря-31 декабря 2024
-        </Typography>
-        <Typography variant="h3" as="h3">
-          Скидка 15% на всю продукцию Orio!
-        </Typography>
-      </div>
     </div>
   );
 };

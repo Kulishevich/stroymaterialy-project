@@ -10,7 +10,6 @@ export const CatalogWithBanners = () => {
   const isMobile = useIsMobile("tablet");
   const { data: content } = useGetContentQuery("discounts");
   const { data: banner } = useGetContentQuery("firstBanner");
-  // thirdBanner firstBanner secondBanner services discounts firstBanner
 
   return (
     <div className={s.container}>
