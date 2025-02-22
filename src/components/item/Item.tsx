@@ -142,11 +142,7 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
               >
                 {product.discountedPrice}
               </Typography>
-              <Typography
-                variant={vertical ? "body_3" : "body_6"}
-                className={s.sale}
-                as="span"
-              >
+              <Typography variant={vertical ? "body_3" : "body_6"} as="span">
                 {product.price}
               </Typography>
             </>

@@ -14,7 +14,7 @@ export const passwordScheme = () =>
     .string()
     .trim()
     .regex(/^\S*$/, { message: validation.password.noWhiteSpace })
-    .min(1, { message: validation.requiredField })
+    .min(6, { message: validation.password.minLength })
     .max(20, { message: validation.password.maxLength });
 
 export const confirmPasswordScheme = () => z.string().trim();

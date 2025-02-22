@@ -78,7 +78,8 @@ export const Select = forwardRef<
           ref={ref}
         >
           <RadixSelect.Value className={s.placeholder}>
-            {options.find((option) => option.id === value)?.name || placeHolder}
+            {options.find((option) => Number(option.id) === Number(value))
+              ?.name || placeHolder}
           </RadixSelect.Value>
           <RadixSelect.Icon asChild>
             <ArrowDownIcon className={s.icon} />

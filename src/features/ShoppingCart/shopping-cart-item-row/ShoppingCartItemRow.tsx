@@ -21,6 +21,7 @@ export const ShoppingCartItemRow = ({ item }: ShoppingCartItemRowProps) => {
   const [count, setCount] = useState(item.count);
   const [deleteItemCart] = useRemoveItemCartMutation();
   const [changeCount] = useChangeCounterItemCartMutation();
+  const isDiscount = !!Number(item.product.discount.split(" ")[0]);
 
   const hadleDeleteItemCart = async (idItem: string) => {
     try {
@@ -74,7 +75,18 @@ export const ShoppingCartItemRow = ({ item }: ShoppingCartItemRowProps) => {
         <Typography variant="body_3">{item.product.name}</Typography>
       </td>
       <td>
-        <Typography variant="body_2">{item.product.price}</Typography>
+        {isDiscount ? (
+          <>
+            <Typography variant="body_2" className={s.discountPrice}>
+              {item.product.discountedPrice}
+            </Typography>
+            <Typography variant="price_sale" as="span" className={s.oldPrice}>
+              {item.product.price}
+            </Typography>
+          </>
+        ) : (
+          <Typography variant="body_2">{item.product.price}</Typography>
+        )}
       </td>
       <td>
         <Counter

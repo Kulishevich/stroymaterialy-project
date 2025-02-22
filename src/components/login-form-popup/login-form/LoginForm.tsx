@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoginMutation } from "@/api/auth/auth.api";
 import { LoginArgs } from "@/api/auth/auth.types";
 import s from "./LoginForm.module.scss";
+import { showToast } from "@/components/ui/toast";
 
 type LoginFormProps = {
   setIsPasswordRecovery: (value: boolean) => void;
@@ -37,7 +38,7 @@ export const LoginForm = ({ setIsPasswordRecovery }: LoginFormProps) => {
       console.log(res);
       reset();
     } catch (err: unknown) {
-      console.log(err);
+      showToast({ message: err.data.message, variant: "error" });
     }
   });
 

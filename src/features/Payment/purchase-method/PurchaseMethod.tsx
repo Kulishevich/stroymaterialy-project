@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import s from "./PurchaseMethod.module.scss";
 import { Typography } from "@/components/ui/typography";
 import { RhombIcon } from "@/assets/icons";
-import { Button } from "@/components/ui/button";
 import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
-import { useGetRegionsQuery } from "@/api/regions/regions.api";
-import { Control, useForm } from "react-hook-form";
+import { Control } from "react-hook-form";
 import { ControlledSelect } from "@/components/ui/controlled-select";
-import { ControlledTextField } from "@/components/ui/controlled-textfiled";
-import { useCreateAddressMutation } from "@/api/addresses/address.api";
-import { addAddressScheme } from "@/features/Profile/add-address-popup/model/add-address-scheme";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { PaymentFormValues } from "../payment-page";
 import { Address } from "@/api/addresses/address.types";
 import { OptionsValue } from "@/components/ui/select";
 import { OrderTypes } from "@/api/orders/orders.types";
+import { AddNewAddress } from "../add-new-address";
 
 type PurchaseMethodProps = {
   addresses: Address[];
@@ -81,8 +76,6 @@ export const PurchaseMethod = ({
 }: PurchaseMethodProps) => {
   const isMobile = useIsMobile("tablet");
   const [isAddAddress, setIsAddAddress] = useState(false);
-  const { data: regions } = useGetRegionsQuery();
-  const [createAddress] = useCreateAddressMutation();
   const orderTypesOptions = deliveryMethodOptions.map((orderType, index) => {
     return {
       ...orderType,
@@ -107,53 +100,6 @@ export const PurchaseMethod = ({
       };
     });
 
-  const {
-    control,
-    formState: { isValid },
-    handleSubmit,
-    reset,
-    watch,
-  } = useForm({
-    defaultValues: {
-      regionId: "",
-      address: "",
-      details: "",
-    },
-    mode: "onTouched",
-    reValidateMode: "onChange",
-    resolver: zodResolver(addAddressScheme()),
-  });
-
-  useEffect(() => {
-    if (regions?.data?.length) {
-      reset(
-        (prev) => ({
-          ...prev,
-          regionId: regions.data[0].id,
-        }),
-        { keepDefaultValues: true }
-      );
-    }
-  }, [regions, reset]);
-
-  const addNewAddressForm = handleSubmit(async (data) => {
-    console.log(data);
-    try {
-      const res = await createAddress({
-        ...data,
-        regionId: Number(data.regionId),
-      }).unwrap();
-      console.log("add new address", res);
-      reset();
-      setIsAddAddress(false);
-    } catch (err: unknown) {
-      console.log(err);
-    }
-  });
-
-  const selectedRegion = watch("regionId"); // Проверим текущее значение
-  console.log(selectedRegion);
-
   return (
     <div className={s.payment}>
       <div className={s.title}>
@@ -168,55 +114,7 @@ export const PurchaseMethod = ({
         </Typography>
       </div>
       {isAddAddress ? (
-        <div className={s.addAddress}>
-          <Typography variant="h4" as="h4">
-            Добавить адрес
-          </Typography>
-          <div className={s.addressFields}>
-            <div className={s.inputContainer}>
-              <Typography variant="body_5">Округ</Typography>
-              {regions && (
-                <ControlledSelect
-                  control={control}
-                  key={regions?.data?.length}
-                  name="regionId"
-                  options={regions?.data}
-                />
-              )}
-            </div>
-            <div className={s.inputContainer}>
-              <Typography variant="body_5">Адрес доставки</Typography>
-              <ControlledTextField
-                control={control}
-                name="address"
-                placeholder="Адрес доставки"
-              />
-            </div>
-            <div className={s.inputContainer}>
-              <Typography variant="body_5">Детали адреса доставки</Typography>
-              <ControlledTextField
-                control={control}
-                name="details"
-                placeholder="Детали адреса доставки"
-              />
-            </div>
-          </div>
-          <Button
-            className={s.saveAdressButton}
-            onClick={addNewAddressForm}
-            disabled={!isValid}
-          >
-            Сохранить адрес
-          </Button>
-          <Typography
-            variant="button"
-            as="button"
-            onClick={() => setIsAddAddress(false)}
-            className={s.buttonBack}
-          >
-            Назад
-          </Typography>
-        </div>
+        <AddNewAddress setIsAddAddress={setIsAddAddress} />
       ) : (
         <div className={s.selectedAdress}>
           <Typography variant="h4" as="h4">

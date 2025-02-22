@@ -15,7 +15,7 @@ export const addressesApi = domixApi.injectEndpoints({
         }),
       }),
       createAddress: builder.mutation<void, CreateAddressArgs>({
-        invalidatesTags: ["Addresses"],
+        invalidatesTags: ["Addresses", "Order"],
         query: (args) => ({
           url: "/users/addresses",
           method: "POST",

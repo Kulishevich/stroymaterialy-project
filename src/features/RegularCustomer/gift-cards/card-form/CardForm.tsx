@@ -35,7 +35,7 @@ export const CardForm = () => {
       const res = await createGiftCard(data).unwrap();
       console.log(res);
       reset();
-      showToast({ message: "карта создана", variant: "success" });
+      showToast({ message: "Карта создана", variant: "success" });
     } catch (err: unknown) {
       console.error(err);
       showToast({ message: "Ошибка", variant: "error" });

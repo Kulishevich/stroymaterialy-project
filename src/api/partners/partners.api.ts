@@ -19,7 +19,7 @@ export const partnersApi = domixApi.injectEndpoints({
       createPartnerExistUser: builder.mutation<CreatePartnerResponse, FormData>(
         {
           query: (formData) => ({
-            url: "/parners/users",
+            url: "partners/users",
             method: "POST",
             body: formData,
           }),

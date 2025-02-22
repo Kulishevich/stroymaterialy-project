@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { PayerDetails } from "../payer-details";
@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import {
   useChangeOrderMutation,
   useChangePayMethodMutation,
-  // useCheckOrderMutation,
+  useCheckOrderMutation,
   useGetOrderQuery,
 } from "@/api/orders/orders.api";
 import { useForm } from "react-hook-form";
@@ -69,7 +69,7 @@ export const PaymentPage = () => {
   const [changeOrder] = useChangeOrderMutation();
   const [changePayMethod] = useChangePayMethodMutation();
   const [clearCart] = useClearCartMutation();
-  // const [checkOrder] = useCheckOrderMutation();
+  const [checkOrder] = useCheckOrderMutation();
 
   const { data: order } = useGetOrderQuery({
     id: orderId as string,
@@ -103,26 +103,28 @@ export const PaymentPage = () => {
   });
 
   const payerTypeField = watch("payerType");
-  // const orderTypeId = watch("orderType");
-  // const addressId = watch("addressId");
-  // console.log("OrderTypeId", orderTypeId);
-  // console.log("addressId:", addressId);
-  // useEffect(() => {
-  //   const getPrice = async () => {
-  //     try {
-  //       const res = await checkOrder({
-  //         id: orderId,
-  //         data: { orderTypeId: orderTypeId, addressId: addressId },
-  //       }).unwrap();
 
-  //       console.log("check:", res);
-  //     } catch (err: unknown) {
-  //       console.log(err);
-  //     }
-  //   };
+  const orderTypeId = watch("orderType");
+  const addressId = watch("addressId");
+  console.log("OrderTypeId", orderTypeId);
+  console.log("addressId:", addressId);
 
-  //   getPrice();
-  // }, [orderTypeId]);
+  useEffect(() => {
+    const getPrice = async () => {
+      try {
+        const res = await checkOrder({
+          id: orderId,
+          data: { orderTypeId: orderTypeId, addressId: addressId },
+        }).unwrap();
+
+        console.log("check:", res);
+      } catch (err: unknown) {
+        console.log(err);
+      }
+    };
+
+    getPrice();
+  }, [orderTypeId]);
 
   const formHandler = handleSubmit(async (data) => {
     const customer = {

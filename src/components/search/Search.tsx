@@ -44,10 +44,15 @@ export const Search = () => {
     debouncedSearch(searchQuery);
   }, [searchQuery]);
 
-  const { data } = useGetSearchItemsQuery({
-    keyword: debouncedQuery,
-    perPage: "10",
-  });
+  const { data } = useGetSearchItemsQuery(
+    {
+      keyword: debouncedQuery,
+      perPage: "10",
+    },
+    {
+      skip: !debouncedQuery,
+    }
+  );
 
   return (
     <>

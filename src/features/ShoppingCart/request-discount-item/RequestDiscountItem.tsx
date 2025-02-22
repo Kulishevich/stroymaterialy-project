@@ -1,52 +1,23 @@
 import { Counter } from "@/components/counter";
-import { TextField } from "@/components/ui/text-field";
 import { Typography } from "@/components/ui/typography";
 import Image from "next/image";
-import React, { useEffect, useMemo, useState } from "react";
-
-import s from "./RequestDiscountItem.module.scss";
 import { CartList } from "@/api/cart/cart.types";
-import { debounce } from "lodash";
-import { useChangeCounterItemCartMutation } from "@/api/cart/cart.api";
+import { ControlledTextField } from "@/components/ui/controlled-textfiled";
+import { Controller } from "react-hook-form";
+import s from "./RequestDiscountItem.module.scss";
 
 type RequestDiscountItemProps = {
   order: CartList;
+  index: number;
+  control: any;
 };
 
-export const RequestDiscountItem = ({ order }: RequestDiscountItemProps) => {
-  const { count, product, total } = order;
-  const [countCurrent, setCountCurrent] = useState(count);
-  const [changeCount] = useChangeCounterItemCartMutation();
-
-  const debouncedChangeCount = useMemo(
-    () =>
-      debounce((id, countCurrent) => {
-        changeCount({ id, count: countCurrent });
-      }, 500),
-    [changeCount]
-  );
-
-  const increment = () => {
-    setCountCurrent((prev) => {
-      const newCount = prev + 1;
-      debouncedChangeCount(product.id, newCount);
-      return newCount;
-    });
-  };
-
-  const decrement = () => {
-    setCountCurrent((prev) => {
-      const newCount = prev - 1;
-      debouncedChangeCount(product.id, newCount);
-      return newCount;
-    });
-  };
-
-  useEffect(() => {
-    return () => {
-      debouncedChangeCount.cancel();
-    };
-  }, [debouncedChangeCount]);
+export const RequestDiscountItem = ({
+  order,
+  index,
+  control,
+}: RequestDiscountItemProps) => {
+  const { product, total } = order;
 
   return (
     <div key={product.id} className={s.order}>
@@ -61,14 +32,24 @@ export const RequestDiscountItem = ({ order }: RequestDiscountItemProps) => {
       </div>
       <div className={s.myPrice}>
         <Typography>Моя предложенная цена (общая сумма)</Typography>
-        <TextField placeholder={total} />
+        <ControlledTextField
+          placeholder={total}
+          control={control}
+          name={`orders.${index}.price`}
+        />
       </div>
       <div className={s.counter}>
         <Typography>Количество (шт)</Typography>
-        <Counter
-          countCurrent={countCurrent}
-          increment={increment}
-          decrement={decrement}
+        <Controller
+          control={control}
+          name={`orders.${index}.count`}
+          render={({ field }) => (
+            <Counter
+              countCurrent={field.value}
+              increment={() => field.onChange(field.value + 1)}
+              decrement={() => field.onChange(field.value - 1)}
+            />
+          )}
         />
       </div>
     </div>

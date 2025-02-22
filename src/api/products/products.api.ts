@@ -2,7 +2,9 @@ import { domixApi } from "../domix.api";
 import {
   addInFavoriteArgs,
   addInFavoriteResponse,
+  CreatePriceOffer,
   GetFavotireResponse,
+  PriceOffer,
   Product,
   RequestParams,
   ResponseProductsByCategory,
@@ -73,6 +75,18 @@ export const productsApi = domixApi.injectEndpoints({
           body: { ...args },
         }),
       }),
+      getPriceOffers: builder.query<{ data: PriceOffer[] }, void>({
+        query: () => ({
+          url: "/products/price-requests",
+        }),
+      }),
+      createPriceOffer: builder.mutation<void, CreatePriceOffer[]>({
+        query: (body) => ({
+          url: "/products/price-requests",
+          method: "POST",
+          body: { items: body },
+        }),
+      }),
     };
   },
 });
@@ -86,4 +100,6 @@ export const {
   useDeleteFavoriteMutation,
   useGetRatingQuery,
   useAddRatingMutation,
+  useGetPriceOffersQuery,
+  useCreatePriceOfferMutation,
 } = productsApi;

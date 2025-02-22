@@ -7,19 +7,16 @@ import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { useTranslations } from "next-intl";
 import s from "./MySuggestedPricesCard.module.scss";
+import { PriceOffer } from "@/api/products/products.types";
 
 type MySuggestedPricesCard = {
-  product: {
-    id: string;
-    image: string;
-    title: string;
-    price: string;
-  };
+  product: PriceOffer;
 };
 
 export const MySuggestedPricesCard = ({ product }: MySuggestedPricesCard) => {
   const t = useTranslations("profile.my_suggested_prices");
   const [count, setCount] = useState(1);
+  const isDiscount = !!Number(product.product.discount.split(" ")[0]);
 
   const increment = () => {
     setCount((prev) => prev + 1);
@@ -35,25 +32,30 @@ export const MySuggestedPricesCard = ({ product }: MySuggestedPricesCard) => {
     <div className={s.card}>
       <div className={s.imageContainer}>
         <Image
-          src={product.image}
+          src={product.product.images.main.src}
           width={!isMobile ? 120 : 100}
           height={!isMobile ? 120 : 100}
           alt="product card"
           className={s.image}
         />
-        <Typography variant="body_7">{product.price}</Typography>
+        <Typography variant="body_7">
+          {isDiscount ? product.product.discountedPrice : product.product.price}
+        </Typography>
       </div>
       <div className={s.productInfo}>
         <div className={s.container}>
           <Typography variant="body_5">{t("product")}</Typography>
-          <Typography variant="body_6">{product.title}</Typography>
+          <Typography variant="body_6">{product.product.name}</Typography>
         </div>
         <div className={s.container}>
           <Typography variant="body_5">{t("my_suggested_price")}</Typography>
           <div className={s.flexContainer}>
             <div className={s.container}>
               <Typography variant="body_8">{t("price")}</Typography>
-              <TextField defaultValue={product.price} className={s.input} />
+              <TextField
+                defaultValue={product.requestPrice}
+                className={s.input}
+              />
             </div>
             <div className={s.container}>
               <Typography variant="body_8">{t("quantity")}</Typography>
@@ -68,7 +70,13 @@ export const MySuggestedPricesCard = ({ product }: MySuggestedPricesCard) => {
         </div>
         <div className={s.container}>
           <Typography variant="body_5">{t("status")}</Typography>
-          <Typography variant="body_6">{t("sent")}</Typography>
+          <Typography variant="body_6">
+            {product.isApproved
+              ? "Подтверждено"
+              : product.isDeclined
+              ? "Отклонено"
+              : "Отправленно"}
+          </Typography>
         </div>
 
         <Button className={s.button}>{t("buy")}</Button>

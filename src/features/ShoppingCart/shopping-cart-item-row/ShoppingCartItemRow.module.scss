@@ -19,3 +19,11 @@
 .trashButton {
     outline: none   ;
 }
+
+.discountPrice {
+    color: var(--color-accent-red);
+}
+.oldPrice {
+    color: var(--color-grey-2);
+    text-decoration: line-through;
+}

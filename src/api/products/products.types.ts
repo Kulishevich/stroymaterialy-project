@@ -136,3 +136,26 @@ export type DiscountDetailsType = {
   isFreeWorkerService: boolean;
   level: number;
 };
+
+export type PriceOffer = {
+  approvedAt: string | null;
+  approvedBy: string | null;
+  counterMessage: string | null;
+  counterRequestPrice: string | null;
+  declinedAt: string | null;
+  declinedBy: string | null;
+  id: number;
+  isApproved: boolean;
+  isDeclined: boolean;
+  message: string | null;
+  product: Product;
+  requestCount: string;
+  requestPrice: string;
+  requestedAt: string;
+};
+
+export type CreatePriceOffer = {
+  count: number;
+  price: number;
+  productId: string;
+};
