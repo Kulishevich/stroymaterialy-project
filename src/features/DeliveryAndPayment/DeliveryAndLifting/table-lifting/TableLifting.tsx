@@ -65,6 +65,17 @@ export const TableLifting = () => {
                 {t("row3.price")}
               </Typography>
             </tr>
+            <tr>
+              <Typography as="th" variant={"h4"} scope="row">
+                {t("row4.name")}
+              </Typography>
+              <Typography variant={"body_2"} as="td">
+                {t("row4.size")}
+              </Typography>
+              <Typography variant={"body_2"} as="td">
+                {t("row4.price")}
+              </Typography>
+            </tr>
           </tbody>
         </table>
       ) : (

@@ -5,6 +5,7 @@ import { MainLayout } from "@/components/layouts/main-layout";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import { IntlProviderComponent } from "../providers/IntlProvider";
+import LocaleFix from "@/components/locale/LocaleFix";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <IntlProviderComponent>
           <MainLayout>
             <Component {...pageProps} />
+            <LocaleFix />
           </MainLayout>
         </IntlProviderComponent>
       </Provider>

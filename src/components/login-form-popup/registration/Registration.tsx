@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
 import { useSignUpMutation } from "@/api/auth/auth.api";
 import { validation } from "@/shared/validation/validation.errors";
-import { showToast } from "@/components/ui/toast";
+// import { showToast } from "@/components/ui/toast";
 
 export const Registration = () => {
   const [signUp] = useSignUpMutation();
@@ -53,7 +53,8 @@ export const Registration = () => {
       console.log(resData);
       reset();
     } catch (err: unknown) {
-      showToast({ message: err.data.message, variant: "error" });
+      // showToast({ message: err.data.message, variant: "error" });
+      console.error(err);
     }
   });
 

@@ -13,6 +13,7 @@ import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/Con
 import { Control } from "react-hook-form";
 import { PaymentFormValues } from "../payment-page";
 import { PaymentMethodsType } from "@/api/orders/orders.types";
+import { useTranslations } from "next-intl";
 
 const icons = [
   {
@@ -41,7 +42,7 @@ export const PaymentMethod = ({
   control,
   paymentMethod,
 }: PaymentMethodProps) => {
-  console.log(paymentMethod);
+  const t = useTranslations("payment.payment_method");
 
   const radioOptions = paymentMethod?.map((option, index) => {
     return {
@@ -61,7 +62,7 @@ export const PaymentMethod = ({
           <RhombIcon />
         </div>
         <Typography variant="h3" as="h3">
-          Способ оплаты
+          {t("title")}
         </Typography>
       </div>
       {!!radioOptions && (

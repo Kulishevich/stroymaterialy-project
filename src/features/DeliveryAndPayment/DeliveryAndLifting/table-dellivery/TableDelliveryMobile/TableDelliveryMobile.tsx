@@ -27,7 +27,7 @@ export const TableDelliveryMobile = () => {
         description: t("express_details"),
       },
       details: {
-        place: { title: t("city"), value: t("yerevan") },
+        place: { title: "", value: t("yerevan") },
         time: { title: t("same_day"), value: t("within_2_4_hours") },
         price: { title: t("starting_from"), value: t("from_2000_dram") },
         notes: { title: "", value: "-" },
@@ -40,7 +40,7 @@ export const TableDelliveryMobile = () => {
         description: t("standard_details"),
       },
       details: {
-        place: { title: t("city"), value: t("yerevan") },
+        place: { title: "", value: t("yerevan") },
         time: { title: "", value: t("within_1_2_days") },
         price: { title: "", value: t("free") },
         notes: { title: t("exception"), value: t("cement_gypsum") },
@@ -53,7 +53,7 @@ export const TableDelliveryMobile = () => {
         description: t("courier_details"),
       },
       details: {
-        place: { title: t("city"), value: t("yerevan") },
+        place: { title: "", value: t("yerevan") },
         time: { title: t("same_day"), value: t("within_2_hours") },
         price: { title: "", value: t("1500_dram") },
         notes: { title: t("weight_limit"), value: t("up_to_10kg") },
@@ -66,7 +66,7 @@ export const TableDelliveryMobile = () => {
         description: t("post_delivery_details"),
       },
       details: {
-        place: { title: t("city"), value: t("all_regions") },
+        place: { title: "", value: t("all_regions") },
         time: { title: "", value: t("within_1_3_days") },
         price: { title: "", value: t("700_dram") },
         notes: { title: t("weight_limit"), value: t("up_to_5kg") },

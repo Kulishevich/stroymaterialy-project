@@ -62,19 +62,15 @@ export const TableDelivery = () => {
                 <AddressLocationIcon /> {t("location")}
               </Typography>
               <td>
-                <Typography variant="body_4">{t("city")}</Typography>
                 <Typography variant="body_2">{t("yerevan")}</Typography>
               </td>
               <td>
-                <Typography variant="body_4">{t("city")}</Typography>
                 <Typography variant="body_2">{t("yerevan")}</Typography>
               </td>
               <td>
-                <Typography variant="body_4">{t("city")}</Typography>
                 <Typography variant="body_2">{t("yerevan")}</Typography>
               </td>
               <td>
-                <Typography variant="body_4">{t("city")}</Typography>
                 <Typography variant="body_2">{t("all_regions")}</Typography>
               </td>
             </tr>

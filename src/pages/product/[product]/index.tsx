@@ -1,5 +1,20 @@
+import { Product } from "@/api/products/products.types";
 import { ProductPage } from "@/features/Product/product-page";
+import { getProduct } from "@/new-api/getProduct";
+import { GetServerSideProps } from "next";
 
-export default function ProductPageDynamic() {
-  return <ProductPage />;
+export default function ProductPageDynamic({
+  productItem,
+}: {
+  productItem: { data: Product };
+}) {
+  return <ProductPage product={productItem} />;
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { product } = context.params as { product: string };
+
+  const productItem = await getProduct(product);
+
+  return { props: { productItem } };
+};

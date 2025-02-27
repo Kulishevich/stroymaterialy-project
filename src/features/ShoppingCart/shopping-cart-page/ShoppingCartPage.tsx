@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { RequestDiscountPopup } from "../request-discount-popup";
@@ -10,15 +10,28 @@ import { useCreateOrderMutation } from "@/api/orders/orders.api";
 import { useRouter } from "next/router";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { Item } from "@/components/item";
+import { useTranslations } from "next-intl";
+import { CartResponse } from "@/api/cart/cart.types";
 
-export const ShoppingCartPage = () => {
+export const ShoppingCart = ({ cartData }: { cartData: CartResponse }) => {
+  const t = useTranslations("cart");
+  const [cartState, setCartState] = useState(cartData);
   const router = useRouter();
   const isMobile = useIsMobile("tablet");
   const [isOpen, setIsOpen] = useState(false);
-  const { data: cart, error } = useGetCartQuery();
+
+  const { data: cart } = useGetCartQuery(undefined, {
+    skip: !cartState,
+  });
+
   const [clearCart] = useClearCartMutation();
-  console.log("error:", error);
   const [createOrder] = useCreateOrderMutation();
+
+  useEffect(() => {
+    if (cart) {
+      setCartState(cart);
+    }
+  }, [cart]);
 
   const handleCreateOrder = async () => {
     const fetchData = {
@@ -48,14 +61,10 @@ export const ShoppingCartPage = () => {
     }
   };
 
-  if (cart) {
-    console.log("Корзина:", cart.data);
-  }
-
   return (
     <div className={s.container}>
       <Typography variant="h1" as="h1">
-        Корзина
+        {t("title")}
       </Typography>
       <div className={s.content}>
         {!isMobile ? (
@@ -64,22 +73,22 @@ export const ShoppingCartPage = () => {
               <thead>
                 <tr>
                   <Typography variant="h4" as="th" className={s.title}>
-                    Товар
+                    {t("product")}
                   </Typography>
                   <Typography variant="h4" as="th">
-                    Цена
+                    {t("price")}
                   </Typography>
                   <Typography variant="h4" as="th">
-                    Количество
+                    {t("quantity")}
                   </Typography>
                   <Typography variant="h4" as="th">
-                    Сумма
+                    {t("sum")}
                   </Typography>
                   <Typography variant="h4" as="th"></Typography>
                 </tr>
               </thead>
               <tbody>
-                {cart?.data.list.map((item) => (
+                {cartState?.data.list.map((item) => (
                   <ShoppingCartItemRow item={item} key={item.product.id} />
                 ))}
               </tbody>
@@ -90,13 +99,13 @@ export const ShoppingCartPage = () => {
               onClick={handleClearCart}
               className={s.clearButton}
             >
-              Очистить корзину
+              {t("clearCart")}
             </Typography>
           </div>
         ) : (
           <>
             <div className={s.mobileContent}>
-              {cart?.data.list.map((item) => (
+              {cartState?.data.list.map((item) => (
                 <Item product={item.product} key={item.product.id} />
               ))}
             </div>
@@ -106,34 +115,34 @@ export const ShoppingCartPage = () => {
               onClick={handleClearCart}
               className={s.clearButton}
             >
-              Очистить корзину
+              {t("clearCart")}
             </Typography>
           </>
         )}
         <div className={s.price}>
           <div className={s.total}>
-            <Typography variant="body_3">Цена</Typography>
-            <Typography variant="body_3">{cart?.data.subtotal}</Typography>
+            <Typography variant="body_3"> {t("price")}</Typography>
+            <Typography variant="body_3">{cartState?.data.subtotal}</Typography>
           </div>
           <div className={s.total}>
-            <Typography variant="body_3">Скидка</Typography>
-            <Typography variant="body_3">{cart?.data.discount}</Typography>
+            <Typography variant="body_3">{t("discount")}</Typography>
+            <Typography variant="body_3">{cartState?.data.discount}</Typography>
           </div>
           <div className={s.total}>
-            <Typography variant="h4">Сумма</Typography>
-            <Typography variant="h4">{cart?.data.total}</Typography>
+            <Typography variant="h4">{t("total")}</Typography>
+            <Typography variant="h4">{cartState?.data.total}</Typography>
           </div>
           <div className={s.buttonsContainer}>
             <Button fullWidth={true} onClick={handleCreateOrder}>
-              Продолжить
+              {t("continue")}
             </Button>
             <Button
               fullWidth={true}
               variant="secondary"
               onClick={() => setIsOpen(true)}
-              disabled={!cart?.data.list.length}
+              disabled={!cartState?.data.list.length}
             >
-              Запросить скидку
+              {t("requestDiscount")}
             </Button>
           </div>
         </div>
@@ -142,7 +151,7 @@ export const ShoppingCartPage = () => {
         <RequestDiscountPopup
           isOpen={isOpen}
           setIsOpen={setIsOpen}
-          orders={cart?.data.list}
+          orders={cartState?.data.list}
         />
       )}
     </div>

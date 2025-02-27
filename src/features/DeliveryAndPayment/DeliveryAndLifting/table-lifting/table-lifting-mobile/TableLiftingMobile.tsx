@@ -27,6 +27,11 @@ export const TableLiftingMobile = () => {
       value: t("row3.size"),
       price: t("row3.price"),
     },
+    {
+      title: t("row4.name"),
+      value: t("row4.size"),
+      price: t("row4.price"),
+    },
   ];
 
   return (

@@ -8,9 +8,14 @@ import { CategoryElem } from "../category-elem";
 type ActiveCategoryProps = {
   id: string;
   title: string;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const ActiveCategory = ({ id, title }: ActiveCategoryProps) => {
+export const ActiveCategory = ({
+  id,
+  title,
+  setIsOpen,
+}: ActiveCategoryProps) => {
   const {
     data: categories,
     error,
@@ -32,7 +37,11 @@ export const ActiveCategory = ({ id, title }: ActiveCategoryProps) => {
       <div className={s.contentContainer}>
         {categories &&
           categories.data.map((category) => (
-            <CategoryElem key={category.id} category={category} />
+            <CategoryElem
+              key={category.id}
+              category={category}
+              setIsOpen={setIsOpen}
+            />
           ))}
       </div>
     </div>

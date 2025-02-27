@@ -6,6 +6,7 @@ import s from "./PayerDetails.module.scss";
 import { ControlledSelect } from "@/components/ui/controlled-select";
 import { Control } from "react-hook-form";
 import { PaymentFormValues } from "../payment-page";
+import { useTranslations } from "next-intl";
 
 type PayerDetailsProps = {
   control: Control<PaymentFormValues>;
@@ -21,6 +22,8 @@ export const PayerDetails = ({
   payerType,
   payerTypeField,
 }: PayerDetailsProps) => {
+  const t = useTranslations("payment.payer_details");
+
   return (
     <div className={s.payment}>
       <div className={s.title}>
@@ -31,12 +34,12 @@ export const PayerDetails = ({
           <RhombIcon />
         </div>
         <Typography variant="h3" as="h3">
-          Данные плательщика
+          {t("title")}
         </Typography>
       </div>
       <div className={s.inputsContainer}>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Тип плательщика</Typography>
+          <Typography variant="body_5">{t("payer_type")}</Typography>
           <ControlledSelect
             control={control}
             name="payerType"
@@ -44,34 +47,34 @@ export const PayerDetails = ({
           />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Имя</Typography>
+          <Typography variant="body_5">{t("first_name")}</Typography>
           <ControlledTextField
             control={control}
             name="firstName"
             className={s.input}
-            placeholder="Имя"
+            placeholder={t("first_name")}
           />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Фамилия</Typography>
+          <Typography variant="body_5">{t("last_name")}</Typography>
           <ControlledTextField
             control={control}
             name="lastName"
             className={s.input}
-            placeholder="Фамилия"
+            placeholder={t("last_name")}
           />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Электронный адрес</Typography>
+          <Typography variant="body_5">{t("email")}</Typography>
           <ControlledTextField
             control={control}
             name="email"
             className={s.input}
-            placeholder="Электронный адрес"
+            placeholder={t("email")}
           />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Телефон</Typography>
+          <Typography variant="body_5">{t("phone")}</Typography>
           <ControlledTextField
             control={control}
             name="phone"
@@ -81,12 +84,12 @@ export const PayerDetails = ({
         </div>
         {payerTypeField === "entity" && (
           <div className={s.inputContainer}>
-            <Typography variant="body_5">ИНН</Typography>
+            <Typography variant="body_5">{t("tin")}</Typography>
             <ControlledTextField
               control={control}
               name="tin"
               className={s.input}
-              placeholder="ИНН"
+              placeholder={t("tin")}
             />
           </div>
         )}

@@ -11,6 +11,7 @@ import { Address } from "@/api/addresses/address.types";
 import { OptionsValue } from "@/components/ui/select";
 import { OrderTypes } from "@/api/orders/orders.types";
 import { AddNewAddress } from "../add-new-address";
+import { useTranslations } from "next-intl";
 
 type PurchaseMethodProps = {
   addresses: Address[];
@@ -18,64 +19,58 @@ type PurchaseMethodProps = {
   deliveryTimeOptions: OptionsValue[];
   deliveryDataOptions: OptionsValue[];
   orderTypes: OrderTypes[];
+  orderTypeId: string;
 };
 
-const deliveryMethodOptions = [
-  {
-    title: <Typography variant="body_7">Стандартная доставка</Typography>,
-    content: (
-      <>
-        <Typography variant="body_6">
-          до 2 дней (не распространяется на цемент и гипсокартон)
-        </Typography>
-        <Typography variant="body_5">Бесплатно</Typography>
-      </>
-    ),
-  },
-  {
-    title: <Typography variant="body_7">Экспресс доставка</Typography>,
-    content: (
-      <>
-        <Typography variant="body_6">
-          день в день (в течение 2-4 часов)
-        </Typography>
-        <Typography variant="body_5">от 2000 драм</Typography>
-      </>
-    ),
-  },
-  {
-    title: <Typography variant="body_7">Курьер Мопед (до 10 кг)</Typography>,
-    content: (
-      <>
-        <Typography variant="body_6">
-          день в день (в течение 2 часов)
-        </Typography>
-        <Typography variant="body_5">1500 драм</Typography>
-      </>
-    ),
-  },
-  {
-    title: (
-      <Typography variant="body_7">Айпост Доставка (вес до 5 кг)</Typography>
-    ),
-    content: (
-      <>
-        <Typography variant="body_6">до 3 дней</Typography>
-        <Typography variant="body_5">700 драм</Typography>
-      </>
-    ),
-  },
-];
-
 export const PurchaseMethod = ({
+  orderTypeId,
   addresses,
   controlForm,
   deliveryTimeOptions,
   deliveryDataOptions,
   orderTypes,
 }: PurchaseMethodProps) => {
+  const t = useTranslations("payment.purchase_method");
   const isMobile = useIsMobile("tablet");
   const [isAddAddress, setIsAddAddress] = useState(false);
+  const deliveryMethodOptions = [
+    {
+      title: <Typography variant="body_7">{t("standard.title")}</Typography>,
+      content: (
+        <>
+          <Typography variant="body_6">{t("standard.description")}</Typography>
+          <Typography variant="body_5">{t("standard.price")}</Typography>
+        </>
+      ),
+    },
+    {
+      title: <Typography variant="body_7">{t("express.title")}</Typography>,
+      content: (
+        <>
+          <Typography variant="body_6">{t("express.description")}</Typography>
+          <Typography variant="body_5">{t("express.price")}</Typography>
+        </>
+      ),
+    },
+    {
+      title: <Typography variant="body_7">{t("moped.title")}</Typography>,
+      content: (
+        <>
+          <Typography variant="body_6">{t("moped.description")}</Typography>
+          <Typography variant="body_5">{t("moped.price")}</Typography>
+        </>
+      ),
+    },
+    {
+      title: <Typography variant="body_7">{t("aipost.title")}</Typography>,
+      content: (
+        <>
+          <Typography variant="body_6">{t("aipost.description")}</Typography>
+          <Typography variant="body_5">{t("aipost.price")}</Typography>
+        </>
+      ),
+    },
+  ];
   const orderTypesOptions = deliveryMethodOptions.map((orderType, index) => {
     return {
       ...orderType,
@@ -83,7 +78,6 @@ export const PurchaseMethod = ({
       value: orderTypes[index].name,
     };
   });
-  console.log("Order Types:", orderTypesOptions);
 
   const radioOptions =
     !!addresses?.length &&
@@ -110,7 +104,7 @@ export const PurchaseMethod = ({
           <RhombIcon />
         </div>
         <Typography variant="h3" as="h3">
-          Способ покупки
+          {t("title")}
         </Typography>
       </div>
       {isAddAddress ? (
@@ -118,7 +112,7 @@ export const PurchaseMethod = ({
       ) : (
         <div className={s.selectedAdress}>
           <Typography variant="h4" as="h4">
-            Адрес:
+            {t("address")}
           </Typography>
           {radioOptions && (
             <ControlledRadioCards
@@ -132,18 +126,18 @@ export const PurchaseMethod = ({
             as="button"
             onClick={() => setIsAddAddress(true)}
           >
-            Добавить адрес
+            {t("add_address_button")}
           </Typography>
         </div>
       )}
       <div className={s.deliveryMethod}>
         <div className={s.deliveryTitle}>
           <Typography variant="h4" as="h4">
-            Способ доставки:
+            {t("delivery_method.title")}
           </Typography>
           {!isMobile && (
             <Typography variant="body_4" className={s.button}>
-              Подробнее о доставке
+              {t("delivery_method.details_button")}
             </Typography>
           )}
         </div>
@@ -154,21 +148,23 @@ export const PurchaseMethod = ({
             name="orderType"
           />
         </div>
-        <div className={s.deliveryTimeContainer}>
-          <ControlledSelect
-            control={controlForm}
-            name="deliveryTime"
-            options={deliveryTimeOptions}
-          />
-          <ControlledSelect
-            control={controlForm}
-            name="deliveryData"
-            options={deliveryDataOptions}
-          />
-        </div>
+        {!!orderTypeId && orderTypeId !== "15" && (
+          <div className={s.deliveryTimeContainer}>
+            <ControlledSelect
+              control={controlForm}
+              name="deliveryTime"
+              options={deliveryTimeOptions}
+            />
+            <ControlledSelect
+              control={controlForm}
+              name="deliveryData"
+              options={deliveryDataOptions}
+            />
+          </div>
+        )}
         {isMobile && (
           <Typography variant="body_4" className={s.button}>
-            Подробнее о доставке
+            {t("delivery_method.details_button")}
           </Typography>
         )}
       </div>

@@ -4,10 +4,10 @@ import { ArrowRightIcon } from "@/assets/icons";
 import { Typography } from "../../../components/ui/typography";
 import clsx from "clsx";
 import { DeliveryAndLifting } from "../DeliveryAndLifting";
-import { PaymentMethod } from "../PaymentMethod";
 import { TermsOfService } from "../TermsOfService";
 import { LiftingConditions } from "../LiftingConditions";
 import { useTranslations } from "next-intl";
+import { PaymentMethod } from "../PaymentMethod";
 
 export const DeliveryAndPayment = () => {
   const t = useTranslations("delivery_and_payment");

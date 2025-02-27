@@ -3,8 +3,17 @@ import s from "./BestSellingProducts.module.scss";
 import { Typography } from "../ui/typography";
 import { Item } from "../item";
 import { Slider } from "../slider";
+import { Product } from "@/api/products/products.types";
 
-export const BestSellingProducts = ({ bestSellingProducts }) => {
+type BestSellingProductsProps = {
+  bestSellingProducts: {
+    data: Product[];
+  };
+};
+
+export const BestSellingProducts = ({
+  bestSellingProducts,
+}: BestSellingProductsProps) => {
   return (
     <div className={s.container}>
       <Typography variant="h2" as="h2">

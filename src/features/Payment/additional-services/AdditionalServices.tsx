@@ -6,16 +6,15 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Control, Controller } from "react-hook-form";
 import { PaymentFormValues } from "../payment-page";
 import s from "./AdditionalServices.module.scss";
+import { useTranslations } from "next-intl";
 
 type AdditionalServicesProps = {
   control: Control<PaymentFormValues>;
 };
 
 export const AdditionalServices = ({ control }: AdditionalServicesProps) => {
-  const { data: extraOptions, isLoading } = useGetExtraOptionsQuery();
-  if (!isLoading) {
-    console.log(extraOptions?.data);
-  }
+  const t = useTranslations("payment.additional_services");
+  const { data: extraOptions } = useGetExtraOptionsQuery();
   return (
     <div className={s.payment}>
       <div className={s.title}>
@@ -26,14 +25,12 @@ export const AdditionalServices = ({ control }: AdditionalServicesProps) => {
           <RhombIcon />
         </div>
         <Typography variant="h3" as="h3">
-          Дополнительные услуги
+          {t("title")}
         </Typography>
       </div>
-      <Typography variant="body_2">
-        Стоимость дополнительных услуг уточнит оператор.
-      </Typography>
+      <Typography variant="body_2">{t("description")}</Typography>
 
-      {!isLoading && extraOptions?.data && (
+      {!!extraOptions?.data && (
         <div className={s.options}>
           <Controller
             control={control}

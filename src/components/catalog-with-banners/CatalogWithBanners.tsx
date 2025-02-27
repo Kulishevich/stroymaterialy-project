@@ -18,7 +18,7 @@ export const CatalogWithBanners = () => {
         {banner?.data[0].src && (
           <Link href={banner?.data[0].link}>
             <Image
-              src={banner?.data[0].src}
+              src={`http://api.domix.am${banner?.data[0].src}`}
               width={!isMobile ? 966 : 336}
               height={!isMobile ? 380 : 248}
               alt="banner"
@@ -30,7 +30,7 @@ export const CatalogWithBanners = () => {
           {content?.data.slice(0, 3).map((discount, index) => (
             <Link key={index} href={discount.link} className={s.discountLink}>
               <Image
-                src={discount.src}
+                src={`http://api.domix.am${discount.src}`}
                 width={!isMobile ? 306 : index === 0 ? 336 : 160}
                 height={!isMobile ? 219 : 150}
                 alt="small banner"

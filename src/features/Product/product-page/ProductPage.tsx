@@ -1,69 +1,53 @@
 import { Typography } from "@/components/ui/typography";
 import React, { useEffect } from "react";
-import s from "./ProductPage.module.scss";
 import { ProductImages } from "../product-images";
 import { ProductInfo } from "../product-info";
 import { FeedbackForm } from "@/components/feedback-form";
-import { useRouter } from "next/router";
-import {
-  useGetProductQuery,
-  // useGetRatingQuery,
-} from "@/api/products/products.api";
 import { SimilarProducts } from "@/components/similar-products";
 import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
 import { useDispatch } from "react-redux";
+import s from "./ProductPage.module.scss";
+import { Product } from "@/api/products/products.types";
 
-export const ProductPage = ({}) => {
-  const router = useRouter();
-  const { product } = router.query;
+type ProductPageProps = {
+  product: { data: Product };
+};
+
+export const ProductPage = ({ product }: ProductPageProps) => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (router.isReady) {
-      if (!product || typeof product !== "string") {
-        router.push("/404");
-      }
-    }
-  }, [product, router.isReady, router]);
-
   // const { data: rating } = useGetRatingQuery(product as string);
-  const { data: prod, isLoading } = useGetProductQuery({
-    id: product as string,
-    perPage: 20,
-  });
-  console.log(prod);
+
   useEffect(() => {
-    if (prod?.data.breadcrumb) {
+    if (product?.data.breadcrumb) {
       dispatch(
         setBreadcrumbs([
-          ...prod?.data.breadcrumb,
+          ...product?.data.breadcrumb,
           {
-            name: prod?.data.name,
-            uuid: prod?.data.id,
+            name: product?.data.name,
+            uuid: product?.data.id,
           },
         ])
       );
     }
-  }, [prod]);
-
-  if (isLoading || !prod) return;
+  }, [product]);
 
   return (
     <div className={s.wrapper}>
       <div className={s.title}>
         <Typography variant="h1" as="h1">
-          {prod?.data.name}
+          {product.data.name}
         </Typography>
         <Typography variant="body_4">
-          Код продукта: {prod?.data.code}
+          Код продукта: {product.data.code}
         </Typography>
       </div>
       <div className={s.container}>
         <div className={s.content}>
-          <ProductImages item={prod?.data} />
-          <ProductInfo item={prod?.data} />
+          <ProductImages item={product.data} />
+          <ProductInfo item={product.data} />
         </div>
-        <SimilarProducts similars={prod?.data.similars} />
+        <SimilarProducts similars={product.data.similars} />
         <FeedbackForm />
       </div>
     </div>

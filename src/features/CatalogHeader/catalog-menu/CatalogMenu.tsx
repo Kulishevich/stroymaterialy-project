@@ -7,7 +7,11 @@ import { Typography } from "@/components/ui/typography";
 import { useGetCategoriesQuery } from "@/api/categories/categories.api";
 import { ActiveCategory } from "../active-category";
 
-export const CatalogMenu = () => {
+type CatalogMenuProps = {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const CatalogMenu = ({ setIsOpen }: CatalogMenuProps) => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -60,7 +64,11 @@ export const CatalogMenu = () => {
       </div>
 
       {activeCategory && activeTitle && (
-        <ActiveCategory id={activeCategory} title={activeTitle} />
+        <ActiveCategory
+          id={activeCategory}
+          title={activeTitle}
+          setIsOpen={setIsOpen}
+        />
       )}
     </div>
   );

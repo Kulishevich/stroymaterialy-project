@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-bottom: 12px;
 
     & > ul {
         margin: 0;
@@ -12,8 +13,8 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
-        & > li {
-            position: relative; /* Обеспечиваем позиционирование для маркера */
+        & > a {
+            position: relative;
             padding-left: 16px;
             &::before {
                 box-sizing: border-box;

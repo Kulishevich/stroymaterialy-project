@@ -3,13 +3,21 @@ import { Typography } from "@/components/ui/typography";
 import Image from "next/image";
 import { CartList } from "@/api/cart/cart.types";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
-import { Controller } from "react-hook-form";
+import { Control, Controller } from "react-hook-form";
 import s from "./RequestDiscountItem.module.scss";
+
+type FormValues = {
+  orders: {
+    productId: string;
+    price: string;
+    count: number;
+  }[];
+};
 
 type RequestDiscountItemProps = {
   order: CartList;
   index: number;
-  control: any;
+  control: Control<FormValues>;
 };
 
 export const RequestDiscountItem = ({

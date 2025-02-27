@@ -2,7 +2,7 @@
     position: absolute;
     left: 306px;
     box-sizing: border-box;
-    height: 100%;
+    min-height: 100%;
     width: 990px;
     padding: 24px 32px;
 
@@ -14,7 +14,6 @@
 }
 
 .contentContainer {
-    display: flex;
-    gap: 95px;
-    flex-wrap: wrap;
+    column-count: 3;
+    column-gap: 16px;
 }

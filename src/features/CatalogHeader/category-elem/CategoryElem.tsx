@@ -7,8 +7,10 @@ import { SubcategoryElem } from "../subcategory-elem";
 
 type CategoryElemProps = {
   category: CategoryArgs;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
-export const CategoryElem = ({ category }: CategoryElemProps) => {
+
+export const CategoryElem = ({ category, setIsOpen }: CategoryElemProps) => {
   const isSubcategories = category.subcategoriesCount !== 0;
 
   return (
@@ -17,10 +19,13 @@ export const CategoryElem = ({ category }: CategoryElemProps) => {
         variant="body_5"
         as={Link}
         href={`/${isSubcategories ? "category" : "products"}/${category.id}`}
+        onClick={() => setIsOpen(false)}
       >
-        {category.name}Category
+        {category.name}
       </Typography>
-      {isSubcategories && <SubcategoryElem id={category.id} />}
+      {isSubcategories && (
+        <SubcategoryElem id={category.id} setIsOpen={setIsOpen} />
+      )}
     </div>
   );
 };

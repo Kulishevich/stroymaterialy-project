@@ -6,8 +6,9 @@ const nextConfig: NextConfig = {
   },
   reactStrictMode: true,
   i18n: {
-    locales: ["en", "ru", "hy"],
+    locales: ["hy", "ru"],
     defaultLocale: "hy",
+    localeDetection: false,
   },
 };
 

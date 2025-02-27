@@ -21,12 +21,9 @@ export const productsApi = domixApi.injectEndpoints({
           url: `/categories/${id}/products?perPage=${perPage}&page=${page}${filters}`,
         }),
       }),
-      getProduct: builder.query<
-        { data: Product },
-        { id: string; perPage: number }
-      >({
-        query: ({ id, perPage }) => ({
-          url: `/products/${id}?perPage=${perPage}`,
+      getProduct: builder.query<{ data: Product }, { id: string }>({
+        query: ({ id }) => ({
+          url: `/products/${id}`,
         }),
       }),
       getTrendsProducts: builder.query<

@@ -1,3 +1,5 @@
+import { CategoryArgs } from "@/api/categories/categories.types";
+import { Product } from "@/api/products/products.types";
 import { SubcategoryPage } from "@/features/Subcategory/subcategory-page";
 import { getBreadcrumbs } from "@/new-api/getBreadcrumbs";
 import { getSubcategories } from "@/new-api/getSubcategories";
@@ -6,13 +8,14 @@ import { GetServerSideProps } from "next";
 
 export default function SubcategoryPageDynamic({
   subcategories,
-  breadcrumbs,
   bestSellingProducts,
+}: {
+  subcategories: { data: CategoryArgs[] };
+  bestSellingProducts: { data: Product[] };
 }) {
   return (
     <SubcategoryPage
       subcategories={subcategories}
-      breadcrumbs={breadcrumbs}
       bestSellingProducts={bestSellingProducts}
     />
   );
@@ -23,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const subcategories = await getSubcategories({
     subcategory: subcategory,
-    perPage: 20,
+    perPage: 18,
   });
   const breadcrumbs = await getBreadcrumbs(subcategory);
   const bestSellingProducts = await getTrendsProduct({

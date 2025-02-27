@@ -16,7 +16,7 @@ export const Banner = () => {
     <div className={s.container}>
       {content?.data[0].src && (
         <Image
-          src={content?.data[0].src}
+          src={`http://api.domix.am${content?.data[0].src}`}
           width={!isMobile ? 1296 : 336}
           height={!isMobile ? 320 : 210}
           alt="big banner"

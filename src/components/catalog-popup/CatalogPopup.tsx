@@ -12,7 +12,7 @@ export const CatalogPopup = ({ isOpen, setIsOpen }: CatalogPopupProps) => {
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Content className={s.content}>
-        <CatalogMenu />
+        <CatalogMenu setIsOpen={setIsOpen} />
       </Dialog.Content>
     </Dialog.Root>
   );

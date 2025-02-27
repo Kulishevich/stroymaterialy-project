@@ -1,4 +1,5 @@
 .container {
+    box-sizing: border-box;
     width: 306px;
     display: flex;
     flex-direction: column;
@@ -75,6 +76,8 @@
 
 .image {
     border-radius: 6px;
+    border: 1px solid #E9E9E9;
+    box-sizing: border-box;
 }
 
 .content {

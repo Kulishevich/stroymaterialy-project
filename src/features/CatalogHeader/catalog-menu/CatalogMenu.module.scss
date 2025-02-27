@@ -24,6 +24,10 @@
     background-color: var(--color-grey-1);
     border-bottom: 1px solid #7D7D7D33;
 
+    & > svg {
+        margin-left: auto;
+    }
+
     &:hover {
         cursor: pointer;
         background-color: var(--color-text);

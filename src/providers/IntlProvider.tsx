@@ -1,11 +1,10 @@
 import { IntlProvider } from "next-intl";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
-import enMessages from "@/locales/en.json";
 import ruMessages from "@/locales/ru.json";
 import hyMessages from "@/locales/hy.json";
 
-const messages = { en: enMessages, ru: ruMessages, hy: hyMessages };
+const messages = { ru: ruMessages, hy: hyMessages };
 
 export function IntlProviderComponent({ children }: { children: ReactNode }) {
   const { locale = "hy" } = useRouter();

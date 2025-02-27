@@ -95,9 +95,9 @@ export type ChangeOrderArgs = {
   extraOptions: string[];
   additional?: string;
   address?: string;
-  date: string;
-  start: string;
-  end: string;
+  date?: string;
+  start?: string;
+  end?: string;
   regionId?: number;
 };
 

@@ -1,4 +1,4 @@
-const { createServer } = require("http");
+const { createServer } = require("https");
 const { parse } = require("url");
 const next = require("next");
 const fs = require("fs");
@@ -18,6 +18,6 @@ app.prepare().then(() => {
     handle(req, res, parsedUrl);
   }).listen(3000, (err) => {
     if (err) throw err;
-    console.log("🚀 Server running on http://localhost:3000");
+    console.log("🚀 Server running on https://localhost:3000");
   });
 });

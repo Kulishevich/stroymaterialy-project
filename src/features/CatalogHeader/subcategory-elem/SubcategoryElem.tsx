@@ -5,9 +5,10 @@ import React from "react";
 
 type SubcategoryElemProps = {
   id: string;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const SubcategoryElem = ({ id }: SubcategoryElemProps) => {
+export const SubcategoryElem = ({ id, setIsOpen }: SubcategoryElemProps) => {
   const { data: subCategories } = useGetSubCategoriesQuery({
     id: id,
     perPage: 20,
@@ -21,8 +22,9 @@ export const SubcategoryElem = ({ id }: SubcategoryElemProps) => {
           as={Link}
           href={`/products/${subcategory.id}`}
           key={subcategory.id}
+          onClick={() => setIsOpen(false)}
         >
-          subcategory{subcategory.name}
+          {subcategory.name}
         </Typography>
       ))}
     </ul>

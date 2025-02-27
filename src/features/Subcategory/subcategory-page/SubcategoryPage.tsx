@@ -4,13 +4,24 @@ import { BestSellingProducts } from "@/components/best-selling-products";
 import { useDispatch } from "react-redux";
 import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
 import s from "./SubcategoryPage.module.scss";
+import { useGetBreadcrumbsCategoriesQuery } from "@/api/categories/categories.api";
+import { useRouter } from "next/router";
+import { CategoryArgs } from "@/api/categories/categories.types";
+import { Product } from "@/api/products/products.types";
 
 export const SubcategoryPage = ({
   subcategories,
-  breadcrumbs,
   bestSellingProducts,
+}: {
+  subcategories: { data: CategoryArgs[] };
+  bestSellingProducts: { data: Product[] };
 }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const { subcategory } = router.query;
+  const { data: breadcrumbs } = useGetBreadcrumbsCategoriesQuery(
+    subcategory as string
+  );
 
   useEffect(() => {
     if (breadcrumbs?.data.breadcrumb) {
@@ -21,7 +32,7 @@ export const SubcategoryPage = ({
   return (
     <div className={s.container}>
       <CategoryTags
-        title={breadcrumbs.data.name}
+        title={breadcrumbs?.data.name ?? ""}
         categories={subcategories.data}
       />
       <BestSellingProducts bestSellingProducts={bestSellingProducts} />

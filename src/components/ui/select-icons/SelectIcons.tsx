@@ -30,8 +30,11 @@ export const SelectLanguage = ({ className }: SelectLanguageProps) => {
   const changeLanguage = (value: string) => {
     dispatch(changeLang(value));
     document.cookie = `locale=${value}; path=/; max-age=31536000`;
-    console.log(document.cookie);
-    router.push(router.asPath, router.asPath, { locale: value });
+
+    const newPath =
+      value === "hy" ? `/hy${router.asPath}` : `/${value}${router.asPath}`;
+
+    router.push(newPath, newPath, { locale: value });
   };
 
   const mappedOptions = options?.map((item, index) => (

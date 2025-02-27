@@ -20,17 +20,7 @@ import s from "./PaymentPage.module.scss";
 import { useGetNextSevenDays } from "@/shared/hooks/useGetNextSevenDays";
 import { showToast } from "@/components/ui/toast";
 import { useClearCartMutation } from "@/api/cart/cart.api";
-
-const payerType = [
-  {
-    name: "Физическое лицо",
-    id: "individual",
-  },
-  {
-    name: "Юридическое лицо",
-    id: "entity",
-  },
-];
+import { useTranslations } from "next-intl";
 
 const deliveryTimeOptions = [
   {
@@ -63,6 +53,7 @@ export type PaymentFormValues = {
 };
 
 export const PaymentPage = () => {
+  const t = useTranslations("payment");
   const router = useRouter();
   const { orderId } = router.query;
   const [createCustomer] = useCreateCustomerMutation();
@@ -71,12 +62,22 @@ export const PaymentPage = () => {
   const [clearCart] = useClearCartMutation();
   const [checkOrder] = useCheckOrderMutation();
 
+  const payerType = [
+    {
+      name: t("individual"),
+      id: "individual",
+    },
+    {
+      name: t("entity"),
+      id: "entity",
+    },
+  ];
+
   const { data: order } = useGetOrderQuery({
     id: orderId as string,
   });
 
   const deliveryDataOptions = useGetNextSevenDays();
-  console.log("Order:", order);
 
   const {
     control,
@@ -106,8 +107,6 @@ export const PaymentPage = () => {
 
   const orderTypeId = watch("orderType");
   const addressId = watch("addressId");
-  console.log("OrderTypeId", orderTypeId);
-  console.log("addressId:", addressId);
 
   useEffect(() => {
     const getPrice = async () => {
@@ -124,15 +123,16 @@ export const PaymentPage = () => {
     };
 
     getPrice();
-  }, [orderTypeId]);
+  }, [orderTypeId, addressId, checkOrder, orderId]);
 
   const formHandler = handleSubmit(async (data) => {
+    console.log(data.orderType);
     const customer = {
+      // referralCode: "2313", //можно кидать если есть
       orderId: orderId as string,
       email: data.email,
       phone: data.phone,
       type: data.payerType,
-      // referralCode: "2313", //можно кидать если есть
       fullName: `${data.firstName} ${data.lastName}`,
       ...(data.payerType === "entity" && { tin: data.tin }),
     };
@@ -145,19 +145,15 @@ export const PaymentPage = () => {
       console.error("Error customer", err);
     }
 
-    // const selectedAddress = order?.data.addresses.find(
-    //   (elem) => elem.id === Number(data.addressId)
-    // );
     const changeOrderArgs = {
-      // additional: selectedAddress?.details as string,
-      // address: selectedAddress?.address as string,
-      // regionId: selectedAddress?.region.id as number,
       addressId: Number(data.addressId),
-      date: data.deliveryData,
-      start: data.deliveryTime.split("-")[0],
-      end: data.deliveryTime.split("-")[1],
       orderTypeId: Number(data.orderType),
       extraOptions: data.extraOptions,
+      ...(data.orderType !== "15" && {
+        date: data.deliveryData,
+        start: data.deliveryTime.split("-")[0],
+        end: data.deliveryTime.split("-")[1],
+      }),
       // gift
     };
     try {
@@ -191,7 +187,7 @@ export const PaymentPage = () => {
   return (
     <div className={s.container}>
       <Typography variant="h1" as="h1">
-        Оплата
+        {t("title")}
       </Typography>
 
       <div className={s.content}>
@@ -214,29 +210,30 @@ export const PaymentPage = () => {
               addresses={order?.data.addresses}
               deliveryTimeOptions={deliveryTimeOptions}
               deliveryDataOptions={deliveryDataOptions}
+              orderTypeId={orderTypeId}
             />
           )}
           <AdditionalServices control={control} />
         </form>
         <div className={s.price}>
           <div className={s.total}>
-            <Typography variant="body_3">Цена</Typography>
+            <Typography variant="body_3">{t("price")}</Typography>
             <Typography variant="body_3">{order?.data.total}</Typography>
           </div>
           <div className={s.total}>
-            <Typography variant="body_3">Доставка</Typography>
+            <Typography variant="body_3">{t("delivery")}</Typography>
             <Typography variant="body_3">
               {order?.data.deliveryPrice}
             </Typography>
           </div>
           <div className={s.total}>
-            <Typography variant="h4">Сумма</Typography>
+            <Typography variant="h4">{t("total")}</Typography>
             <Typography variant="h4">
               {order?.data.totalWithDelivery}
             </Typography>
           </div>
           <Button fullWidth={true} onClick={formHandler} disabled={!isValid}>
-            Заказать
+            {t("orderButton")}
           </Button>
         </div>
       </div>
