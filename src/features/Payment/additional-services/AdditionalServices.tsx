@@ -1,20 +1,24 @@
 import React from "react";
 import { Typography, Variant } from "@/components/ui/typography";
 import { RhombIcon } from "@/assets/icons";
-import { useGetExtraOptionsQuery } from "@/api/orders/orders.api";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Control, Controller } from "react-hook-form";
 import { PaymentFormValues } from "../payment-page";
 import s from "./AdditionalServices.module.scss";
 import { useTranslations } from "next-intl";
+import { ExtraOptionsResponse } from "@/api/orders/orders.types";
 
 type AdditionalServicesProps = {
   control: Control<PaymentFormValues>;
+  extraOptions: { data: ExtraOptionsResponse[] };
 };
 
-export const AdditionalServices = ({ control }: AdditionalServicesProps) => {
+export const AdditionalServices = ({
+  control,
+  extraOptions,
+}: AdditionalServicesProps) => {
   const t = useTranslations("payment.additional_services");
-  const { data: extraOptions } = useGetExtraOptionsQuery();
+
   return (
     <div className={s.payment}>
       <div className={s.title}>

@@ -1,3 +1,28 @@
-import { PaymentPage } from "@/features/Payment/payment-page/PaymentPage";
+import {
+  ExtraOptionsResponse,
+  GetOrderResponse,
+} from "@/api/orders/orders.types";
+import { PaymentPage as Payment } from "@/features/Payment/payment-page/PaymentPage";
+import { getExtraOptions } from "@/ssr-api/getExtraOptions";
+import { getOrder } from "@/ssr-api/getOrder";
+import { GetServerSideProps } from "next";
 
-export default PaymentPage;
+export default function PaymentPage({
+  order,
+  extraOptions,
+}: {
+  order: GetOrderResponse;
+  extraOptions: { data: ExtraOptionsResponse[] };
+}) {
+  return <Payment order={order} extraOptions={extraOptions} />;
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const lang = context.req.cookies?.locale || "hy";
+  const { orderId } = context.params as { orderId: string };
+
+  const order = await getOrder({ lang, id: orderId });
+  const extraOptions = await getExtraOptions({ lang });
+
+  return { props: { order, extraOptions } };
+};

@@ -71,6 +71,7 @@ export const PurchaseMethod = ({
       ),
     },
   ];
+
   const orderTypesOptions = deliveryMethodOptions.map((orderType, index) => {
     return {
       ...orderType,

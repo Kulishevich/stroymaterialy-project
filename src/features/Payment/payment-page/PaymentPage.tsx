@@ -10,7 +10,6 @@ import {
   useChangeOrderMutation,
   useChangePayMethodMutation,
   useCheckOrderMutation,
-  useGetOrderQuery,
 } from "@/api/orders/orders.api";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,6 +20,10 @@ import { useGetNextSevenDays } from "@/shared/hooks/useGetNextSevenDays";
 import { showToast } from "@/components/ui/toast";
 import { useClearCartMutation } from "@/api/cart/cart.api";
 import { useTranslations } from "next-intl";
+import {
+  ExtraOptionsResponse,
+  GetOrderResponse,
+} from "@/api/orders/orders.types";
 
 const deliveryTimeOptions = [
   {
@@ -52,7 +55,13 @@ export type PaymentFormValues = {
   deliveryData: string;
 };
 
-export const PaymentPage = () => {
+type PaymentPageProps = {
+  order: GetOrderResponse;
+  extraOptions: { data: ExtraOptionsResponse[] };
+};
+
+export const PaymentPage = ({ order, extraOptions }: PaymentPageProps) => {
+  const deliveryDataOptions = useGetNextSevenDays();
   const t = useTranslations("payment");
   const router = useRouter();
   const { orderId } = router.query;
@@ -72,12 +81,6 @@ export const PaymentPage = () => {
       id: "entity",
     },
   ];
-
-  const { data: order } = useGetOrderQuery({
-    id: orderId as string,
-  });
-
-  const deliveryDataOptions = useGetNextSevenDays();
 
   const {
     control,
@@ -213,7 +216,7 @@ export const PaymentPage = () => {
               orderTypeId={orderTypeId}
             />
           )}
-          <AdditionalServices control={control} />
+          <AdditionalServices control={control} extraOptions={extraOptions} />
         </form>
         <div className={s.price}>
           <div className={s.total}>
