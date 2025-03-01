@@ -6,7 +6,7 @@ export const professionsApi = domixApi.injectEndpoints({
     return {
       getProfession: builder.query<{ data: ProfessionsArgs[] }, void>({
         query: () => ({
-          url: "/professions",
+          url: "/v1/professions",
         }),
       }),
     };

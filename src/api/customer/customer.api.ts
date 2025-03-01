@@ -9,7 +9,7 @@ export const customerApi = domixApi.injectEndpoints({
         CustomerArgs
       >({
         query: (args) => ({
-          url: "/customers",
+          url: "/v1/customers",
           method: "POST",
           body: { ...args },
         }),

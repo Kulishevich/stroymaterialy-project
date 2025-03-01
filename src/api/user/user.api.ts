@@ -13,13 +13,13 @@ export const userApi = domixApi.injectEndpoints({
       getUserSetting: builder.query<{ data: UserSettingResponse }, void>({
         providesTags: ["Setting"],
         query: () => ({
-          url: "/users/settings",
+          url: "/v1/users/settings",
         }),
       }),
       changeSetting: builder.mutation<void, ChangeSettingParams>({
         invalidatesTags: ["Setting"],
         query: (args) => ({
-          url: "/users/settings",
+          url: "/v1/users/settings",
           method: "PUT",
           body: { ...args },
         }),
@@ -27,24 +27,24 @@ export const userApi = domixApi.injectEndpoints({
       getUserOrders: builder.query<GetOrdersResponse, void>({
         providesTags: ["Orders"],
         query: () => ({
-          url: "/users/orders",
+          url: "/v1/users/orders",
         }),
       }),
       getUserGifts: builder.query<{ data: GetGiftsReponse }, void>({
         query: () => ({
-          url: "/users/gifts",
+          url: "/v1/users/gifts",
         }),
       }),
       changePassword: builder.mutation<void, ChangePasswordParams>({
         query: (args) => ({
-          url: "/users/settings/password",
+          url: "/v1/users/settings/password",
           method: "PUT",
           body: { ...args },
         }),
       }),
       deleteUser: builder.mutation<void, void>({
         query: () => ({
-          url: "/users",
+          url: "/v1/users",
           method: "DELETE",
         }),
       }),

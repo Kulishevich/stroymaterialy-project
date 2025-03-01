@@ -9,7 +9,7 @@ export const searchApi = domixApi.injectEndpoints({
         { keyword: string; perPage: string }
       >({
         query: ({ keyword, perPage }) => ({
-          url: `/search/${keyword}?perPage=${perPage}`,
+          url: `/v1/search/${keyword}?perPage=${perPage}`,
         }),
       }),
     };

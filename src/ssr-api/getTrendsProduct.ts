@@ -1,13 +1,22 @@
-export const getSubcategories = async ({
-  subcategory,
+export const getTrendsProduct = async ({
+  trend,
   perPage,
+  lang,
 }: {
-  subcategory: string;
+  trend: string;
   perPage: number;
+  lang: string;
 }) => {
   try {
     const response = await fetch(
-      `http://api.domix.am/v1/categories/${subcategory}?perPage=${perPage}`
+      `http://api.domix.am/v1/products/trends/${trend}?perPage=${perPage}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept-Language": lang,
+        },
+      }
     );
 
     if (!response.ok) {

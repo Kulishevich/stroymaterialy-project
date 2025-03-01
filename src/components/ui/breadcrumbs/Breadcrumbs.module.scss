@@ -6,14 +6,16 @@
 }
 
 .list {
+    width: 1296px;
+    box-sizing: border-box;
     display: inline-flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 100%;
     padding: 0 16px;
     margin: 42px 0 32px;
 
     @media (max-width: 768px) {
+        width: 336px;
         margin: 32px 0 20px;
     }
 }

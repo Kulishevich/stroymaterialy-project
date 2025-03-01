@@ -30,7 +30,7 @@ export const ProductPage = ({ product }: ProductPageProps) => {
         ])
       );
     }
-  }, [product]);
+  }, [product, dispatch]);
 
   return (
     <div className={s.wrapper}>

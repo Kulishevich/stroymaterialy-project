@@ -2,8 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Typography, Variant } from "@/components/ui/typography";
 import { TextFieldFile } from "@/components/ui/text-field-file";
 import { useEffect, useState } from "react";
-import { useGetProfessionQuery } from "@/api/professions/professions.api";
-import { useGetSpheresQuery } from "@/api/spheres/spheres.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { ControlledSelect } from "@/components/ui/controlled-select";
@@ -13,27 +11,33 @@ import { ControlledTextArea } from "@/components/ui/controlled-text-area";
 import { ControlledCheckbox } from "@/components/ui/controlled-checkbox";
 import {
   useCreatePartnerExistUserMutation,
-  // useCreatePartnerFileMutation,
   useCreatePartnerMutation,
 } from "@/api/partners/partners.api";
 import { masterClubFormScheme } from "./model/master-club-form-scheme";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { useGetUserSettingQuery } from "@/api/user/user.api";
-import s from "./MastersClubForm.module.scss";
 import { useTranslations } from "next-intl";
+import { ProfessionsArgs } from "@/api/professions/professions.types";
+import { SpheresArgs } from "@/api/spheres/spheres.types";
+import s from "./MastersClubForm.module.scss";
 
-export const MastersClubForm = () => {
+export const MastersClubForm = ({
+  professions,
+  spheres,
+}: {
+  professions: { data: ProfessionsArgs[] };
+  spheres: { data: SpheresArgs[] };
+}) => {
   const t = useTranslations("cooperation.vacancies.masters_club.form");
   const [file, setFile] = useState<File | null>(null);
   const [createPartner] = useCreatePartnerMutation();
   const [createPartnerExistUser] = useCreatePartnerExistUserMutation();
-  // const [createPartnerFile] = useCreatePartnerFileMutation();
   const token = useSelector((state: RootState) => state.auth.token);
   const { data: user } = useGetUserSettingQuery();
-  console.log(user);
-  const { data: professions } = useGetProfessionQuery();
-  const { data: spheres } = useGetSpheresQuery();
+
+  console.log("professions", professions);
+  console.log("spheres", spheres);
 
   const options = [
     {
@@ -150,15 +154,13 @@ export const MastersClubForm = () => {
             <Typography variant="h4" as="h4" isRequired={true}>
               {t("profession.label")}
             </Typography>
-            {!!professions && (
-              <ControlledSelect
-                control={control}
-                name="profession"
-                options={professions?.data}
-                defaultValue={professions?.data[0].name}
-                className={s.professionSelect}
-              />
-            )}
+            <ControlledSelect
+              control={control}
+              name="profession"
+              options={professions?.data}
+              defaultValue={professions?.data[0].name}
+              className={s.professionSelect}
+            />
           </div>
           <div className={s.elem}>
             <Typography variant="h4" as="h4">

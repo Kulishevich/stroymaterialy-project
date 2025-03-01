@@ -4,26 +4,24 @@ import { CategoryTags } from "../category-tags/CategoryTags";
 import { BestSellingProducts } from "@/components/best-selling-products";
 import { useDispatch } from "react-redux";
 import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
-import { useGetBreadcrumbsCategoriesQuery } from "@/api/categories/categories.api";
-import { useRouter } from "next/router";
-import { CategoryArgs } from "@/api/categories/categories.types";
+import {
+  CategoriesBreadcrumbs,
+  CategoryArgs,
+} from "@/api/categories/categories.types";
 import { Product } from "@/api/products/products.types";
 
 type CategoryPageProps = {
   categories: { data: CategoryArgs[] };
   bestSellingProducts: { data: Product[] };
+  breadcrumbs: { data: CategoriesBreadcrumbs };
 };
 
 export const CategoryPage = ({
   categories,
   bestSellingProducts,
+  breadcrumbs,
 }: CategoryPageProps) => {
   const dispatch = useDispatch();
-  const router = useRouter();
-  const { category } = router.query;
-  const { data: breadcrumbs } = useGetBreadcrumbsCategoriesQuery(
-    category as string
-  );
 
   useEffect(() => {
     if (breadcrumbs?.data.breadcrumb) {

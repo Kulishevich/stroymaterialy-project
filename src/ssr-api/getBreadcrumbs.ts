@@ -1,13 +1,20 @@
-export const getTrendsProduct = async ({
-  trend,
-  perPage,
+export const getBreadcrumbs = async ({
+  category,
+  lang,
 }: {
-  trend: string;
-  perPage: number;
+  category: string;
+  lang: string;
 }) => {
   try {
     const response = await fetch(
-      `http://api.domix.am/v1/products/trends/${trend}?perPage=${perPage}`
+      `http://api.domix.am/v1/categories/${category}/breadcrumbs`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept-Language": lang,
+        },
+      }
     );
 
     if (!response.ok) {

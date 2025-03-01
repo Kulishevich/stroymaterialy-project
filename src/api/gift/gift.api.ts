@@ -9,7 +9,7 @@ export const giftApi = domixApi.injectEndpoints({
         CreateGiftArgs
       >({
         query: (args) => ({
-          url: "/gifts",
+          url: "/v1/gifts",
           method: "POST",
           body: { ...args },
         }),

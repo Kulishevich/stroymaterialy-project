@@ -18,12 +18,12 @@ export const productsApi = domixApi.injectEndpoints({
         RequestParams
       >({
         query: ({ id, perPage, page, filters }) => ({
-          url: `/categories/${id}/products?perPage=${perPage}&page=${page}${filters}`,
+          url: `/v1/categories/${id}/products?perPage=${perPage}&page=${page}${filters}`,
         }),
       }),
       getProduct: builder.query<{ data: Product }, { id: string }>({
         query: ({ id }) => ({
-          url: `/products/${id}`,
+          url: `/v1/products/${id}`,
         }),
       }),
       getTrendsProducts: builder.query<
@@ -31,13 +31,13 @@ export const productsApi = domixApi.injectEndpoints({
         { trend: string; perPage: number }
       >({
         query: ({ trend, perPage }) => ({
-          url: `/products/trends/${trend}?perPage=${perPage}`,
+          url: `/v1/products/trends/${trend}?perPage=${perPage}`,
         }),
       }),
       getFavoriteProducts: builder.query<{ data: GetFavotireResponse }, void>({
         providesTags: ["Favorites"],
         query: () => ({
-          url: "/products/favorites",
+          url: "/v1/products/favorites",
         }),
       }),
       addInFavorite: builder.mutation<
@@ -46,7 +46,7 @@ export const productsApi = domixApi.injectEndpoints({
       >({
         invalidatesTags: ["Favorites"],
         query: (args) => ({
-          url: "/products/favorites",
+          url: "/v1/products/favorites",
           method: "POST",
           body: { ...args },
         }),
@@ -54,32 +54,32 @@ export const productsApi = domixApi.injectEndpoints({
       deleteFavorite: builder.mutation<void, string>({
         invalidatesTags: ["Favorites"],
         query: (id) => ({
-          url: `/products/favorites/${id}`,
+          url: `/v1/products/favorites/${id}`,
           method: "DELETE",
         }),
       }),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       getRating: builder.query<any, string>({
         query: (id) => ({
-          url: `/products/${id}/ratings`,
+          url: `/v1/products/${id}/ratings`,
         }),
       }),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       addRating: builder.mutation<any, { args: any; id: string }>({
         query: ({ args, id }) => ({
-          url: `/products/${id}/ratings`,
+          url: `/v1/products/${id}/ratings`,
           method: "POST",
           body: { ...args },
         }),
       }),
       getPriceOffers: builder.query<{ data: PriceOffer[] }, void>({
         query: () => ({
-          url: "/products/price-requests",
+          url: "/v1/products/price-requests",
         }),
       }),
       createPriceOffer: builder.mutation<void, CreatePriceOffer[]>({
         query: (body) => ({
-          url: "/products/price-requests",
+          url: "/v1/products/price-requests",
           method: "POST",
           body: { items: body },
         }),

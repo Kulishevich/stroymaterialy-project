@@ -7,14 +7,22 @@ import { Banner } from "@/components/banner";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { useGetProductsByCategoryQuery } from "@/api/products/products.api";
-import { useGetBreadcrumbsCategoriesQuery } from "@/api/categories/categories.api";
 import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
 import { Typography } from "@/components/ui/typography";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { useSearchParams } from "next/navigation";
 import FilterMobile from "@/components/filter-mobile/FilterMobile";
+import { ResponseProductsByCategory } from "@/api/products/products.types";
+import { CategoriesBreadcrumbs } from "@/api/categories/categories.types";
 
-export const ProductsPage = () => {
+export const ProductsPage = ({
+  productsList,
+  breadcrumbs,
+}: {
+  productsList: ResponseProductsByCategory;
+  breadcrumbs: { data: CategoriesBreadcrumbs };
+}) => {
+  const [productsState, setProductsState] = useState(productsList);
   const [activeFilters, setActiveFilters] = useState("");
   const searchParams = useSearchParams();
   const page = searchParams.get("page") || "1";
@@ -22,6 +30,24 @@ export const ProductsPage = () => {
   const router = useRouter();
   const { products } = router.query;
   const dispatch = useDispatch();
+
+  const { data: productsItems } = useGetProductsByCategoryQuery(
+    {
+      id: products as string,
+      perPage: 12,
+      page: Number(page),
+      filters: activeFilters,
+    },
+    {
+      skip: !productsState,
+    }
+  );
+
+  useEffect(() => {
+    if (productsItems) {
+      setProductsState(productsItems);
+    }
+  }, [productsItems]);
 
   useEffect(() => {
     const filtersString = searchParams.toString();
@@ -41,25 +67,6 @@ export const ProductsPage = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    if (router.isReady) {
-      if (!products || typeof products !== "string") {
-        router.push("/404");
-      }
-    }
-  }, [products, router.isReady, router]);
-
-  const { data: productsItems } = useGetProductsByCategoryQuery({
-    id: products as string,
-    perPage: 12,
-    page: Number(page),
-    filters: activeFilters,
-  });
-
-  const { data: breadcrumbs } = useGetBreadcrumbsCategoriesQuery(
-    products as string
-  );
-
-  useEffect(() => {
     if (breadcrumbs?.data.breadcrumb) {
       dispatch(setBreadcrumbs(breadcrumbs.data.breadcrumb));
     }
@@ -75,19 +82,15 @@ export const ProductsPage = () => {
           {breadcrumbs?.data.name}
         </Typography>
         <div className={s.products}>
-          {!isMobile
-            ? productsItems?.data.filters && (
-                <ProductsFilter filtersData={productsItems?.data.filters} />
-              )
-            : productsItems?.data.filters && (
-                <FilterMobile filtersData={productsItems?.data.filters} />
-              )}
-          {productsItems?.data.products.data && (
-            <ProductContent
-              products={productsItems?.data?.products}
-              page={page}
-            />
+          {!isMobile ? (
+            <ProductsFilter filtersData={productsList?.data.filters} />
+          ) : (
+            <FilterMobile filtersData={productsList?.data.filters} />
           )}
+          <ProductContent
+            products={productsState?.data?.products}
+            page={page}
+          />
         </div>
       </div>
       <Banner />

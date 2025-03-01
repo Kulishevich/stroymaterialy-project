@@ -24,6 +24,7 @@ export const ProductsFilter = ({ filtersData }: ProductsFilterProps) => {
   const pathname = usePathname();
 
   const addNewFilter = (category: string, value: string) => {
+    if (typeof window === "undefined") return;
     const searchParams = new URLSearchParams(window.location.search);
 
     if (category === "Բռենդ" || category === "Бренд") {
@@ -56,6 +57,7 @@ export const ProductsFilter = ({ filtersData }: ProductsFilterProps) => {
   };
 
   const handleIsChecked = (category: string, value: string) => {
+    if (typeof window === "undefined") return;
     const searchParams = new URLSearchParams(window.location.search);
 
     if (category === "Բռենդ" || category === "Бренд") {

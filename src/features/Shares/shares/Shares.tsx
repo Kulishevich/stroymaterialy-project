@@ -2,10 +2,9 @@ import React from "react";
 import s from "./Shares.module.scss";
 import { Typography } from "../../../components/ui/typography";
 import { Discount } from "../../../components/discount";
-import { useGetContentQuery } from "@/api/content/content.api";
+import { ContentResponse } from "@/api/content/content.types";
 
-export const Shares = () => {
-  const { data: content } = useGetContentQuery("discounts");
+export const Shares = ({ content }: { content: ContentResponse }) => {
   return (
     <div className={s.container}>
       <Typography variant="h1" as="h1">

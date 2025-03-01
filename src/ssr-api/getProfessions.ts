@@ -1,10 +1,10 @@
-export const getCart = async () => {
+export const getProfessions = async ({ lang }: { lang: string }) => {
   try {
-    const response = await fetch(`http://api.domix.am/v1/carts`, {
+    const response = await fetch(`http://api.domix.am/v1/professions`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        "Accept-Language": lang,
       },
     });
 

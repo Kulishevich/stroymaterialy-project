@@ -6,7 +6,7 @@ export const branchesApi = domixApi.injectEndpoints({
     return {
       getBrandes: builder.query<{ data: BranchesResponse[] }, void>({
         query: () => ({
-          url: "/brandes",
+          url: "/v1/brandes",
         }),
       }),
     };
