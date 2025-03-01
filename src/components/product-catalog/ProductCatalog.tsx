@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Typography } from "../ui/typography";
 import { Item } from "../item";
 import clsx from "clsx";
@@ -7,8 +7,14 @@ import { useTranslations } from "next-intl";
 import s from "./ProductCatalog.module.scss";
 import { Slider } from "../slider";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { Product } from "@/api/products/products.types";
 
-export const ProductCatalog = () => {
+export const ProductCatalog = ({
+  products,
+}: {
+  products: { data: Product[] };
+}) => {
+  const [productsState, setProductsState] = useState(products);
   const isMobile = useIsMobile("tablet");
   const t = useTranslations("home.products_catalog");
   const sort = [
@@ -29,12 +35,14 @@ export const ProductCatalog = () => {
     },
   ];
   const [activeSort, setActiveSort] = useState<string>(sort[0].value);
-  const { data: products, isLoading } = useGetTrendsProductsQuery({
+  const { data: productsData } = useGetTrendsProductsQuery({
     trend: activeSort,
     perPage: !isMobile ? 12 : 4,
   });
 
-  console.log(products);
+  useEffect(() => {
+    if (!!productsData) setProductsState(productsData);
+  }, [productsData]);
 
   return (
     <div className={s.container}>
@@ -54,17 +62,16 @@ export const ProductCatalog = () => {
           </Typography>
         ))}
       </div>
-      {!isLoading &&
-        products &&
+      {productsState &&
         (!isMobile ? (
           <Slider itemWidth={330}>
-            {products.data.map((product) => (
+            {productsState.data.map((product) => (
               <Item product={product} key={product.id} />
             ))}
           </Slider>
         ) : (
           <div className={s.mobileContainer}>
-            {products.data.map((product) => (
+            {productsState.data.slice(0, 4).map((product) => (
               <Item product={product} key={product.id} />
             ))}
           </div>

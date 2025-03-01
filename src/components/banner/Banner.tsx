@@ -4,19 +4,17 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { useTranslations } from "next-intl";
-import { useGetContentQuery } from "@/api/content/content.api";
+import { ContentItem } from "@/api/content/content.types";
 
-export const Banner = () => {
+export const Banner = ({ secondBanner }: { secondBanner: ContentItem[] }) => {
   const isMobile = useIsMobile("tablet");
   const t = useTranslations("about");
 
-  const { data: content } = useGetContentQuery("secondBanner");
-
   return (
     <div className={s.container}>
-      {content?.data[0].src && (
+      {secondBanner[0].src && (
         <Image
-          src={`http://api.domix.am${content?.data[0].src}`}
+          src={`${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}${secondBanner[0].src}`}
           width={!isMobile ? 1296 : 336}
           height={!isMobile ? 320 : 210}
           alt="big banner"

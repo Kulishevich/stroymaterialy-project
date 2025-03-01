@@ -6,15 +6,36 @@ import { LatestCompanyPromotions } from "@/features/About/latest-company-promoti
 import { ProductCatalog } from "@/components/product-catalog";
 import React from "react";
 import s from "./HomePage.module.scss";
+import { ContentItem } from "@/api/content/content.types";
+import { CategoryArgs } from "@/api/categories/categories.types";
+import { Product } from "@/api/products/products.types";
 
-export const HomePage = () => {
+type HomePageProps = {
+  discounts: ContentItem[];
+  banner: ContentItem[];
+  secondBanner: ContentItem[];
+  categories: { data: CategoryArgs[] };
+  products: { data: Product[] };
+};
+
+export const HomePage = ({
+  discounts,
+  banner,
+  categories,
+  products,
+  secondBanner,
+}: HomePageProps) => {
   return (
     <div className={s.container}>
-      <CatalogWithBanners />
-      <ProductCatalog />
-      <LatestCompanyPromotions />
+      <CatalogWithBanners
+        discounts={discounts}
+        banner={banner}
+        categories={categories}
+      />
+      <ProductCatalog products={products} />
+      <LatestCompanyPromotions discounts={discounts} />
       <CompanyContacts />
-      <Banner />
+      <Banner secondBanner={secondBanner} />
       <FeedbackForm />
     </div>
   );

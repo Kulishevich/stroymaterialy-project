@@ -1,12 +1,15 @@
 export const getProfessions = async ({ lang }: { lang: string }) => {
   try {
-    const response = await fetch(`http://api.domix.am/v1/professions`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept-Language": lang,
-      },
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}/v1/professions`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept-Language": lang,
+        },
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Ошибка запроса");

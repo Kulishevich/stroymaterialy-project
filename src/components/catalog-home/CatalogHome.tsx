@@ -3,18 +3,19 @@ import Image from "next/image";
 import { ArrowRightIcon } from "@/assets/icons";
 import clsx from "clsx";
 import { Typography } from "@/components/ui/typography";
-import { useGetCategoriesQuery } from "@/api/categories/categories.api";
 import Link from "next/link";
 import s from "./CatalogHome.module.scss";
+import { CategoryArgs } from "@/api/categories/categories.types";
 
-export const CatalogHome = () => {
-  const { data: categories, isLoading } = useGetCategoriesQuery();
-
+export const CatalogHome = ({
+  categories,
+}: {
+  categories: { data: CategoryArgs[] };
+}) => {
   return (
     <div className={s.container}>
       <div className={s.navigate}>
-        {!isLoading &&
-          categories &&
+        {categories &&
           categories.data.map((category) => (
             <Typography
               as={Link}

@@ -2,23 +2,32 @@ import React from "react";
 import Image from "next/image";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { CatalogHome } from "../catalog-home/CatalogHome";
-import { useGetContentQuery } from "@/api/content/content.api";
-import s from "./CatalogWithBanners.module.scss";
 import Link from "next/link";
+import { ContentItem } from "@/api/content/content.types";
+import s from "./CatalogWithBanners.module.scss";
+import { CategoryArgs } from "@/api/categories/categories.types";
 
-export const CatalogWithBanners = () => {
+type CatalogWithBannersProps = {
+  discounts: ContentItem[];
+  banner: ContentItem[];
+  categories: { data: CategoryArgs[] };
+};
+
+export const CatalogWithBanners = ({
+  discounts,
+  banner,
+  categories,
+}: CatalogWithBannersProps) => {
   const isMobile = useIsMobile("tablet");
-  const { data: content } = useGetContentQuery("discounts");
-  const { data: banner } = useGetContentQuery("firstBanner");
 
   return (
     <div className={s.container}>
-      <CatalogHome />
+      <CatalogHome categories={categories} />
       <div className={s.banner}>
-        {banner?.data[0].src && (
-          <Link href={banner?.data[0].link}>
+        {banner[0].src && (
+          <Link href={banner[0].link}>
             <Image
-              src={`http://api.domix.am${banner?.data[0].src}`}
+              src={`${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}${banner[0].src}`}
               width={!isMobile ? 966 : 336}
               height={!isMobile ? 380 : 248}
               alt="banner"
@@ -27,10 +36,10 @@ export const CatalogWithBanners = () => {
           </Link>
         )}
         <div className={s.smallBannerContainer}>
-          {content?.data.slice(0, 3).map((discount, index) => (
+          {discounts.slice(0, 3).map((discount, index) => (
             <Link key={index} href={discount.link} className={s.discountLink}>
               <Image
-                src={`http://api.domix.am${discount.src}`}
+                src={`${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}${discount.src}`}
                 width={!isMobile ? 306 : index === 0 ? 336 : 160}
                 height={!isMobile ? 219 : 150}
                 alt="small banner"

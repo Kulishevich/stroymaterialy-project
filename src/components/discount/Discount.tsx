@@ -17,7 +17,7 @@ export const Discount = ({ discount }: DiscountProps) => {
       <Link href={discount.link}>
         <Image
           className={s.image}
-          src={`http://api.domix.am${discount.src}`}
+          src={`${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}${discount.src}`}
           width={!isMobile ? 636 : 336}
           height={!isMobile ? 260 : 180}
           alt="banner"

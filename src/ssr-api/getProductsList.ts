@@ -11,7 +11,7 @@ export const getProductsList = async ({
 }) => {
   try {
     const response = await fetch(
-      `http://api.domix.am/v1/categories/${id}/products?perPage=${perPage}&page=${page}`,
+      `${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}/v1/categories/${id}/products?perPage=${perPage}&page=${page}`,
       {
         method: "GET",
         headers: {

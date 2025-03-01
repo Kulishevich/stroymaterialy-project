@@ -6,14 +6,17 @@ export const getProduct = async ({
   lang: string;
 }) => {
   try {
-    const response = await fetch(`http://api.domix.am/v1/products/${product}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept-Language": lang,
-        // Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-      },
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}/v1/products/${product}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept-Language": lang,
+          // Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        },
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Ошибка запроса");

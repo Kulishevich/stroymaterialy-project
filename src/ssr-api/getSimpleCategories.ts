@@ -1,7 +1,7 @@
-export const getCart = async ({ lang }: { lang: string }) => {
+export const getSimpleCategories = async ({ lang }: { lang: string }) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}/v1/carts`,
+      `${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}/v1/categories/simple`,
       {
         method: "GET",
         headers: {

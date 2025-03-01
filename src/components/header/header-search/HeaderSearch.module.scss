@@ -3,7 +3,6 @@
     box-sizing: border-box;
     width: 1296px;
     height: 70px;
-    padding-right:30px;
     
     display: flex;
     align-items: center;
@@ -24,28 +23,32 @@
 .search {
     position: relative;
     display: flex;
-    gap: 42px;
     align-items: center;
+    width: 100% ;
+
 }
 
 .buttonsContainer {
     display: flex;
-    gap: 32px;
+    width: 100% ;
+    justify-content: space-evenly;
 }
 
 .favorites {
     display: flex;
-    width: 144px;
+    min-width: 144px;
+    width: fit-content;
     height: 70px;
     gap: 8px;
-    padding: 0;
+    padding: 0 10px; 
 }
 .shoppingCart {
     display: flex;
-    width: 183px;
+    min-width: 183px;
+    width: fit-content;
     height: 70px;
     gap: 8px;
-    padding: 0;
+    padding: 0 10px;
 
     text-decoration: none; 
 }
