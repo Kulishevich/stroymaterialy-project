@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Typography } from "@/components/ui/typography";
 import clsx from "clsx";
 import { ArrowRightIcon } from "@/assets/icons";
@@ -6,22 +6,28 @@ import { GiftCards } from "../gift-cards";
 import { InfoRegularCustomer } from "../info-regular-customer";
 import s from "./RegularCustomerContent.module.scss";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/router";
+import { Paths } from "@/shared/enums";
+import Link from "next/link";
 
 export const RegularCustomerContent = () => {
   const t = useTranslations("regular_customer");
+  const router = useRouter();
+  const { tab } = router.query;
+  const activeTab = tab || "info_regular_customer";
+
   const navigation = [
     {
-      id: "1",
+      id: "info_regular_customer",
       title: t("navigation.info"),
       value: <InfoRegularCustomer />,
     },
     {
-      id: "2",
+      id: "gift_cards",
       title: t("navigation.gift_cards"),
       value: <GiftCards />,
     },
   ];
-  const [activeCategory, setActiveCategory] = useState(navigation[0].id);
 
   return (
     <div className={s.container}>
@@ -31,22 +37,20 @@ export const RegularCustomerContent = () => {
       <div className={s.content}>
         <div className={s.navigate}>
           {navigation.map((elem) => (
-            <div
-              className={clsx(
-                s.navItem,
-                activeCategory === elem.id && s.active
-              )}
+            <Link
+              className={clsx(s.navItem, activeTab === elem.id && s.active)}
               key={elem.id}
-              onClick={() => setActiveCategory(elem.id)}
+              href={`${Paths.regularСustomer}?tab=${elem.id}`}
+              scroll={false}
             >
               <Typography variant="h4" as="h4">
                 {elem.title}
               </Typography>
               <ArrowRightIcon className={s.iconCategory} />
-            </div>
+            </Link>
           ))}
         </div>
-        {navigation.find((elem) => elem.id === activeCategory)?.value}
+        {navigation.find((elem) => elem.id === activeTab)?.value}
       </div>
     </div>
   );

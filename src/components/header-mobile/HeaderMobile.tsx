@@ -31,7 +31,7 @@ export const HeaderMobile = () => {
 
   const handleProfileClick = () => {
     if (token) {
-      router.push(`${Paths.profile}?tab=personal_data`);
+      router.push(`${Paths.profile}`);
     } else {
       dispatch(toggleLoginModal());
     }

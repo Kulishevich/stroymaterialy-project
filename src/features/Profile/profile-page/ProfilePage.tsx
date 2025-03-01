@@ -12,11 +12,13 @@ import { GiftCards } from "../gift-cards";
 import { useRouter } from "next/router";
 import { Paths } from "@/shared/enums";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export const ProfilePage = () => {
   const t = useTranslations("profile");
   const router = useRouter();
   const { tab } = router.query;
+  const activeTab = tab || "personal_data";
 
   const navigate = [
     {
@@ -51,10 +53,6 @@ export const ProfilePage = () => {
     },
   ];
 
-  const handleNavigateTab = (id: string) => {
-    router.push(`${Paths.profile}?tab=${id}`, undefined, { scroll: false });
-  };
-
   return (
     <div className={s.container}>
       <Typography variant="h1" as="h1">
@@ -64,10 +62,11 @@ export const ProfilePage = () => {
         <div className={s.nav}>
           {navigate.map((elem) => (
             <Typography
-              as="button"
-              className={clsx(s.navItem, tab === elem.id && s.active)}
+              as={Link}
+              className={clsx(s.navItem, activeTab === elem.id && s.active)}
               key={elem.id}
-              onClick={() => handleNavigateTab(elem.id)}
+              href={`${Paths.profile}?tab=${elem.id}`}
+              scroll={false}
             >
               <Typography variant="h4" as="h4">
                 {elem.title}
@@ -76,7 +75,7 @@ export const ProfilePage = () => {
             </Typography>
           ))}
         </div>
-        {navigate.find((elem) => elem.id === tab)?.value}
+        {navigate.find((elem) => elem.id === activeTab)?.value}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import s from "./DeliveryAndPayment.module.scss";
 import { ArrowRightIcon } from "@/assets/icons";
 import { Typography } from "../../../components/ui/typography";
@@ -8,32 +8,38 @@ import { TermsOfService } from "../TermsOfService";
 import { LiftingConditions } from "../LiftingConditions";
 import { useTranslations } from "next-intl";
 import { PaymentMethod } from "../PaymentMethod";
+import { useRouter } from "next/router";
+import { Paths } from "@/shared/enums";
+import Link from "next/link";
 
 export const DeliveryAndPayment = () => {
   const t = useTranslations("delivery_and_payment");
+  const router = useRouter();
+  const { tab } = router.query;
+  const activeTab = tab || "delivery_and_lifting";
+
   const navigation = [
     {
-      id: "1",
+      id: "delivery_and_lifting",
       title: t("navigation.delivery_and_lifting_payment"),
       value: <DeliveryAndLifting />,
     },
     {
-      id: "2",
+      id: "payment_method",
       title: t("navigation.payment_method"),
       value: <PaymentMethod />,
     },
     {
-      id: "3",
+      id: "terms_of_service",
       title: t("navigation.terms_of_service"),
       value: <TermsOfService />,
     },
     {
-      id: "4",
+      id: "lifting_conditions",
       title: t("navigation.lifting_conditions"),
       value: <LiftingConditions />,
     },
   ];
-  const [activeCategory, setActiveCategory] = useState(navigation[0].id);
 
   return (
     <div className={s.container}>
@@ -43,22 +49,20 @@ export const DeliveryAndPayment = () => {
       <div className={s.wrapper}>
         <div className={s.navigate}>
           {navigation.map((elem) => (
-            <div
-              className={clsx(
-                s.navItem,
-                activeCategory === elem.id && s.active
-              )}
+            <Link
+              className={clsx(s.navItem, activeTab === elem.id && s.active)}
               key={elem.id}
-              onClick={() => setActiveCategory(elem.id)}
+              href={`${Paths.deliveryAndPayment}?tab=${elem.id}`}
+              scroll={false}
             >
               <Typography variant="h4" as="h4">
                 {elem.title}
               </Typography>
               <ArrowRightIcon className={s.iconCategory} />
-            </div>
+            </Link>
           ))}
         </div>
-        {navigation.find((navItem) => activeCategory === navItem.id)?.value}
+        {navigation.find((navItem) => activeTab === navItem.id)?.value}
       </div>
     </div>
   );
