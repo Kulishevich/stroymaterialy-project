@@ -18,8 +18,8 @@ export default function VacanciesPage({
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const lang = context.req.cookies?.locale || "hy";
 
-  const profession = await getProfessions({ lang });
+  const professions = await getProfessions({ lang });
   const spheres = await getSpheres({ lang });
 
-  return { props: { profession, spheres } };
+  return { props: { professions, spheres } };
 };
