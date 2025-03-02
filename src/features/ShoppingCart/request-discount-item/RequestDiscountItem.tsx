@@ -5,6 +5,7 @@ import { CartList } from "@/api/cart/cart.types";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
 import { Control, Controller } from "react-hook-form";
 import s from "./RequestDiscountItem.module.scss";
+import { useTranslations } from "next-intl";
 
 type FormValues = {
   orders: {
@@ -25,6 +26,7 @@ export const RequestDiscountItem = ({
   index,
   control,
 }: RequestDiscountItemProps) => {
+  const t = useTranslations("cart.request_discount_popup");
   const { product, total } = order;
 
   return (
@@ -39,7 +41,7 @@ export const RequestDiscountItem = ({
         <Typography variant="body_3">{product.name}</Typography>
       </div>
       <div className={s.myPrice}>
-        <Typography>Моя предложенная цена (общая сумма)</Typography>
+        <Typography> {t("my_suggested_price")}</Typography>
         <ControlledTextField
           placeholder={total}
           control={control}
@@ -47,7 +49,7 @@ export const RequestDiscountItem = ({
         />
       </div>
       <div className={s.counter}>
-        <Typography>Количество (шт)</Typography>
+        <Typography> {t("quantity")}</Typography>
         <Controller
           control={control}
           name={`orders.${index}.count`}

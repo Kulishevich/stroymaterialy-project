@@ -12,6 +12,8 @@ import { OptionsValue } from "@/components/ui/select";
 import { OrderTypes } from "@/api/orders/orders.types";
 import { AddNewAddress } from "../add-new-address";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { Paths } from "@/shared/enums";
 
 type PurchaseMethodProps = {
   addresses: Address[];
@@ -137,7 +139,13 @@ export const PurchaseMethod = ({
             {t("delivery_method.title")}
           </Typography>
           {!isMobile && (
-            <Typography variant="body_4" className={s.button}>
+            <Typography
+              as={Link}
+              href={`${Paths.deliveryAndPayment}`}
+              variant="body_4"
+              className={s.button}
+              target="_blank"
+            >
               {t("delivery_method.details_button")}
             </Typography>
           )}
@@ -164,7 +172,13 @@ export const PurchaseMethod = ({
           </div>
         )}
         {isMobile && (
-          <Typography variant="body_4" className={s.button}>
+          <Typography
+            as={Link}
+            href={`${Paths.deliveryAndPayment}`}
+            variant="body_4"
+            className={s.button}
+            target="_blank"
+          >
             {t("delivery_method.details_button")}
           </Typography>
         )}

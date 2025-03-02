@@ -17,12 +17,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import clsx from "clsx";
 import s from "./Favorite.module.scss";
+import { useTranslations } from "next-intl";
 
 type FavoriteItemProps = {
   favorite: Product;
 };
 
 export const FavoriteItem = ({ favorite }: FavoriteItemProps) => {
+  const t = useTranslations("item");
   const isMobile = useIsMobile("tablet");
   const [count, setCount] = useState(1);
   const favoritesItems = useSelector(
@@ -46,21 +48,30 @@ export const FavoriteItem = ({ favorite }: FavoriteItemProps) => {
   const handleAddFavorite = async () => {
     if (isFavorite) {
       try {
-        const res = await deleteFavorite(favorite.id).unwrap();
-        console.log(res);
-        showToast({ message: "Удалено из избранное", variant: "success" });
+        await deleteFavorite(favorite.id).unwrap();
+        showToast({ message: t("delete_from_favorite"), variant: "success" });
       } catch (err: unknown) {
         console.error(err);
-        showToast({ message: "Ошибка", variant: "error" });
+        showToast({
+          message: t("delete_from_favorite_error"),
+          variant: "error",
+          description: t("delete_from_favorite_error_description"),
+        });
       }
     } else {
       try {
-        const res = await addInFavorite({ products: [favorite?.id] }).unwrap();
-        console.log(res);
-        showToast({ message: "Добавлено в избранное", variant: "success" });
+        await addInFavorite({ products: [favorite?.id] }).unwrap();
+        showToast({
+          message: t("add_in_favorite"),
+          variant: "success",
+        });
       } catch (err: unknown) {
         console.error(err);
-        showToast({ message: "Ошибка", variant: "error" });
+        showToast({
+          message: t("add_in_favorite_error"),
+          variant: "error",
+          description: t("add_in_favorite_error_description"),
+        });
       }
     }
   };
@@ -73,8 +84,14 @@ export const FavoriteItem = ({ favorite }: FavoriteItemProps) => {
     try {
       await addItemCart(fetchData).unwrap();
       setCount(1);
+      showToast({ message: t("add_in_cart"), variant: "success" });
     } catch (err: unknown) {
       console.error(err);
+      showToast({
+        message: t("add_in_cart_error"),
+        variant: "error",
+        description: t("add_in_cart_error_description"),
+      });
     }
   };
 

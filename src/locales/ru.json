@@ -537,14 +537,28 @@
     "price": "Цена",
     "quantity": "Количество",
     "sum": "Сумма",
-    "clearCart": "Очистить корзину",
+    "clear_cart": "Очистить корзину",
     "discount": "Скидка",
     "total": "Итого",
     "continue": "Продолжить",
-    "requestDiscount": "Запросить скидку",
-    "yourOrder": "Ваш заказ",
-    "individual": "Физическое лицо",
-    "entity": "Юридическое лицо"
+    "request_discount": "Запросить скидку",
+    "delete_from_cart": "Товар удалён из корзины",
+    "delete_from_cart_error": "Товар не удалён из корзины",
+    "delete_from_cart_error_description": "Пожалуйста, повторите попытку ещё раз",
+    "clear_cart_toast": "Товары из корзины удалены",
+    "clear_cart_toast_error": "Не удалось удалить товары из корзины",
+    "clear_cart_toast_error_description": "Пожалуйста, повторите попытку ещё раз",
+    "request_discount_popup": {
+      "title": "Запросить скидку",
+      "submit_button": "Запросить скидку",
+      "cancel_button": "Отменить",
+      "my_suggested_price": "Моя предложенная цена (общая сумма)",
+      "quantity": "Количество(шт)",
+      "request_discount_toast": "Спасибо за вашу заявку",
+      "request_discount_desctiption": "Скоро с вами свяжется наш менеджер",
+      "request_discount_error": "Не получили вашу завку...",
+      "request_discount_error_description": "Пожалуйста, повторите попытку ещё раз."
+    }
   },
   "payment": {
     "title": "Оплата",
@@ -599,5 +613,26 @@
       "title": "Дополнительные услуги",
       "description": "Стоимость дополнительных услуг уточнит оператор."
     }
+  },
+  "item": {
+    "add_in_cart": "Товар добавен в корзину",
+    "add_in_cart_error": "Товар не добавлен в корзину",
+    "add_in_cart_error_description": "Пожалуйста, повторите попытку ещё раз",
+    "add_in_favorite": "Товар добавен в избранное",
+    "add_in_favorite_error": "Товар не добавлен в избранное",
+    "add_in_favorite_error_description": "Пожалуйста, повторите попытку ещё раз",
+    "delete_from_favorite": "Товар удалён из избранного",
+    "delete_from_favorite_error": "Товар не удалён в избранного",
+    "delete_from_favorite_error_description": "Пожалуйста, повторите попытку ещё раз"
+  },
+  "callback_popup": {
+    "title": "Обратный звонок",
+    "description": "Для связи заполните форму обратной связи, и наш специалист позвонит вам в ближайшее время.",
+    "name_label": "Ваше имя",
+    "name_placeholder": "Имя",
+    "phone_label": "Ваш телефон",
+    "phone_placeholder": "Телефон",
+    "agreement_text": "Согласие на обработку персональных данных",
+    "submit_button": "Отправить"
   }
 }

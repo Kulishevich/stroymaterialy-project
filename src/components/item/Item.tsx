@@ -17,6 +17,7 @@ import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { showToast } from "../ui/toast";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { useTranslations } from "next-intl";
 
 export type ItemProps = {
   variant?: "vertical" | "horizontal";
@@ -24,6 +25,7 @@ export type ItemProps = {
 };
 
 export const Item = ({ variant = "vertical", product }: ItemProps) => {
+  const t = useTranslations("item");
   const [count, setCount] = useState(1);
   const vertical = variant === "vertical";
   const isMobile = useIsMobile("tablet");
@@ -54,31 +56,44 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
     try {
       await addItemCart(fetchData).unwrap();
       setCount(1);
-      showToast({ message: "Добавлено в корзину", variant: "success" });
+      showToast({ message: t("add_in_cart"), variant: "success" });
     } catch (err: unknown) {
       console.error(err);
-      showToast({ message: "Ошибка", variant: "error" });
+      showToast({
+        message: t("add_in_cart_error"),
+        variant: "error",
+        description: t("add_in_cart_error_description"),
+      });
     }
   };
 
   const handleAddFavorite = async () => {
     if (isFavorite) {
       try {
-        const res = await deleteFavorite(product?.id).unwrap();
-        console.log(res);
-        showToast({ message: "Удалено из избранное", variant: "success" });
+        await deleteFavorite(product?.id).unwrap();
+        showToast({ message: t("delete_from_favorite"), variant: "success" });
       } catch (err: unknown) {
         console.error(err);
-        showToast({ message: "Ошибка", variant: "error" });
+        showToast({
+          message: t("delete_from_favorite_error"),
+          variant: "error",
+          description: t("delete_from_favorite_error_description"),
+        });
       }
     } else {
       try {
-        const res = await addInFavorite({ products: [product?.id] }).unwrap();
-        console.log(res);
-        showToast({ message: "Добавлено в избранное", variant: "success" });
+        await addInFavorite({ products: [product?.id] }).unwrap();
+        showToast({
+          message: t("add_in_favorite"),
+          variant: "success",
+        });
       } catch (err: unknown) {
         console.error(err);
-        showToast({ message: "Ошибка", variant: "error" });
+        showToast({
+          message: t("add_in_favorite_error"),
+          variant: "error",
+          description: t("add_in_favorite_error_description"),
+        });
       }
     }
   };

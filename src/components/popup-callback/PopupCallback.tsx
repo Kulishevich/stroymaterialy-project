@@ -9,8 +9,9 @@ import { ControlledTextField } from "../ui/controlled-textfiled";
 import { ControlledCheckbox } from "../ui/controlled-checkbox";
 import { callbackSchemeCreator } from "./model/callback-scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
-import s from "./PopupCallback.module.scss";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { useTranslations } from "next-intl";
+import s from "./PopupCallback.module.scss";
 
 type PopupCallbackProps = {
   isOpen: boolean;
@@ -21,7 +22,9 @@ export const PopupCallback = ({
   isOpen = true,
   setIsOpen,
 }: PopupCallbackProps) => {
+  const t = useTranslations("callback_popup");
   const isMobile = useIsMobile("tablet");
+
   const {
     control,
     formState: { isValid },
@@ -69,31 +72,28 @@ export const PopupCallback = ({
         </Button>
         <div className={s.container}>
           <Typography variant="h2" as="h2">
-            Обратный звонок
+            {t("title")}
           </Typography>
-          <Typography variant="body_3">
-            Для связи заполните форму обратной связи, и наш специалист позвонит
-            вам в ближайшее время.
-          </Typography>
+          <Typography variant="body_3">{t("description")}</Typography>
           <form className={s.form}>
             <div className={s.inputContainer}>
               <Typography variant="h4" isRequired={true}>
-                Ваше имя
+                {t("name_label")}
               </Typography>
               <ControlledTextField
                 className={s.textfield}
-                placeholder="Имя"
+                placeholder={t("name_placeholder")}
                 control={control}
                 name="name"
               />
             </div>
             <div className={s.inputContainer}>
               <Typography variant="h4" isRequired={true}>
-                Ваш телефон
+                {t("phone_label")}
               </Typography>
               <ControlledTextField
                 className={s.textfield}
-                placeholder="Телефон"
+                placeholder={t("phone_placeholder")}
                 control={control}
                 name="phone"
               />
@@ -103,13 +103,13 @@ export const PopupCallback = ({
             <ControlledCheckbox
               control={control}
               name="agreement"
-              label="Согласие на обработку персональных данных"
+              label={t("agreement_text")}
               labelText={Variant.body_6}
               className={s.checkbox}
             />
           </div>
           <Button onClick={handlePost} disabled={!isValid} fullWidth={isMobile}>
-            Отправить
+            {t("submit_button")}
           </Button>
         </div>
         {isMobile && (

@@ -8,6 +8,8 @@ import s from "./RequestDiscountPopup.module.scss";
 import { RequestDiscountItem } from "../request-discount-item";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useCreatePriceOfferMutation } from "@/api/products/products.api";
+import { useTranslations } from "next-intl";
+import { showToast } from "@/components/ui/toast";
 
 type RequestDiscountPopupProps = {
   isOpen: boolean;
@@ -20,6 +22,7 @@ export const RequestDiscountPopup = ({
   setIsOpen,
   orders,
 }: RequestDiscountPopupProps) => {
+  const t = useTranslations("cart.request_discount_popup");
   const [createPriceOffer] = useCreatePriceOfferMutation();
   const { control, handleSubmit } = useForm({
     defaultValues: {
@@ -52,8 +55,18 @@ export const RequestDiscountPopup = ({
     try {
       await createPriceOffer(reqData);
       setIsOpen(false);
+      showToast({
+        message: t("request_discount_toast"),
+        variant: "success",
+        description: t("request_discount_desctiption"),
+      });
     } catch (err: unknown) {
       console.error(err);
+      showToast({
+        message: t("request_discount_error"),
+        variant: "error",
+        description: t("request_discount_error_description"),
+      });
     }
   });
 
@@ -62,7 +75,7 @@ export const RequestDiscountPopup = ({
       <Dialog.Overlay className={s.overlay} />
       <Dialog.Content className={s.content}>
         <Typography variant="h3" as="h3">
-          Запросить скидку
+          {t("title")}
         </Typography>
         {fields?.map((field, index) => (
           <RequestDiscountItem
@@ -73,9 +86,9 @@ export const RequestDiscountPopup = ({
           />
         ))}
         <div className={s.buttonsContainer}>
-          <Button onClick={formHandler}>Запросить скидку</Button>
+          <Button onClick={formHandler}> {t("submit_button")}</Button>
           <Button variant="secondary" onClick={() => setIsOpen(false)}>
-            Отменить
+            {t("cancel_button")}
           </Button>
         </div>
         <Button

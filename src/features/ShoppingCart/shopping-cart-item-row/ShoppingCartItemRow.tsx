@@ -12,12 +12,15 @@ import React, { useEffect, useMemo, useState } from "react";
 import debounce from "lodash/debounce";
 
 import s from "./ShoppingCartItemRow.module.scss";
+import { showToast } from "@/components/ui/toast";
+import { useTranslations } from "next-intl";
 
 type ShoppingCartItemRowProps = {
   item: CartList;
 };
 
 export const ShoppingCartItemRow = ({ item }: ShoppingCartItemRowProps) => {
+  const t = useTranslations("cart");
   const [count, setCount] = useState(item.count);
   const [deleteItemCart] = useRemoveItemCartMutation();
   const [changeCount] = useChangeCounterItemCartMutation();
@@ -25,10 +28,15 @@ export const ShoppingCartItemRow = ({ item }: ShoppingCartItemRowProps) => {
 
   const hadleDeleteItemCart = async (idItem: string) => {
     try {
-      const resData = await deleteItemCart({ id: idItem }).unwrap();
-      console.log(resData);
+      await deleteItemCart({ id: idItem }).unwrap();
+      showToast({ message: t("delete_from_cart"), variant: "success" });
     } catch (err: unknown) {
       console.log(err);
+      showToast({
+        message: t("delete_from_cart_error"),
+        variant: "success",
+        description: t("delete_from_cart_error_description"),
+      });
     }
   };
 

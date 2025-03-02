@@ -532,12 +532,28 @@
     "price": "Գին",
     "quantity": "Քանակ",
     "sum": "Հաշվարկ",
-    "clearCart": "Մաքրել զամբյուղը",
+    "clear_cart": "Մաքրել զամբյուղը",
     "discount": "Զեղչ",
     "total": "Ընդհանուր",
     "continue": "Շարունակել",
-    "requestDiscount": "Պահանջել զեղչ",
-    "yourOrder": "Ձեր պատվերը"
+    "request_discount": "Պահանջել զեղչ",
+    "delete_from_cart": "Ապրանքը հեռացվել է զամբյուղից",
+    "delete_from_cart_error": "Ապրանքը չի հեռացվել զամբյուղից",
+    "delete_from_cart_error_description": "Խնդրում ենք փորձել կրկին",
+    "clear_cart_toast": "Ապրանքները հեռացվել են զամբյուղից",
+    "clear_cart_toast_error": "Չհաջողվեց հեռացնել ապրանքները զամբյուղից",
+    "clear_cart_toast_error_description": "Խնդրում ենք փորձել կրկին",
+    "request_discount_popup": {
+      "title": "Զեղչի հարցում",
+      "submit_button": "Հարցել զեղչ",
+      "cancel_button": "Չեղարկել",
+      "my_suggested_price": "Իմ առաջարկած գինը (ընդհանուր գումար)",
+      "quantity": "Քանակ (հատ)",
+      "request_discount_toast": "Շնորհակալություն Ձեր դիմումի համար",
+      "request_discount_desctiption": "Մեր մենեջերը շուտով կապ կհաստատի Ձեզ հետ",
+      "request_discount_error": "Չստացանք Ձեր դիմումը...",
+      "request_discount_error_description": "Խնդրում ենք փորձել կրկին"
+    }
   },
   "payment": {
     "title": "Վճարում",
@@ -545,6 +561,8 @@
     "delivery": "Առաքում",
     "total": "Գումար",
     "orderButton": "Պատվիրել",
+    "individual": "Ֆիզիկական անձ",
+    "entity": "Իրավաբանական անձ",
     "payer_details": {
       "title": "Վճարողի տվյալներ",
       "payer_type": "Վճարողի տեսակը",
@@ -590,5 +608,26 @@
       "title": "Լրացուցիչ ծառայություններ",
       "description": "Լրացուցիչ ծառայությունների արժեքը կհստակեցնի օպերատորը։"
     }
+  },
+  "item": {
+    "add_in_cart": "Ապրանքը ավելացվել է զամբյուղ",
+    "add_in_cart_error": "Ապրանքը չի ավելացվել զամբյուղ",
+    "add_in_cart_error_description": "Խնդրում ենք փորձել կրկին",
+    "add_in_favorite": "Ապրանքը ավելացվել է նախընտրելիների մեջ",
+    "add_in_favorite_error": "Ապրանքը չի ավելացվել նախընտրելիների մեջ",
+    "add_in_favorite_error_description": "Խնդրում ենք փորձել կրկին",
+    "delete_from_favorite": "Ապրանքը հեռացվել է նախընտրելիներից",
+    "delete_from_favorite_error": "Ապրանքը չի հեռացվել նախընտրելիներից",
+    "delete_from_favorite_error_description": "Խնդրում ենք փորձել կրկին"
+  },
+  "callback_popup": {
+    "title": "Հետադարձ զանգ",
+    "description": "Կապ հաստատելու համար լրացրեք հետադարձ կապի ձևը, և մեր մասնագետը կզանգի ձեզ մոտ ապագայում։",
+    "name_label": "Ձեր անունը",
+    "name_placeholder": "Անուն",
+    "phone_label": "Ձեր հեռախոսահամարը",
+    "phone_placeholder": "Հեռախոս",
+    "agreement_text": "Համաձայնություն անձնական տվյալների մշակման համար",
+    "submit_button": "Ուղարկել"
   }
 }

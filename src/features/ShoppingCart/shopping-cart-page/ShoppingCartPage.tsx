@@ -12,6 +12,7 @@ import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { Item } from "@/components/item";
 import { useTranslations } from "next-intl";
 import { CartResponse } from "@/api/cart/cart.types";
+import { showToast } from "@/components/ui/toast";
 
 export const ShoppingCart = ({ cartData }: { cartData: CartResponse }) => {
   const t = useTranslations("cart");
@@ -42,10 +43,8 @@ export const ShoppingCart = ({ cartData }: { cartData: CartResponse }) => {
           }))
         : [],
     };
-    console.log("Ложим в заказ:", fetchData);
     try {
       const { data } = await createOrder(fetchData).unwrap();
-      console.log("Созданный заказ:", data);
       router.push(`${Paths.payment}/${data.id}`);
     } catch (err: unknown) {
       console.error(err);
@@ -54,10 +53,15 @@ export const ShoppingCart = ({ cartData }: { cartData: CartResponse }) => {
 
   const handleClearCart = async () => {
     try {
-      const res = await clearCart().unwrap();
-      console.log(res);
+      await clearCart();
+      showToast({ message: t("clear_cart_toast"), variant: "success" });
     } catch (err: unknown) {
       console.log(err);
+      showToast({
+        message: t("clear_cart_toast_error"),
+        variant: "success",
+        description: t("clear_cart_toast_error_description"),
+      });
     }
   };
 
@@ -99,7 +103,7 @@ export const ShoppingCart = ({ cartData }: { cartData: CartResponse }) => {
               onClick={handleClearCart}
               className={s.clearButton}
             >
-              {t("clearCart")}
+              {t("clear_cart")}
             </Typography>
           </div>
         ) : (
@@ -115,7 +119,7 @@ export const ShoppingCart = ({ cartData }: { cartData: CartResponse }) => {
               onClick={handleClearCart}
               className={s.clearButton}
             >
-              {t("clearCart")}
+              {t("clear_cart")}
             </Typography>
           </>
         )}
@@ -142,7 +146,7 @@ export const ShoppingCart = ({ cartData }: { cartData: CartResponse }) => {
               onClick={() => setIsOpen(true)}
               disabled={!cartState?.data.list.length}
             >
-              {t("requestDiscount")}
+              {t("request_discount")}
             </Button>
           </div>
         </div>
