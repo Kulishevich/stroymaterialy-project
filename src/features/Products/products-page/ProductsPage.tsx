@@ -14,13 +14,16 @@ import { useSearchParams } from "next/navigation";
 import FilterMobile from "@/components/filter-mobile/FilterMobile";
 import { ResponseProductsByCategory } from "@/api/products/products.types";
 import { CategoriesBreadcrumbs } from "@/api/categories/categories.types";
+import { ContentItem } from "@/api/content/content.types";
 
 export const ProductsPage = ({
   productsList,
   breadcrumbs,
+  secondBanner,
 }: {
   productsList: ResponseProductsByCategory;
   breadcrumbs: { data: CategoriesBreadcrumbs };
+  secondBanner: ContentItem[];
 }) => {
   const [productsState, setProductsState] = useState(productsList);
   const [activeFilters, setActiveFilters] = useState("");
@@ -93,7 +96,7 @@ export const ProductsPage = ({
           />
         </div>
       </div>
-      <Banner />
+      <Banner secondBanner={secondBanner} />
       <FeedbackForm />
     </div>
   );

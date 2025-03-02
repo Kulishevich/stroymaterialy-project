@@ -54,6 +54,8 @@ export const Breadcrumbs = ({ className }: Props) => {
         return { href: "/shopping-cart", name: "Корзина" };
       case "payment":
         return { href: "/payment", name: "Оплата" };
+      case "category":
+        return { href: "/category", name: "Каталог" };
       default:
         break;
     }

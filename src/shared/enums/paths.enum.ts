@@ -10,4 +10,5 @@ export enum Paths {
   profile = "/profile",
   shoppingCart = "/shopping-cart",
   payment = "/shopping-cart/payment",
+  catalog = "/category",
 }

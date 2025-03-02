@@ -1,10 +1,9 @@
 import Image from "next/image";
 import React from "react";
 import { Typography } from "../ui/typography";
-import s from "./Subcategory.module.scss";
-import clsx from "clsx";
 import Link from "next/link";
 import { CategoryArgs } from "@/api/categories/categories.types";
+import s from "./Subcategory.module.scss";
 
 type SubcategoryProps = {
   category: CategoryArgs;
@@ -18,7 +17,7 @@ export const Subcategory = ({ category }: SubcategoryProps) => {
           ? `/products/${category.id}`
           : `/subcategory/${category.id}`
       }
-      className={clsx(s.card)}
+      className={s.card}
     >
       <Image src={category.image} width={160} height={122} alt="Subcategory" />
       <Typography variant="body_5">{category.name}</Typography>

@@ -5,6 +5,8 @@ import { Button } from "../ui/button";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { useTranslations } from "next-intl";
 import { ContentItem } from "@/api/content/content.types";
+import Link from "next/link";
+import { Paths } from "@/shared/enums";
 
 export const Banner = ({ secondBanner }: { secondBanner: ContentItem[] }) => {
   const isMobile = useIsMobile("tablet");
@@ -21,7 +23,9 @@ export const Banner = ({ secondBanner }: { secondBanner: ContentItem[] }) => {
           className={s.image}
         />
       )}
-      <Button className={s.button}>{t("banner")}</Button>
+      <Button as={Link} href={Paths.catalog} className={s.button}>
+        {t("banner")}
+      </Button>
     </div>
   );
 };
