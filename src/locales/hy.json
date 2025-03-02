@@ -549,6 +549,7 @@
       "cancel_button": "Չեղարկել",
       "my_suggested_price": "Իմ առաջարկած գինը (ընդհանուր գումար)",
       "quantity": "Քանակ (հատ)",
+      "product": "Ապրանք",
       "request_discount_toast": "Շնորհակալություն Ձեր դիմումի համար",
       "request_discount_desctiption": "Մեր մենեջերը շուտով կապ կհաստատի Ձեզ հետ",
       "request_discount_error": "Չստացանք Ձեր դիմումը...",
@@ -629,5 +630,19 @@
     "phone_placeholder": "Հեռախոս",
     "agreement_text": "Համաձայնություն անձնական տվյալների մշակման համար",
     "submit_button": "Ուղարկել"
+  },
+  "breadcrumbs": {
+    "home": "Գլխավոր",
+    "about": "Մեր մասին",
+    "contacts": "Կապ",
+    "delivery_and_payment": "Առաքում և վճարում",
+    "regular_customer": "Մշտական հաճախորդ",
+    "shares": "Ակցիաներ",
+    "for_business": "Բիզնեսի համար",
+    "vacancies": "Աշխատանք",
+    "profile": "Պրոֆիլ",
+    "cart": "Զամբյուղ",
+    "payment": "Վճարում",
+    "catalog": "Կատալոգ"
   }
 }

@@ -1,6 +1,18 @@
 .order {
     display: flex;
     gap: 40px;
+    @media (max-width: 768px) {
+        gap: 12px
+    }
+}
+
+.container {
+    display: flex;
+    gap: 40px;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 8px
+    }
 }
 
 .card {
@@ -9,10 +21,21 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    box-sizing: border-box;
 
     & > img {
         background-color: var(--color-grey-1);
         border-radius: 6px;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        width: 124px;
+        background-color: var(--color-grey-1);
+        padding: 12px;
+        border-radius: 6px;
+        gap: 10px;
+        height: fit-content;
     }
 }
 
@@ -21,11 +44,25 @@
     flex-direction: column;
     width: 306px;
     gap: 8px;
+
+    @media (max-width: 768px) {
+        width: 168px;
+    }
+}
+
+.input {
+    @media (max-width: 768px) {
+        height: 36px;
+    }
 }
 
 .counter {
     display: flex;
     flex-direction: column;
-    width: 96px;
+    width: 104px;
     gap: 8px;
+    & > p {
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
 }

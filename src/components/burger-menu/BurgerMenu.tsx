@@ -7,36 +7,12 @@ import { Typography } from "../ui/typography";
 import Link from "next/link";
 import { Paths } from "@/shared/enums";
 import clsx from "clsx";
-import { Dropdown } from "../ui/dropdown";
-
-const cooperationOptions = [
-  {
-    value: (
-      <Dialog.Close asChild>
-        <Typography
-          as={Link}
-          href={Paths.forBusiness}
-          variant="placeholder_big"
-        >
-          Для бизнеса
-        </Typography>
-      </Dialog.Close>
-    ),
-    id: "value1",
-  },
-  {
-    value: (
-      <Dialog.Close asChild>
-        <Typography as={Link} href={Paths.vacancies} variant="placeholder_big">
-          Вакансии
-        </Typography>
-      </Dialog.Close>
-    ),
-    id: "value2",
-  },
-];
+import Accordion from "../accordion/Accordion";
+import { useTranslations } from "next-intl";
 
 const BurgerMenu = () => {
+  const t = useTranslations("header.navigation");
+
   return (
     <Dialog.Root>
       <Dialog.Trigger className={s.burgerTrigger}>
@@ -55,7 +31,7 @@ const BurgerMenu = () => {
               href={Paths.home}
               className={s.navLink}
             >
-              Главная
+              {t("main")}
             </Typography>
           </Dialog.Close>
           <Dialog.Close asChild>
@@ -65,7 +41,7 @@ const BurgerMenu = () => {
               href={Paths.deliveryAndPayment}
               className={s.navLink}
             >
-              Доставка и оплата
+              {t("delivery_and_payment")}
             </Typography>
           </Dialog.Close>
           <Dialog.Close asChild>
@@ -75,7 +51,7 @@ const BurgerMenu = () => {
               href={Paths.regularСustomer}
               className={s.navLink}
             >
-              Постоянный клиент
+              {t("regular_customer")}
             </Typography>
           </Dialog.Close>
           <Dialog.Close asChild>
@@ -86,14 +62,37 @@ const BurgerMenu = () => {
               className={clsx(s.navLink, s.shares)}
             >
               <PercentIcon />
-              Акции
+              {t("shares")}
             </Typography>
           </Dialog.Close>
-          <Dropdown
-            placeholder="Сотрудничество"
-            items={cooperationOptions}
-            className={(s.navLink, s.dropdown)}
-          />
+          <Accordion
+            title={
+              <Typography variant="h3" className={s.navLink}>
+                {t("cooperation")}
+              </Typography>
+            }
+          >
+            <Dialog.Close asChild>
+              <Typography
+                as={Link}
+                href={Paths.forBusiness}
+                variant="placeholder_big"
+                className={s.accordion_item}
+              >
+                {t("for_business")}
+              </Typography>
+            </Dialog.Close>
+            <Dialog.Close asChild>
+              <Typography
+                as={Link}
+                href={Paths.vacancies}
+                variant="placeholder_big"
+                className={s.accordion_item}
+              >
+                {t("vacancies")}
+              </Typography>
+            </Dialog.Close>
+          </Accordion>
           <Dialog.Close asChild>
             <Typography
               variant="h3"
@@ -101,7 +100,7 @@ const BurgerMenu = () => {
               href={Paths.about}
               className={s.navLink}
             >
-              О нас
+              {t("about_us")}
             </Typography>
           </Dialog.Close>
           <Dialog.Close asChild>
@@ -111,7 +110,7 @@ const BurgerMenu = () => {
               href={Paths.contacts}
               className={s.navLink}
             >
-              Контакты
+              {t("contacts")}
             </Typography>
           </Dialog.Close>
         </nav>

@@ -1,5 +1,4 @@
 import React from "react";
-import s from "./Footer.module.scss";
 import { Logo } from "@/assets/icons/logo";
 import { SocialNetworks } from "../social-networks";
 import { Typography } from "../ui/typography";
@@ -12,36 +11,14 @@ import {
 } from "@/assets/icons";
 import Image from "next/image";
 import { Paths } from "@/shared/enums";
-import { Dropdown } from "../ui/dropdown";
 import { useGetCategoriesQuery } from "@/api/categories/categories.api";
 import { useTranslations } from "next-intl";
+import s from "./Footer.module.scss";
+import Accordion from "../accordion/Accordion";
 
 export const Footer = () => {
   const t = useTranslations("footer");
   const { data: categories } = useGetCategoriesQuery();
-
-  const cooperationOptions = [
-    {
-      value: (
-        <Typography
-          as={Link}
-          href={Paths.forBusiness}
-          variant="placeholder_big"
-        >
-          {t("for_business")}
-        </Typography>
-      ),
-      id: "value1",
-    },
-    {
-      value: (
-        <Typography as={Link} href={Paths.vacancies} variant="placeholder_big">
-          {t("vacancies")}
-        </Typography>
-      ),
-      id: "value2",
-    },
-  ];
 
   return (
     <div className={s.wrapper}>
@@ -95,11 +72,21 @@ export const Footer = () => {
                 <PercentIcon />
                 {t("promotions")}
               </Typography>
-              <Dropdown
-                placeholder={t("cooperation")}
-                items={cooperationOptions}
-                className={(s.navLink, s.dropdown)}
-              />
+              <Accordion
+                title={
+                  <Typography variant="body_3" className={s.accordionTitle}>
+                    {t("cooperation")}
+                  </Typography>
+                }
+                className={s.accordion}
+              >
+                <Typography as={Link} href={Paths.forBusiness} variant="body_3">
+                  {t("for_business")}
+                </Typography>
+                <Typography as={Link} href={Paths.vacancies} variant="body_3">
+                  {t("vacancies")}
+                </Typography>
+              </Accordion>
               <Typography as={Link} href={Paths.about} variant="body_3">
                 {t("about_us")}
               </Typography>

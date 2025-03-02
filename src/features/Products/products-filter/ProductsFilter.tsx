@@ -1,7 +1,7 @@
 import { Typography } from "@/components/ui/typography";
 import React, { useState } from "react";
 import s from "./ProductsFilter.module.scss";
-import Accordion from "@/components/ui/accordion/Accordion";
+import AccordionSearch from "@/components/ui/accordion-search/AccordionSearch";
 import { Checkbox } from "@/components/ui/checkbox";
 import { TextField } from "@/components/ui/text-field";
 import { useRouter } from "next/router";
@@ -97,7 +97,7 @@ export const ProductsFilter = ({ filtersData }: ProductsFilterProps) => {
         Фильтр
       </Typography>
       {Object.entries(filtersData).map(([category, values]) => (
-        <Accordion title={category} key={category}>
+        <AccordionSearch title={category} key={category}>
           {Array.isArray(values) ? (
             values.map((value, index) => (
               <Checkbox
@@ -146,7 +146,7 @@ export const ProductsFilter = ({ filtersData }: ProductsFilterProps) => {
               checked={handleIsChecked(category, values)}
             />
           )}
-        </Accordion>
+        </AccordionSearch>
       ))}
       <Typography
         as={"button"}

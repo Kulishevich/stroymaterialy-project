@@ -49,31 +49,25 @@
     }
 }
 
-.navLink{
-    color: var(--color-grey-2);
-    width: fit-content;
-    & > p {
-        color: var(--color-bg) !important;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 22.4px;
+.accordion{
+    border-radius: 6px;
+    background-color: #FFFFFF1A;
+    padding: 5px;
+
+    & > p, a {
+        color: var(--color-bg);
+        text-decoration: none;
+        &:hover {
+            color: var(--color-accent-orange);
+        }
     }
 }
 
-.dropdown {
-    width: fit-content;
-    & > svg {
-        color: var(--color-grey-2);
-    }
-    & > p {
-        inset: all;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 19.6px;
-        color: var(--color-bg) !important;
-        &:hover {
-            color: var(--color-accent-orange) !important;
-        }
+.accordionTitle {
+    color: var(--color-bg);
+    text-decoration: none;
+    &:hover {
+        color: var(--color-accent-orange);
     }
 }
 

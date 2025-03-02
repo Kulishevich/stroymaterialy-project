@@ -1,8 +1,8 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "../ui/button";
 import { CloseIcon, FilterIcon } from "@/assets/icons";
-import s from "./FilterMobile.module.scss";
 import { ProductsFilter } from "@/features/Products/products-filter";
+import s from "./FilterMobile.module.scss";
 
 type FilterMobileProps = {
   filtersData: {

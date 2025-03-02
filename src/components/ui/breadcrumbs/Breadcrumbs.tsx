@@ -6,12 +6,14 @@ import { Typography } from "../typography";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { useTranslations } from "next-intl";
 
 interface Props {
   className?: string;
 }
 
 export const Breadcrumbs = ({ className }: Props) => {
+  const t = useTranslations("breadcrumbs");
   const { pathname } = useRouter();
   const dynamicPath = useSelector(
     (state: RootState) => state.breadcrumbs.breadcrumbs
@@ -30,32 +32,35 @@ export const Breadcrumbs = ({ className }: Props) => {
   function handlePathName(path: string) {
     switch (path) {
       case "":
-        return { href: "/", name: "Главная" };
+        return { href: "/", name: t("home") };
       case "about":
-        return { href: "/about", name: "О нас" };
+        return { href: "/about", name: t("about") };
       case "contacts":
-        return { href: "/contacts", name: "Контакты" };
+        return { href: "/contacts", name: t("contacts") };
       case "delivery-and-payment":
-        return { href: "/delivery-and-payment", name: "Доставка и оплата" };
+        return {
+          href: "/delivery-and-payment",
+          name: t("delivery_and_payment"),
+        };
       case "regular-customer":
         return {
           href: "/regular-customer",
-          name: "Постоянный клиент",
+          name: t("regular_customer"),
         };
       case "shares":
-        return { href: "/shares", name: "Акции" };
+        return { href: "/shares", name: t("shares") };
       case "for-business":
-        return { href: "/for-business", name: "Для бизнеса" };
+        return { href: "/for-business", name: t("for_business") };
       case "vacancies":
-        return { href: "/vacancies", name: "Вакансии" };
+        return { href: "/vacancies", name: t("vacancies") };
       case "profile":
-        return { href: "/profile", name: "Профиль" };
+        return { href: "/profile", name: t("profile") };
       case "shopping-cart":
-        return { href: "/shopping-cart", name: "Корзина" };
+        return { href: "/shopping-cart", name: t("cart") };
       case "payment":
-        return { href: "/payment", name: "Оплата" };
+        return { href: "/payment", name: t("payment") };
       case "category":
-        return { href: "/category", name: "Каталог" };
+        return { href: "/category", name: t("catalog") };
       default:
         break;
     }
