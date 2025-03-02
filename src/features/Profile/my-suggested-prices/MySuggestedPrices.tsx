@@ -8,7 +8,7 @@ import { useGetPriceOffersQuery } from "@/api/products/products.api";
 export const MySuggestedPrices = () => {
   const t = useTranslations("profile.my_suggested_prices");
   const { data: priceOffers } = useGetPriceOffersQuery();
-  console.log(priceOffers?.data);
+
   return (
     <div className={s.container}>
       <Typography variant="h3">{t("title")}</Typography>

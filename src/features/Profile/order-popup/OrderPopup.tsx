@@ -34,7 +34,6 @@ export const OrderPopup = ({ isOpen, setIsOpen, orderId }: OrderPopupProps) => {
   };
 
   const handleDeleteOrder = async () => {
-    console.log("delete");
     try {
       await deleteOrder({ id: orderId });
       showToast({ message: "Заказ успешно удалён", variant: "success" });

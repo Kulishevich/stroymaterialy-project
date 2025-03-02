@@ -27,7 +27,6 @@ export const AddAddressPopup = ({
   const t = useTranslations("profile.my_addresses.add_address_popup");
   const [createAddress] = useCreateAddressMutation();
   const { data: regions } = useGetRegionsQuery();
-  console.log("Regions:", regions);
 
   const {
     control,

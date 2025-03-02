@@ -29,8 +29,6 @@ export const CardForm = () => {
   });
 
   const formHandler = handleSubmit(async (data) => {
-    console.log(data);
-
     try {
       const res = await createGiftCard(data).unwrap();
       console.log(res);

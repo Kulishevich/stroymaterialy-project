@@ -58,7 +58,6 @@ export const ProfilePersonalData = () => {
       email: data.email,
       phone: data.phone,
     };
-    console.log(fetchData);
     try {
       const res = await changeSetting(fetchData).unwrap();
       console.log(res);

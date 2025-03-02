@@ -54,8 +54,7 @@ export const EditAddressPopup = ({
     };
 
     try {
-      const res = await updateAddress(fetchData).unwrap();
-      console.log("result", res);
+      await updateAddress(fetchData).unwrap();
       setIsOpen(false);
       reset();
       showToast({ message: "Адрес изменён", variant: "success" });

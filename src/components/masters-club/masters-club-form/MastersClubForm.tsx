@@ -36,9 +36,6 @@ export const MastersClubForm = ({
   const token = useSelector((state: RootState) => state.auth.token);
   const { data: user } = useGetUserSettingQuery();
 
-  // console.log("professions", professions);
-  // console.log("spheres", spheres);
-
   const options = [
     {
       id: "individual",

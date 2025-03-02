@@ -46,11 +46,10 @@ export const AddNewAddress = ({ setIsAddAddress }: AddNewAddressProps) => {
   const addNewAddressForm = handleSubmit(async (data) => {
     console.log(data);
     try {
-      const res = await createAddress({
+      await createAddress({
         ...data,
         regionId: Number(data.regionId),
       }).unwrap();
-      console.log("add new address", res);
       reset();
       setIsAddAddress(false);
     } catch (err: unknown) {

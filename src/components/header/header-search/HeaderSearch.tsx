@@ -23,7 +23,9 @@ export const HeaderSearch = () => {
   const token = useSelector((state: RootState) => state.auth.token);
   const dispatch = useDispatch();
 
-  const { data: favorites } = useGetFavoriteProductsQuery();
+  const { data: favorites } = useGetFavoriteProductsQuery(undefined, {
+    skip: !token,
+  });
   const { data: cart } = useGetCartQuery();
 
   useEffect(() => {

@@ -8,6 +8,8 @@ export const feedbackFormSchemeCreator = () => {
     agreement: z
       .boolean()
       .default(false)
-      .refine((value) => value === true, { message: "Необходимо согласие" }),
+      .refine((value) => value === true, {
+        message: "Пожалуйста, согласитесь с правилами и условиями",
+      }),
   });
 };

@@ -13,7 +13,6 @@ export const Slider = ({ children, itemWidth }: SliderProps) => {
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
-    console.log(direction);
     const container = scrollRef.current;
     const scrollAmount = itemWidth;
 
