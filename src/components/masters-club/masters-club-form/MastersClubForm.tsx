@@ -34,7 +34,9 @@ export const MastersClubForm = ({
   const [createPartner] = useCreatePartnerMutation();
   const [createPartnerExistUser] = useCreatePartnerExistUserMutation();
   const token = useSelector((state: RootState) => state.auth.token);
-  const { data: user } = useGetUserSettingQuery();
+  const { data: user } = useGetUserSettingQuery(undefined, {
+    skip: !token,
+  });
 
   const options = [
     {
