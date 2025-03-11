@@ -59,8 +59,7 @@ export const ProfilePersonalData = () => {
       phone: data.phone,
     };
     try {
-      const res = await changeSetting(fetchData).unwrap();
-      console.log(res);
+      await changeSetting(fetchData).unwrap();
       showToast({ message: "Отредачено", variant: "success" });
     } catch (err: unknown) {
       console.error(err);

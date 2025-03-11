@@ -8,7 +8,6 @@ import { useTranslations } from "next-intl";
 export const Orders = () => {
   const t = useTranslations("profile.orders");
   const { data: orders } = useGetUserOrdersQuery();
-  console.log(orders);
   return (
     <div className={s.container}>
       <Typography variant="h3" as="h3">

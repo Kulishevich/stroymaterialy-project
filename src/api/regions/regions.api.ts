@@ -6,7 +6,7 @@ export const regionsApi = domixApi.injectEndpoints({
     return {
       getRegions: builder.query<GetRegionsResponse, void>({
         query: () => ({
-          url: "/v1/regions",
+          url: "/regions",
         }),
       }),
     };

@@ -9,7 +9,7 @@ export const getTrendsProduct = async ({
 }) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}/v1/products/trends/${trend}?perPage=${perPage}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/products/trends/${trend}?perPage=${perPage}`,
       {
         method: "GET",
         headers: {

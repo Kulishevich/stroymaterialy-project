@@ -7,7 +7,7 @@ export const getProduct = async ({
 }) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}/v1/products/${product}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/products/${product}`,
       {
         method: "GET",
         headers: {

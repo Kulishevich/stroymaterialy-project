@@ -6,7 +6,7 @@ export const brandesApi = domixApi.injectEndpoints({
     return {
       getBrandes: builder.query<{ data: BrandesResponse[] }, void>({
         query: () => ({
-          url: "/v1/brandes",
+          url: "/brandes",
         }),
       }),
     };

@@ -6,7 +6,7 @@ export const contentApi = domixApi.injectEndpoints({
     return {
       getContent: builder.query<ContentResponse, string>({
         query: (key) => ({
-          url: `/v1/contents?keys[]=${key}`,
+          url: `/contents?keys[]=${key}`,
         }),
       }),
     };

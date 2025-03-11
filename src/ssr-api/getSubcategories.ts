@@ -9,7 +9,7 @@ export const getSubcategories = async ({
 }) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}/v1/categories/${subcategory}?perPage=${perPage}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/categories/${subcategory}?perPage=${perPage}`,
       {
         method: "GET",
         headers: {

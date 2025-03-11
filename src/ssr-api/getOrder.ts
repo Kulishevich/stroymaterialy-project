@@ -1,7 +1,7 @@
 export const getOrder = async ({ lang, id }: { lang: string; id: string }) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}/v1/orders/${id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/orders/${id}`,
       {
         method: "GET",
         headers: {

@@ -73,12 +73,12 @@ export const ProductsFilter = ({ filtersData }: ProductsFilterProps) => {
   const changePrice = (key: "max" | "min") => {
     const searchParams = new URLSearchParams(window.location.search);
     if (key === "min" && !!minPrice) {
-      console.log(minPrice);
+      // console.log(minPrice);
       searchParams.set(`price[${key}]`, minPrice);
       searchParams.set("page", "1");
       router.push(`${pathname}?${decodeURIComponent(searchParams.toString())}`);
     } else if (key === "max" && !!maxPrice) {
-      console.log(maxPrice);
+      // console.log(maxPrice);
       searchParams.set(`price[${key}]`, maxPrice);
       searchParams.set("page", "1");
       router.push(`${pathname}?${decodeURIComponent(searchParams.toString())}`);

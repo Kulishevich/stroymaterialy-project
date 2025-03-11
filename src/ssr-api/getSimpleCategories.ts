@@ -1,7 +1,7 @@
 export const getSimpleCategories = async ({ lang }: { lang: string }) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}/v1/categories/simple`,
+      `${process.env.NEXT_PUBLIC_API_URL}/categories/simple`,
       {
         method: "GET",
         headers: {

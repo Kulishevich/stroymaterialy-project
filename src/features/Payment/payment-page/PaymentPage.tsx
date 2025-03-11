@@ -129,7 +129,6 @@ export const PaymentPage = ({ order, extraOptions }: PaymentPageProps) => {
   }, [orderTypeId, addressId, checkOrder, orderId]);
 
   const formHandler = handleSubmit(async (data) => {
-    console.log(data.orderType);
     const customer = {
       // referralCode: "2313", //можно кидать если есть
       orderId: orderId as string,

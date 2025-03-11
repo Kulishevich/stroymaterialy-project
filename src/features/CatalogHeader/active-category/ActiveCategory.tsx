@@ -1,7 +1,6 @@
 import { Typography } from "@/components/ui/typography";
 import React from "react";
 import s from "./ActiveCategory.module.scss";
-// import { useGetProductsByCategoryQuery } from "@/api/products/products.api";
 import { useGetSubCategoriesQuery } from "@/api/categories/categories.api";
 import { CategoryElem } from "../category-elem";
 
@@ -16,18 +15,10 @@ export const ActiveCategory = ({
   title,
   setIsOpen,
 }: ActiveCategoryProps) => {
-  const {
-    data: categories,
-    error,
-    isLoading,
-  } = useGetSubCategoriesQuery({
+  const { data: categories } = useGetSubCategoriesQuery({
     id: id,
     perPage: 20,
   });
-  console.log(id);
-
-  if (isLoading) return <p>Загрузка...</p>;
-  if (error) return <p>Ошибка загрузки данных</p>;
 
   return (
     <div className={s.content}>

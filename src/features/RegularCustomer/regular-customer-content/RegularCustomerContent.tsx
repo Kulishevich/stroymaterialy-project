@@ -4,11 +4,11 @@ import clsx from "clsx";
 import { ArrowRightIcon } from "@/assets/icons";
 import { GiftCards } from "../gift-cards";
 import { InfoRegularCustomer } from "../info-regular-customer";
-import s from "./RegularCustomerContent.module.scss";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { Paths } from "@/shared/enums";
 import Link from "next/link";
+import s from "./RegularCustomerContent.module.scss";
 
 export const RegularCustomerContent = () => {
   const t = useTranslations("regular_customer");

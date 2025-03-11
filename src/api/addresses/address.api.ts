@@ -11,13 +11,13 @@ export const addressesApi = domixApi.injectEndpoints({
       getAddresses: builder.query<GetAddressesResponse, { perPage: number }>({
         providesTags: ["Addresses"],
         query: ({ perPage }) => ({
-          url: `/v1/users/addresses/?perPage=${perPage}`,
+          url: `/users/addresses/?perPage=${perPage}`,
         }),
       }),
       createAddress: builder.mutation<void, CreateAddressArgs>({
         invalidatesTags: ["Addresses", "Order"],
         query: (args) => ({
-          url: "/v1/users/addresses",
+          url: "/users/addresses",
           method: "POST",
           body: { ...args },
         }),
@@ -28,14 +28,14 @@ export const addressesApi = domixApi.injectEndpoints({
       >({
         invalidatesTags: ["Addresses"],
         query: ({ args, id }) => ({
-          url: `/v1/users/addresses/${id}`,
+          url: `/users/addresses/${id}`,
           method: "PUT",
           body: { ...args },
         }),
       }),
       setDefaultAddress: builder.mutation<void, number>({
         query: (id) => ({
-          url: `/v1/users/addresses/${id}/set-default`,
+          url: `/users/addresses/${id}/set-default`,
           method: "PUT",
         }),
       }),

@@ -66,8 +66,7 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
   const handleAddFavorite = async () => {
     if (isFavorite) {
       try {
-        const res = await deleteFavorite(item?.id).unwrap();
-        console.log(res);
+        await deleteFavorite(item?.id).unwrap();
         showToast({ message: "Удалено из избранное", variant: "success" });
       } catch (err: unknown) {
         console.error(err);
@@ -75,8 +74,7 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
       }
     } else {
       try {
-        const res = await addInFavorite({ products: [item?.id] }).unwrap();
-        console.log(res);
+        await addInFavorite({ products: [item?.id] }).unwrap();
         showToast({ message: "Добавлено в избранное", variant: "success" });
       } catch (err: unknown) {
         console.error(err);

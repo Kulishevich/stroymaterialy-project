@@ -14,7 +14,7 @@ export const ordersApi = domixApi.injectEndpoints({
     return {
       getExtraOptions: builder.query<{ data: ExtraOptionsResponse[] }, void>({
         query: () => ({
-          url: "/v1/orders/extra-options",
+          url: "/orders/extra-options",
         }),
       }),
       createOrder: builder.mutation<
@@ -22,7 +22,7 @@ export const ordersApi = domixApi.injectEndpoints({
         { items: CreateOrderItem[] }
       >({
         query: (args) => ({
-          url: "/v1/orders",
+          url: "/orders",
           method: "POST",
           body: { ...args },
         }),
@@ -30,7 +30,7 @@ export const ordersApi = domixApi.injectEndpoints({
       getOrder: builder.query<GetOrderResponse, { id: string }>({
         providesTags: ["Order"],
         query: ({ id }) => ({
-          url: `/v1/orders/${id}`,
+          url: `/orders/${id}`,
         }),
       }),
       changeOrder: builder.mutation<
@@ -38,7 +38,7 @@ export const ordersApi = domixApi.injectEndpoints({
         { args: ChangeOrderArgs; orderId: string }
       >({
         query: ({ args, orderId }) => ({
-          url: `/v1/orders/${orderId}/process`,
+          url: `/orders/${orderId}/process`,
           method: "PUT",
           body: args,
         }),
@@ -48,21 +48,21 @@ export const ordersApi = domixApi.injectEndpoints({
         { id: string; method: string }
       >({
         query: ({ id, method }) => ({
-          url: `/v1/orders/${id}/pay/${method}`,
+          url: `/orders/${id}/pay/${method}`,
           method: "POST",
         }),
       }),
       deleteOrder: builder.mutation<void, { id: string }>({
         invalidatesTags: ["Orders"],
         query: ({ id }) => ({
-          url: `/v1/orders/${id}`,
+          url: `/orders/${id}`,
           method: "DELETE",
         }),
       }),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       checkOrder: builder.mutation<any, any>({
         query: ({ id, data }) => ({
-          url: `/v1/orders/${id}/check/details`,
+          url: `/orders/${id}/check/details`,
           method: "POST",
           body: data,
         }),

@@ -6,7 +6,7 @@ export const spheresApi = domixApi.injectEndpoints({
     return {
       getSpheres: builder.query<{ data: SpheresArgs[] }, void>({
         query: () => ({
-          url: "/v1/spheres",
+          url: "/spheres",
         }),
       }),
     };

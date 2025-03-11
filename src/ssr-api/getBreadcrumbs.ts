@@ -7,7 +7,7 @@ export const getBreadcrumbs = async ({
 }) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}/v1/categories/${category}/breadcrumbs`,
+      `${process.env.NEXT_PUBLIC_API_URL}/categories/${category}/breadcrumbs`,
       {
         method: "GET",
         headers: {

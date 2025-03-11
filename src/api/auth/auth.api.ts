@@ -22,7 +22,7 @@ export const authApi = domixApi.injectEndpoints({
         query: (args) => ({
           body: { ...args },
           method: "POST",
-          url: "/v1/auth/login/user",
+          url: "/auth/login/user",
         }),
       }),
       signUp: builder.mutation<SignUpResponce, SignUpArgs>({
@@ -38,7 +38,7 @@ export const authApi = domixApi.injectEndpoints({
         query: (args) => ({
           body: { ...args },
           method: "POST",
-          url: "/v1/auth/sign-up",
+          url: "/auth/sign-up",
         }),
       }),
     };

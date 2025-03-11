@@ -50,10 +50,8 @@ export const EditPasswordPopup = ({
   }, [password, confirmPassword, setError]);
 
   const formHandler = handleSubmit(async (data) => {
-    console.log(data);
     try {
-      const res = await changePassword(data).unwrap();
-      console.log(res);
+      await changePassword(data).unwrap();
       reset();
     } catch (err: unknown) {
       console.error(err);

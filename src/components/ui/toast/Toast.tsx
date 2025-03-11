@@ -26,7 +26,6 @@ const showToast = ({
   variant = "success",
   ...props
 }: ToastOptions) => {
-  console.log("toast");
   toast.custom(
     () => (
       <div className={clsx(styles.rootClass, styles[variant], className)}>

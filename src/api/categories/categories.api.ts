@@ -6,7 +6,7 @@ export const categoriesApi = domixApi.injectEndpoints({
     return {
       getCategories: builder.query<{ data: CategoryArgs[] }, void>({
         query: () => ({
-          url: "/v1/categories/simple",
+          url: "/categories/simple",
         }),
       }),
       getSubCategories: builder.query<
@@ -14,7 +14,7 @@ export const categoriesApi = domixApi.injectEndpoints({
         { id: string; perPage: number }
       >({
         query: ({ id, perPage }) => ({
-          url: `/v1/categories/${id}?perPage=${perPage}`,
+          url: `/categories/${id}?perPage=${perPage}`,
         }),
       }),
       getBreadcrumbsCategories: builder.query<
@@ -22,7 +22,7 @@ export const categoriesApi = domixApi.injectEndpoints({
         string
       >({
         query: (id) => ({
-          url: `/v1/categories/${id}/breadcrumbs`,
+          url: `/categories/${id}/breadcrumbs`,
         }),
       }),
     };

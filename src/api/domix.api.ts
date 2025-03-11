@@ -10,7 +10,7 @@ import { logout } from "@/store/slices/auth/authSlice";
 import { toggleLoginModal } from "@/store/slices/auth-modal/authModalSlice";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.NEXT_PUBLIC_DOMIX_BASE_URL,
+  baseUrl: process.env.NEXT_PUBLIC_API_URL,
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
     const lang = (getState() as RootState).lang;

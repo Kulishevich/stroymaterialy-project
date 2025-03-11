@@ -7,20 +7,20 @@ export const cartApi = domixApi.injectEndpoints({
       getCart: builder.query<CartResponse, void>({
         providesTags: ["Cart"],
         query: () => ({
-          url: "/v1/carts",
+          url: "/carts",
         }),
       }),
       clearCart: builder.mutation<CartResponse, void>({
         invalidatesTags: ["Cart"],
         query: () => ({
-          url: "/v1/carts",
+          url: "/carts",
           method: "DELETE",
         }),
       }),
       addItemCart: builder.mutation<CartResponse, AddItemArgs>({
         invalidatesTags: ["Cart"],
         query: (args) => ({
-          url: "/v1/carts/add",
+          url: "/carts/add",
           method: "POST",
           body: { ...args },
         }),
@@ -28,14 +28,14 @@ export const cartApi = domixApi.injectEndpoints({
       removeItemCart: builder.mutation<CartResponse, { id: string }>({
         invalidatesTags: ["Cart"],
         query: ({ id }) => ({
-          url: `/v1/carts/${id}`,
+          url: `/carts/${id}`,
           method: "DELETE",
         }),
       }),
       changeCounterItemCart: builder.mutation<void, AddItemArgs>({
         invalidatesTags: ["Cart"],
         query: (args) => ({
-          url: "/v1/carts/change",
+          url: "/carts/change",
           method: "POST",
           body: { ...args },
         }),

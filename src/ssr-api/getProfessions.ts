@@ -1,7 +1,7 @@
 export const getProfessions = async ({ lang }: { lang: string }) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}/v1/professions`,
+      `${process.env.NEXT_PUBLIC_API_URL}/professions`,
       {
         method: "GET",
         headers: {

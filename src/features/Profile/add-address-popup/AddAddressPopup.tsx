@@ -56,8 +56,7 @@ export const AddAddressPopup = ({
   const formHandler = handleSubmit(async (data) => {
     const fetchData = { ...data, regionId: Number(data.regionId) };
     try {
-      const res = await createAddress(fetchData).unwrap();
-      console.log("result", res);
+      await createAddress(fetchData).unwrap();
       setIsOpen(false);
       reset();
       showToast({ message: "Адрес добавлен", variant: "success" });
