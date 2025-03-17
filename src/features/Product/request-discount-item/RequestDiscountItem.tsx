@@ -1,35 +1,25 @@
 import { Counter } from "@/components/counter";
 import { Typography } from "@/components/ui/typography";
 import Image from "next/image";
-import { CartList } from "@/api/cart/cart.types";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
 import { Control, Controller } from "react-hook-form";
 import s from "./RequestDiscountItem.module.scss";
 import { useTranslations } from "next-intl";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
-
-type FormValues = {
-  orders: {
-    productId: string;
-    price: string;
-    count: number;
-  }[];
-};
+import { Product } from "@/api/products/products.types";
+import { FormValues } from "../request-discount-popup";
 
 type RequestDiscountItemProps = {
-  order: CartList;
-  index: number;
+  product: Product;
   control: Control<FormValues>;
 };
 
 export const RequestDiscountItem = ({
-  order,
-  index,
+  product,
   control,
 }: RequestDiscountItemProps) => {
   const t = useTranslations("cart.request_discount_popup");
   const isMobile = useIsMobile("tablet");
-  const { product, total } = order;
 
   return (
     <div key={product.id} className={s.order}>
@@ -57,9 +47,9 @@ export const RequestDiscountItem = ({
 
           <Typography variant="body_5"> {t("my_suggested_price")}</Typography>
           <ControlledTextField
-            placeholder={total}
+            placeholder={product.price}
             control={control}
-            name={`orders.${index}.price`}
+            name={`price`}
             className={s.input}
           />
         </div>
@@ -67,7 +57,7 @@ export const RequestDiscountItem = ({
           <Typography variant="body_5"> {t("quantity")}</Typography>
           <Controller
             control={control}
-            name={`orders.${index}.count`}
+            name={`count`}
             render={({ field }) => (
               <Counter
                 size={!isMobile ? "l" : "s"}

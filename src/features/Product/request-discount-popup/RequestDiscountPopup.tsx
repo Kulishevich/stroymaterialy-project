@@ -3,57 +3,55 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { CloseIcon } from "@/assets/icons";
 import { Typography } from "@/components/ui/typography";
-import { CartList } from "@/api/cart/cart.types";
 import s from "./RequestDiscountPopup.module.scss";
 import { RequestDiscountItem } from "../request-discount-item";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useCreatePriceOfferMutation } from "@/api/products/products.api";
 import { useTranslations } from "next-intl";
 import { showToast } from "@/components/ui/toast";
+import { Product } from "@/api/products/products.types";
+
+export type FormValues = {
+  productId: string;
+  price: string;
+  count: number;
+};
 
 type RequestDiscountPopupProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  orders: CartList[];
+  product: Product;
 };
 
 export const RequestDiscountPopup = ({
   isOpen,
   setIsOpen,
-  orders,
+  product,
 }: RequestDiscountPopupProps) => {
+  console.log(product);
   const t = useTranslations("cart.request_discount_popup");
   const [createPriceOffer] = useCreatePriceOfferMutation();
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
-      orders: orders.map((order) => ({
-        productId: order.product.id,
-        count: order.count,
-        price: order.total,
-      })),
+      productId: product.id,
+      count: 1,
+      price: product.price,
     },
   });
 
-  const { fields } = useFieldArray({
-    control,
-    name: "orders",
-  });
-
   const formHandler = handleSubmit(async (data) => {
-    const reqData = data.orders.map((order) => {
-      return {
-        ...order,
-        price: parseFloat(
-          order.price
-            .replace(/\s/g, "")
-            .replace(/[^\d,.-]/g, "")
-            .replace(",", ".")
-        ),
-      };
-    });
-
+    const reqData = {
+      ...data,
+      price: parseFloat(
+        data.price
+          .replace(/\s/g, "")
+          .replace(/[^\d,.-]/g, "")
+          .replace(",", ".")
+      ),
+    };
+    console.log(reqData);
     try {
-      await createPriceOffer(reqData);
+      await createPriceOffer([reqData]);
       setIsOpen(false);
       showToast({
         message: t("request_discount_toast"),
@@ -77,14 +75,7 @@ export const RequestDiscountPopup = ({
         <Typography variant="h3" as="h3">
           {t("title")}
         </Typography>
-        {fields?.map((field, index) => (
-          <RequestDiscountItem
-            key={field.id}
-            control={control}
-            index={index}
-            order={orders[index]}
-          />
-        ))}
+        <RequestDiscountItem control={control} product={product} />
         <div className={s.buttonsContainer}>
           <Button onClick={formHandler}> {t("submit_button")}</Button>
           <Button variant="secondary" onClick={() => setIsOpen(false)}>

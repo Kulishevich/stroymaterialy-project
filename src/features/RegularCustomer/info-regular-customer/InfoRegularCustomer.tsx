@@ -1,49 +1,60 @@
 import React from "react";
 import s from "./InfoRegularCustomer.module.scss";
 import { Typography } from "@/components/ui/typography";
-import {
-  BagOutlinedIcon,
-  DollarOutlinedIcon,
-  MaleIcon,
-  TruckOutlinedIcon,
-} from "@/assets/icons";
-import { useIsMobile } from "@/shared/hooks/useIsMobile";
-import { PaymentTableMobile } from "./payment-table-mobile";
+// import {
+//   BagOutlinedIcon,
+//   DollarOutlinedIcon,
+//   MaleIcon,
+//   TruckOutlinedIcon,
+// } from "@/assets/icons";
+// import { useIsMobile } from "@/shared/hooks/useIsMobile";
+// import { PaymentTableMobile } from "./payment-table-mobile";
 import { useTranslations } from "next-intl";
 
 export const InfoRegularCustomer = () => {
-  const isMobile = useIsMobile("tablet");
+  // const isMobile = useIsMobile("tablet");
   const t = useTranslations("regular_customer.info_regular_customer");
 
   return (
     <div className={s.container}>
       <Typography variant="h3" as="h3">
-        {t("discount_system_title")}
+        {t("title")}
       </Typography>
+      <Typography variant="h3" as="h3">
+        {t("subtitle")}
+      </Typography>
+
+      <ol>
+        <Typography variant="h3" as="h3">
+          {t("how_it_works.title")}
+        </Typography>
+        <Typography variant="body_3" as="li">
+          {t("how_it_works.steps.register")}
+        </Typography>
+        <Typography variant="body_3" as="li">
+          {t("how_it_works.steps.first_purchase")}
+        </Typography>
+        <Typography variant="body_3" as="li">
+          {t("how_it_works.steps.personal_discounts")}
+        </Typography>
+        <Typography variant="body_3" as="li">
+          {t("how_it_works.steps.free_delivery")}
+        </Typography>
+      </ol>
+
       <ul>
         <Typography variant="body_3" as="li">
-          {t("delivery_excludes_unloading")}
+          {t("notes.discount_visibility")}
         </Typography>
         <Typography variant="body_3" as="li">
-          {t("delivery_confirmation_required")}
-        </Typography>
-        <Typography variant="body_3" as="li">
-          {t("express_delivery_no_confirmation")}
-        </Typography>
-        <Typography variant="body_3" as="li">
-          {t("change_delivery_time")}
-        </Typography>
-        <Typography variant="body_3" as="li">
-          {t("unloading_rules")}
-        </Typography>
-        <Typography variant="body_3" as="li">
-          {t("payment_options")}
-        </Typography>
-        <Typography variant="body_3" as="li">
-          {t("customer_support")}
+          {t("notes.accumulate_and_save")}
         </Typography>
       </ul>
-      {!isMobile ? (
+
+      <Typography variant="h3" as="h3">
+        {t("register_now")}
+      </Typography>
+      {/* {!isMobile ? (
         <table className={s.tablePayment}>
           <thead>
             <tr>
@@ -118,7 +129,7 @@ export const InfoRegularCustomer = () => {
         </table>
       ) : (
         <PaymentTableMobile />
-      )}
+      )} */}
     </div>
   );
 };

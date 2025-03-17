@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
-import { RequestDiscountPopup } from "../request-discount-popup";
 import { Paths } from "@/shared/enums";
 import { useClearCartMutation, useGetCartQuery } from "@/api/cart/cart.api";
 import s from "./ShoppingCartPage.module.scss";
@@ -19,7 +18,6 @@ export const ShoppingCart = ({ cartData }: { cartData: CartResponse }) => {
   const [cartState, setCartState] = useState(cartData);
   const router = useRouter();
   const isMobile = useIsMobile("tablet");
-  const [isOpen, setIsOpen] = useState(false);
 
   const { data: cart } = useGetCartQuery(undefined, {
     skip: !cartState,
@@ -140,24 +138,17 @@ export const ShoppingCart = ({ cartData }: { cartData: CartResponse }) => {
             <Button fullWidth={true} onClick={handleCreateOrder}>
               {t("continue")}
             </Button>
-            <Button
+            {/* <Button
               fullWidth={true}
               variant="secondary"
               onClick={() => setIsOpen(true)}
               disabled={!cartState?.data.list.length}
             >
               {t("request_discount")}
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
-      {cart?.data.list && (
-        <RequestDiscountPopup
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          orders={cartState?.data.list}
-        />
-      )}
     </div>
   );
 };

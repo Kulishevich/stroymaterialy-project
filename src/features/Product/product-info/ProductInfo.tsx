@@ -23,6 +23,7 @@ import clsx from "clsx";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { TableDelliveryMobile } from "@/features/DeliveryAndPayment/DeliveryAndLifting/table-dellivery/TableDelliveryMobile/TableDelliveryMobile";
 import { TableLiftingMobile } from "@/features/DeliveryAndPayment/DeliveryAndLifting/table-lifting/table-lifting-mobile";
+import { RequestDiscountPopup } from "../request-discount-popup";
 
 type ProductInfoProps = {
   item: Product;
@@ -31,6 +32,7 @@ type ProductInfoProps = {
 export const ProductInfo = ({ item }: ProductInfoProps) => {
   const isMobile = useIsMobile("tablet");
   const [count, setCount] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
   const [addItemCart] = useAddItemCartMutation();
   const [addInFavorite] = useAddInFavoriteMutation();
   const [deleteFavorite] = useDeleteFavoriteMutation();
@@ -134,7 +136,11 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
             >
               <HeartIcon />
             </Button>
-            <Button fullWidth={true} variant={"secondary"}>
+            <Button
+              fullWidth={true}
+              variant={"secondary"}
+              onClick={() => setIsOpen(true)}
+            >
               Запросить скидку
             </Button>
           </div>
@@ -322,6 +328,11 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
           )}
         </div>
       </div>
+      <RequestDiscountPopup
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        product={item}
+      />
     </div>
   );
 };
