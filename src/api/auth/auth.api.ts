@@ -1,3 +1,4 @@
+import { login } from "@/store/slices/auth/authSlice";
 import { domixApi } from "../domix.api";
 import {
   LoginArgs,
@@ -10,11 +11,12 @@ export const authApi = domixApi.injectEndpoints({
   endpoints: (builder) => {
     return {
       login: builder.mutation<LoginResponce, LoginArgs>({
-        async onQueryStarted(_, { queryFulfilled }) {
+        async onQueryStarted(_, { queryFulfilled, dispatch }) {
           try {
             const { data } = await queryFulfilled;
 
             localStorage.setItem("accessToken", data.data.token.trim());
+            dispatch(login(data.data.token.trim()));
           } catch (e) {
             console.error(e, "Error in login: builder.mutation");
           }
@@ -26,11 +28,11 @@ export const authApi = domixApi.injectEndpoints({
         }),
       }),
       signUp: builder.mutation<SignUpResponce, SignUpArgs>({
-        async onQueryStarted(_, { queryFulfilled }) {
+        async onQueryStarted(_, { queryFulfilled, dispatch }) {
           try {
             const { data } = await queryFulfilled;
 
-            localStorage.setItem("accessToken", data.data.token.trim());
+            dispatch(login(data.data.token.trim()));
           } catch (e) {
             console.error(e, "Error in login: builder.mutation");
           }

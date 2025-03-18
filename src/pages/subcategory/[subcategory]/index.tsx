@@ -8,6 +8,7 @@ import { getBreadcrumbs } from "@/ssr-api/getBreadcrumbs";
 import { getSubcategories } from "@/ssr-api/getSubcategories";
 import { getTrendsProduct } from "@/ssr-api/getTrendsProduct";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 
 export default function SubcategoryPageDynamic({
   subcategories,
@@ -19,11 +20,41 @@ export default function SubcategoryPageDynamic({
   breadcrumbs: { data: CategoriesBreadcrumbs };
 }) {
   return (
-    <SubcategoryPage
-      subcategories={subcategories}
-      bestSellingProducts={bestSellingProducts}
-      breadcrumbs={breadcrumbs}
-    />
+    <>
+      <Head>
+        <title>
+          {breadcrumbs.data.name ||
+            "Domix.am - крупнейший магазин стройматериалов в Армении"}
+        </title>
+        <meta
+          name="description"
+          content="Купить строительные материалы для ремонта и стройки в строительном магазине Domix.am. Быстрая доставка. Низкие цены"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <meta
+          property="og:title"
+          content={
+            breadcrumbs.data.name ||
+            "Domix.am - крупнейший магазин стройматериалов в Армении"
+          }
+        />
+        <meta
+          property="og:description"
+          content="Купить строительные материалы для ремонта и стройки в Domix.am. Быстрая доставка и низкие цены!"
+        />
+        <meta property="og:type" content="website" />
+
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div>
+        <SubcategoryPage
+          subcategories={subcategories}
+          bestSellingProducts={bestSellingProducts}
+          breadcrumbs={breadcrumbs}
+        />
+      </div>
+    </>
   );
 }
 

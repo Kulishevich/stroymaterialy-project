@@ -7,14 +7,18 @@ import { loginSchemeCreator } from "../model/login-scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoginMutation } from "@/api/auth/auth.api";
 import { LoginArgs } from "@/api/auth/auth.types";
+import { showToast } from "@/components/ui/toast";
 import s from "./LoginForm.module.scss";
-// import { showToast } from "@/components/ui/toast";
 
 type LoginFormProps = {
   setIsPasswordRecovery: (value: boolean) => void;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const LoginForm = ({ setIsPasswordRecovery }: LoginFormProps) => {
+export const LoginForm = ({
+  setIsPasswordRecovery,
+  setIsOpen,
+}: LoginFormProps) => {
   const [login] = useLoginMutation();
 
   const {
@@ -35,11 +39,25 @@ export const LoginForm = ({ setIsPasswordRecovery }: LoginFormProps) => {
     console.log(data);
     try {
       const res = await login(data).unwrap();
-      console.log(res);
       reset();
+      showToast({
+        message: res.message || "Успешный вход",
+        variant: "success",
+      });
+      setIsOpen(false);
     } catch (err: unknown) {
-      // showToast({ message: err.data.message, variant: "error" });
-      console.log(err);
+      if (
+        err &&
+        typeof err === "object" &&
+        "data" in err &&
+        typeof err.data === "object"
+      ) {
+        const errorData = err as { data: { message: string } };
+        showToast({ message: errorData.data.message, variant: "error" });
+      } else {
+        showToast({ message: "Ошибка входа", variant: "error" });
+      }
+      console.error(err);
     }
   });
 

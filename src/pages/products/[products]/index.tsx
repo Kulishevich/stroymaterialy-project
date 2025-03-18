@@ -6,6 +6,7 @@ import { getBreadcrumbs } from "@/ssr-api/getBreadcrumbs";
 import { getContent } from "@/ssr-api/getContent";
 import { getProductsList } from "@/ssr-api/getProductsList";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 
 export default function ProductsPageDynamic({
   productsList,
@@ -17,11 +18,41 @@ export default function ProductsPageDynamic({
   secondBanner: ContentItem[];
 }) {
   return (
-    <ProductsPage
-      productsList={productsList}
-      breadcrumbs={breadcrumbs}
-      secondBanner={secondBanner}
-    />
+    <>
+      <Head>
+        <title>
+          {breadcrumbs?.data.name ||
+            "Domix.am - крупнейший магазин стройматериалов в Армении с Доставкой"}
+        </title>
+        <meta
+          name="description"
+          content="Купить строительные материалы для ремонта и стройки в строительном магазине Domix.am. Быстрая доставка. Низкие цены"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <meta
+          property="og:title"
+          content={
+            breadcrumbs?.data.name ||
+            "Domix.am - крупнейший магазин стройматериалов в Армении с Доставкой"
+          }
+        />
+        <meta
+          property="og:description"
+          content="Купить строительные материалы для ремонта и стройки в строительном магазине Domix.am. Быстрая доставка. Низкие цены"
+        />
+        <meta property="og:type" content="website" />
+
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div>
+        <ProductsPage
+          productsList={productsList}
+          breadcrumbs={breadcrumbs}
+          secondBanner={secondBanner}
+        />
+      </div>
+    </>
   );
 }
 

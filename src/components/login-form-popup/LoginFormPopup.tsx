@@ -21,12 +21,17 @@ export const LoginFormPopup = ({ isOpen, setIsOpen }: LoginFormPopupProps) => {
   const navItems = [
     {
       id: "1",
-      value: <LoginForm setIsPasswordRecovery={setIsPasswordRecovery} />,
+      value: (
+        <LoginForm
+          setIsPasswordRecovery={setIsPasswordRecovery}
+          setIsOpen={setIsOpen}
+        />
+      ),
       title: "Вход",
     },
     {
       id: "2",
-      value: <Registration />,
+      value: <Registration setIsOpen={setIsOpen} />,
       title: "Регистрация",
     },
   ];

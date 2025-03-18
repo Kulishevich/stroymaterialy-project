@@ -8,9 +8,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
 import { useSignUpMutation } from "@/api/auth/auth.api";
 import { validation } from "@/shared/validation/validation.errors";
-// import { showToast } from "@/components/ui/toast";
+import { showToast } from "@/components/ui/toast";
 
-export const Registration = () => {
+export const Registration = ({
+  setIsOpen,
+}: {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [signUp] = useSignUpMutation();
 
   const {
@@ -47,13 +51,27 @@ export const Registration = () => {
   const formHandler = handleSubmit(async (data) => {
     const { name, surname, ...rest } = data;
     const fetchData = { ...rest, fullName: `${name} ${surname}` };
-    console.log(fetchData);
+
     try {
       const resData = await signUp(fetchData).unwrap();
-      console.log(resData);
       reset();
+      showToast({
+        message: resData.message || "Регистрация прошла успешно",
+        variant: "success",
+      });
+      setIsOpen(false);
     } catch (err: unknown) {
-      // showToast({ message: err.data.message, variant: "error" });
+      if (
+        err &&
+        typeof err === "object" &&
+        "data" in err &&
+        typeof err.data === "object"
+      ) {
+        const errorData = err as { data: { message: string } };
+        showToast({ message: errorData.data.message, variant: "error" });
+      } else {
+        showToast({ message: "Ошибка регистрации", variant: "error" });
+      }
       console.error(err);
     }
   });
