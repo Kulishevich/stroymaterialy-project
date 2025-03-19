@@ -2,7 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["api.domix.am"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "api.domix.am",
+      },
+    ],
   },
   reactStrictMode: true,
   i18n: {

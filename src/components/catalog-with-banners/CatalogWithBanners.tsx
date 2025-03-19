@@ -25,9 +25,9 @@ export const CatalogWithBanners = ({
       <CatalogHome categories={categories} />
       <div className={s.banner}>
         {banner[0].src && (
-          <Link href={banner[0].link}>
+          <Link href={banner[0].link ?? "/"}>
             <Image
-              src={`${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}${banner[0].src}`}
+              src={banner[0].src}
               width={!isMobile ? 966 : 336}
               height={!isMobile ? 380 : 248}
               alt="banner"
@@ -37,9 +37,13 @@ export const CatalogWithBanners = ({
         )}
         <div className={s.smallBannerContainer}>
           {discounts.slice(0, 3).map((discount, index) => (
-            <Link key={index} href={discount.link} className={s.discountLink}>
+            <Link
+              key={index}
+              href={discount.link ?? "/"}
+              className={s.discountLink}
+            >
               <Image
-                src={`${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}${discount.src}`}
+                src={discount.src}
                 width={!isMobile ? 306 : index === 0 ? 336 : 160}
                 height={!isMobile ? 219 : 150}
                 alt="small banner"

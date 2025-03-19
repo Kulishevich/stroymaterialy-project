@@ -16,7 +16,7 @@ export const Banner = ({ secondBanner }: { secondBanner: ContentItem[] }) => {
     <div className={s.container}>
       {secondBanner[0].src && (
         <Image
-          src={`${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}${secondBanner[0].src}`}
+          src={secondBanner[0].src}
           width={!isMobile ? 1296 : 336}
           height={!isMobile ? 320 : 210}
           alt="big banner"

@@ -14,10 +14,10 @@ export const Discount = ({ discount }: DiscountProps) => {
 
   return (
     <div className={s.container}>
-      <Link href={discount.link}>
+      <Link href={discount.link ?? "/"}>
         <Image
           className={s.image}
-          src={`${process.env.NEXT_PUBLIC_DOMIX_BASE_URL}${discount.src}`}
+          src={discount.src}
           width={!isMobile ? 636 : 336}
           height={!isMobile ? 260 : 180}
           alt="banner"
