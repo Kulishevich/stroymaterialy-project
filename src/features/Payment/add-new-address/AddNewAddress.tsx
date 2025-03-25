@@ -44,7 +44,6 @@ export const AddNewAddress = ({ setIsAddAddress }: AddNewAddressProps) => {
   }, [regions, reset]);
 
   const addNewAddressForm = handleSubmit(async (data) => {
-    console.log(data);
     try {
       await createAddress({
         ...data,

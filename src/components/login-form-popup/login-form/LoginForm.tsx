@@ -36,7 +36,6 @@ export const LoginForm = ({
   });
 
   const formHandler = handleSubmit(async (data) => {
-    console.log(data);
     try {
       const res = await login(data).unwrap();
       reset();

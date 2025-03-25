@@ -28,7 +28,6 @@ export const RequestDiscountPopup = ({
   setIsOpen,
   product,
 }: RequestDiscountPopupProps) => {
-  console.log(product);
   const t = useTranslations("cart.request_discount_popup");
   const [createPriceOffer] = useCreatePriceOfferMutation();
   const { control, handleSubmit } = useForm<FormValues>({

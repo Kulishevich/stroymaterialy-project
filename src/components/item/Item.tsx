@@ -129,6 +129,11 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
                   Популярное
                 </Typography>
               )}
+              {!!product.bonusPercent && (
+                <Typography className={s.promotion} variant="body_6">
+                  -{product.bonusPercent}%
+                </Typography>
+              )}
             </div>
             <Button
               variant="only_icon"
