@@ -1,10 +1,17 @@
-export const getCart = async ({ lang }: { lang: string }) => {
+export const getCart = async ({
+  lang,
+  token,
+}: {
+  lang: string;
+  token?: string;
+}) => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/carts`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         "Accept-Language": lang,
+        Authorization: `Bearer ${token}`,
       },
     });
 

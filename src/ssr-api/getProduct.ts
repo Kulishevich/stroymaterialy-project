@@ -1,9 +1,11 @@
 export const getProduct = async ({
   product,
   lang,
+  token,
 }: {
   product: string;
   lang: string;
+  token?: string;
 }) => {
   try {
     const response = await fetch(
@@ -13,7 +15,7 @@ export const getProduct = async ({
         headers: {
           "Content-Type": "application/json",
           "Accept-Language": lang,
-          // Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

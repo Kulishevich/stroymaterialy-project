@@ -2,10 +2,12 @@ export const getSubcategories = async ({
   subcategory,
   perPage,
   lang,
+  token,
 }: {
   subcategory: string;
   perPage: number;
   lang: string;
+  token?: string;
 }) => {
   try {
     const response = await fetch(
@@ -15,6 +17,7 @@ export const getSubcategories = async ({
         headers: {
           "Content-Type": "application/json",
           "Accept-Language": lang,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

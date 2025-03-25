@@ -2,10 +2,12 @@ export const getCategories = async ({
   category,
   perPage,
   lang,
+  token,
 }: {
   category: string;
   perPage: number;
   lang: string;
+  token?: string;
 }) => {
   try {
     const response = await fetch(
@@ -15,7 +17,7 @@ export const getCategories = async ({
         headers: {
           "Content-Type": "application/json",
           "Accept-Language": lang,
-          // Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

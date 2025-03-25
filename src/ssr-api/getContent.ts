@@ -1,9 +1,11 @@
 export const getContent = async ({
   key,
   lang,
+  token,
 }: {
   key: string;
   lang: string;
+  token?: string;
 }) => {
   try {
     const response = await fetch(
@@ -13,6 +15,7 @@ export const getContent = async ({
         headers: {
           "Content-Type": "application/json",
           "Accept-Language": lang,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

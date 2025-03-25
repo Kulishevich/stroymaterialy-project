@@ -1,4 +1,10 @@
-export const getSimpleCategories = async ({ lang }: { lang: string }) => {
+export const getSimpleCategories = async ({
+  lang,
+  token,
+}: {
+  lang: string;
+  token?: string;
+}) => {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/categories/simple`,
@@ -7,6 +13,7 @@ export const getSimpleCategories = async ({ lang }: { lang: string }) => {
         headers: {
           "Content-Type": "application/json",
           "Accept-Language": lang,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

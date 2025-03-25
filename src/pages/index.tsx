@@ -58,6 +58,7 @@ export default function Home({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const lang = context.req.cookies?.locale || "hy";
+  const token = context.req.cookies?.accessToken || "";
 
   const content = await getAllContent({ lang });
   const discounts = content.data.filter(
@@ -75,6 +76,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     lang,
     perPage: 12,
     trend: "popular",
+    token,
   });
 
   return { props: { discounts, banner, categories, products, secondBanner } };

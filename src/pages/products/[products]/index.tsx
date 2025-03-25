@@ -58,6 +58,7 @@ export default function ProductsPageDynamic({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const lang = context.req.cookies?.locale || "hy";
+  const token = context.req.cookies?.accessToken || "";
   const { products, page = "1" } = context.query;
 
   const productsList = await getProductsList({
@@ -65,6 +66,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     perPage: 12,
     page: Number(page),
     lang,
+    token,
   });
 
   const breadcrumbs = await getBreadcrumbs({

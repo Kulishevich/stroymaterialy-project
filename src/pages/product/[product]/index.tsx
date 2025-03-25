@@ -53,8 +53,9 @@ export default function ProductPageDynamic({
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { product } = context.params as { product: string };
   const lang = context.req.cookies?.locale || "hy";
+  const token = context.req.cookies?.accessToken || "";
 
-  const productItem = await getProduct({ product, lang });
+  const productItem = await getProduct({ product, lang, token });
 
   return { props: { productItem } };
 };

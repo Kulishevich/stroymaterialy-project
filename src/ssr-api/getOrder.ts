@@ -1,4 +1,12 @@
-export const getOrder = async ({ lang, id }: { lang: string; id: string }) => {
+export const getOrder = async ({
+  lang,
+  id,
+  token,
+}: {
+  lang: string;
+  id: string;
+  token?: string;
+}) => {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/orders/${id}`,
@@ -7,6 +15,7 @@ export const getOrder = async ({ lang, id }: { lang: string; id: string }) => {
         headers: {
           "Content-Type": "application/json",
           "Accept-Language": lang,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

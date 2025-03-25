@@ -1,10 +1,17 @@
-export const getSpheres = async ({ lang }: { lang: string }) => {
+export const getSpheres = async ({
+  lang,
+  token,
+}: {
+  lang: string;
+  token?: string;
+}) => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/spheres`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         "Accept-Language": lang,
+        Authorization: `Bearer ${token}`,
       },
     });
 

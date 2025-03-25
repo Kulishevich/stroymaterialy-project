@@ -3,11 +3,13 @@ export const getProductsList = async ({
   perPage,
   page,
   lang,
+  token,
 }: {
   id: string;
   perPage: number;
   page: number;
   lang: string;
+  token?: string;
 }) => {
   try {
     const response = await fetch(
@@ -17,6 +19,7 @@ export const getProductsList = async ({
         headers: {
           "Content-Type": "application/json",
           "Accept-Language": lang,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
