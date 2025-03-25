@@ -42,6 +42,11 @@ export const ProductImages = ({ item }: ProductImagesProps) => {
               Акция
             </Typography>
           )}
+          {!!item.bonusPercent && (
+            <Typography variant="body_6" className={s.promotion}>
+              -{item.bonusPercent}% скидка
+            </Typography>
+          )}
           {!!item.isNew && (
             <Typography variant="body_6" className={s.new}>
               Новинка

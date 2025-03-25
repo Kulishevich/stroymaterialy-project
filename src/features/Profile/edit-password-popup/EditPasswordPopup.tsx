@@ -10,6 +10,7 @@ import { editPasswordScheme } from "./model/edit-password-scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
 import s from "./EditPasswordPopup.module.scss";
 import { validation } from "@/shared/validation/validation.errors";
+import { showToast } from "@/components/ui/toast";
 
 type EditPasswordPopupProps = {
   isOpen: boolean;
@@ -52,9 +53,12 @@ export const EditPasswordPopup = ({
   const formHandler = handleSubmit(async (data) => {
     try {
       await changePassword(data).unwrap();
+      showToast({ message: "Пароль сменён успешно", variant: "success" });
       reset();
+      setIsOpen(false);
     } catch (err: unknown) {
       console.error(err);
+      showToast({ message: "Ошибка в смене пароля", variant: "error" });
     }
   });
 

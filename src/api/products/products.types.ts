@@ -52,7 +52,7 @@ export type Characteristic = {
 
 export type Product = {
   bonus: string | null;
-  bonusPercent: string;
+  bonusPercent: string | null;
   brand: string;
   breadcrumb: Breadcrumbs[];
   category: ProductCategory;

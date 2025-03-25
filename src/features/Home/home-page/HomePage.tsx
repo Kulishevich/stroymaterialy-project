@@ -1,7 +1,7 @@
 import { Banner } from "@/components/banner";
 import { CatalogWithBanners } from "@/components/catalog-with-banners";
 import { CompanyContacts } from "@/components/company-contacts";
-import { FeedbackForm } from "@/components/feedback-form";
+// import { FeedbackForm } from "@/components/feedback-form";
 import { LatestCompanyPromotions } from "@/features/About/latest-company-promotions";
 import { ProductCatalog } from "@/components/product-catalog";
 import React from "react";
@@ -36,7 +36,7 @@ export const HomePage = ({
       <LatestCompanyPromotions discounts={discounts} />
       <CompanyContacts />
       <Banner secondBanner={secondBanner} />
-      <FeedbackForm />
+      {/* <FeedbackForm /> */}
     </div>
   );
 };

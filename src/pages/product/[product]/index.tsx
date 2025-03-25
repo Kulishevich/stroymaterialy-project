@@ -55,6 +55,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const lang = context.req.cookies?.locale || "hy";
 
   const productItem = await getProduct({ product, lang });
-  console.log(productItem);
+
   return { props: { productItem } };
 };

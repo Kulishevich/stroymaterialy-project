@@ -1,4 +1,4 @@
-import { FeedbackForm } from "@/components/feedback-form";
+// import { FeedbackForm } from "@/components/feedback-form";
 import { Shares } from "@/features/Shares/shares";
 import React from "react";
 import s from "./SharesPage.module.scss";
@@ -8,7 +8,7 @@ export const SharesPage = ({ content }: { content: ContentResponse }) => {
   return (
     <div className={s.container}>
       <Shares content={content} />
-      <FeedbackForm />
+      {/* <FeedbackForm /> */}
     </div>
   );
 };

@@ -40,10 +40,29 @@
     }
 }
 
+.buttonsContainer {
+    display: flex;
+    gap: 20px;
+    justify-content: right;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.logutButton {
+    width: fit-content;
+    height: 58px;
+
+    @media (max-width: 768px) {
+        margin: 0;
+        width: 100%;
+    }
+}
+
 .deleteButton {
     width: 230px;
     height: 58px;
-    margin-left: auto;
 
     @media (max-width: 768px) {
         margin: 0;

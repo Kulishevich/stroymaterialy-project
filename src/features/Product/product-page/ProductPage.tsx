@@ -2,7 +2,7 @@ import { Typography } from "@/components/ui/typography";
 import React, { useEffect } from "react";
 import { ProductImages } from "../product-images";
 import { ProductInfo } from "../product-info";
-import { FeedbackForm } from "@/components/feedback-form";
+// import { FeedbackForm } from "@/components/feedback-form";
 import { SimilarProducts } from "@/components/similar-products";
 import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
 import { useDispatch } from "react-redux";
@@ -48,7 +48,7 @@ export const ProductPage = ({ product }: ProductPageProps) => {
           <ProductInfo item={product.data} />
         </div>
         <SimilarProducts similars={product.data.similars} />
-        <FeedbackForm />
+        {/* <FeedbackForm /> */}
       </div>
     </div>
   );

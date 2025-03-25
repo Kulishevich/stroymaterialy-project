@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import s from "./ProductsPage.module.scss";
 import { ProductsFilter } from "../products-filter";
 import { ProductContent } from "../products-content";
-import { FeedbackForm } from "@/components/feedback-form";
+// import { FeedbackForm } from "@/components/feedback-form";
 import { Banner } from "@/components/banner";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
@@ -97,7 +97,7 @@ export const ProductsPage = ({
         </div>
       </div>
       <Banner secondBanner={secondBanner} />
-      <FeedbackForm />
+      {/* <FeedbackForm /> */}
     </div>
   );
 };

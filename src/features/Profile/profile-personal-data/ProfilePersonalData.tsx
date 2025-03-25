@@ -19,11 +19,13 @@ import { Paths } from "@/shared/enums";
 import { useDispatch } from "react-redux";
 import { logout } from "@/store/slices/auth/authSlice";
 import { useTranslations } from "next-intl";
+import { ConfirmModal } from "@/components/confirm-modal";
 
 export const ProfilePersonalData = () => {
   const t = useTranslations("profile.profile_personal_data");
   const [isEditPassword, setIsEditPassword] = useState<boolean>(false);
-  const { data } = useGetUserSettingQuery();
+  const [isOpenConfirm, setIsOpenConfirm] = useState<boolean>(false);
+  const { data: setting } = useGetUserSettingQuery();
   const [changeSetting] = useChangeSettingMutation();
   const [deleteUser] = useDeleteUserMutation();
   const router = useRouter();
@@ -42,21 +44,23 @@ export const ProfilePersonalData = () => {
   });
 
   useEffect(() => {
-    if (data) {
+    if (setting) {
       reset({
-        name: data?.data.firstName || "",
-        surname: data?.data.lastName || "",
-        phone: data?.data.phone || "",
-        email: data?.data.email || "",
+        name: setting?.data.firstName || "",
+        surname: setting?.data.lastName || "",
+        phone: setting?.data.phone || "",
+        email: setting?.data.email || "",
       });
     }
-  }, [data, reset]);
+  }, [setting, reset]);
 
   const formHandler = handleSubmit(async (data) => {
     const fetchData = {
-      name: `${data.name} ${data.surname}`,
-      email: data.email,
-      phone: data.phone,
+      ...(setting?.data?.fullName !== data.name && {
+        name: `${data.name} ${data.surname}`,
+      }),
+      ...(setting?.data?.email !== data.email && { email: data.email }),
+      ...(setting?.data?.phone !== data.phone && { phone: data.phone }),
     };
     try {
       await changeSetting(fetchData).unwrap();
@@ -75,6 +79,11 @@ export const ProfilePersonalData = () => {
     } catch (err: unknown) {
       console.error(err);
     }
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push(Paths.home);
   };
 
   return (
@@ -141,13 +150,24 @@ export const ProfilePersonalData = () => {
       >
         {t("edit_button")}
       </Typography>
-      <Button
-        variant="secondary"
-        className={s.deleteButton}
-        onClick={handleDeleteUser}
-      >
-        {t("delete_button")}
-      </Button>
+      <div className={s.buttonsContainer}>
+        <Button className={s.logutButton} onClick={handleLogout}>
+          {t("logout_button")}
+        </Button>
+        <Button
+          variant="secondary"
+          className={s.deleteButton}
+          onClick={() => setIsOpenConfirm(true)}
+        >
+          {t("delete_button")}
+        </Button>
+      </div>
+      <ConfirmModal
+        setIsOpen={setIsOpenConfirm}
+        isOpen={isOpenConfirm}
+        title={"Вы уверены что хотите удалить пользователя?"}
+        handleSubmit={handleDeleteUser}
+      />
       <EditPasswordPopup
         isOpen={isEditPassword}
         setIsOpen={setIsEditPassword}

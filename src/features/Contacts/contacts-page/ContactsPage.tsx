@@ -1,6 +1,6 @@
 import React from "react";
 import { CompanyContacts } from "@/components/company-contacts";
-import { FeedbackForm } from "@/components/feedback-form";
+// import { FeedbackForm } from "@/components/feedback-form";
 import s from "./ContactsPage.module.scss";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
@@ -10,7 +10,7 @@ export const ContactsPage = () => {
   return (
     <div className={s.container}>
       <CompanyContacts variant={!isMobile ? "secondary" : "primary"} />
-      <FeedbackForm />
+      {/* <FeedbackForm /> */}
     </div>
   );
 };
