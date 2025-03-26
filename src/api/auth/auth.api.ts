@@ -15,13 +15,9 @@ export const authApi = domixApi.injectEndpoints({
           try {
             const { data } = await queryFulfilled;
 
-            document.cookie = `accessToken=${data.data.token.trim()}; 
-            path=/; 
-            max-age=${7 * 24 * 60 * 60}; 
-            secure; 
-            samesite=lax`;
+            const accessToken = await data.data.token.trim();
 
-            dispatch(login(data.data.token.trim()));
+            dispatch(login(accessToken));
           } catch (e) {
             console.error(e, "Error in login: builder.mutation");
           }

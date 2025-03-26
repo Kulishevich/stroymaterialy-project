@@ -87,6 +87,14 @@
 .text {
     color: var(--color-text);
     margin-bottom: 16px;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    height: 3rem;
 }
 .priceContainer {
     display: flex;
