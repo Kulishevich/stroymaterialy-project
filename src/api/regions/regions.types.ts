@@ -7,6 +7,6 @@ export type GetRegionsResponse = {
 };
 
 export type Region = {
-  id: string;
+  id: number;
   name: string;
 };

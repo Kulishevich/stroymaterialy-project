@@ -14,77 +14,53 @@ import { AddNewAddress } from "../add-new-address";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Paths } from "@/shared/enums";
+import { Region } from "@/api/regions/regions.types";
 
 type PurchaseMethodProps = {
-  addresses: Address[];
+  addressList: Address[] | [];
+  setAddressList: (value: Address[]) => void;
   controlForm: Control<PaymentFormValues>;
   deliveryTimeOptions: OptionsValue[];
   deliveryDataOptions: OptionsValue[];
   orderTypes: OrderTypes[];
   orderTypeId: string;
+  user: boolean;
+  regions: Region[];
 };
 
 export const PurchaseMethod = ({
   orderTypeId,
-  addresses,
+  addressList,
+  setAddressList,
   controlForm,
   deliveryTimeOptions,
   deliveryDataOptions,
   orderTypes,
+  user,
+  regions,
 }: PurchaseMethodProps) => {
   const t = useTranslations("payment.purchase_method");
   const isMobile = useIsMobile("tablet");
   const [isAddAddress, setIsAddAddress] = useState(false);
-  const deliveryMethodOptions = [
-    {
-      title: <Typography variant="body_7">{t("standard.title")}</Typography>,
-      content: (
-        <>
-          <Typography variant="body_6">{t("standard.description")}</Typography>
-          <Typography variant="body_5">{t("standard.price")}</Typography>
-        </>
-      ),
-    },
-    {
-      title: <Typography variant="body_7">{t("express.title")}</Typography>,
-      content: (
-        <>
-          <Typography variant="body_6">{t("express.description")}</Typography>
-          <Typography variant="body_5">{t("express.price")}</Typography>
-        </>
-      ),
-    },
-    {
-      title: <Typography variant="body_7">{t("moped.title")}</Typography>,
-      content: (
-        <>
-          <Typography variant="body_6">{t("moped.description")}</Typography>
-          <Typography variant="body_5">{t("moped.price")}</Typography>
-        </>
-      ),
-    },
-    {
-      title: <Typography variant="body_7">{t("aipost.title")}</Typography>,
-      content: (
-        <>
-          <Typography variant="body_6">{t("aipost.description")}</Typography>
-          <Typography variant="body_5">{t("aipost.price")}</Typography>
-        </>
-      ),
-    },
-  ];
 
-  const orderTypesOptions = deliveryMethodOptions.map((orderType, index) => {
+  const orderTypesOptions = orderTypes.map((orderType, index) => {
     return {
       ...orderType,
       id: String(orderTypes[index].id),
       value: orderTypes[index].name,
+      title: <Typography variant="body_7">{orderType.name}</Typography>,
+      content: (
+        <>
+          <Typography variant="body_6">{orderType.description}</Typography>
+          <Typography variant="body_5">{orderType.price}</Typography>
+        </>
+      ),
     };
   });
 
   const radioOptions =
-    !!addresses?.length &&
-    addresses.map((address) => {
+    !!addressList?.length &&
+    addressList.map((address) => {
       return {
         id: String(address.id),
         value: address.address,
@@ -111,7 +87,12 @@ export const PurchaseMethod = ({
         </Typography>
       </div>
       {isAddAddress ? (
-        <AddNewAddress setIsAddAddress={setIsAddAddress} />
+        <AddNewAddress
+          setIsAddAddress={setIsAddAddress}
+          setAddressList={setAddressList}
+          user={user}
+          regions={regions}
+        />
       ) : (
         <div className={s.selectedAdress}>
           <Typography variant="h4" as="h4">

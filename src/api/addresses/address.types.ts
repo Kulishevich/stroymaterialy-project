@@ -10,7 +10,7 @@ export type Address = {
   address: string;
   details: string;
   id: number;
-  isDefault: boolean;
+  isDefault?: boolean;
   region: {
     id: number;
     name: string;

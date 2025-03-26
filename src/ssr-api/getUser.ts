@@ -1,17 +1,15 @@
-export const getCategories = async ({
-  category,
-  perPage,
+import { UserSettingResponse } from "@/api/user/user.types";
+
+export const getUser = async ({
   lang,
   token,
 }: {
-  category: string;
-  perPage: number;
   lang: string;
-  token?: string;
-}) => {
+  token: string;
+}): Promise<UserSettingResponse | null> => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/categories/${category}?perPage=${perPage}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/users/settings`,
       {
         method: "GET",
         headers: {
@@ -25,8 +23,9 @@ export const getCategories = async ({
     if (!response.ok) {
       throw new Error("Ошибка запроса");
     }
+    const { data } = await response.json();
 
-    return await response.json();
+    return data;
   } catch (error) {
     console.error("Ошибка загрузки данных:", error);
     return null;

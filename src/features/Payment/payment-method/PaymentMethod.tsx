@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  CashIcon,
-  CreditCardIcon,
-  IdramIcon,
-  PosIcon,
-  RhombIcon,
-  TransferIcon,
-} from "@/assets/icons";
+import { RhombIcon } from "@/assets/icons";
 import { Typography } from "@/components/ui/typography";
 import s from "./PaymentMethod.module.scss";
 import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
@@ -14,24 +7,7 @@ import { Control } from "react-hook-form";
 import { PaymentFormValues } from "../payment-page";
 import { PaymentMethodsType } from "@/api/orders/orders.types";
 import { useTranslations } from "next-intl";
-
-const icons = [
-  {
-    title: <CreditCardIcon />,
-  },
-  {
-    title: <IdramIcon width={126} height={38} />,
-  },
-  {
-    title: <CashIcon />,
-  },
-  {
-    title: <TransferIcon />,
-  },
-  {
-    title: <PosIcon />,
-  },
-];
+import Image from "next/image";
 
 type PaymentMethodProps = {
   control: Control<PaymentFormValues>;
@@ -44,11 +20,15 @@ export const PaymentMethod = ({
 }: PaymentMethodProps) => {
   const t = useTranslations("payment.payment_method");
 
-  const radioOptions = paymentMethod?.map((option, index) => {
+  console.log(paymentMethod);
+
+  const radioOptions = paymentMethod?.map((option) => {
     return {
       id: option.slug,
       value: option.name,
-      title: icons[index].title,
+      title: (
+        <Image src={option.icon} width={50} height={50} alt={option.slug} />
+      ),
       content: <Typography>{option.name}</Typography>,
     };
   });

@@ -556,6 +556,7 @@
   "payment": {
     "title": "Оплата",
     "price": "Цена",
+    "discount": "Скидка",
     "delivery": "Доставка",
     "total": "Сумма",
     "orderButton": "Заказать",

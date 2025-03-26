@@ -2,20 +2,28 @@ import { Button } from "@/components/ui/button";
 import { ControlledSelect } from "@/components/ui/controlled-select";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
 import { Typography } from "@/components/ui/typography";
-import React, { useEffect } from "react";
-import s from "./AddNewAddress.module.scss";
-import { useGetRegionsQuery } from "@/api/regions/regions.api";
+import React from "react";
 import { useCreateAddressMutation } from "@/api/addresses/address.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addAddressScheme } from "@/features/Profile/add-address-popup/model/add-address-scheme";
 import { useForm } from "react-hook-form";
+import { Address } from "@/api/addresses/address.types";
+import s from "./AddNewAddress.module.scss";
+import { Region } from "@/api/regions/regions.types";
 
 type AddNewAddressProps = {
   setIsAddAddress: (value: boolean) => void;
+  setAddressList: (value: Address[]) => void;
+  user: boolean;
+  regions: Region[];
 };
 
-export const AddNewAddress = ({ setIsAddAddress }: AddNewAddressProps) => {
-  const { data: regions } = useGetRegionsQuery();
+export const AddNewAddress = ({
+  setIsAddAddress,
+  setAddressList,
+  user,
+  regions,
+}: AddNewAddressProps) => {
   const [createAddress] = useCreateAddressMutation();
 
   const {
@@ -25,7 +33,7 @@ export const AddNewAddress = ({ setIsAddAddress }: AddNewAddressProps) => {
     reset,
   } = useForm({
     defaultValues: {
-      regionId: null as string | null,
+      regionId: String(regions[0].id),
       address: "",
       details: "",
     },
@@ -34,27 +42,40 @@ export const AddNewAddress = ({ setIsAddAddress }: AddNewAddressProps) => {
     resolver: zodResolver(addAddressScheme()),
   });
 
-  useEffect(() => {
-    if (regions?.data?.length) {
-      reset((prev) => ({
-        ...prev,
-        regionId: regions.data[0].id,
-      }));
-    }
-  }, [regions, reset]);
-
   const addNewAddressForm = handleSubmit(async (data) => {
-    try {
-      await createAddress({
-        ...data,
-        regionId: Number(data.regionId),
-      }).unwrap();
+    if (user) {
+      try {
+        await createAddress({
+          ...data,
+          regionId: Number(data.regionId),
+        }).unwrap();
+        reset();
+        setIsAddAddress(false);
+      } catch (err: unknown) {
+        console.log(err);
+      }
+    } else {
+      setAddressList([
+        {
+          address: data.address,
+          details: data.details,
+          id: Number(data.regionId),
+          region: {
+            id: Number(data.regionId),
+            name: regions?.find((elem) => String(elem.id) === data.regionId)
+              ?.name as string,
+          },
+        },
+      ]);
       reset();
       setIsAddAddress(false);
-    } catch (err: unknown) {
-      console.log(err);
     }
   });
+
+  const options = regions?.map((elem) => ({
+    ...elem,
+    id: String(elem.id),
+  }));
 
   return (
     <div className={s.addAddress}>
@@ -67,7 +88,7 @@ export const AddNewAddress = ({ setIsAddAddress }: AddNewAddressProps) => {
           <ControlledSelect
             control={control}
             name="regionId"
-            options={regions?.data}
+            options={options}
           />
         </div>
         <div className={s.inputContainer}>

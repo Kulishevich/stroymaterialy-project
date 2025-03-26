@@ -9,7 +9,6 @@ export const getTrendsProduct = async ({
   lang: string;
   token?: string;
 }) => {
-  console.log(token);
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/products/trends/${trend}?perPage=${perPage}`,
@@ -29,7 +28,7 @@ export const getTrendsProduct = async ({
 
     return await response.json();
   } catch (error) {
-    console.error("Ошибка загрузки данных категории:", error);
+    console.error("Ошибка загрузки данных:", error);
     return null;
   }
 };

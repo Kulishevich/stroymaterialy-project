@@ -65,6 +65,8 @@ export type OrderTypes = {
   id: number;
   isFlexible: number;
   name: string;
+  description: string;
+  price: string;
 };
 
 export type PaymentMethodsType = {

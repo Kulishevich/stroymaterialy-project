@@ -61,6 +61,7 @@ export const ordersApi = domixApi.injectEndpoints({
       }),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       checkOrder: builder.mutation<any, any>({
+        invalidatesTags: ["Order"],
         query: ({ id, data }) => ({
           url: `/orders/${id}/check/details`,
           method: "POST",

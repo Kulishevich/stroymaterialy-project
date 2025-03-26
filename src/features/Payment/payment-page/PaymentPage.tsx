@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { PayerDetails } from "../payer-details";
@@ -10,6 +10,7 @@ import {
   useChangeOrderMutation,
   useChangePayMethodMutation,
   useCheckOrderMutation,
+  useGetOrderQuery,
 } from "@/api/orders/orders.api";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,6 +25,8 @@ import {
   ExtraOptionsResponse,
   GetOrderResponse,
 } from "@/api/orders/orders.types";
+import { UserSettingResponse } from "@/api/user/user.types";
+import { Region } from "@/api/regions/regions.types";
 
 const deliveryTimeOptions = [
   {
@@ -58,18 +61,31 @@ export type PaymentFormValues = {
 type PaymentPageProps = {
   order: GetOrderResponse;
   extraOptions: { data: ExtraOptionsResponse[] };
+  user: UserSettingResponse | null;
+  regions: Region[];
 };
 
-export const PaymentPage = ({ order, extraOptions }: PaymentPageProps) => {
-  const deliveryDataOptions = useGetNextSevenDays();
-  const t = useTranslations("payment");
+export const PaymentPage = ({
+  order,
+  extraOptions,
+  user,
+  regions,
+}: PaymentPageProps) => {
   const router = useRouter();
   const { orderId } = router.query;
+  const t = useTranslations("payment");
+  const [addressList, setAddressList] = useState(order.data.addresses);
+  const [deliveryPrice, setDeliveryPrice] = useState(order?.data.deliveryPrice);
+  const [priceWithDelivery, setPriceWithDelivery] = useState(order?.data.total);
+  const deliveryDataOptions = useGetNextSevenDays();
   const [createCustomer] = useCreateCustomerMutation();
   const [changeOrder] = useChangeOrderMutation();
   const [changePayMethod] = useChangePayMethodMutation();
   const [clearCart] = useClearCartMutation();
   const [checkOrder] = useCheckOrderMutation();
+  const { data } = useGetOrderQuery({ id: orderId as string });
+
+  console.log("data", data);
 
   const payerType = [
     {
@@ -89,10 +105,10 @@ export const PaymentPage = ({ order, extraOptions }: PaymentPageProps) => {
     watch,
   } = useForm<PaymentFormValues>({
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
+      firstName: user?.firstName || "",
+      lastName: user?.lastName || "",
+      email: user?.email || "",
+      phone: user?.phone || "",
       tin: "",
       paymentMethod: "", //способ оплаты
       addressId: null,
@@ -112,20 +128,27 @@ export const PaymentPage = ({ order, extraOptions }: PaymentPageProps) => {
   const addressId = watch("addressId");
 
   useEffect(() => {
-    const getPrice = async () => {
-      try {
-        const res = await checkOrder({
-          id: orderId,
-          data: { orderTypeId: orderTypeId, addressId: addressId },
-        }).unwrap();
+    if (!!addressId && !!orderTypeId) {
+      const getPriceDelivery = async () => {
+        try {
+          const res = await checkOrder({
+            id: orderId,
+            data: {
+              ...(user ? { addressId: addressId } : { regionId: addressId }),
+              orderTypeId: orderTypeId,
+            },
+          }).unwrap();
 
-        console.log("check:", res);
-      } catch (err: unknown) {
-        console.log(err);
-      }
-    };
+          console.log("check:", res.data);
+          setPriceWithDelivery(res.data.total);
+          setDeliveryPrice(res.data.deliveryPrice);
+        } catch (err: unknown) {
+          console.log(err);
+        }
+      };
 
-    getPrice();
+      getPriceDelivery();
+    }
   }, [orderTypeId, addressId, checkOrder, orderId]);
 
   const formHandler = handleSubmit(async (data) => {
@@ -148,7 +171,13 @@ export const PaymentPage = ({ order, extraOptions }: PaymentPageProps) => {
     }
 
     const changeOrderArgs = {
-      addressId: Number(data.addressId),
+      ...(user
+        ? { addressId: Number(data.addressId) }
+        : {
+            address: addressList[0].address,
+            additional: addressList[0].details,
+            regionId: addressList[0].id,
+          }),
       orderTypeId: Number(data.orderType),
       extraOptions: data.extraOptions,
       ...(data.orderType !== "15" && {
@@ -156,7 +185,7 @@ export const PaymentPage = ({ order, extraOptions }: PaymentPageProps) => {
         start: data.deliveryTime.split("-")[0],
         end: data.deliveryTime.split("-")[1],
       }),
-      // gift
+      // gift,
     };
     try {
       const res = await changeOrder({
@@ -205,14 +234,17 @@ export const PaymentPage = ({ order, extraOptions }: PaymentPageProps) => {
               paymentMethod={order?.data.paymentMethods}
             />
           )}
-          {order?.data.addresses && order?.data.orderTypes && (
+          {order?.data.orderTypes && (
             <PurchaseMethod
               orderTypes={order?.data.orderTypes}
               controlForm={control}
-              addresses={order?.data.addresses}
+              addressList={addressList}
+              setAddressList={setAddressList}
               deliveryTimeOptions={deliveryTimeOptions}
               deliveryDataOptions={deliveryDataOptions}
               orderTypeId={orderTypeId}
+              regions={regions}
+              user={!!user}
             />
           )}
           <AdditionalServices control={control} extraOptions={extraOptions} />
@@ -220,19 +252,19 @@ export const PaymentPage = ({ order, extraOptions }: PaymentPageProps) => {
         <div className={s.price}>
           <div className={s.total}>
             <Typography variant="body_3">{t("price")}</Typography>
-            <Typography variant="body_3">{order?.data.total}</Typography>
+            <Typography variant="body_3">{order?.data.subtotal}</Typography>
+          </div>
+          <div className={s.total}>
+            <Typography variant="body_3">{t("discount")}</Typography>
+            <Typography variant="body_3">{order?.data.discount}</Typography>
           </div>
           <div className={s.total}>
             <Typography variant="body_3">{t("delivery")}</Typography>
-            <Typography variant="body_3">
-              {order?.data.deliveryPrice}
-            </Typography>
+            <Typography variant="body_3">{deliveryPrice}</Typography>
           </div>
           <div className={s.total}>
             <Typography variant="h4">{t("total")}</Typography>
-            <Typography variant="h4">
-              {order?.data.totalWithDelivery}
-            </Typography>
+            <Typography variant="h4">{priceWithDelivery}</Typography>
           </div>
           <Button fullWidth={true} onClick={formHandler} disabled={!isValid}>
             {t("orderButton")}

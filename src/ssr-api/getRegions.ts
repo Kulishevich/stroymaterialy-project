@@ -1,12 +1,14 @@
-export const getSpheres = async ({
+import { Region } from "@/api/regions/regions.types";
+
+export const getRegions = async ({
   lang,
   token,
 }: {
   lang: string;
   token?: string;
-}) => {
+}): Promise<Region[] | null> => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/spheres`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/regions`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -19,7 +21,9 @@ export const getSpheres = async ({
       throw new Error("Ошибка запроса");
     }
 
-    return await response.json();
+    const { data } = await response.json();
+
+    return data;
   } catch (error) {
     console.error("Ошибка загрузки данных:", error);
     return null;

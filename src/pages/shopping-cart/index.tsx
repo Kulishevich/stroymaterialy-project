@@ -42,7 +42,9 @@ export default function ShoppingCartPage({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const lang = context.req.cookies?.locale || "hy";
-  const cartData = await getCart({ lang });
+  const token = context.req.cookies?.accessToken || "";
+
+  const cartData = await getCart({ lang, token });
 
   return {
     props: { cartData },

@@ -555,6 +555,7 @@
   "payment": {
     "title": "Վճարում",
     "price": "Գին",
+    "discount": "Զեղչ",
     "delivery": "Առաքում",
     "total": "Գումար",
     "orderButton": "Պատվիրել",
