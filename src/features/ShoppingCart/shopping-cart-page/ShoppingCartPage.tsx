@@ -3,7 +3,6 @@ import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { Paths } from "@/shared/enums";
 import { useClearCartMutation, useGetCartQuery } from "@/api/cart/cart.api";
-import s from "./ShoppingCartPage.module.scss";
 import { ShoppingCartItemRow } from "../shopping-cart-item-row";
 import { useCreateOrderMutation } from "@/api/orders/orders.api";
 import { useRouter } from "next/router";
@@ -12,6 +11,7 @@ import { Item } from "@/components/item";
 import { useTranslations } from "next-intl";
 import { CartResponse } from "@/api/cart/cart.types";
 import { showToast } from "@/components/ui/toast";
+import s from "./ShoppingCartPage.module.scss";
 
 export const ShoppingCart = ({ cartData }: { cartData: CartResponse }) => {
   const t = useTranslations("cart");

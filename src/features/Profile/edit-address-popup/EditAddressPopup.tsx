@@ -67,6 +67,11 @@ export const EditAddressPopup = ({
     }
   });
 
+  const optionsRegions = regions?.data?.map((elem) => ({
+    ...elem,
+    id: String(elem.id),
+  }));
+
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Overlay className={s.overlay} />
@@ -81,7 +86,7 @@ export const EditAddressPopup = ({
             <ControlledSelect
               control={control}
               name="regionId"
-              options={regions?.data}
+              options={optionsRegions}
             />
           </div>
           <div className={s.inputContainer}>
