@@ -1,6 +1,6 @@
 import { Typography } from "@/components/ui/typography";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { SelectLanguage } from "@/components/ui/select-icons";
 import { PercentIcon, ProfileIcon } from "@/assets/icons";
 import { Paths } from "@/shared/enums";
@@ -12,12 +12,14 @@ import { RootState } from "@/store/store";
 import { toggleLoginModal } from "@/store/slices/auth-modal/authModalSlice";
 import { useTranslations } from "next-intl";
 import s from "./HeaderNavigation.module.scss";
+import { useGetUserSettingQuery } from "@/api/user/user.api";
 
 export const HeaderNavigation = () => {
   const t = useTranslations("header.navigation");
   const router = useRouter();
   const token = useSelector((state: RootState) => state.auth.token);
   const dispatch = useDispatch();
+  const { data } = useGetUserSettingQuery(undefined, {skip: !token})
 
   const cooperationOptions = [
     {
@@ -130,7 +132,7 @@ export const HeaderNavigation = () => {
           variant="body_3"
         >
           <ProfileIcon width={20} height={20} />
-          {t("personal_account")}
+          {token && data?.data?.lastName && data?.data?.firstName[0] ? `${data?.data?.lastName} ${data?.data?.firstName[0]}` : t("personal_account")}
         </Typography>
       </div>
     </header>

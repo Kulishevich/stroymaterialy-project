@@ -18,7 +18,7 @@ type HomePageProps = {
   products: { data: Product[] };
 };
 
-export const HomePage = ({
+export const  HomePage = ({
   discounts,
   banner,
   categories,
