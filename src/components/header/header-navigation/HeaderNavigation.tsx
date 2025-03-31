@@ -1,6 +1,6 @@
 import { Typography } from "@/components/ui/typography";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import { SelectLanguage } from "@/components/ui/select-icons";
 import { PercentIcon, ProfileIcon } from "@/assets/icons";
 import { Paths } from "@/shared/enums";
@@ -19,7 +19,7 @@ export const HeaderNavigation = () => {
   const router = useRouter();
   const token = useSelector((state: RootState) => state.auth.token);
   const dispatch = useDispatch();
-  const { data } = useGetUserSettingQuery(undefined, {skip: !token})
+  const { data } = useGetUserSettingQuery(undefined, { skip: !token });
 
   const cooperationOptions = [
     {
@@ -132,7 +132,9 @@ export const HeaderNavigation = () => {
           variant="body_3"
         >
           <ProfileIcon width={20} height={20} />
-          {token && data?.data?.lastName && data?.data?.firstName[0] ? `${data?.data?.lastName} ${data?.data?.firstName[0]}` : t("personal_account")}
+          {token && data?.data?.lastName && data?.data?.firstName[0]
+            ? `${data?.data?.lastName} ${data?.data?.firstName[0]}`
+            : t("personal_account")}
         </Typography>
       </div>
     </header>

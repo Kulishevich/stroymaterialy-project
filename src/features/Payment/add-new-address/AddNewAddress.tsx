@@ -7,21 +7,16 @@ import { useCreateAddressMutation } from "@/api/addresses/address.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addAddressScheme } from "@/features/Profile/add-address-popup/model/add-address-scheme";
 import { useForm } from "react-hook-form";
-import { Address } from "@/api/addresses/address.types";
 import s from "./AddNewAddress.module.scss";
 import { Region } from "@/api/regions/regions.types";
 
 type AddNewAddressProps = {
   setIsAddAddress: (value: boolean) => void;
-  setAddressList: (value: Address[]) => void;
-  user: boolean;
   regions: Region[];
 };
 
 export const AddNewAddress = ({
   setIsAddAddress,
-  setAddressList,
-  user,
   regions,
 }: AddNewAddressProps) => {
   const [createAddress] = useCreateAddressMutation();
@@ -43,32 +38,15 @@ export const AddNewAddress = ({
   });
 
   const addNewAddressForm = handleSubmit(async (data) => {
-    if (user) {
-      try {
-        await createAddress({
-          ...data,
-          regionId: Number(data.regionId),
-        }).unwrap();
-        reset();
-        setIsAddAddress(false);
-      } catch (err: unknown) {
-        console.log(err);
-      }
-    } else {
-      setAddressList([
-        {
-          address: data.address,
-          details: data.details,
-          id: Number(data.regionId),
-          region: {
-            id: Number(data.regionId),
-            name: regions?.find((elem) => String(elem.id) === data.regionId)
-              ?.name as string,
-          },
-        },
-      ]);
+    try {
+      await createAddress({
+        ...data,
+        regionId: Number(data.regionId),
+      }).unwrap();
       reset();
       setIsAddAddress(false);
+    } catch (err: unknown) {
+      console.log(err);
     }
   });
 

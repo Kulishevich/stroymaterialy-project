@@ -49,8 +49,11 @@ export type PaymentFormValues = {
   email: string;
   phone: string;
   tin: string;
+  address: string;
+  additional: string;
+  regionId: string;
   paymentMethod: string;
-  addressId: number | null;
+  addressId: string;
   orderType: string;
   payerType: string;
   extraOptions: string[];
@@ -74,7 +77,6 @@ export const PaymentPage = ({
   const router = useRouter();
   const { orderId } = router.query;
   const t = useTranslations("payment");
-  const [addressList, setAddressList] = useState(order.data.addresses);
   const [deliveryPrice, setDeliveryPrice] = useState(order?.data.deliveryPrice);
   const [priceWithDelivery, setPriceWithDelivery] = useState(order?.data.total);
   const deliveryDataOptions = useGetNextSevenDays();
@@ -84,9 +86,7 @@ export const PaymentPage = ({
   const [clearCart] = useClearCartMutation();
   const [checkOrder] = useCheckOrderMutation();
   const { data } = useGetOrderQuery({ id: orderId as string });
-
-  console.log("data", data);
-
+  console.log(data);
   const payerType = [
     {
       name: t("individual"),
@@ -110,31 +110,35 @@ export const PaymentPage = ({
       email: user?.email || "",
       phone: user?.phone || "",
       tin: "",
-      paymentMethod: "", //способ оплаты
-      addressId: null,
-      orderType: "", //способ доставки
+      paymentMethod: order?.data?.paymentMethods?.[0]?.slug || "", //способ оплаты
+      address: "",
+      regionId: String(regions[0].id),
+      additional: "",
+      addressId: "",
+      orderType: String(order?.data?.orderTypes?.[0]?.id) || "", //способ доставки
       payerType: payerType[0].id, //тип плательщика
       extraOptions: [], //доп услуги
       deliveryTime: deliveryTimeOptions[0].id,
       deliveryData: deliveryDataOptions[0].id,
     },
     mode: "onTouched",
-    resolver: zodResolver(paymentSchemeCreator()),
+    resolver: zodResolver(paymentSchemeCreator(!!user)),
   });
 
   const payerTypeField = watch("payerType");
 
   const orderTypeId = watch("orderType");
   const addressId = watch("addressId");
+  const regionId = watch("regionId");
 
   useEffect(() => {
-    if (!!addressId && !!orderTypeId) {
+    if ((!!addressId || (!!regionId && !user)) && !!orderTypeId) {
       const getPriceDelivery = async () => {
         try {
           const res = await checkOrder({
             id: orderId,
             data: {
-              ...(user ? { addressId: addressId } : { regionId: addressId }),
+              ...(user ? { addressId: addressId } : { regionId: regionId }),
               orderTypeId: orderTypeId,
             },
           }).unwrap();
@@ -161,7 +165,7 @@ export const PaymentPage = ({
       fullName: `${data.firstName} ${data.lastName}`,
       ...(data.payerType === "entity" && { tin: data.tin }),
     };
-
+    //создание покупателя
     try {
       const res = await createCustomer(customer).unwrap();
       console.log("Customer", res);
@@ -174,9 +178,9 @@ export const PaymentPage = ({
       ...(user
         ? { addressId: Number(data.addressId) }
         : {
-            address: addressList[0].address,
-            additional: addressList[0].details,
-            regionId: addressList[0].id,
+            address: data.address,
+            additional: data.additional,
+            regionId: data.regionId,
           }),
       orderTypeId: Number(data.orderType),
       extraOptions: data.extraOptions,
@@ -187,6 +191,7 @@ export const PaymentPage = ({
       }),
       // gift,
     };
+    //данные доставки
     try {
       const res = await changeOrder({
         args: changeOrderArgs,
@@ -202,6 +207,7 @@ export const PaymentPage = ({
       id: orderId as string,
       method: data.paymentMethod,
     };
+    //метод оплаты
     try {
       const res = await changePayMethod(payMethodArgs).unwrap();
       showToast({ message: "Payment прошёл", variant: "success" });
@@ -238,8 +244,7 @@ export const PaymentPage = ({
             <PurchaseMethod
               orderTypes={order?.data.orderTypes}
               controlForm={control}
-              addressList={addressList}
-              setAddressList={setAddressList}
+              addressList={order.data.addresses}
               deliveryTimeOptions={deliveryTimeOptions}
               deliveryDataOptions={deliveryDataOptions}
               orderTypeId={orderTypeId}

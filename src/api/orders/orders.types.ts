@@ -100,7 +100,7 @@ export type ChangeOrderArgs = {
   date?: string;
   start?: string;
   end?: string;
-  regionId?: number;
+  regionId?: string;
 };
 
 export type ChangeOrderResponse = {

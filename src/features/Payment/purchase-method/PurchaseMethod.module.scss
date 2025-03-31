@@ -1,118 +1,142 @@
 .payment {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    padding: 32px 24px;
+  padding: 32px 24px;
 
-    background-color: var(--color-bg);
-    border: 1px solid #2125314D;
-    border-radius: 6px;
-    box-shadow: 6px 12px 13px 0px #2225310A;
+  background-color: var(--color-bg);
+  border: 1px solid #2125314d;
+  border-radius: 6px;
+  box-shadow: 6px 12px 13px 0px #2225310a;
 }
 
 .title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .numCard {
-    position: relative;
-    & > h3 {
-        color: var(--color-bg);
-        position: absolute;
+  position: relative;
+  & > h3 {
+    color: var(--color-bg);
+    position: absolute;
 
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }  
-    @media (max-width: 768px) {
-        & > svg {
-            width: 42px;
-            height: 42px;
-        }
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @media (max-width: 768px) {
+    & > svg {
+      width: 42px;
+      height: 42px;
     }
+  }
 }
 
 .inputContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
-    @media (max-width: 768px) {
-        & > button {
-            height: 50px;
-        }
+  @media (max-width: 768px) {
+    & > button {
+      height: 50px;
     }
+  }
 }
 
-
 .cardsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
 }
 
 .card {
-    box-sizing: border-box;
-    width: 275px;
-    height: 121px;
-    padding: 12px;
+  box-sizing: border-box;
+  width: 275px;
+  height: 121px;
+  padding: 12px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    border: 1px solid #2125311A;
-    border-radius: 4px;
+  border: 1px solid #2125311a;
+  border-radius: 4px;
 }
 
 .selectedAdress {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: start;
-    & > button {
-        text-decoration: underline;
-        margin: 16px 0 32px;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: start;
+  & > button {
+    text-decoration: underline;
+    margin: 16px 0 32px;
+  }
 
-    @media (max-width: 768px) {
-        & > button {
-            margin: 20px 0 24px;
-        }
+  @media (max-width: 768px) {
+    & > button {
+      margin: 20px 0 24px;
     }
+  }
 }
 
 .deliveryMethod {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .deliveryTitle {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .button {
-    cursor: pointer;
-    text-decoration: underline;
-    opacity: 0.5;
-    @media (max-width: 768px) {
-        opacity: 1;
-    }
+  cursor: pointer;
+  text-decoration: underline;
+  opacity: 0.5;
+  @media (max-width: 768px) {
+    opacity: 1;
+  }
 }
 
 .deliveryTimeContainer {
-    display: flex;
-    gap: 24px;
-    @media (max-width: 768px) {
-        flex-direction: column;
+  display: flex;
+  gap: 24px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.addAddress {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.addressFields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @media (max-width: 768px) {
+    & > button {
+      height: 50px;
     }
+  }
 }

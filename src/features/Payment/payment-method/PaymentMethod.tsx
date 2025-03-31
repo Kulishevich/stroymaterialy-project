@@ -20,8 +20,6 @@ export const PaymentMethod = ({
 }: PaymentMethodProps) => {
   const t = useTranslations("payment.payment_method");
 
-  console.log(paymentMethod);
-
   const radioOptions = paymentMethod?.map((option) => {
     return {
       id: option.slug,

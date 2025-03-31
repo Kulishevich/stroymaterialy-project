@@ -15,10 +15,10 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Paths } from "@/shared/enums";
 import { Region } from "@/api/regions/regions.types";
+import { ControlledTextField } from "@/components/ui/controlled-textfiled";
 
 type PurchaseMethodProps = {
   addressList: Address[] | [];
-  setAddressList: (value: Address[]) => void;
   controlForm: Control<PaymentFormValues>;
   deliveryTimeOptions: OptionsValue[];
   deliveryDataOptions: OptionsValue[];
@@ -31,7 +31,6 @@ type PurchaseMethodProps = {
 export const PurchaseMethod = ({
   orderTypeId,
   addressList,
-  setAddressList,
   controlForm,
   deliveryTimeOptions,
   deliveryDataOptions,
@@ -73,6 +72,11 @@ export const PurchaseMethod = ({
       };
     });
 
+  const options = regions?.map((elem) => ({
+    ...elem,
+    id: String(elem.id),
+  }));
+
   return (
     <div className={s.payment}>
       <div className={s.title}>
@@ -86,32 +90,61 @@ export const PurchaseMethod = ({
           {t("title")}
         </Typography>
       </div>
-      {isAddAddress ? (
-        <AddNewAddress
-          setIsAddAddress={setIsAddAddress}
-          setAddressList={setAddressList}
-          user={user}
-          regions={regions}
-        />
+      {user ? (
+        isAddAddress ? (
+          <AddNewAddress setIsAddAddress={setIsAddAddress} regions={regions} />
+        ) : (
+          <div className={s.selectedAdress}>
+            <Typography variant="h4" as="h4">
+              {t("address")}
+            </Typography>
+            {radioOptions && (
+              <ControlledRadioCards
+                control={controlForm}
+                name="addressId"
+                options={radioOptions}
+              />
+            )}
+            <Typography
+              variant="button"
+              as="button"
+              onClick={() => setIsAddAddress(true)}
+            >
+              {t("add_address_button")}
+            </Typography>
+          </div>
+        )
       ) : (
-        <div className={s.selectedAdress}>
+        <div className={s.addAddress}>
           <Typography variant="h4" as="h4">
-            {t("address")}
+            Добавить адрес
           </Typography>
-          {radioOptions && (
-            <ControlledRadioCards
-              control={controlForm}
-              name="addressId"
-              options={radioOptions}
-            />
-          )}
-          <Typography
-            variant="button"
-            as="button"
-            onClick={() => setIsAddAddress(true)}
-          >
-            {t("add_address_button")}
-          </Typography>
+          <div className={s.addressFields}>
+            <div className={s.inputContainer}>
+              <Typography variant="body_5">Округ</Typography>
+              <ControlledSelect
+                control={controlForm}
+                name="regionId"
+                options={options}
+              />
+            </div>
+            <div className={s.inputContainer}>
+              <Typography variant="body_5">Адрес доставки</Typography>
+              <ControlledTextField
+                control={controlForm}
+                name="address"
+                placeholder="Адрес доставки"
+              />
+            </div>
+            <div className={s.inputContainer}>
+              <Typography variant="body_5">Детали адреса доставки</Typography>
+              <ControlledTextField
+                control={controlForm}
+                name="additional"
+                placeholder="Детали адреса доставки"
+              />
+            </div>
+          </div>
         </div>
       )}
       <div className={s.deliveryMethod}>
