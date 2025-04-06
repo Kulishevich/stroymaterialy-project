@@ -1,7 +1,7 @@
 import { ContentItem } from "@/api/content/content.types";
 import { AboutPage as About } from "@/features/About/about-page";
 import { getAllContent } from "@/ssr-api/getContent";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 
 export default function AboutPage({
@@ -42,16 +42,19 @@ export default function AboutPage({
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const lang = context.req.cookies?.locale || "hy";
-
+export const getStaticProps: GetStaticProps = async (context) => {
+  const lang = context.locale || "hy";
   const content = await getAllContent({ lang });
-  const discounts = content.data.filter(
-    (elem: ContentItem) => elem.key === "discounts"
-  );
-  const secondBanner = content.data.filter(
-    (elem: ContentItem) => elem.key === "secondBanner"
-  );
 
-  return { props: { discounts, secondBanner } };
+  return {
+    props: {
+      discounts: content.data.filter(
+        (item: ContentItem) => item.key === "discounts"
+      ),
+      secondBanner: content.data.filter(
+        (item: ContentItem) => item.key === "secondBanner"
+      ),
+    },
+    revalidate: 3600,
+  };
 };

@@ -3,7 +3,7 @@ import { Product } from "@/api/products/products.types";
 import { Catalog } from "@/features/Catalog";
 import { getSimpleCategories } from "@/ssr-api/getSimpleCategories";
 import { getTrendsProduct } from "@/ssr-api/getTrendsProduct";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 
 export default function CategoryPage({
@@ -47,9 +47,8 @@ export default function CategoryPage({
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const lang = context.req.cookies?.locale || "hy";
-
+export const getStaticProps: GetStaticProps = async (context) => {
+  const lang = context.locale || "hy";
   const categories = await getSimpleCategories({
     lang,
   });
@@ -62,5 +61,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: { categories, bestSellingProducts },
+    revalidate: 3600,
   };
 };

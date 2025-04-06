@@ -1,7 +1,7 @@
 import { ContentResponse } from "@/api/content/content.types";
 import { SharesPage as Shares } from "@/features/Shares/shares-page";
 import { getContent } from "@/ssr-api/getContent";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 
 export default function SharesPage({ content }: { content: ContentResponse }) {
@@ -36,9 +36,9 @@ export default function SharesPage({ content }: { content: ContentResponse }) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const lang = context.req.cookies?.locale || "hy";
+export const getStaticProps: GetStaticProps = async (context) => {
+  const lang = context.locale || "hy";
   const content = await getContent({ key: "discounts", lang });
 
-  return { props: { content } };
+  return { props: { content }, revalidate: 3600 };
 };
