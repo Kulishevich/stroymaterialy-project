@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { CatalogHome } from "../catalog-home/CatalogHome";
 import Link from "next/link";
 import { ContentItem } from "@/api/content/content.types";
@@ -18,21 +17,13 @@ export const CatalogWithBanners = ({
   banner,
   categories,
 }: CatalogWithBannersProps) => {
-  const isMobile = useIsMobile("tablet");
-
   return (
     <div className={s.container}>
       <CatalogHome categories={categories} />
       <div className={s.banner}>
         {banner[0].src && (
-          <Link href={banner[0].link ?? "/"}>
-            <Image
-              src={banner[0].src}
-              width={!isMobile ? 966 : 336}
-              height={!isMobile ? 380 : 248}
-              alt="banner"
-              className={s.image}
-            />
+          <Link href={banner[0].link ?? "/"} className={s.mainBanner}>
+            <Image src={banner[0].src} fill alt="banner" />
           </Link>
         )}
         <div className={s.smallBannerContainer}>
@@ -42,12 +33,7 @@ export const CatalogWithBanners = ({
               href={discount.link ?? "/"}
               className={s.discountLink}
             >
-              <Image
-                src={discount.src}
-                width={!isMobile ? 306 : index === 0 ? 336 : 160}
-                height={!isMobile ? 219 : 150}
-                alt="small banner"
-              />
+              <Image src={discount.src} fill alt="small banner" />
             </Link>
           ))}
         </div>

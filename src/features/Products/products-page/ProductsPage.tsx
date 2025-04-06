@@ -47,7 +47,7 @@ export const ProductsPage = ({
   );
 
   useEffect(() => {
-    if (productsItems) {
+    if (!!productsItems) {
       setProductsState(productsItems);
     }
   }, [productsItems]);

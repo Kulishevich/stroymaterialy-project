@@ -10,7 +10,7 @@ const RuIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0_1441_4387)">
+    <g clipPath="url(#clip0_1441_4387)">
       <path
         d="M7 14C10.866 14 14 10.866 14 7C14 3.13401 10.866 0 7 0C3.13401 0 0 3.13401 0 7C0 10.866 3.13401 14 7 14Z"
         fill="#F0F0F0"

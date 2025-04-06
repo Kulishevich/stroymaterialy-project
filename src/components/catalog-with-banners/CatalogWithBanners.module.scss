@@ -1,46 +1,68 @@
 .container {
-    position: relative;
+  position: relative;
 
-    display: flex;
-    gap: 24px;
-    
-    @media (max-width: 768px) {
-        flex-direction: column-reverse;
-        align-items: center;
-    }
+  display: flex;
+  gap: 24px;
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 }
 .banner {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    
-    & > img {
-        object-fit: cover;
-        border-radius: 6px;
-        object-position: left;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
+
+.mainBanner {
+  position: relative;
+  width: 966px;
+  height: 380px;
+  border-radius: 6px;
+  overflow: hidden;
+  & > img {
+    object-fit: cover;
+    object-position: left;
+  }
+  @media (max-width: 768px) {
+    width: 336px;
+    height: 248px;
+  }
+}
+
 .smallBannerContainer {
-    display: flex;
-    gap: 24px;
+  display: flex;
+  gap: 24px;
 
-    @media (max-width: 768px) {
-        
-        display: grid;
-        grid-template-rows: auto auto; /* Две строки */
-        grid-template-columns: 1fr 1fr; /* Два столбца */
-        gap: 12px;
-        & > a:first-child {
-            grid-column: span 2; /* Занимает две колонки */
-        }
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    & > a:first-child {
+      grid-column: span 2;
     }
+  }
 }
 
-.discountLink{
-    border-radius: 6px;
-    overflow: hidden;
-}
+.discountLink {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  width: 306px;
+  height: 219px;
 
-.image{
-    border-radius: 6px;
+  & > img {
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    width: 160px;
+    height: 150px;
+    &:nth-child(1) {
+      width: 336px;
+      height: 150px;
+    }
+  }
 }

@@ -10,7 +10,7 @@ const PosIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0_155_12167)">
+    <g clipPath="url(#clip0_155_12167)">
       <mask
         id="mask0_155_12167"
         maskUnits="userSpaceOnUse"

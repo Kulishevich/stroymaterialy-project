@@ -10,7 +10,7 @@ const AmIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0_405_737)">
+    <g clipPath="url(#clip0_405_737)">
       <path
         d="M14 7.5C14 6.64375 13.846 5.82352 13.5646 5.06523L7 4.76086L0.435395 5.0652C0.154027 5.82352 0 6.64375 0 7.5C0 8.35624 0.154027 9.17647 0.435395 9.93477L7 10.2391L13.5646 9.93479C13.846 9.17647 14 8.35624 14 7.5Z"
         fill="#0052B4"
