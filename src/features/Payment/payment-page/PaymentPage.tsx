@@ -10,7 +10,7 @@ import {
   useChangeOrderMutation,
   useChangePayMethodMutation,
   useCheckOrderMutation,
-  useGetOrderQuery,
+  // useGetOrderQuery,
 } from "@/api/orders/orders.api";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -85,7 +85,7 @@ export const PaymentPage = ({
   const [changePayMethod] = useChangePayMethodMutation();
   const [clearCart] = useClearCartMutation();
   const [checkOrder] = useCheckOrderMutation();
-  const { data } = useGetOrderQuery({ id: orderId as string });
+  // const { data } = useGetOrderQuery({ id: orderId as string });
 
   const payerType = [
     {

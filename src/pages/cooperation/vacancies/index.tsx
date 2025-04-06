@@ -3,7 +3,7 @@ import { SpheresArgs } from "@/api/spheres/spheres.types";
 import { VacanciesPage as Vacancies } from "@/features/Vacancies/vacancies-page";
 import { getProfessions } from "@/ssr-api/getProfessions";
 import { getSpheres } from "@/ssr-api/getSpheres";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 
 export default function VacanciesPage({
@@ -44,11 +44,10 @@ export default function VacanciesPage({
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const lang = context.req.cookies?.locale || "hy";
-
+export const getStaticProps: GetStaticProps = async (context) => {
+  const lang = context.locale || "hy";
   const professions = await getProfessions({ lang });
   const spheres = await getSpheres({ lang });
 
-  return { props: { professions, spheres } };
+  return { props: { professions, spheres }, revalidate: 3600 };
 };
