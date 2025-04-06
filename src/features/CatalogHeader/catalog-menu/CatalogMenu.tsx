@@ -6,19 +6,26 @@ import clsx from "clsx";
 import { Typography } from "@/components/ui/typography";
 import { useGetCategoriesQuery } from "@/api/categories/categories.api";
 import { ActiveCategory } from "../active-category";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 type CatalogMenuProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const CatalogMenu = ({ setIsOpen }: CatalogMenuProps) => {
+  const lang = useSelector((state: RootState) => state.lang);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { data: categories, isLoading } = useGetCategoriesQuery();
+  const { data: categories, isLoading, refetch } = useGetCategoriesQuery();
   const activeTitle = categories?.data.find(
     (elem) => elem.id === activeCategory
   )?.name;
+
+  useEffect(() => {
+    refetch();
+  }, [lang, refetch]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

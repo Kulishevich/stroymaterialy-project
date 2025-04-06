@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Logo } from "@/shared/assets/icons/logo";
 import { SocialNetworks } from "../social-networks";
 import { Typography } from "../ui/typography";
@@ -15,10 +15,17 @@ import { useGetCategoriesQuery } from "@/api/categories/categories.api";
 import { useTranslations } from "next-intl";
 import s from "./Footer.module.scss";
 import Accordion from "../accordion/Accordion";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export const Footer = () => {
+  const lang = useSelector((state: RootState) => state.lang);
   const t = useTranslations("footer");
-  const { data: categories } = useGetCategoriesQuery();
+  const { data: categories, refetch } = useGetCategoriesQuery();
+
+  useEffect(() => {
+    refetch();
+  }, [lang, refetch]);
 
   return (
     <div className={s.wrapper}>
