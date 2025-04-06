@@ -8,7 +8,7 @@ import {
   OpenBox,
   StoreShopHours,
   WalletMoneyCash,
-} from "@/assets/icons/advantages";
+} from "@/shared/assets/icons/advantages";
 import Image from "next/image";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { useTranslations } from "next-intl";

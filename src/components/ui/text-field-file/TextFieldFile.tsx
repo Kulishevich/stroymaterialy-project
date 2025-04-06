@@ -3,7 +3,7 @@ import { ChangeEvent, ComponentPropsWithoutRef, useRef } from "react";
 import s from "./Textfield.module.scss";
 import { Button } from "../button/Button";
 import { Typography } from "../typography";
-import { UploadIcon } from "@/assets/icons";
+import { UploadIcon } from "@/shared/assets/icons";
 import { showToast } from "../toast";
 
 type Props = {

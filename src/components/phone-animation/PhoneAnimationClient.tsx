@@ -1,7 +1,7 @@
 import React from "react";
 import Lottie from "lottie-react";
 
-import animationData from "@/assets/animation/phone-animation.json";
+import animationData from "@/shared/assets/animation/phone-animation.json";
 import s from "./PhoneAnimationClient.module.scss";
 
 type PhoneAnimationClientProps = {

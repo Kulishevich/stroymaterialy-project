@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { ArrowRightIcon } from "@/assets/icons";
+import { ArrowRightIcon } from "@/shared/assets/icons";
 import clsx from "clsx";
 import { Typography } from "@/components/ui/typography";
 import Link from "next/link";

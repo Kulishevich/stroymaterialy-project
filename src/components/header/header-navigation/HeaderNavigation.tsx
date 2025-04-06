@@ -2,7 +2,7 @@ import { Typography } from "@/components/ui/typography";
 import Link from "next/link";
 import React from "react";
 import { SelectLanguage } from "@/components/ui/select-icons";
-import { PercentIcon, ProfileIcon } from "@/assets/icons";
+import { PercentIcon, ProfileIcon } from "@/shared/assets/icons";
 import { Paths } from "@/shared/enums";
 import { Dropdown } from "@/components/ui/dropdown";
 import { useRouter } from "next/router";

@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./DeliveryAndPayment.module.scss";
-import { ArrowRightIcon } from "@/assets/icons";
+import { ArrowRightIcon } from "@/shared/assets/icons";
 import { Typography } from "../../../components/ui/typography";
 import clsx from "clsx";
 import { DeliveryAndLifting } from "../DeliveryAndLifting";

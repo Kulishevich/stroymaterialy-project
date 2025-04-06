@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import * as Dialog from "@radix-ui/react-dialog";
 import s from "./ConfirmModal.module.scss";
-import { CloseIcon } from "@/assets/icons";
+import { CloseIcon } from "@/shared/assets/icons";
 import { Typography } from "../ui/typography";
 
 type ConfirmModalProps = {

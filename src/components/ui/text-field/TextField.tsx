@@ -13,7 +13,11 @@ import {
 import clsx from "clsx";
 
 import { Typography } from "../typography";
-import { EyeOffOutlineIcon, EyeOutlineIcon, SearchIcon } from "@/assets/icons";
+import {
+  EyeOffOutlineIcon,
+  EyeOutlineIcon,
+  SearchIcon,
+} from "@/shared/assets/icons";
 import { Button } from "../button";
 import s from "./TextField.module.scss";
 

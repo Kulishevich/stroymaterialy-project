@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import s from "./StarRating.module.scss";
 import Rating from "react-rating";
-import { StarIcon } from "@/assets/icons";
+import { StarIcon } from "@/shared/assets/icons";
 import { FC } from "react";
 
 export const StarRating: FC = () => {

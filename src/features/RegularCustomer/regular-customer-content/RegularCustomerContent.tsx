@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "@/components/ui/typography";
 import clsx from "clsx";
-import { ArrowRightIcon } from "@/assets/icons";
+import { ArrowRightIcon } from "@/shared/assets/icons";
 import { GiftCards } from "../gift-cards";
 import { InfoRegularCustomer } from "../info-regular-customer";
 import { useTranslations } from "next-intl";

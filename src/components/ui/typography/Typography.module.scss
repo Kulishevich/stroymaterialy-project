@@ -1,4 +1,4 @@
-@import '../../../styles/variables';
+@import "../../../shared/styles/variables";
 
 @mixin typography($fontSize, $lineHeight, $fontWeight) {
   margin: 0;
@@ -118,14 +118,14 @@
   @media (max-width: $mobile) {
     @include typography(16px, 22.4px, 400);
   }
-} 
+}
 
 .price_sale {
   @include typography(16px, 22.4px, 400);
   @media (max-width: $mobile) {
     @include typography(16px, 22.4px, 400);
   }
-} 
+}
 
 .placeholder_big {
   @include typography(18px, 21.33px, 400);
@@ -136,7 +136,7 @@
 
 .required {
   &::after {
-    content: '*';
+    content: "*";
     color: var(--color-accent-red);
   }
 }

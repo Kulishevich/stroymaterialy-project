@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import s from "./Dropdown.module.scss";
 import { Typography } from "../typography";
-import { ArrowDownIcon } from "@/assets/icons";
+import { ArrowDownIcon } from "@/shared/assets/icons";
 import clsx from "clsx";
 
 export type DropdownItem = {

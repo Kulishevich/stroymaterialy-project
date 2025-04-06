@@ -1,5 +1,5 @@
 import React from "react";
-import { Logo } from "@/assets/icons/logo";
+import { Logo } from "@/shared/assets/icons/logo";
 import { SocialNetworks } from "../social-networks";
 import { Typography } from "../ui/typography";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import {
   MasterCardIcon,
   PercentIcon,
   VisaIcon,
-} from "@/assets/icons";
+} from "@/shared/assets/icons";
 import Image from "next/image";
 import { Paths } from "@/shared/enums";
 import { useGetCategoriesQuery } from "@/api/categories/categories.api";

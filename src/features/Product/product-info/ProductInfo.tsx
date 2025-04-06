@@ -9,7 +9,7 @@ import {
   ClockIcon,
   DollarIcon,
   HeartIcon,
-} from "@/assets/icons";
+} from "@/shared/assets/icons";
 import { Product } from "@/api/products/products.types";
 import { useAddItemCartMutation } from "@/api/cart/cart.api";
 import {

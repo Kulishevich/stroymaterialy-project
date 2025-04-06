@@ -1,8 +1,8 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getPaginationPages } from "@/utils/getPaginationPages";
-import { ArrowLeftIcon, ArrowRightIcon } from "@/assets/icons";
+import { getPaginationPages } from "@/shared/lib/utils/getPaginationPages";
+import { ArrowLeftIcon, ArrowRightIcon } from "@/shared/assets/icons";
 import s from "./Pagination.module.scss";
 import cn from "clsx";
 import { Button } from "../button";

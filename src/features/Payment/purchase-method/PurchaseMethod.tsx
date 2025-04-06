@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import s from "./PurchaseMethod.module.scss";
 import { Typography } from "@/components/ui/typography";
-import { RhombIcon } from "@/assets/icons";
+import { RhombIcon } from "@/shared/assets/icons";
 import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { Control } from "react-hook-form";

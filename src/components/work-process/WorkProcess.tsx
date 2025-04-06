@@ -6,7 +6,7 @@ import {
   FastDeliveryTruck,
   StoreShopHours,
   WalletMoneyCash,
-} from "@/assets/icons/advantages";
+} from "@/shared/assets/icons/advantages";
 import { useTranslations } from "next-intl";
 
 export const WorkProcess = () => {

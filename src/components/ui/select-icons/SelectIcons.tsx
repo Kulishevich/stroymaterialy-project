@@ -1,7 +1,7 @@
 import * as RadixSelect from "@radix-ui/react-select";
 import { SelectGroup, SelectItem } from "@radix-ui/react-select";
 import { clsx } from "clsx";
-import { AmIcon, ArrowDownIcon, RuIcon } from "@/assets/icons";
+import { AmIcon, ArrowDownIcon, RuIcon } from "@/shared/assets/icons";
 import s from "./SelectIcons.module.scss";
 import { RootState } from "@/store/store";
 import { useDispatch, useSelector } from "react-redux";

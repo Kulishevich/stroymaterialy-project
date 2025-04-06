@@ -1,5 +1,5 @@
 import React from "react";
-import { RhombIcon } from "@/assets/icons";
+import { RhombIcon } from "@/shared/assets/icons";
 import { Typography } from "@/components/ui/typography";
 import s from "./PaymentMethod.module.scss";
 import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";

@@ -1,6 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "../ui/button";
-import { BurgerIcon, PercentIcon } from "@/assets/icons";
+import { BurgerIcon, PercentIcon } from "@/shared/assets/icons";
 import s from "./BurgerMenu.module.scss";
 import { SocialNetworks } from "../social-networks";
 import { Typography } from "../ui/typography";

@@ -2,7 +2,7 @@ import { Typography } from "@/components/ui/typography";
 import Image from "next/image";
 import React from "react";
 import s from "./HeaderInfo.module.scss";
-import { Logo } from "@/assets/icons/logo";
+import { Logo } from "@/shared/assets/icons/logo";
 import { SocialNetworks } from "@/components/social-networks";
 import { useTranslations } from "next-intl";
 

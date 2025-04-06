@@ -3,7 +3,7 @@ import {
   useRemoveItemCartMutation,
 } from "@/api/cart/cart.api";
 import { CartList } from "@/api/cart/cart.types";
-import { TrashIcon } from "@/assets/icons";
+import { TrashIcon } from "@/shared/assets/icons";
 import { Counter } from "@/components/counter";
 import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/ui/typography";

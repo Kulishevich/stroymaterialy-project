@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { LoginForm } from "./login-form/LoginForm";
 import { Registration } from "./registration";
 import { Button } from "../ui/button";
-import { CloseIcon } from "@/assets/icons";
+import { CloseIcon } from "@/shared/assets/icons";
 import { TextField } from "../ui/text-field";
 import s from "./LoginFormPopup.module.scss";
 

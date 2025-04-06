@@ -5,7 +5,7 @@ import {
   DollarIcon,
   MotorbikeSideIcon,
   TruckSpeedIcon,
-} from "@/assets/icons";
+} from "@/shared/assets/icons";
 import { Typography } from "@/components/ui/typography";
 import React from "react";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";

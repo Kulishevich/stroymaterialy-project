@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Variant } from "@/components/ui/typography";
-import { RhombIcon } from "@/assets/icons";
+import { RhombIcon } from "@/shared/assets/icons";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Control, Controller } from "react-hook-form";
 import { PaymentFormValues } from "../payment-page";

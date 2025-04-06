@@ -1,7 +1,7 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
-import { CloseIcon } from "@/assets/icons";
+import { CloseIcon } from "@/shared/assets/icons";
 import { Typography } from "@/components/ui/typography";
 import { useForm } from "react-hook-form";
 import { useGetRegionsQuery } from "@/api/regions/regions.api";

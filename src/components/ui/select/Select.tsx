@@ -11,7 +11,7 @@ import { clsx } from "clsx";
 
 import s from "./Select.module.scss";
 import { Typography } from "../typography";
-import { ArrowDownIcon } from "@/assets/icons";
+import { ArrowDownIcon } from "@/shared/assets/icons";
 
 export type OptionsValue = {
   icon?: ReactNode;

@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import * as RadixAccordion from "@radix-ui/react-accordion";
-import { ArrowDownIcon } from "@/assets/icons";
+import { ArrowDownIcon } from "@/shared/assets/icons";
 import clsx from "clsx";
 import s from "./Accordion.module.scss";
 

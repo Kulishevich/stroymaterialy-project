@@ -6,7 +6,7 @@ import {
   LetterOpenedIcon,
   PhoneIcon,
   UsersGroupIcon,
-} from "@/assets/icons";
+} from "@/shared/assets/icons";
 import { SocialNetworks } from "../social-networks";
 import { YandexMap } from "../yandexMap";
 import clsx from "clsx";

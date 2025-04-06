@@ -1,7 +1,7 @@
 import Link from "next/link";
 import cn from "clsx";
 import s from "./Breadcrumbs.module.scss";
-import { ArrowRightIcon } from "@/assets/icons";
+import { ArrowRightIcon } from "@/shared/assets/icons";
 import { Typography } from "../typography";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";

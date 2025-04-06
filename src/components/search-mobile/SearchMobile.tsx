@@ -1,6 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "../ui/button";
-import { CloseIcon, SearchIcon } from "@/assets/icons";
+import { CloseIcon, SearchIcon } from "@/shared/assets/icons";
 import { Search } from "../search/Search";
 import s from "./SearchMobile.module.scss";
 

@@ -5,7 +5,7 @@ import { ToastT, Toaster, toast } from "sonner";
 
 import styles from "./Toast.module.scss";
 import { Typography } from "../typography";
-import { ErrorIcon, SuccessIcon } from "@/assets/icons";
+import { ErrorIcon, SuccessIcon } from "@/shared/assets/icons";
 
 const DEFAULT_DURATION = 5000;
 const DEFAULT_POSITION = "bottom-left";

@@ -11,7 +11,7 @@ import { clsx } from "clsx";
 
 import s from "./Checkbox.module.scss";
 import { Typography, Variant } from "../typography";
-import { CheckMarkIcon } from "@/assets/icons";
+import { CheckMarkIcon } from "@/shared/assets/icons";
 
 export type CheckboxProps = {
   error?: string;

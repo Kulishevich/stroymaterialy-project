@@ -6,7 +6,7 @@ import {
   MasterCardIcon,
   VisaIcon,
   VisaSecureIcon,
-} from "@/assets/icons";
+} from "@/shared/assets/icons";
 import { useTranslations } from "next-intl";
 
 export const PaymentMethod = () => {

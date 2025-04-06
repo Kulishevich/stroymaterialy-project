@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { Typography, Variant } from "../ui/typography";
 import { Button } from "../ui/button";
-import { CloseIcon } from "@/assets/icons";
+import { CloseIcon } from "@/shared/assets/icons";
 import { ControlledTextField } from "../ui/controlled-textfiled";
 import { ControlledCheckbox } from "../ui/controlled-checkbox";
 import { callbackSchemeCreator } from "./model/callback-scheme";

@@ -1,7 +1,7 @@
 import React, { ReactNode, useRef } from "react";
 import s from "./Slider.module.scss";
 import { Button } from "../ui/button";
-import { ArrowLeftIcon, ArrowRightIcon } from "@/assets/icons";
+import { ArrowLeftIcon, ArrowRightIcon } from "@/shared/assets/icons";
 
 type SliderProps = {
   children: ReactNode;

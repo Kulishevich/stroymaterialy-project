@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import s from "./CatalogMenu.module.scss";
 import Image from "next/image";
-import { ArrowRightIcon } from "@/assets/icons";
+import { ArrowRightIcon } from "@/shared/assets/icons";
 import clsx from "clsx";
 import { Typography } from "@/components/ui/typography";
 import { useGetCategoriesQuery } from "@/api/categories/categories.api";

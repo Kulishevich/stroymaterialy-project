@@ -1,4 +1,4 @@
-import { BagShoppingIcon, HeartIcon } from "@/assets/icons";
+import { BagShoppingIcon, HeartIcon } from "@/shared/assets/icons";
 import { Counter } from "@/components/counter";
 import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/ui/typography";

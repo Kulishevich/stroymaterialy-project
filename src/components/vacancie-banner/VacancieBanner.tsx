@@ -2,7 +2,7 @@ import React from "react";
 import s from "./VacancieBanner.module.scss";
 import Image from "next/image";
 import { Typography } from "../ui/typography";
-import { Logo } from "@/assets/icons/logo";
+import { Logo } from "@/shared/assets/icons/logo";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { useTranslations } from "next-intl";
 

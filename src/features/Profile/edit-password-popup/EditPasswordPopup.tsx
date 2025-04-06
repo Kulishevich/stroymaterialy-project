@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
-import { CloseIcon } from "@/assets/icons";
+import { CloseIcon } from "@/shared/assets/icons";
 import { Typography } from "@/components/ui/typography";
 import { useChangePasswordMutation } from "@/api/user/user.api";
 import { useForm, useWatch } from "react-hook-form";

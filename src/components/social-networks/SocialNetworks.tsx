@@ -5,7 +5,7 @@ import {
   InstagramOutlinedIcon,
   TelegramOutlinedIcon,
   WhatsappOutlined,
-} from "@/assets/icons";
+} from "@/shared/assets/icons";
 
 type SocialNetworksProps = {
   size?: number;

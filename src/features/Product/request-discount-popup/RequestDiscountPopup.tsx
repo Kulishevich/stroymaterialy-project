@@ -1,7 +1,7 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
-import { CloseIcon } from "@/assets/icons";
+import { CloseIcon } from "@/shared/assets/icons";
 import { Typography } from "@/components/ui/typography";
 import s from "./RequestDiscountPopup.module.scss";
 import { RequestDiscountItem } from "../request-discount-item";

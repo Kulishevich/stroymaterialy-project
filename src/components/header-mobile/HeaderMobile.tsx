@@ -3,8 +3,12 @@ import { SocialNetworks } from "../social-networks";
 import Image from "next/image";
 import { Typography } from "../ui/typography";
 import s from "./HeaderMobile.module.scss";
-import { BagShoppingIcon, HeartOutlineIcon, ProfileIcon } from "@/assets/icons";
-import { Logo } from "@/assets/icons/logo";
+import {
+  BagShoppingIcon,
+  HeartOutlineIcon,
+  ProfileIcon,
+} from "@/shared/assets/icons";
+import { Logo } from "@/shared/assets/icons/logo";
 import { Button } from "../ui/button";
 import BurgerMenu from "../burger-menu/BurgerMenu";
 import Link from "next/link";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography } from "@/components/ui/typography";
-import { RhombIcon } from "@/assets/icons";
+import { RhombIcon } from "@/shared/assets/icons";
 import { ControlledTextField } from "@/components/ui/controlled-textfiled";
 import s from "./PayerDetails.module.scss";
 import { ControlledSelect } from "@/components/ui/controlled-select";
