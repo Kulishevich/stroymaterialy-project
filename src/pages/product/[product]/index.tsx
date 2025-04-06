@@ -1,7 +1,7 @@
 import { Product } from "@/api/products/products.types";
 import { ProductPage } from "@/features/Product/product-page";
 import { getProduct } from "@/ssr-api/getProduct";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 
 export default function ProductPageDynamic({
@@ -50,12 +50,18 @@ export default function ProductPageDynamic({
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const lang = context.locale || "hy";
   const { product } = context.params as { product: string };
-  const lang = context.req.cookies?.locale || "hy";
-  const token = context.req.cookies?.accessToken || "";
 
-  const productItem = await getProduct({ product, lang, token });
+  const productItem = await getProduct({ product, lang });
 
-  return { props: { productItem } };
+  return { props: { productItem }, revalidate: 3600 };
 };
