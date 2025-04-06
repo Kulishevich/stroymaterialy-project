@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { HomePage } from "@/features/Home/home-page";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import { getAllContent } from "@/ssr-api/getContent";
 import { ContentItem } from "@/api/content/content.types";
 import { getSimpleCategories } from "@/ssr-api/getSimpleCategories";
@@ -56,9 +56,8 @@ export default function Home({
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const lang = context.req.cookies?.locale || "hy";
-  const token = context.req.cookies?.accessToken || "";
+export const getStaticProps: GetStaticProps = async (context) => {
+  const lang = context.locale || "hy";
 
   const content = await getAllContent({ lang });
   const discounts = content.data.filter(
@@ -76,8 +75,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     lang,
     perPage: 12,
     trend: "popular",
-    token,
   });
 
-  return { props: { discounts, banner, categories, products, secondBanner } };
+  return {
+    props: { discounts, banner, categories, products, secondBanner },
+    revalidate: 3600,
+  };
 };
