@@ -33,8 +33,7 @@ export const ProductsPage = ({
   const router = useRouter();
   const { products } = router.query;
   const dispatch = useDispatch();
-  console.log(productsList);
-  console.log(breadcrumbs);
+
   const { data: productsItems } = useGetProductsByCategoryQuery(
     {
       id: products as string,

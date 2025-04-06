@@ -86,7 +86,7 @@ export const PaymentPage = ({
   const [clearCart] = useClearCartMutation();
   const [checkOrder] = useCheckOrderMutation();
   const { data } = useGetOrderQuery({ id: orderId as string });
-  console.log(data);
+
   const payerType = [
     {
       name: t("individual"),
