@@ -15,14 +15,18 @@ type HomePageProps = {
   banner: ContentItem[];
   secondBanner: ContentItem[];
   categories: { data: CategoryArgs[] };
-  products: { data: Product[] };
+  popularProducts: { data: Product[] };
+  discountedProducts: { data: Product[] };
+  newestProducts: { data: Product[] };
 };
 
-export const  HomePage = ({
+export const HomePage = ({
   discounts,
   banner,
   categories,
-  products,
+  popularProducts,
+  discountedProducts,
+  newestProducts,
   secondBanner,
 }: HomePageProps) => {
   return (
@@ -32,7 +36,11 @@ export const  HomePage = ({
         banner={banner}
         categories={categories}
       />
-      <ProductCatalog products={products} />
+      <ProductCatalog
+        popularProducts={popularProducts}
+        discountedProducts={discountedProducts}
+        newestProducts={newestProducts}
+      />
       <LatestCompanyPromotions discounts={discounts} />
       <CompanyContacts />
       <Banner secondBanner={secondBanner} />

@@ -12,14 +12,18 @@ export default function Home({
   discounts,
   banner,
   categories,
-  products,
+  popularProducts,
+  discountedProducts,
+  newestProducts,
   secondBanner,
 }: {
   discounts: ContentItem[];
   banner: ContentItem[];
   secondBanner: ContentItem[];
   categories: { data: CategoryArgs[] };
-  products: { data: Product[] };
+  popularProducts: { data: Product[] };
+  discountedProducts: { data: Product[] };
+  newestProducts: { data: Product[] };
 }) {
   return (
     <>
@@ -49,7 +53,9 @@ export default function Home({
           banner={banner}
           secondBanner={secondBanner}
           categories={categories}
-          products={products}
+          popularProducts={popularProducts}
+          discountedProducts={discountedProducts}
+          newestProducts={newestProducts}
         />
       </div>
     </>
@@ -71,14 +77,34 @@ export const getStaticProps: GetStaticProps = async (context) => {
   );
 
   const categories = await getSimpleCategories({ lang });
-  const products = await getTrendsProduct({
+
+  const popularProducts = await getTrendsProduct({
     lang,
     perPage: 12,
     trend: "popular",
   });
 
+  const discountedProducts = await getTrendsProduct({
+    lang,
+    perPage: 12,
+    trend: "discounted",
+  });
+  const newestProducts = await getTrendsProduct({
+    lang,
+    perPage: 12,
+    trend: "newest",
+  });
+
   return {
-    props: { discounts, banner, categories, products, secondBanner },
+    props: {
+      discounts,
+      banner,
+      categories,
+      popularProducts,
+      discountedProducts,
+      newestProducts,
+      secondBanner,
+    },
     revalidate: 3600,
   };
 };
