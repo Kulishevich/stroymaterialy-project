@@ -18,7 +18,7 @@ export const Breadcrumbs = ({ className }: Props) => {
   const dynamicPath = useSelector(
     (state: RootState) => state.breadcrumbs.breadcrumbs
   );
-
+  console.log(dynamicPath);
   if (
     !pathname ||
     pathname === "/" ||
@@ -99,7 +99,7 @@ export const Breadcrumbs = ({ className }: Props) => {
                   as={Link}
                   href={
                     item.is_subcategory
-                      ? `/subcategory/${item.uuid}`
+                      ? `/products/${item.uuid}`
                       : `/category/${item.uuid}`
                   }
                   className={cn(s.link)}
@@ -110,15 +110,6 @@ export const Breadcrumbs = ({ className }: Props) => {
               </li>
             );
           })}
-
-        {/* {dynamicPath && !Array.isArray(dynamicPath) && (
-          <li className={s.elem}>
-            <ArrowRightIcon className={s.icon} />
-            <Typography as={Link} href={dynamicPath.href} variant="body_4">
-              {dynamicPath.name}
-            </Typography>
-          </li>
-        )} */}
       </ul>
     </div>
   );

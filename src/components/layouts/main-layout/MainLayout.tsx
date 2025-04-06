@@ -26,7 +26,6 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
     const handleRouteChange = (url: string) => {
       if (
         !url.startsWith("/category") &&
-        !url.startsWith("/subcategory") &&
         !url.startsWith("/products") &&
         !url.startsWith("/product")
       ) {

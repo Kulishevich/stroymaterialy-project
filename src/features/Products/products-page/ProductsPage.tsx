@@ -33,7 +33,8 @@ export const ProductsPage = ({
   const router = useRouter();
   const { products } = router.query;
   const dispatch = useDispatch();
-
+  console.log(productsList);
+  console.log(breadcrumbs);
   const { data: productsItems } = useGetProductsByCategoryQuery(
     {
       id: products as string,
@@ -71,7 +72,14 @@ export const ProductsPage = ({
 
   useEffect(() => {
     if (breadcrumbs?.data.breadcrumb) {
-      dispatch(setBreadcrumbs(breadcrumbs.data.breadcrumb));
+      dispatch(
+        setBreadcrumbs(
+          breadcrumbs.data.breadcrumb.map((elem, index) => ({
+            ...elem,
+            is_subcategory: index === breadcrumbs.data.breadcrumb.length - 1,
+          }))
+        )
+      );
     }
   }, [breadcrumbs, dispatch, page]);
 

@@ -25,7 +25,14 @@ export const CategoryPage = ({
 
   useEffect(() => {
     if (breadcrumbs?.data.breadcrumb) {
-      dispatch(setBreadcrumbs(breadcrumbs.data.breadcrumb));
+      dispatch(
+        setBreadcrumbs(
+          breadcrumbs.data.breadcrumb.map((elem) => ({
+            ...elem,
+            is_subcategory: false,
+          }))
+        )
+      );
     }
   }, [breadcrumbs, dispatch]);
 

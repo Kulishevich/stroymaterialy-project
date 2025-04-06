@@ -15,7 +15,7 @@ export const Subcategory = ({ category }: SubcategoryProps) => {
       href={
         category.subcategoriesCount === 0
           ? `/products/${category.id}`
-          : `/subcategory/${category.id}`
+          : `/category/${category.id}`
       }
       className={s.card}
     >
