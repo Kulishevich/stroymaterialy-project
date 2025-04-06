@@ -5,7 +5,7 @@ import { ProductsPage } from "@/features/Products/products-page";
 import { getBreadcrumbs } from "@/ssr-api/getBreadcrumbs";
 import { getContent } from "@/ssr-api/getContent";
 import { getProductsList } from "@/ssr-api/getProductsList";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 
 export default function ProductsPageDynamic({
@@ -56,25 +56,33 @@ export default function ProductsPageDynamic({
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const lang = context.req.cookies?.locale || "hy";
-  const token = context.req.cookies?.accessToken || "";
-  const { products, page = "1" } = context.query;
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const lang = context.locale || "hy";
+  const id = context.params?.products;
 
   const productsList = await getProductsList({
-    id: products as string,
+    id: id as string,
     perPage: 12,
-    page: Number(page),
+    page: 1,
     lang,
-    token,
   });
 
   const breadcrumbs = await getBreadcrumbs({
-    category: products as string,
+    category: id as string,
     lang,
   });
 
   const { data } = await getContent({ lang, key: "secondBanner" });
 
-  return { props: { productsList, breadcrumbs, secondBanner: data } };
+  return {
+    props: { productsList, breadcrumbs, secondBanner: data },
+    revalidate: 3600,
+  };
 };
