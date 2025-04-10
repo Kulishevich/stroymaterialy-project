@@ -83,6 +83,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   console.log(`/products/${id}`, !!productsList, !!breadcrumbs, !!data);
   return {
     props: { productsList, breadcrumbs, secondBanner: data },
-    revalidate: 3600,
+    revalidate: 21600,
   };
 };

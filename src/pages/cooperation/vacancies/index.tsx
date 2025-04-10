@@ -49,5 +49,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const professions = await getProfessions({ lang });
   const spheres = await getSpheres({ lang });
 
-  return { props: { professions, spheres }, revalidate: 3600 };
+  return { props: { professions, spheres }, revalidate: 21600 };
 };

@@ -1,32 +1,35 @@
-export function getPaginationPages({
-  totalPages,
-  currentPage,
-  paginationPages = 5,
-}: {
-  totalPages: number;
+interface GetPaginationPagesProps {
   currentPage: number;
-  paginationPages?: number;
-}) {
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
-  const mid = (paginationPages - 1) / 2;
+  totalPages: number;
+  maxVisible?: number; // количество видимых цифр в центре (по умолчанию 5)
+}
 
-  if (totalPages <= paginationPages) {
+export function getPaginationPages({
+  currentPage,
+  totalPages,
+  maxVisible = 5,
+}: GetPaginationPagesProps): (number | "...")[] {
+  const pages: (number | "...")[] = [];
+
+  if (totalPages <= maxVisible + 2) {
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(i);
+    }
     return pages;
   }
 
-  if (currentPage >= totalPages - mid) {
-    const start = totalPages - paginationPages;
-    const end = totalPages;
+  const startPages = [1] as (number | "...")[];
+  const endPages = [totalPages];
 
-    return pages.slice(start, end);
+  const siblings = Math.floor(maxVisible / 2);
+  const left = Math.max(2, currentPage - siblings);
+  const right = Math.min(totalPages - 1, currentPage + siblings);
+
+  if (left > 2) startPages.push("...");
+  for (let i = left; i <= right; i++) {
+    pages.push(i);
   }
+  if (right < totalPages - 1) pages.push("...");
 
-  if (currentPage >= paginationPages - 1) {
-    const start = currentPage - paginationPages + mid;
-    const end = currentPage + mid;
-
-    return pages.slice(start, end);
-  }
-
-  return pages.slice(0, paginationPages);
+  return [...startPages, ...pages, ...endPages];
 }

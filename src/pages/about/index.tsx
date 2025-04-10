@@ -55,6 +55,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
         (item: ContentItem) => item.key === "secondBanner"
       ),
     },
-    revalidate: 3600,
+    revalidate: 21600,
   };
 };

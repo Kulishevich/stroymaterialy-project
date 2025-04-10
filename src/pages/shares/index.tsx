@@ -40,5 +40,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const lang = context.locale || "hy";
   const content = await getContent({ key: "discounts", lang });
 
-  return { props: { content }, revalidate: 3600 };
+  return { props: { content }, revalidate: 21600 };
 };

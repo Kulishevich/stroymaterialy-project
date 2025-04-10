@@ -14,7 +14,9 @@ interface Props {
 }
 
 export const Pagination = ({ totalPages, currentPage = "1" }: Props) => {
-  const [paginationPages, setPaginationPages] = useState<number[]>([]);
+  const [paginationPages, setPaginationPages] = useState<(number | "...")[]>(
+    []
+  );
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -57,8 +59,21 @@ export const Pagination = ({ totalPages, currentPage = "1" }: Props) => {
         <ArrowLeftIcon className={s.icon} />
       </Button>
       <div className={s.pagination}>
-        {paginationPages.map((page) => {
-          const isActive = currentPageNumber == page;
+        {paginationPages.map((page, idx) => {
+          const isActive = page === currentPageNumber;
+
+          if (page === "...") {
+            return (
+              <Typography
+                variant="h4"
+                as="span"
+                key={`dots-${idx}`}
+                className={s.dots}
+              >
+                ...
+              </Typography>
+            );
+          }
 
           return (
             <button

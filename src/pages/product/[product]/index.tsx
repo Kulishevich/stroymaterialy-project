@@ -63,5 +63,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const productItem = await getProduct({ product, lang });
 
-  return { props: { productItem }, revalidate: 3600 };
+  return { props: { productItem }, revalidate: 21600 };
 };

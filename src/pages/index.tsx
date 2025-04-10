@@ -105,6 +105,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
       newestProducts,
       secondBanner,
     },
-    revalidate: 3600,
+    revalidate: 21600,
   };
 };
