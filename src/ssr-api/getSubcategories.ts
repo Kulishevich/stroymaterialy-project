@@ -28,7 +28,7 @@ export const getSubcategories = async ({
 
     return await response.json();
   } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
+    console.error("Ошибка загрузки данных Подкатегорий:", error);
     return null;
   }
 };

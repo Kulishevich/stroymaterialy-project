@@ -26,7 +26,7 @@ export const getContent = async ({
 
     return await response.json();
   } catch (error) {
-    console.error("Ошибка загрузки данных категории:", error);
+    console.error("Ошибка загрузки данных Контента:", error);
     return null;
   }
 };
@@ -50,7 +50,7 @@ export const getAllContent = async ({ lang }: { lang: string }) => {
 
     return await response.json();
   } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
+    console.error("Ошибка загрузки данных Контента:", error);
     return null;
   }
 };

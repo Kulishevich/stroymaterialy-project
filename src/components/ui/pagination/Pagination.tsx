@@ -29,7 +29,7 @@ export const Pagination = ({ totalPages, currentPage = "1" }: Props) => {
       params.set("page", page.toString());
 
       const url = `${pathname}?${params.toString()}`;
-      router.push(url);
+      router.push(url, { scroll: false });
     };
   }
 

@@ -4,6 +4,8 @@ interface Breadcrumb {
   uuid: string;
   name: string;
   is_subcategory?: boolean;
+  productsCount?: number;
+  subcategoriesCount?: number;
 }
 
 interface BreadcrumbsState {

@@ -27,7 +27,7 @@ export const getUser = async ({
 
     return data;
   } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
+    console.error("Ошибка загрузки данных Юзера:", error);
     return null;
   }
 };

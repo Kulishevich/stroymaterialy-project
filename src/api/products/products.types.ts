@@ -16,6 +16,8 @@ export type Breadcrumbs = {
   is_subcategory: boolean;
   name: string;
   uuid: string;
+  subcategoriesCount: number;
+  productsCount: number;
 };
 
 export type ProductCategory = {

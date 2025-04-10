@@ -91,16 +91,18 @@ export const Breadcrumbs = ({ className }: Props) => {
         {dynamicPath &&
           Array.isArray(dynamicPath) &&
           dynamicPath.map((item, idx) => {
+            const path = !!item.subcategoriesCount
+              ? `/category/${item.uuid}`
+              : !!item.productsCount
+              ? `/products/${item.uuid}`
+              : `/product/${item.uuid}`;
+
             return (
               <li key={idx} className={s.li}>
                 <ArrowRightIcon className={s.icon} />
                 <Typography
                   as={Link}
-                  href={
-                    item.is_subcategory
-                      ? `/products/${item.uuid}`
-                      : `/category/${item.uuid}`
-                  }
+                  href={path}
                   className={cn(s.link)}
                   variant="body_4"
                 >

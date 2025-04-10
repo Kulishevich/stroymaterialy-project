@@ -24,7 +24,7 @@ export const getExtraOptions = async ({
 
     return await response.json();
   } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
+    console.error("Ошибка загрузки данных Доп.опций:", error);
     return null;
   }
 };

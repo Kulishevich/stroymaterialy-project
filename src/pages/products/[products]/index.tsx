@@ -80,7 +80,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
 
   const { data } = await getContent({ lang, key: "secondBanner" });
-
+  console.log(`/products/${id}`, !!productsList, !!breadcrumbs, !!data);
   return {
     props: { productsList, breadcrumbs, secondBanner: data },
     revalidate: 3600,

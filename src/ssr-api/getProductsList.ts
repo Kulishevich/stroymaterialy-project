@@ -30,7 +30,7 @@ export const getProductsList = async ({
 
     return await response.json();
   } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
+    console.error("Ошибка загрузки данных ProductList:", error);
     return null;
   }
 };

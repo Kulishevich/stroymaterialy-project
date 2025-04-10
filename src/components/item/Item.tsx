@@ -103,7 +103,7 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
       <div className={s.imageContainer}>
         <Link href={`/product/${product.id}`}>
           <Image
-            src={product.images.main.src}
+            src={product.images.main.src || ""}
             width={sizeImage}
             height={sizeImage}
             alt="item"

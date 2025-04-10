@@ -52,7 +52,9 @@ export const ProductCatalog = ({
     { skip: !token }
   );
 
-  const activeProducts = isFetching
+  const activeProducts = !token
+    ? sort?.find((elem) => elem.value === activeSort)?.content
+    : isFetching
     ? sort?.find((elem) => elem.value === activeSort)?.content
     : productsData;
 

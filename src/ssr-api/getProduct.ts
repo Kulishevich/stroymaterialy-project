@@ -26,7 +26,7 @@ export const getProduct = async ({
 
     return await response.json();
   } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
+    console.error("Ошибка загрузки данных Продукта:", error);
     return null;
   }
 };

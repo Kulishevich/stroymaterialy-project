@@ -23,7 +23,7 @@ export default function CategoryPageDynamic({
     <>
       <Head>
         <title>
-          {breadcrumbs.data.name ||
+          {breadcrumbs?.data?.name ??
             "Domix.am - крупнейший магазин стройматериалов в Армении"}
         </title>
         <meta
@@ -35,7 +35,7 @@ export default function CategoryPageDynamic({
         <meta
           property="og:title"
           content={
-            breadcrumbs.data.name ||
+            breadcrumbs?.data?.name ??
             "Domix.am - крупнейший магазин стройматериалов в Армении"
           }
         />
@@ -84,6 +84,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
     category,
     lang,
   });
+  console.log(
+    `/category/${category}`,
+    !!categories,
+    !!bestSellingProducts,
+    !!breadcrumbs
+  );
 
   return {
     props: { categories, bestSellingProducts, breadcrumbs },

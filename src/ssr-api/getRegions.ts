@@ -25,7 +25,7 @@ export const getRegions = async ({
 
     return data;
   } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
+    console.error("Ошибка загрузки данных Регионов:", error);
     return null;
   }
 };

@@ -21,7 +21,7 @@ export const getCart = async ({
 
     return await response.json();
   } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
+    console.error("Ошибка загрузки данных Корзины:", error);
     return null;
   }
 };

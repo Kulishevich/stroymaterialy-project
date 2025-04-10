@@ -19,7 +19,12 @@ export const Subcategory = ({ category }: SubcategoryProps) => {
       }
       className={s.card}
     >
-      <Image src={category.image} width={160} height={122} alt="Subcategory" />
+      <Image
+        src={category?.image || ""}
+        width={160}
+        height={122}
+        alt="Subcategory"
+      />
       <Typography variant="body_5">{category.name}</Typography>
     </Link>
   );

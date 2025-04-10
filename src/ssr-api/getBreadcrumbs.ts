@@ -23,7 +23,7 @@ export const getBreadcrumbs = async ({
 
     return await response.json();
   } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
+    console.error("Ошибка загрузки данных Breadcrumbs:", error);
     return null;
   }
 };

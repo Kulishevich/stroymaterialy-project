@@ -21,7 +21,7 @@ export const getSpheres = async ({
 
     return await response.json();
   } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
+    console.error("Ошибка загрузки данных Сферы:", error);
     return null;
   }
 };

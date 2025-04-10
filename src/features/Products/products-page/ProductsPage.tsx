@@ -71,14 +71,7 @@ export const ProductsPage = ({
 
   useEffect(() => {
     if (breadcrumbs?.data.breadcrumb) {
-      dispatch(
-        setBreadcrumbs(
-          breadcrumbs.data.breadcrumb.map((elem, index) => ({
-            ...elem,
-            is_subcategory: index === breadcrumbs.data.breadcrumb.length - 1,
-          }))
-        )
-      );
+      dispatch(setBreadcrumbs(breadcrumbs.data.breadcrumb));
     }
   }, [breadcrumbs, dispatch, page]);
 
