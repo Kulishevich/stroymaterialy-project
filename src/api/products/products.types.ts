@@ -5,6 +5,7 @@ export type RequestParams = {
   perPage: number;
   page: number;
   filters: string;
+  lang: string;
 };
 
 export type ExtraOptionsArgs = {

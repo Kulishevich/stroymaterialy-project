@@ -1,7 +1,9 @@
 import { useGetSubCategoriesQuery } from "@/api/categories/categories.api";
 import { Typography } from "@/components/ui/typography";
+import { RootState } from "@/store/store";
 import Link from "next/link";
 import React from "react";
+import { useSelector } from "react-redux";
 
 type SubcategoryElemProps = {
   id: string;
@@ -9,9 +11,12 @@ type SubcategoryElemProps = {
 };
 
 export const SubcategoryElem = ({ id, setIsOpen }: SubcategoryElemProps) => {
+  const lang = useSelector((state: RootState) => state.lang);
+
   const { data: subCategories } = useGetSubCategoriesQuery({
     id: id,
     perPage: 20,
+    lang,
   });
 
   return (

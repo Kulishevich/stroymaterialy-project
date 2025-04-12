@@ -11,7 +11,7 @@ export const categoriesApi = domixApi.injectEndpoints({
       }),
       getSubCategories: builder.query<
         { data: CategoryArgs[] },
-        { id: string; perPage: number }
+        { id: string; perPage: number; lang: string }
       >({
         query: ({ id, perPage }) => ({
           url: `/categories/${id}?perPage=${perPage}`,
@@ -19,9 +19,9 @@ export const categoriesApi = domixApi.injectEndpoints({
       }),
       getBreadcrumbsCategories: builder.query<
         { data: CategoriesBreadcrumbs },
-        string
+        { lang: string; id: string }
       >({
-        query: (id) => ({
+        query: ({ id }) => ({
           url: `/categories/${id}/breadcrumbs`,
         }),
       }),

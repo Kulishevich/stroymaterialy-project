@@ -151,7 +151,10 @@ export const ProductInfo = ({ item }: ProductInfoProps) => {
           <Typography variant="h3" as="h3">
             Описание
           </Typography>
-          <Typography variant="body_1">{item.description}</Typography>
+          <Typography
+            variant="body_1"
+            dangerouslySetInnerHTML={{ __html: item.description }}
+          />
         </div>
         <div className={s.elem}>
           <Typography variant="h3" as="h3">

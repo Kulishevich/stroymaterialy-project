@@ -1,24 +1,44 @@
 import {
-  CategoriesBreadcrumbs,
-  CategoryArgs,
-} from "@/api/categories/categories.types";
-import { Product } from "@/api/products/products.types";
+  useGetBreadcrumbsCategoriesQuery,
+  useGetSubCategoriesQuery,
+} from "@/api/categories/categories.api";
+import { useGetTrendsProductsQuery } from "@/api/products/products.api";
 import { CategoryPage } from "@/features/Category/category-page";
-import { getBreadcrumbs } from "@/ssr-api/getBreadcrumbs";
-import { getCategories } from "@/ssr-api/getCategories";
-import { getTrendsProduct } from "@/ssr-api/getTrendsProduct";
-import { GetServerSideProps } from "next";
+import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
+import { RootState } from "@/store/store";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function CategoryPageDynamic({
-  categories,
-  bestSellingProducts,
-  breadcrumbs,
-}: {
-  categories: { data: CategoryArgs[] };
-  bestSellingProducts: { data: Product[] };
-  breadcrumbs: { data: CategoriesBreadcrumbs };
-}) {
+export default function CategoryPageDynamic() {
+  const lang = useSelector((state: RootState) => state.lang);
+  const { query } = useRouter();
+  const dispatch = useDispatch();
+
+  const { data: categories } = useGetSubCategoriesQuery({
+    id: query.category as string,
+    perPage: 20,
+    lang,
+  });
+
+  const { data: breadcrumbs } = useGetBreadcrumbsCategoriesQuery({
+    id: query.category as string,
+    lang,
+  });
+
+  const { data: bestSellingProducts } = useGetTrendsProductsQuery({
+    trend: "popular",
+    perPage: 12,
+    lang,
+  });
+
+  useEffect(() => {
+    if (breadcrumbs?.data.breadcrumb) {
+      dispatch(setBreadcrumbs(breadcrumbs.data.breadcrumb));
+    }
+  }, [breadcrumbs, dispatch]);
+
   return (
     <>
       <Head>
@@ -57,28 +77,3 @@ export default function CategoryPageDynamic({
     </>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const lang = context.locale || "hy";
-  const { category } = context.params as { category: string };
-
-  const categories = await getCategories({
-    category: category,
-    perPage: 20,
-    lang,
-  });
-  const bestSellingProducts = await getTrendsProduct({
-    trend: "popular",
-    perPage: 12,
-    lang,
-  });
-
-  const breadcrumbs = await getBreadcrumbs({
-    category,
-    lang,
-  });
-
-  return {
-    props: { categories, bestSellingProducts, breadcrumbs },
-  };
-};

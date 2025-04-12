@@ -1,22 +1,62 @@
-import { CategoriesBreadcrumbs } from "@/api/categories/categories.types";
-import { ContentItem } from "@/api/content/content.types";
-import { ResponseProductsByCategory } from "@/api/products/products.types";
+import { useGetBreadcrumbsCategoriesQuery } from "@/api/categories/categories.api";
+import { useGetContentQuery } from "@/api/content/content.api";
+import { useGetProductsByCategoryQuery } from "@/api/products/products.api";
 import { ProductsPage } from "@/features/Products/products-page";
-import { getBreadcrumbs } from "@/ssr-api/getBreadcrumbs";
-import { getContent } from "@/ssr-api/getContent";
-import { getProductsList } from "@/ssr-api/getProductsList";
-import { GetServerSideProps } from "next";
+import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
+import { RootState } from "@/store/store";
 import Head from "next/head";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function ProductsPageDynamic({
-  productsList,
-  breadcrumbs,
-  secondBanner,
-}: {
-  productsList: ResponseProductsByCategory;
-  breadcrumbs: { data: CategoriesBreadcrumbs };
-  secondBanner: ContentItem[];
-}) {
+export default function ProductsPageDynamic() {
+  const lang = useSelector((state: RootState) => state.lang);
+  const [activeFilters, setActiveFilters] = useState("");
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page") || "1";
+  const router = useRouter();
+  const { products } = router.query;
+  const dispatch = useDispatch();
+
+  const { data: productsList } = useGetProductsByCategoryQuery({
+    id: products as string,
+    perPage: 12,
+    page: Number(page),
+    filters: activeFilters,
+    lang,
+  });
+
+  const { data: breadcrumbs } = useGetBreadcrumbsCategoriesQuery({
+    id: products as string,
+    lang,
+  });
+
+  const { data: secondBanner } = useGetContentQuery({ key: "services", lang });
+
+  useEffect(() => {
+    const filtersString = searchParams.toString();
+
+    if (!filtersString) {
+      setActiveFilters("");
+      return;
+    }
+
+    setActiveFilters(
+      filtersString
+        .split("&")
+        .filter(Boolean)
+        .map((item) => "&" + item)
+        .join("")
+    );
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (breadcrumbs?.data.breadcrumb) {
+      dispatch(setBreadcrumbs(breadcrumbs.data.breadcrumb));
+    }
+  }, [breadcrumbs, dispatch, page]);
+
   return (
     <>
       <Head>
@@ -49,32 +89,10 @@ export default function ProductsPageDynamic({
         <ProductsPage
           productsList={productsList}
           breadcrumbs={breadcrumbs}
-          secondBanner={secondBanner}
+          secondBanner={secondBanner?.data}
+          page={page}
         />
       </div>
     </>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const lang = context.locale || "hy";
-  const id = context.params?.products;
-
-  const productsList = await getProductsList({
-    id: id as string,
-    perPage: 12,
-    page: 1,
-    lang,
-  });
-
-  const breadcrumbs = await getBreadcrumbs({
-    category: id as string,
-    lang,
-  });
-
-  const { data } = await getContent({ lang, key: "services" });
-
-  return {
-    props: { productsList, breadcrumbs, secondBanner: data },
-  };
-};

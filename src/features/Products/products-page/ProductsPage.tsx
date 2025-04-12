@@ -1,17 +1,11 @@
-import React, { useEffect, useState } from "react";
-import s from "./ProductsPage.module.scss";
 import { ProductsFilter } from "../products-filter";
 import { ProductContent } from "../products-content";
-// import { FeedbackForm } from "@/components/feedback-form";
 import { Banner } from "@/components/banner";
-import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import { useGetProductsByCategoryQuery } from "@/api/products/products.api";
-import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
 import { Typography } from "@/components/ui/typography";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
-import { useSearchParams } from "next/navigation";
 import FilterMobile from "@/components/filter-mobile/FilterMobile";
+// import { FeedbackForm } from "@/components/feedback-form";
+import s from "./ProductsPage.module.scss";
 import { ResponseProductsByCategory } from "@/api/products/products.types";
 import { CategoriesBreadcrumbs } from "@/api/categories/categories.types";
 import { ContentItem } from "@/api/content/content.types";
@@ -20,60 +14,14 @@ export const ProductsPage = ({
   productsList,
   breadcrumbs,
   secondBanner,
+  page,
 }: {
-  productsList: ResponseProductsByCategory;
-  breadcrumbs: { data: CategoriesBreadcrumbs };
-  secondBanner: ContentItem[];
+  productsList: ResponseProductsByCategory | undefined;
+  breadcrumbs: { data: CategoriesBreadcrumbs } | undefined;
+  secondBanner: ContentItem[] | undefined;
+  page: string;
 }) => {
-  const [productsState, setProductsState] = useState(productsList);
-  const [activeFilters, setActiveFilters] = useState("");
-  const searchParams = useSearchParams();
-  const page = searchParams.get("page") || "1";
   const isMobile = useIsMobile("tablet");
-  const router = useRouter();
-  const { products } = router.query;
-  const dispatch = useDispatch();
-
-  const { data: productsItems } = useGetProductsByCategoryQuery(
-    {
-      id: products as string,
-      perPage: 12,
-      page: Number(page),
-      filters: activeFilters,
-    },
-    {
-      skip: !productsState,
-    }
-  );
-
-  useEffect(() => {
-    if (!!productsItems) {
-      setProductsState(productsItems);
-    }
-  }, [productsItems]);
-
-  useEffect(() => {
-    const filtersString = searchParams.toString();
-
-    if (!filtersString) {
-      setActiveFilters("");
-      return;
-    }
-
-    setActiveFilters(
-      filtersString
-        .split("&")
-        .filter(Boolean)
-        .map((item) => "&" + item)
-        .join("")
-    );
-  }, [searchParams]);
-
-  useEffect(() => {
-    if (breadcrumbs?.data.breadcrumb) {
-      dispatch(setBreadcrumbs(breadcrumbs.data.breadcrumb));
-    }
-  }, [breadcrumbs, dispatch, page]);
 
   return (
     <div className={s.container}>
@@ -85,18 +33,22 @@ export const ProductsPage = ({
           {breadcrumbs?.data.name}
         </Typography>
         <div className={s.products}>
-          {!isMobile ? (
-            <ProductsFilter filtersData={productsList?.data.filters} />
-          ) : (
-            <FilterMobile filtersData={productsList?.data.filters} />
+          {!!productsList?.data && (
+            <>
+              {!isMobile ? (
+                <ProductsFilter filtersData={productsList?.data.filters} />
+              ) : (
+                <FilterMobile filtersData={productsList?.data.filters} />
+              )}
+              <ProductContent
+                products={productsList?.data?.products}
+                page={page}
+              />
+            </>
           )}
-          <ProductContent
-            products={productsState?.data?.products}
-            page={page}
-          />
         </div>
       </div>
-      <Banner secondBanner={secondBanner} />
+      {!!secondBanner && <Banner secondBanner={secondBanner} />}
       {/* <FeedbackForm /> */}
     </div>
   );
