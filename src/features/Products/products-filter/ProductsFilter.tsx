@@ -94,39 +94,11 @@ export const ProductsFilter = ({ filtersData }: ProductsFilterProps) => {
       <Typography as="h3" variant="h3">
         Фильтр
       </Typography>
-      {Object.entries(filtersData).map(([category, values]) => (
-        <AccordionSearch title={category} key={category}>
-          {Array.isArray(values) ? (
-            values.map((value, index) => (
-              <Checkbox
-                label={value}
-                key={index}
-                className={s.checkbox}
-                onClick={() => addNewFilter(category, value)}
-                checked={handleIsChecked(category, value)}
-              />
-            ))
-          ) : typeof values === "object" ? (
-            Object.values(values).map((value, index) =>
-              typeof value === "number" ? (
-                <div className={s.inputContainer} key={index}>
-                  <Typography variant="body_5">
-                    {!index ? "От" : "До"}
-                  </Typography>
-                  <TextField
-                    placeholder={String(value)}
-                    value={!index ? minPrice : maxPrice}
-                    onBlur={() => changePrice(!index ? "min" : "max")}
-                    onChange={(event) => {
-                      if (!index) {
-                        setMinPrice(event.target.value);
-                      } else {
-                        setMaxPrice(event.target.value);
-                      }
-                    }}
-                  />
-                </div>
-              ) : (
+      {!!filtersData &&
+        Object.entries(filtersData).map(([category, values]) => (
+          <AccordionSearch title={category} key={category}>
+            {Array.isArray(values) ? (
+              values.map((value, index) => (
                 <Checkbox
                   label={value}
                   key={index}
@@ -134,18 +106,47 @@ export const ProductsFilter = ({ filtersData }: ProductsFilterProps) => {
                   onClick={() => addNewFilter(category, value)}
                   checked={handleIsChecked(category, value)}
                 />
+              ))
+            ) : typeof values === "object" ? (
+              Object.values(values).map((value, index) =>
+                typeof value === "number" ? (
+                  <div className={s.inputContainer} key={index}>
+                    <Typography variant="body_5">
+                      {!index ? "От" : "До"}
+                    </Typography>
+                    <TextField
+                      placeholder={String(value)}
+                      value={!index ? minPrice : maxPrice}
+                      onBlur={() => changePrice(!index ? "min" : "max")}
+                      onChange={(event) => {
+                        if (!index) {
+                          setMinPrice(event.target.value);
+                        } else {
+                          setMaxPrice(event.target.value);
+                        }
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <Checkbox
+                    label={value}
+                    key={index}
+                    className={s.checkbox}
+                    onClick={() => addNewFilter(category, value)}
+                    checked={handleIsChecked(category, value)}
+                  />
+                )
               )
-            )
-          ) : (
-            <Checkbox
-              label={values}
-              className={s.checkbox}
-              onClick={() => addNewFilter(category, values)}
-              checked={handleIsChecked(category, values)}
-            />
-          )}
-        </AccordionSearch>
-      ))}
+            ) : (
+              <Checkbox
+                label={values}
+                className={s.checkbox}
+                onClick={() => addNewFilter(category, values)}
+                checked={handleIsChecked(category, values)}
+              />
+            )}
+          </AccordionSearch>
+        ))}
       <Typography
         as={"button"}
         variant="button"

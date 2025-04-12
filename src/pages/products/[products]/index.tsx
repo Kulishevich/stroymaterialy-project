@@ -79,7 +79,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     lang,
   });
 
-  const { data } = await getContent({ lang, key: "secondBanner" });
+  const { data } = await getContent({ lang, key: "services" });
   console.log(`/products/${id}`, !!productsList, !!breadcrumbs, !!data);
   return {
     props: { productsList, breadcrumbs, secondBanner: data },

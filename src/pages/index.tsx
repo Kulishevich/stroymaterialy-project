@@ -73,9 +73,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     (elem: ContentItem) => elem.key === "firstBanner"
   );
   const secondBanner = content.data.filter(
-    (elem: ContentItem) => elem.key === "secondBanner"
+    (elem: ContentItem) => elem.key === "services"
   );
-
   const categories = await getSimpleCategories({ lang });
 
   const popularProducts = await getTrendsProduct({

@@ -52,7 +52,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         (item: ContentItem) => item.key === "discounts"
       ),
       secondBanner: content.data.filter(
-        (item: ContentItem) => item.key === "secondBanner"
+        (item: ContentItem) => item.key === "services"
       ),
     },
     revalidate: 21600,

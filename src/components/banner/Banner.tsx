@@ -14,7 +14,7 @@ export const Banner = ({ secondBanner }: { secondBanner: ContentItem[] }) => {
 
   return (
     <div className={s.container}>
-      {secondBanner[0].src && (
+      {secondBanner?.[0]?.src && (
         <Image
           src={secondBanner[0].src}
           width={!isMobile ? 1296 : 336}

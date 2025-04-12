@@ -19,7 +19,7 @@ export const ProductContent = ({ products, page }: ProductContentProps) => {
           ))}
       </div>
       <Pagination
-        totalPages={String(products.meta.last_page)}
+        totalPages={String(products?.meta.last_page)}
         currentPage={page}
       />
     </div>
