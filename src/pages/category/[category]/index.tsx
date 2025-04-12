@@ -7,7 +7,7 @@ import { CategoryPage } from "@/features/Category/category-page";
 import { getBreadcrumbs } from "@/ssr-api/getBreadcrumbs";
 import { getCategories } from "@/ssr-api/getCategories";
 import { getTrendsProduct } from "@/ssr-api/getTrendsProduct";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 
 export default function CategoryPageDynamic({
@@ -58,14 +58,7 @@ export default function CategoryPageDynamic({
   );
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-}
-
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const lang = context.locale || "hy";
   const { category } = context.params as { category: string };
 
@@ -84,15 +77,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     category,
     lang,
   });
-  console.log(
-    `/category/${category}`,
-    !!categories,
-    !!bestSellingProducts,
-    !!breadcrumbs
-  );
 
   return {
     props: { categories, bestSellingProducts, breadcrumbs },
-    revalidate: 21600,
   };
 };

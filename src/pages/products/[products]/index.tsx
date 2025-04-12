@@ -5,7 +5,7 @@ import { ProductsPage } from "@/features/Products/products-page";
 import { getBreadcrumbs } from "@/ssr-api/getBreadcrumbs";
 import { getContent } from "@/ssr-api/getContent";
 import { getProductsList } from "@/ssr-api/getProductsList";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 
 export default function ProductsPageDynamic({
@@ -56,14 +56,7 @@ export default function ProductsPageDynamic({
   );
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-}
-
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const lang = context.locale || "hy";
   const id = context.params?.products;
 
@@ -80,9 +73,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
 
   const { data } = await getContent({ lang, key: "services" });
-  console.log(`/products/${id}`, !!productsList, !!breadcrumbs, !!data);
+
   return {
     props: { productsList, breadcrumbs, secondBanner: data },
-    revalidate: 21600,
   };
 };
