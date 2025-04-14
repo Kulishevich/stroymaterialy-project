@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import s from "./ProductImages.module.scss";
 import Image from "next/image";
 import { Typography } from "@/components/ui/typography";
@@ -13,6 +13,10 @@ export const ProductImages = ({ item }: ProductImagesProps) => {
   const isMobile = useIsMobile("tablet");
   const [activeImage, setActiveImage] = useState(item?.images?.main?.src || "");
   const isDiscount = !!Number(item.discount.split(" ")[0]);
+
+  useEffect(() => {
+    setActiveImage(item?.images?.main?.src || "");
+  }, [item?.images?.main?.src]);
 
   return (
     <div className={s.container}>
