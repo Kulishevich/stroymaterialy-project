@@ -1,65 +1,66 @@
 .container {
-    display: flex;
-    height: fit-content;
-    width: fit-content;
-    border: 1px solid #7D7D7D4D;
-    
-    border-radius: 6px;
-    overflow: hidden;
+  display: flex;
+  height: fit-content;
+  width: fit-content;
+  border: 1px solid #7d7d7d4d;
+
+  border-radius: 6px;
+  overflow: hidden;
 }
 .navigate {
-    box-sizing: border-box;
-    overflow: hidden;
-    border-radius: 6px;
-    width: 306px;
-    height: 100%;
-    @media (max-width: 768px) {
-        width: 336px;
-    }
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 6px;
+  width: 306px;
+  height: 100%;
+  @media (max-width: 768px) {
+    width: 336px;
+  }
 }
 
 .category {
-    display: flex;
-    gap: 12px;
-    align-items: center;
+  display: flex;
+  gap: 12px;
+  align-items: center;
 
-    padding: 12px;
-    background-color: var(--color-grey-1);
-    border-bottom: 1px solid #7D7D7D33;
-    text-decoration: none;
+  padding: 12px;
+  background-color: var(--color-grey-1);
+  border-bottom: 1px solid #7d7d7d33;
+  text-decoration: none;
+  & > svg {
+    margin-left: auto;
+  }
+  &:hover {
+    background-color: var(--color-text);
+    & > p {
+      color: var(--color-bg);
+    }
     & > svg {
-        margin-left: auto;
+      color: var(--color-accent-orange);
     }
-    &:hover {
-        background-color: var(--color-text);
-        & > p {
-            color: var(--color-bg);
-        }
-        & > svg {
-            color: var(--color-accent-orange);
-        }
-    }
+  }
 }
 
 .active {
-    background-color: var(--color-text);
-    & > p {
-        color: var(--color-bg);
-    }
-    & > svg {
-        color: var(--color-accent-orange);
-    }
+  background-color: var(--color-text);
+  & > p {
+    color: var(--color-bg);
+  }
+  & > svg {
+    color: var(--color-accent-orange);
+  }
 }
 
 .imageCategory {
-    border: 1px solid var(--color-accent-orange);
-    border-radius: 50%;
-    box-sizing: border-box;
-    background-color: var(--color-bg);
+  border: 1px solid var(--color-accent-orange);
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-color: var(--color-bg);
+  flex-shrink: 0;
 }
 
 .iconCategory {
-    width: 22px;
-    height: 22px;
-    flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
 }

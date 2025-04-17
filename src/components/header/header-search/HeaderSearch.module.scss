@@ -1,88 +1,87 @@
 .container {
-    position: relative;
-    box-sizing: border-box;
-    width: 1296px;
-    height: 70px;
-    
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background-color: var(--color-accent-orange);
-    border-radius: 6px;
+  position: relative;
+  box-sizing: border-box;
+  width: 1296px;
+  height: 70px;
 
-    & > .catalogButton {
-        gap: 10px;
-        height: 100%;
-        width: 168px;
-        box-sizing: border-box;
-        & > p {
-            color: var(--color-bg);
-        }
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--color-accent-orange);
+  border-radius: 6px;
+
+  & > .catalogButton {
+    gap: 10px;
+    height: 100%;
+    width: 168px;
+    box-sizing: border-box;
+    & > p {
+      color: var(--color-bg);
     }
+  }
 }
 .search {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100% ;
-
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .buttonsContainer {
-    display: flex;
-    width: 100% ;
-    justify-content: space-evenly;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
 
 .favorites {
-    display: flex;
-    min-width: 144px;
-    width: fit-content;
-    height: 70px;
-    gap: 8px;
-    padding: 0 10px; 
+  display: flex;
+  min-width: 144px;
+  width: fit-content;
+  height: 70px;
+  gap: 8px;
+  padding: 0 10px;
 }
 .shoppingCart {
-    display: flex;
-    min-width: 183px;
-    width: fit-content;
-    height: 70px;
-    gap: 8px;
-    padding: 0 10px;
+  display: flex;
+  min-width: 183px;
+  width: fit-content;
+  height: 70px;
+  gap: 8px;
+  padding: 0 10px;
 
-    text-decoration: none; 
+  text-decoration: none;
 }
 
 .iconContainer {
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    color: var(--color-text);
-    border-radius: 50%;
-    background-color: var(--color-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--color-text);
+  border-radius: 50%;
+  background-color: var(--color-bg);
 }
 
 .textContainer {
-    & > h6 {
-        font-family: var(--font-rubik);
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 22.4px;
-        text-align: left;
-        color: var(--color-bg);
-    }
-    & > p {
-        opacity: 0.7;
-        font-family: var(--font-rubik);
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 18.2px;
-        text-align: left;
-        color: var(--color-bg);
-    }
+  & > h6 {
+    font-family: var(--font-rubik);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22.4px;
+    text-align: left;
+    color: var(--color-bg);
+  }
+  & > p {
+    opacity: 0.7;
+    font-family: var(--font-rubik);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18.2px;
+    text-align: left;
+    color: var(--color-bg);
+  }
 }

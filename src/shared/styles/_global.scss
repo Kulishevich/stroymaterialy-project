@@ -1,24 +1,28 @@
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+a {
+  text-decoration: none;
 }
 
 :root {
-    --space-xs: 4px;
-    --space-sm: 8px;
-    --space-md: 12px;
-    --space-lg: 14px;
-    --space-xl: 16px;
-    --space-2xl: 20px;
-    --space-3xl: 24px;
-    --space-4xl: 32px;
-    --space-5xl: 36px;
-    --space-6xl: 42px;
-    --space-7xl: 48px;
-    --space-8xl: 32px;
-    --space-9xl: 36px;
-    --space-10xl: 42px;
-    --space-11xl: 48px;
-  }
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 14px;
+  --space-xl: 16px;
+  --space-2xl: 20px;
+  --space-3xl: 24px;
+  --space-4xl: 32px;
+  --space-5xl: 36px;
+  --space-6xl: 42px;
+  --space-7xl: 48px;
+  --space-8xl: 32px;
+  --space-9xl: 36px;
+  --space-10xl: 42px;
+  --space-11xl: 48px;
+}

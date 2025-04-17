@@ -34,7 +34,9 @@ export const Footer = () => {
           <div className={s.contacts}>
             <Logo />
             <SocialNetworks />
-            <Typography as="h3">Email: Info@domix.am</Typography>
+            <Typography as={Link} href="mailto:info@domix.am">
+              Email: Info@domix.am
+            </Typography>
           </div>
           <div className={s.categoryes}>
             <Typography variant="h4" as="h4">
@@ -118,7 +120,11 @@ export const Footer = () => {
                   alt="phone operator"
                   className={s.image}
                 />
-                <Typography variant="h3" as="p">
+                <Typography
+                  variant="h3"
+                  as={Link}
+                  href={"tel:+374 (33) 144-000"}
+                >
                   +374 (33) 144-000
                 </Typography>
               </div>
@@ -143,7 +149,10 @@ export const Footer = () => {
             <IdramIcon />
           </div>
           <Typography variant="body_6">
-            {t("design_and_development")}
+            {t("design_and_development")}{" "}
+            <Typography variant="body_6" as={Link} href="https://web-space.by/">
+              Web-space.by
+            </Typography>
           </Typography>
         </div>
       </div>
