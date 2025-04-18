@@ -1,14 +1,16 @@
-.container{   
-    display: flex;
-    flex-direction: column;
-    gap: 140px;
+@import "../../../shared/styles/functions";
 
-    margin-top: 24px;
-    margin-bottom: 140px;
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(140);
 
-    @media (max-width: 768px) {
-        gap: 72px;
-        margin-top: 16px;
-        margin-bottom: 72px;
-    }
+  margin-top: vw-1490(24);
+  margin-bottom: vw-1490(140);
+
+  @media (max-width: 768px) {
+    gap: 72px;
+    margin-top: 16px;
+    margin-bottom: 72px;
+  }
 }

@@ -1,27 +1,29 @@
-.main {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    text-align: center;
-    align-items: center;
+@import "../../../shared/styles/functions";
 
-    @media (max-width: 768px) {
-        gap: 24px;
-    }
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(32);
+  text-align: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    gap: 24px;
+  }
 }
 .bannersContainer {
-    display: flex;
-    gap: 24px;
-    
-    @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 16px;
-        align-items: center;
-    }
+  display: flex;
+  gap: vw-1490(24);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
 }
 
 .mobileContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(16);
 }

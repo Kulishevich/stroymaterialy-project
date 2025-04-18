@@ -1,70 +1,71 @@
+@import "../../../../shared/styles/functions";
+
 .tableContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    @media (max-width: 768px) {
-        gap: 16px;
-        align-items: center;
-        & > h3 {
-            text-align: center;
-        }
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(24);
+  @media (max-width: 768px) {
+    gap: 16px;
+    align-items: center;
+    & > h3 {
+      text-align: center;
     }
+  }
 }
 
 .tableDelivery {
-    width: 945px;
-    height: 612px;
-    border-collapse: collapse;
-    border-spacing: 0;
+  width: vw-1490(945);
+  height: vw-1490(612);
+  border-collapse: collapse;
+  border-spacing: 0;
 
-    border-radius: 6px;
-    overflow: hidden;
+  border-radius: 6px;
+  overflow: hidden;
 
-    & > thead {
-        border: 1px solid #2125311A;
-        & > tr > th {
-            background-color: var(--color-text);
-            height: 132px;
-            box-sizing: border-box;
-            padding: 0;
-            &:first-child {
-                width: 281px;
-                padding-left: 36px;
-            }
-            &:not(:first-child) {
-                width: 166px;
-            }
-            &:not(:last-child){
-                border-right: 1px solid #2125311A;
-            }
-            & > p {
-                color: var(--color-bg);
-            }
-        }
+  & > thead {
+    border: 1px solid #2125311a;
+    & > tr > th {
+      background-color: var(--color-text);
+      height: vw-1490(132);
+      box-sizing: border-box;
+      padding: 0;
+      &:first-child {
+        width: vw-1490(281);
+        padding-left: vw-1490(36);
+      }
+      &:not(:first-child) {
+        width: vw-1490(166);
+      }
+      &:not(:last-child) {
+        border-right: 1px solid #2125311a;
+      }
+      & > p {
+        color: var(--color-bg);
+      }
     }
-    
-    & > tbody > tr {
-        border: 1px solid #2125311A;
-    }
+  }
 
-    & > tbody > tr {
-        & > th {
-            height: 120px;
-            padding-left: 36px;
-            
-            display: flex;
-            align-items: center;
-            text-align: left;
-            gap: 4px;
-            border-right: 1px solid #2125311A;
-        }
-        & > td {
-            height: 120px;
-            text-align: center;
-            &:not(:last-child){
-                border-right: 1px solid #2125311A;
-            }
-        }
+  & > tbody > tr {
+    border: 1px solid #2125311a;
+  }
 
+  & > tbody > tr {
+    & > th {
+      height: vw-1490(120);
+      padding-left: vw-1490(36);
+
+      display: flex;
+      align-items: center;
+      text-align: left;
+      gap: vw-1490(4);
+      border-right: 1px solid #2125311a;
     }
+    & > td {
+      height: vw-1490(120);
+      text-align: center;
+      &:not(:last-child) {
+        border-right: 1px solid #2125311a;
+      }
+    }
+  }
 }

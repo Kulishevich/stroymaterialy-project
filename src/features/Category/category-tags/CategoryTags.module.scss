@@ -1,23 +1,25 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
+@import "../../../shared/styles/functions";
 
-    & > h1 {
-        text-align: center;
-        @media (max-width: 768px) {
-            font-weight: 600;
-            font-size: 22px;
-            line-height: 26.07px;
-        }
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(36);
+
+  & > h1 {
+    text-align: center;
+    @media (max-width: 768px) {
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 26.07px;
     }
+  }
 }
 .categoryContainer {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 32px 24px;
-    @media (max-width: 768px) {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px 16px;
-    }
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: vw-1490(32) vw-1490(24);
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 16px;
+  }
 }

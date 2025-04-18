@@ -1,29 +1,31 @@
-.row > td{
-    border-bottom: 1px solid #7D7D7D50;
-    padding: 24px 0;
-    &.card {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        width: 370px;
-        box-sizing: border-box;
-        padding-right: 40px;
-    }
+@import "../../../shared/styles/functions";
+
+.row > td {
+  border-bottom: 1px solid #7d7d7d50;
+  padding: vw-1490(24) 0;
+  &.card {
+    display: flex;
+    align-items: center;
+    gap: vw-1490(12);
+    width: vw-1490(370);
+    box-sizing: border-box;
+    padding-right: vw-1490(40);
+  }
 }
 
 .image {
-    border-radius: 6px;
-    background-color: var(--color-grey-1);
+  border-radius: 6px;
+  background-color: var(--color-grey-1);
 }
 
 .trashButton {
-    outline: none   ;
+  outline: none;
 }
 
 .discountPrice {
-    color: var(--color-accent-red);
+  color: var(--color-accent-red);
 }
 .oldPrice {
-    color: var(--color-grey-2);
-    text-decoration: line-through;
+  color: var(--color-grey-2);
+  text-decoration: line-through;
 }

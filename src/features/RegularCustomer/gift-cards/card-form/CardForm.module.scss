@@ -1,38 +1,40 @@
-.container {
-    display: flex;
-    align-items: center;
-    gap: 51px;
-    width: 100%;
+@import "../../../../shared/styles/functions";
 
-    @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 24px;
-    }
+.container {
+  display: flex;
+  align-items: center;
+  gap: vw-1490(51);
+  width: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 24px;
+  }
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(24);
 
-    width: 374px;
+  width: vw-1490(374);
 
-    @media (max-width: 768px) {
-        gap: 16px;
-        width: 100%;
+  @media (max-width: 768px) {
+    gap: 16px;
+    width: 100%;
 
-        & > button {
-            width: 100%;
-        }
+    & > button {
+      width: 100%;
     }
+  }
 }
 
 .inputContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(8);
 }
 
 .input {
-    height: 58px;
+  height: vw-1490(58);
 }

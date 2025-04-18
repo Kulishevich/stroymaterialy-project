@@ -1,19 +1,21 @@
+@import "../../../shared/styles/functions";
+
 .content {
-    position: absolute;
-    left: 306px;
-    box-sizing: border-box;
-    min-height: 100%;
-    width: 990px;
-    padding: 24px 32px;
+  position: absolute;
+  left: vw-1490(306);
+  box-sizing: border-box;
+  min-height: 100%;
+  width: vw-1490(990);
+  padding: vw-1490(24) vw-1490(32);
 
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(24);
 
-    background-color: var(--color-bg);
+  background-color: var(--color-bg);
 }
 
 .contentContainer {
-    column-count: 3;
-    column-gap: 16px;
+  column-count: 3;
+  column-gap: 16px;
 }

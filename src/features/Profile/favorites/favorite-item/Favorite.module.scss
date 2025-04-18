@@ -1,63 +1,64 @@
-.card {
-    position: relative;
-    width: 177px;
+@import "../../../../shared/styles/functions";
 
+.card {
+  position: relative;
+  width: vw-1490(177);
+
+  & > h3 {
+    margin-bottom: vw-1490(12);
+  }
+  & > p {
+    margin-bottom: vw-1490(10);
+  }
+
+  @media (max-width: 768px) {
+    width: 160px;
     & > h3 {
-        margin-bottom: 12px;
+      margin-bottom: 8px;
     }
     & > p {
-        margin-bottom: 10px;
+      margin-bottom: 8px;
     }
-
-    @media (max-width: 768px) {
-        width: 160px;
-        & > h3 {
-            margin-bottom: 8px;
-        }
-        & > p {
-            margin-bottom: 8px;
-        }
-    }
+  }
 }
 .image {
-    background-color: var(--color-grey-1);
-    border-radius: 6px;
+  background-color: var(--color-grey-1);
+  border-radius: 6px;
 
-    margin-bottom: 12px;
+  margin-bottom: vw-1490(12);
 }
 .buttonsContainer {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: vw-1490(12);
 
-    @media (max-width: 768px) {
-        gap: 8px;
-    }
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
 }
 .shopButton {
-    padding: 0;
-    width: 36px;
-    height: 36px;
+  padding: 0;
+  width: vw-1490(36);
+  height: vw-1490(36);
 }
 
 .favoriteButton {
-    position: absolute;
-    right: 10px;
-    top: 15px;
-    z-index: 1000;
-    padding: 0;
-    color: #21253126;
-
+  position: absolute;
+  right: vw-1490(10);
+  top: vw-1490(15);
+  z-index: 1000;
+  padding: 0;
+  color: #21253126;
 }
 .active {
-    color: var(--color-accent-red);
+  color: var(--color-accent-red);
 }
 
 .discount {
-    color: var(--color-accent-red);
-    & > span {
-        color: var(--color-grey-2);
-        text-decoration: line-through;
-        margin-left: 8px;
-    }
+  color: var(--color-accent-red);
+  & > span {
+    color: var(--color-grey-2);
+    text-decoration: line-through;
+    margin-left: vw-1490(24);
+  }
 }

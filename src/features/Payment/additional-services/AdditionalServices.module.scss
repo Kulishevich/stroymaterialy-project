@@ -1,42 +1,44 @@
+@import "../../../shared/styles/functions";
+
 .payment {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    padding: 32px 24px;
+  padding: vw-1490(32) vw-1490(24);
 
-    background-color: var(--color-bg);
-    border: 1px solid #2125314D;
-    border-radius: 6px;
-    box-shadow: 6px 12px 13px 0px #2225310A;
+  background-color: var(--color-bg);
+  border: 1px solid #2125314d;
+  border-radius: 6px;
+  box-shadow: 6px 12px 13px 0px #2225310a;
 }
 
 .title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: vw-1490(8);
 
-    margin-bottom: 20px;
+  margin-bottom: vw-1490(20);
 }
 
 .numCard {
-    position: relative;
-    & > h3 {
-        color: var(--color-bg);
-        position: absolute;
+  position: relative;
+  & > h3 {
+    color: var(--color-bg);
+    position: absolute;
 
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }  
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .radioService {
-    margin-top: 24px;
-    flex-direction: column;
+  margin-top: vw-1490(24);
+  flex-direction: column;
 }
 .options {
-    margin-top: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  margin-top: vw-1490(24);
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(16);
 }

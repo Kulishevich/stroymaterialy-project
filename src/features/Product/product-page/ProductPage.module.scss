@@ -1,44 +1,46 @@
-.wrapper {
-    display: flex;
-    flex-direction: column;  
+@import "../../../shared/styles/functions";
 
-    @media (max-width: 768px) {
-        width: 336px;
-        margin: 0 auto 72px;
-    }
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 768px) {
+    width: 336px;
+    margin: 0 auto 72px;
+  }
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(140);
 
-    margin-bottom: 140px;
+  margin-bottom: vw-1490(140);
 
-    @media (max-width: 768px) {
-        width: 336px;
-        gap: 72px;
-    }
+  @media (max-width: 768px) {
+    width: 336px;
+    gap: 72px;
+  }
 }
 
 .title {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(16);
+  text-align: center;
 
-    margin-bottom: 24px;
-    & > p {
-        color: var(--color-grey-2);
-    }
+  margin-bottom: vw-1490(24);
+  & > p {
+    color: var(--color-grey-2);
+  }
 }
 
 .content {
-    display: flex;
-    gap: 48px;
+  display: flex;
+  gap: vw-1490(48);
 
-    @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 32px;
-    }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 32px;
+  }
 }

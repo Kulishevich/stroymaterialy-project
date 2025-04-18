@@ -1,57 +1,59 @@
+@import "../../../shared/styles/functions";
+
 .payment {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    padding: 32px 24px;
+  padding: vw-1490(32) vw-1490(24);
 
-    background-color: var(--color-bg);
-    border: 1px solid #2125314D;
-    border-radius: 6px;
-    box-shadow: 6px 12px 13px 0px #2225310A;
+  background-color: var(--color-bg);
+  border: 1px solid #2125314d;
+  border-radius: 6px;
+  box-shadow: 6px 12px 13px 0px #2225310a;
 }
 
 .title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: vw-1490(8);
 
-    margin-bottom: 20px;
+  margin-bottom: vw-1490(20);
 }
 
 .numCard {
-    position: relative;
-    & > h3 {
-        color: var(--color-bg);
-        position: absolute;
+  position: relative;
+  & > h3 {
+    color: var(--color-bg);
+    position: absolute;
 
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }  
-    @media (max-width: 768px) {
-        & > svg {
-            width: 42px;
-            height: 42px;
-        }
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @media (max-width: 768px) {
+    & > svg {
+      width: 42px;
+      height: 42px;
     }
+  }
 }
 
 .cardsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: vw-1490(24);
 }
 
 .card {
-    box-sizing: border-box;
-    width: 275px;
-    height: 121px;
-    padding: 12px;
+  box-sizing: border-box;
+  width: vw-1490(275);
+  height: vw-1490(121);
+  padding: vw-1490(12);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    border: 1px solid #2125311A;
-    border-radius: 4px;
+  border: 1px solid #2125311a;
+  border-radius: 4px;
 }

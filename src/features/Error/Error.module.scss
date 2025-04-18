@@ -1,76 +1,78 @@
-.container {
-    position: relative;
-    height: 720px;
-    display: flex;
+@import "../../shared/styles/functions";
 
-    @media (max-width: 768px) {
-        flex-direction: column-reverse;
-        height: fit-content;
-        width: 336px;
-        align-items: center;
-        margin: 140px auto;
-    }
+.container {
+  position: relative;
+  height: vw-1490(720);
+  display: flex;
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    height: fit-content;
+    width: 336px;
+    align-items: center;
+    margin: 140px auto;
+  }
 }
 
 .content {
-    width: 456px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  width: vw-1490(456);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 
-    margin-top: 223px;
+  margin-top: vw-1490(223);
 
-    & > p {
-        margin: 20px 0 32px;
-    }
+  & > p {
+    margin: vw-1490(20) 0 vw-1490(32);
+  }
 
-    @media (max-width: 768px) {
-        margin-top: 0;
-        width: fit-content;
-    }
+  @media (max-width: 768px) {
+    margin-top: 0;
+    width: fit-content;
+  }
 }
 
 .imageContainer {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: -1;
-    @media (max-width: 768px) {
-        position: static;
-        height: fit-content;
-    }
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  @media (max-width: 768px) {
+    position: static;
+    height: fit-content;
+  }
 }
 
 .image1 {
-    position: absolute;
-    bottom: 505px;
-    right: 365px;
-    z-index: -1;
-    @media (max-width: 768px) {
-        display: none;
-        position: static;
-    }
+  position: absolute;
+  bottom: vw-1490(505);
+  right: vw-1490(365);
+  z-index: -1;
+  @media (max-width: 768px) {
+    display: none;
+    position: static;
+  }
 }
 
 .image2 {
-    position: absolute;
-    bottom: -12px;
-    right: -100px;
-    z-index: -1;
-    @media (max-width: 768px) {
-        display: none;
-        position: static;
-    }
+  position: absolute;
+  bottom: vw-1490(-12);
+  right: vw-1490(-100);
+  z-index: -1;
+  @media (max-width: 768px) {
+    display: none;
+    position: static;
+  }
 }
 
 .image3 {
-    position: absolute;
-    bottom: 250px;
-    right: 102px;
-    z-index: 1;
+  position: absolute;
+  bottom: vw-1490(250);
+  right: vw-1490(102);
+  z-index: 1;
 
-    @media (max-width: 768px) {
-        position: static;
-    }
+  @media (max-width: 768px) {
+    position: static;
+  }
 }

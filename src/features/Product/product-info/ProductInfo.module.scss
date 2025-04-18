@@ -1,226 +1,227 @@
+@import "../../../shared/styles/functions";
+
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 42px;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(42);
 }
 
 .head {
-    display: flex;
-    gap: 48px;
+  display: flex;
+  gap: vw-1490(48);
 
-    @media (max-width: 768px) {
-        flex-direction: column;
-    }
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 .infoContainer {
-    width: 320px;
+  width: vw-1490(320);
 
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    @media (max-width: 768px) {
-        width: 336px;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(20);
+  @media (max-width: 768px) {
+    width: 336px;
+  }
 }
 .info {
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(12);
+  & > p {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    & > p {
-        display: flex;
-        justify-content: space-between;
-        & > span.title {
-            opacity: 0.5;
-        }
-        & > span.value {
-            font-weight: 700;
-        }
+    justify-content: space-between;
+    & > span.title {
+      opacity: 0.5;
     }
+    & > span.value {
+      font-weight: 700;
+    }
+  }
 }
 
-.priceContainer{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
+.priceContainer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 
-    width: 354px;
-    padding: 24px;
+  width: vw-1490(354);
+  padding: vw-1490(24);
 
-    border-radius: 6px;
-    background-color: var(--color-bg);
-    box-shadow: 6px 12px 13px 0px #2225310A;
+  border-radius: 6px;
+  background-color: var(--color-bg);
+  box-shadow: 6px 12px 13px 0px #2225310a;
 
-    @media (max-width: 768px) {
-        width: 336px;
-        padding: 24px 16px;
-    }
+  @media (max-width: 768px) {
+    width: 336px;
+    padding: 24px 16px;
+  }
 }
 .price {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: vw-1490(8);
 
-    margin: 16px 0 20px;
-    & > h3 {
-        color: var(--color-accent-red);
-    }
-    & > span {
-        opacity: 0.6;
-        text-decoration: line-through;
-    }
-    & .priceValue {
-        color: var(--color-text);
-    }
+  margin: vw-1490(16) 0 vw-1490(20);
+  & > h3 {
+    color: var(--color-accent-red);
+  }
+  & > span {
+    opacity: 0.6;
+    text-decoration: line-through;
+  }
+  & .priceValue {
+    color: var(--color-text);
+  }
 }
 
 .buttonsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    & > button {
-        height: 58px;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  gap: vw-1490(12);
+  & > button {
+    height: vw-1490(58);
+  }
 
-    @media (max-width: 768px) {
-        & > button {
-            height: 42px;
-        }
+  @media (max-width: 768px) {
+    & > button {
+      height: 42px;
     }
+  }
 }
 
 .basketButton {
-    width: 236px;
+  width: vw-1490(236);
 }
 
-.iconButton{
-    width: 58px;
-    color: var(--color-text);
+.iconButton {
+  width: vw-1490(58);
+  color: var(--color-text);
 
-    @media (max-width: 768px) {
-        width: 42px;
-        padding: 0;
-    }
+  @media (max-width: 768px) {
+    width: 42px;
+    padding: 0;
+  }
 }
 
 .active {
-    color: var(--color-accent-red);
+  color: var(--color-accent-red);
 }
 
-.description{
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(32);
 }
 
 .elem {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(16);
 }
 
 .tableDelivery {
-    width: 722px;
-    height: 352px;
-    border-collapse: collapse;
-    border-spacing: 0;
+  width: vw-1490(722);
+  height: vw-1490(352);
+  border-collapse: collapse;
+  border-spacing: 0;
 
-    border-radius: 6px;
-    overflow: hidden;
+  border-radius: 6px;
+  overflow: hidden;
 
-    & > thead {
-        border: 1px solid #2125311A;
-        & > tr > th {
-            background-color: var(--color-text);
-            height: 64px;
-            box-sizing: border-box;
-            padding: 0;
-            &:first-child {
-                width: 195px;
-            }
-            &:not(:first-child) {
-                width: 131px;
-            }
-            &:not(:last-child){
-                border-right: 1px solid #2125311A;
-            }
-            & > p {
-                color: var(--color-bg);
-            }
-        }
+  & > thead {
+    border: 1px solid #2125311a;
+    & > tr > th {
+      background-color: var(--color-text);
+      height: vw-1490(64);
+      box-sizing: border-box;
+      padding: 0;
+      &:first-child {
+        width: vw-1490(195);
+      }
+      &:not(:first-child) {
+        width: vw-1490(131);
+      }
+      &:not(:last-child) {
+        border-right: 1px solid #2125311a;
+      }
+      & > p {
+        color: var(--color-bg);
+      }
     }
-    
-    & > tbody > tr {
-        border: 1px solid #2125311A;
-    }
+  }
 
-    & > tbody > tr {
-        & > th {
-            height: 72px;
-            padding-left: 24px;
-            
-            display: flex;
-            align-items: center;
-            text-align: left;
-            gap: 4px;
-            border-right: 1px solid #2125311A;
-        }
-        & > td {
-            height: 72px;
-            text-align: center;
-            &:not(:last-child){
-                border-right: 1px solid #2125311A;
-            }
-        }
+  & > tbody > tr {
+    border: 1px solid #2125311a;
+  }
 
+  & > tbody > tr {
+    & > th {
+      height: vw-1490(72);
+      padding-left: vw-1490(24);
+
+      display: flex;
+      align-items: center;
+      text-align: left;
+      gap: vw-1490(4);
+      border-right: 1px solid #2125311a;
     }
+    & > td {
+      height: vw-1490(72);
+      text-align: center;
+      &:not(:last-child) {
+        border-right: 1px solid #2125311a;
+      }
+    }
+  }
 }
 
 .tablePayment {
-    border-spacing: 0;
-    border-collapse: collapse;
+  border-spacing: 0;
+  border-collapse: collapse;
 
-    width: 722px;
-    height: 208px;
-    border-radius: 6px;
-    overflow: hidden;
+  width: vw-1490(722);
+  height: vw-1490(208);
+  border-radius: 6px;
+  overflow: hidden;
 
-    th, td {
-        border: 1px solid #2125311A;
+  th,
+  td {
+    border: 1px solid #2125311a;
+  }
+  & > thead > tr {
+    & > th {
+      box-sizing: border-box;
+      width: vw-1490(195);
+      height: vw-1490(52);
+      // padding-left: 36px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-text);
+      color: var(--color-bg);
     }
-    & > thead > tr {
-        & > th {
-            box-sizing: border-box;
-            width: 195px;
-            height: 52px;
-            // padding-left: 36px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--color-text);
-            color: var(--color-bg);
-        }
-        & > td {
-            width: 263px;
-            text-align: center;
-        }
+    & > td {
+      width: vw-1490(263);
+      text-align: center;
     }
-    & > tbody > tr {
-        & > th {
-            box-sizing: border-box;
-            width: 195px;  
-            height: 52px;          
-            padding-left: 36px;
-            
-            display: flex;
-            align-items: center;
-            text-align: left;
-            background-color: var(--color-text);
-            color: var(--color-bg);
-        }
-        & > td {
-            text-align: center;
-        }
+  }
+  & > tbody > tr {
+    & > th {
+      box-sizing: border-box;
+      width: vw-1490(195);
+      height: vw-1490(52);
+      padding-left: vw-1490(36);
 
+      display: flex;
+      align-items: center;
+      text-align: left;
+      background-color: var(--color-text);
+      color: var(--color-bg);
     }
+    & > td {
+      text-align: center;
+    }
+  }
 }

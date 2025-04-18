@@ -1,7 +1,9 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 140px;
+@import "../../../shared/styles/functions";
 
-    margin-bottom: 140px;
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(140);
+
+  margin-bottom: vw-1490(140);
 }

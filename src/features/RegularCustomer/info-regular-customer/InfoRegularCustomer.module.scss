@@ -1,65 +1,67 @@
+@import "../../../shared/styles/functions";
+
 .container {
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(24);
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        & > li {    
-            position: relative;
-            padding-left: 16px;
-            &::before {
-                box-sizing: border-box;
-                content: "";
-                position: absolute;
-                top: 50%;
-                left: 0;
-                transform: translateY(-50%) rotate(45deg);
-                width: 7px;
-                height: 7px;
-                background-color: var(--color-accent-orange);
-                border-radius: 1px;
-              }
-        }
+    gap: vw-1490(12);
+    & > li {
+      position: relative;
+      padding-left: vw-1490(16);
+      &::before {
+        box-sizing: border-box;
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%) rotate(45deg);
+        width: vw-1490(7);
+        height: vw-1490(7);
+        background-color: var(--color-accent-orange);
+        border-radius: 1px;
+      }
     }
+  }
 
-    @media (max-width: 768px) {
-        gap: 12px;
-    }
+  @media (max-width: 768px) {
+    gap: 12px;
+  }
 }
 
 .tablePayment {
-    border-spacing: 0;
-    border-collapse: collapse;
+  border-spacing: 0;
+  border-collapse: collapse;
 
-    border-radius: 6px;
-    overflow: hidden;
+  border-radius: 6px;
+  overflow: hidden;
 
-    th, td {
-        border: 1px solid #2125311A;
+  th,
+  td {
+    border: 1px solid #2125311a;
+  }
+  & > thead > tr {
+    & > th {
+      width: vw-1490(236);
+      height: vw-1490(95);
+
+      background-color: var(--color-text);
+      & > p {
+        color: var(--color-bg);
+      }
     }
-    & > thead > tr {
-        & > th {
-            width: 236px;
-            height: 95px;
-
-            background-color: var(--color-text);
-            & > p {
-                color: var(--color-bg);
-            }
-        }
+  }
+  & > tbody > tr {
+    & > td {
+      width: vw-1490(236);
+      height: vw-1490(80);
+      text-align: center;
     }
-    & > tbody > tr {
-        & > td {
-            width: 236px;
-            height: 80px;
-            text-align: center;
-        }
-
-    }
+  }
 }

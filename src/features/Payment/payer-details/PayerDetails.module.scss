@@ -1,78 +1,80 @@
+@import "../../../shared/styles/functions";
+
 .payment {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    padding: 32px 24px;
+  padding: vw-1490(32) vw-1490(24);
 
-    background-color: var(--color-bg);
-    border: 1px solid #2125314D;
-    border-radius: 6px;
-    box-shadow: 6px 12px 13px 0px #2225310A;
-    @media (max-width: 768px) {
-        padding: 24px 16px;
-    }
+  background-color: var(--color-bg);
+  border: 1px solid #2125314d;
+  border-radius: 6px;
+  box-shadow: 6px 12px 13px 0px #2225310a;
+  @media (max-width: 768px) {
+    padding: 24px 16px;
+  }
 }
 
 .title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: vw-1490(8);
 
-    margin-bottom: 20px;
-    @media (max-width: 768px) {
-        gap: 6px;
-    }
+  margin-bottom: vw-1490(20);
+  @media (max-width: 768px) {
+    gap: 6px;
+  }
 }
 
 .numCard {
-    position: relative;
-    & > h3 {
-        color: var(--color-bg);
-        position: absolute;
+  position: relative;
+  & > h3 {
+    color: var(--color-bg);
+    position: absolute;
 
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }  
-    @media (max-width: 768px) {
-        & > svg {
-            width: 42px;
-            height: 42px;
-        }
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @media (max-width: 768px) {
+    & > svg {
+      width: 42px;
+      height: 42px;
     }
+  }
 }
 
 .inputsContainer {
-    display: grid;
-    grid-template-columns: repeat(3, 276px);
-    gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, vw-1490(276));
+  gap: vw-1490(24);
 
-    @media (max-width: 768px) {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 }
 
 .inputContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 8px    ;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(8);
 
-    & > input {
-        height: 58px !important;
-    }
+  & > input {
+    height: vw-1490(58) !important;
+  }
 
-    @media (max-width: 768px) {
-        & > button {
-            height: 50px;
-        }
+  @media (max-width: 768px) {
+    & > button {
+      height: 50px;
     }
+  }
 }
 
 .input {
-    height: 58px;
-    @media (max-width: 768px) {
-        height: 50px;
-    }
+  height: vw-1490(58);
+  @media (max-width: 768px) {
+    height: 50px;
+  }
 }

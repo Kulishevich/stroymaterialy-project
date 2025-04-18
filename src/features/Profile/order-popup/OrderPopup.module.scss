@@ -1,133 +1,135 @@
+@import "../../../shared/styles/functions";
+
 .overlay {
-    position: fixed;
-    background: #21253180;
-    inset: 0;
-    z-index: 999;
-    animation: fadeIn 0.3s ease-out;
+  position: fixed;
+  background: #21253180;
+  inset: 0;
+  z-index: 999;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .content {
-    box-sizing: border-box;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    
-    display: flex;
-    flex-direction: column;
+  box-sizing: border-box;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
 
-    width: 416px;
-    max-height: 100vh;
-    overflow-y: scroll;
-    padding: 48px 32px;    
+  display: flex;
+  flex-direction: column;
 
-    background-color: var(--color-bg);
-    border-radius: 6px;
+  width: vw-1490(416);
+  max-height: 100vh;
+  overflow-y: scroll;
+  padding: vw-1490(48) vw-1490(32);
 
-    animation: fadeIn 0.3s ease-out;
+  background-color: var(--color-bg);
+  border-radius: 6px;
 
-    & > h3 {
-        text-align: center;
-        margin-bottom: 20px;
+  animation: fadeIn 0.3s ease-out;
+
+  & > h3 {
+    text-align: center;
+    margin-bottom: vw-1490(20);
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-grey-4);
+    border-radius: 4px;
+    &:hover {
+      background-color: var(--color-grey-2);
     }
+  }
 
-    &::-webkit-scrollbar{
-        width: 5px;
-    }
-    
-    &::-webkit-scrollbar-thumb{
-        background-color: var(--color-grey-4);
-        border-radius: 4px;
-        &:hover {
-            background-color: var(--color-grey-2);
-        }
-    }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 4px;
+  }
 
-    &::-webkit-scrollbar-track{
-        background-color: transparent;
-        border-radius: 4px;
-    }
-
-    @media (max-width: 768px) {
-        width: 336px;
-        padding: 46px 16px;
-    }
+  @media (max-width: 768px) {
+    width: 336px;
+    padding: 46px 16px;
+  }
 }
 
 .orderTitle {
-    margin-bottom: 24px;
-    text-align: center;
+  margin-bottom: vw-1490(24);
+  text-align: center;
 }
 
 .orderFields {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(12);
 
-    margin-bottom: 20px;
-    & > p {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-       & > span {
-            font-weight: 700;
-        }
+  margin-bottom: vw-1490(20);
+  & > p {
+    display: flex;
+    align-items: center;
+    gap: vw-1490(8);
+    & > span {
+      font-weight: 700;
     }
-    @media (max-width: 768px) {
-        gap: 8px;
-    }
+  }
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
 }
 
 .cardsContainer {
-    display: flex;
-    gap: 16px;
-    min-height: 192px;
+  display: flex;
+  gap: vw-1490(16);
+  min-height: vw-1490(192);
 
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 5px;
-    margin-bottom: 32px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: vw-1490(5);
+  margin-bottom: vw-1490(32);
 
-    &::-webkit-scrollbar{
-        height: 5px;
-        width: 5px;
-    }
-    
-    &::-webkit-scrollbar-thumb{
-        background-color: var(--color-grey-2);
-        border-radius: 4px;
-        &:hover {
-            background-color: var(--color-grey-3);
-        }
-    }
+  &::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+  }
 
-    &::-webkit-scrollbar-track{
-        background-color: transparent;
-        border-radius: 4px;
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-grey-2);
+    border-radius: 4px;
+    &:hover {
+      background-color: var(--color-grey-3);
     }
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 4px;
+  }
 }
 
 .buttonsContainer {
-    display: flex;
-    gap: 12px;
+  display: flex;
+  gap: vw-1490(12);
 }
 
 .closeButton {
-    position: absolute;
-    right: 20px;
-    top: 20px;
+  position: absolute;
+  right: vw-1490(20);
+  top: vw-1490(20);
 
-    padding: 0;
-    margin: 0;
-    outline: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
 }
 
 @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}

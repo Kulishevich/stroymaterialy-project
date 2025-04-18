@@ -1,16 +1,18 @@
+@import "../../../shared/styles/functions";
+
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(24);
 }
 
 .cardsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: vw-1490(25);
 
-    @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 20px;
-    }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 }

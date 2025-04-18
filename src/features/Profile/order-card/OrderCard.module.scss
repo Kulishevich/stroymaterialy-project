@@ -1,57 +1,59 @@
+@import "../../../shared/styles/functions";
+
 .container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    width: 120px;
+  width: vw-1490(120);
 
-    & > p {
-        margin-bottom: 6px;
-    }
+  & > p {
+    margin-bottom: vw-1490(6);
+  }
 }
 
 .image {
-    background-color: var(--color-grey-1);
-    border-radius: 6px;
-    margin-bottom: 10px;
+  background-color: var(--color-grey-1);
+  border-radius: vw-1490(6);
+  margin-bottom: vw-1490(10);
 }
 
 .counterContainer {
-    box-sizing: border-box;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    
-    width: 72px;
-    height: 36px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 
-    border: 1px solid var(--color-grey-4);
-    border-radius: 4px;
+  width: vw-1490(72);
+  height: vw-1490(36);
 
-    overflow: hidden;
+  border: 1px solid var(--color-grey-4);
+  border-radius: 4px;
+
+  overflow: hidden;
 }
 
 .counter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: vw-1490(36);
 }
 
 .buttonContainer {
+  display: flex;
+  flex-direction: column;
+  height: vw-1490(36);
+  & > button {
+    box-sizing: border-box;
     display: flex;
-    flex-direction: column;
-    height: 36px;
-    & > button {
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    justify-content: center;
+    align-items: center;
 
-        cursor: pointer;
-        height: 50%;
-        border: none;
-        background-color: var(--color-grey-4);
-        &:first-child {
-            border-bottom: 1px solid var(--color-grey-1);
-        }
+    cursor: pointer;
+    height: 50%;
+    border: none;
+    background-color: var(--color-grey-4);
+    &:first-child {
+      border-bottom: 1px solid var(--color-grey-1);
     }
+  }
 }

@@ -1,9 +1,11 @@
-.tablesContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 62px;
+@import "../../../shared/styles/functions";
 
-    @media (max-width: 768px) {
-        gap: 36px;
-    }
+.tablesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(62);
+
+  @media (max-width: 768px) {
+    gap: 36px;
+  }
 }
