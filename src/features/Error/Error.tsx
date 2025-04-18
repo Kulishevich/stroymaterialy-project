@@ -1,8 +1,8 @@
 import React from "react";
 import s from "./Error.module.scss";
 import Image from "next/image";
-import { Typography } from "../../components/ui/typography";
-import { Button } from "../../components/ui/button";
+import { Typography } from "../../shared/ui/typography";
+import { Button } from "../../shared/ui/button";
 import Link from "next/link";
 import { Paths } from "@/shared/enums";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";

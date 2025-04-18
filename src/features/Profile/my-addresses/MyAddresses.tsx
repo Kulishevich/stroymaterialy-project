@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Typography } from "@/components/ui/typography";
-import { Button } from "@/components/ui/button";
+import { Typography } from "@/shared/ui/typography";
+import { Button } from "@/shared/ui/button";
 import { AddAddressPopup } from "../add-address-popup";
-import { RadioCards } from "@/components/ui/radio-cards";
+import { RadioCards } from "@/shared/ui/radio-cards";
 import {
   useGetAddressesQuery,
   useSetDefaultAddressMutation,

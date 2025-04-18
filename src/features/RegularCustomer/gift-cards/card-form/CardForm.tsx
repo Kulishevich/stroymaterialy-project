@@ -1,15 +1,15 @@
 import React from "react";
 import s from "./CardForm.module.scss";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/shared/ui/button";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { useCreateGiftMutation } from "@/api/gift/gift.api";
-import { ControlledTextField } from "@/components/ui/controlled-textfiled";
+import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { giftCartScheme } from "./model/create-gift-cart-scheme";
-import { showToast } from "@/components/ui/toast";
+import { showToast } from "@/shared/ui/toast";
 import { useTranslations } from "next-intl";
 
 export const CardForm = () => {

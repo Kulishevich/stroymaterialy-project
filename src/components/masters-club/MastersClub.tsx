@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import s from "./MastersClub.module.scss";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 import clsx from "clsx";
 import { MastersClubForm } from "./masters-club-form";
 import { AccumulationPoints } from "./accumulation-points";

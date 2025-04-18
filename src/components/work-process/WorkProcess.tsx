@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./WorkProcess.module.scss";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 import {
   ChatComments,
   FastDeliveryTruck,

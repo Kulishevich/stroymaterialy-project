@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import s from "./OrderCard.module.scss";
 import Image from "next/image";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import { Counter } from "@/components/counter";
 import { OrderItem } from "@/api/orders/orders.types";
 

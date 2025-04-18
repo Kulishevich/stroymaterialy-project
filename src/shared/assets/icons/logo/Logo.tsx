@@ -1,6 +1,6 @@
 import React from "react";
 import { LogoIcon } from "..";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import s from "./Logo.module.scss";
 import clsx from "clsx";
 import Link from "next/link";

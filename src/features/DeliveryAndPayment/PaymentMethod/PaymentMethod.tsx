@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./PaymentMethod.module.scss";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import {
   BePaidIcon,
   MasterCardIcon,

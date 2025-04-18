@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import s from "./MySuggestedPrices.module.scss";
 import { MySuggestedPricesCard } from "./my-suggested-prices-card";
 import { useTranslations } from "next-intl";

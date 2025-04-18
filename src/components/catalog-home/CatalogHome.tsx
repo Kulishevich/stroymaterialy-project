@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { ArrowRightIcon } from "@/shared/assets/icons";
 import clsx from "clsx";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import Link from "next/link";
 import s from "./CatalogHome.module.scss";
 import { CategoryArgs } from "@/api/categories/categories.types";

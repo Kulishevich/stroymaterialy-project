@@ -1,8 +1,8 @@
 import React from "react";
 import { RhombIcon } from "@/shared/assets/icons";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import s from "./PaymentMethod.module.scss";
-import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
+import { ControlledRadioCards } from "@/shared/ui/controlled-radio-cards/ControlledRadioCards";
 import { Control } from "react-hook-form";
 import { PaymentFormValues } from "../payment-page";
 import { PaymentMethodsType } from "@/api/orders/orders.types";

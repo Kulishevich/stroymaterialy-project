@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Typography } from "@/components/ui/typography";
-import { Button } from "@/components/ui/button";
+import { Typography } from "@/shared/ui/typography";
+import { Button } from "@/shared/ui/button";
 import { PayerDetails } from "../payer-details";
 import { PaymentMethod } from "../payment-method";
 import { PurchaseMethod } from "../purchase-method";
@@ -18,7 +18,7 @@ import { paymentSchemeCreator } from "./model/payment-scheme";
 import { useCreateCustomerMutation } from "@/api/customer/customer.api";
 import s from "./PaymentPage.module.scss";
 import { useGetNextSevenDays } from "@/shared/hooks/useGetNextSevenDays";
-import { showToast } from "@/components/ui/toast";
+import { showToast } from "@/shared/ui/toast";
 import { useClearCartMutation } from "@/api/cart/cart.api";
 import { useTranslations } from "next-intl";
 import {

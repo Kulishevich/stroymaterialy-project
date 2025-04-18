@@ -1,7 +1,7 @@
 import React from "react";
-import { Typography, Variant } from "@/components/ui/typography";
+import { Typography, Variant } from "@/shared/ui/typography";
 import { RhombIcon } from "@/shared/assets/icons";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from "@/shared/ui/checkbox";
 import { Control, Controller } from "react-hook-form";
 import { PaymentFormValues } from "../payment-page";
 import s from "./AdditionalServices.module.scss";

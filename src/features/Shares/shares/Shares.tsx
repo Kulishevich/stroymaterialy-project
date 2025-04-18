@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Shares.module.scss";
-import { Typography } from "../../../components/ui/typography";
+import { Typography } from "../../../shared/ui/typography";
 import { Discount } from "../../../components/discount";
 import { ContentResponse } from "@/api/content/content.types";
 

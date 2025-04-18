@@ -1,5 +1,5 @@
 import { ArrowDownIcon } from "@/shared/assets/icons";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import React, { useState } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import s from "./TableLiftingMobile.module.scss";

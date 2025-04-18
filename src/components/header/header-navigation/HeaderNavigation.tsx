@@ -1,10 +1,10 @@
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import Link from "next/link";
 import React from "react";
-import { SelectLanguage } from "@/components/ui/select-icons";
+import { SelectLanguage } from "@/shared/ui/select-icons";
 import { PercentIcon, ProfileIcon } from "@/shared/assets/icons";
 import { Paths } from "@/shared/enums";
-import { Dropdown } from "@/components/ui/dropdown";
+import { Dropdown } from "@/shared/ui/dropdown";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";

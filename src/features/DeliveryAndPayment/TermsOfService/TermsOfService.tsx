@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./TermsOfService.module.scss";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import { useTranslations } from "next-intl";
 
 export const TermsOfService = () => {

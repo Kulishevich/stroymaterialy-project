@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./ProfilePage.module.scss";
 import { ArrowRightIcon } from "@/shared/assets/icons";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import clsx from "clsx";
 import { ProfilePersonalData } from "../profile-personal-data";
 import { MyAddresses } from "../my-addresses";

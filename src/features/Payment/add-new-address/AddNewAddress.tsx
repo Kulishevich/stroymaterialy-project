@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { ControlledSelect } from "@/components/ui/controlled-select";
-import { ControlledTextField } from "@/components/ui/controlled-textfiled";
-import { Typography } from "@/components/ui/typography";
+import { Button } from "@/shared/ui/button";
+import { ControlledSelect } from "@/shared/ui/controlled-select";
+import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
+import { Typography } from "@/shared/ui/typography";
 import React from "react";
 import { useCreateAddressMutation } from "@/api/addresses/address.api";
 import { zodResolver } from "@hookform/resolvers/zod";

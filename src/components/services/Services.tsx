@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Services.module.scss";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 import Image from "next/image";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { useTranslations } from "next-intl";

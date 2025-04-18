@@ -1,9 +1,9 @@
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import React, { useState } from "react";
 import s from "./ProductsFilter.module.scss";
-import AccordionSearch from "@/components/ui/accordion-search/AccordionSearch";
-import { Checkbox } from "@/components/ui/checkbox";
-import { TextField } from "@/components/ui/text-field";
+import AccordionSearch from "@/shared/ui/accordion-search/AccordionSearch";
+import { Checkbox } from "@/shared/ui/checkbox";
+import { TextField } from "@/shared/ui/text-field";
 import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
 

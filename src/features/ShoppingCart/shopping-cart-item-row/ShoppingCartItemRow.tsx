@@ -5,14 +5,14 @@ import {
 import { CartList } from "@/api/cart/cart.types";
 import { TrashIcon } from "@/shared/assets/icons";
 import { Counter } from "@/components/counter";
-import { Button } from "@/components/ui/button";
-import { Typography } from "@/components/ui/typography";
+import { Button } from "@/shared/ui/button";
+import { Typography } from "@/shared/ui/typography";
 import Image from "next/image";
 import React, { useEffect, useMemo, useState } from "react";
 import debounce from "lodash/debounce";
 
 import s from "./ShoppingCartItemRow.module.scss";
-import { showToast } from "@/components/ui/toast";
+import { showToast } from "@/shared/ui/toast";
 import { useTranslations } from "next-intl";
 
 type ShoppingCartItemRowProps = {

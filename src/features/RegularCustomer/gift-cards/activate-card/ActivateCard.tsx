@@ -1,8 +1,8 @@
 import React from "react";
 import s from "./ActivateCard.module.scss";
-import { Typography } from "@/components/ui/typography";
-import { TextField } from "@/components/ui/text-field";
-import { Button } from "@/components/ui/button";
+import { Typography } from "@/shared/ui/typography";
+import { TextField } from "@/shared/ui/text-field";
+import { Button } from "@/shared/ui/button";
 import { useTranslations } from "next-intl";
 
 export const ActivateCard = () => {

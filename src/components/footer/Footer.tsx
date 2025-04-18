@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Logo } from "@/shared/assets/icons/logo";
 import { SocialNetworks } from "../social-networks";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 import Link from "next/link";
 import {
   IdramIcon,

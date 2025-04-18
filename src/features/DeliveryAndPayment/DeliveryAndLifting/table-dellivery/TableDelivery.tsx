@@ -6,7 +6,7 @@ import {
   MotorbikeSideIcon,
   TruckSpeedIcon,
 } from "@/shared/assets/icons";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import React from "react";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import s from "./TableDelivery.module.scss";

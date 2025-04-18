@@ -1,5 +1,5 @@
 import { OrderItemResponse } from "@/api/orders/orders.types";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import React, { useState } from "react";
 
 import s from "./OrderItem.module.scss";

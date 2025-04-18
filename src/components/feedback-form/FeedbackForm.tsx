@@ -1,11 +1,11 @@
 import s from "./FeedbackForm.module.scss";
 import Image from "next/image";
-import { Typography, Variant } from "../ui/typography";
-import { Button } from "../ui/button";
+import { Typography, Variant } from "../../shared/ui/typography";
+import { Button } from "../../shared/ui/button";
 import { SocialNetworks } from "../social-networks";
 import { useForm } from "react-hook-form";
-import { ControlledTextField } from "../ui/controlled-textfiled";
-import { ControlledCheckbox } from "../ui/controlled-checkbox";
+import { ControlledTextField } from "../../shared/ui/controlled-textfiled";
+import { ControlledCheckbox } from "../../shared/ui/controlled-checkbox";
 import { feedbackFormSchemeCreator } from "./model/feedback-form-scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";

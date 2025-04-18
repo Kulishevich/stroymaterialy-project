@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import s from "./PurchaseMethod.module.scss";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import { RhombIcon } from "@/shared/assets/icons";
-import { ControlledRadioCards } from "@/components/ui/controlled-radio-cards/ControlledRadioCards";
+import { ControlledRadioCards } from "@/shared/ui/controlled-radio-cards/ControlledRadioCards";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { Control } from "react-hook-form";
-import { ControlledSelect } from "@/components/ui/controlled-select";
+import { ControlledSelect } from "@/shared/ui/controlled-select";
 import { PaymentFormValues } from "../payment-page";
 import { Address } from "@/api/addresses/address.types";
-import { OptionsValue } from "@/components/ui/select";
+import { OptionsValue } from "@/shared/ui/select";
 import { OrderTypes } from "@/api/orders/orders.types";
 import { AddNewAddress } from "../add-new-address";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Paths } from "@/shared/enums";
 import { Region } from "@/api/regions/regions.types";
-import { ControlledTextField } from "@/components/ui/controlled-textfiled";
+import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
 
 type PurchaseMethodProps = {
   addressList: Address[] | [];

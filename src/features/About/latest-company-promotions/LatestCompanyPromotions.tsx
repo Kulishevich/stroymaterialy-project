@@ -1,8 +1,8 @@
 import React from "react";
 import s from "./LatestCompanyPromotions.module.scss";
-import { Typography } from "../../../components/ui/typography";
+import { Typography } from "../../../shared/ui/typography";
 import { Discount } from "../../../components/discount";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/shared/ui/button";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { useTranslations } from "next-intl";
 import { Slider } from "@/components/slider";

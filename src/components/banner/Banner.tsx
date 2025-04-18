@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Banner.module.scss";
 import Image from "next/image";
-import { Button } from "../ui/button";
+import { Button } from "../../shared/ui/button";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { useTranslations } from "next-intl";
 import { ContentItem } from "@/api/content/content.types";

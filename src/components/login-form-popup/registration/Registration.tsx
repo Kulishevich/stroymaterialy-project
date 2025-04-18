@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import s from "./Registration.module.scss";
-import { Button } from "@/components/ui/button";
-import { Typography } from "@/components/ui/typography";
+import { Button } from "@/shared/ui/button";
+import { Typography } from "@/shared/ui/typography";
 import { useForm, useWatch } from "react-hook-form";
 import { signUpSchemeCreator } from "../model/sign-up-scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ControlledTextField } from "@/components/ui/controlled-textfiled";
+import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
 import { useSignUpMutation } from "@/api/auth/auth.api";
 import { validation } from "@/shared/validation/validation.errors";
-import { showToast } from "@/components/ui/toast";
+import { showToast } from "@/shared/ui/toast";
 
 export const Registration = ({
   setIsOpen,

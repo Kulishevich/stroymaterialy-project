@@ -1,13 +1,13 @@
 import React from "react";
-import { Typography } from "@/components/ui/typography";
-import { Button } from "@/components/ui/button";
-import { ControlledTextField } from "@/components/ui/controlled-textfiled";
+import { Typography } from "@/shared/ui/typography";
+import { Button } from "@/shared/ui/button";
+import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
 import { useForm } from "react-hook-form";
 import { loginSchemeCreator } from "../model/login-scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoginMutation } from "@/api/auth/auth.api";
 import { LoginArgs } from "@/api/auth/auth.types";
-import { showToast } from "@/components/ui/toast";
+import { showToast } from "@/shared/ui/toast";
 import s from "./LoginForm.module.scss";
 
 type LoginFormProps = {

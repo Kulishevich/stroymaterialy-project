@@ -1,7 +1,7 @@
 import React from "react";
 import { SocialNetworks } from "../social-networks";
 import Image from "next/image";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 import s from "./HeaderMobile.module.scss";
 import {
   BagShoppingIcon,
@@ -9,12 +9,12 @@ import {
   ProfileIcon,
 } from "@/shared/assets/icons";
 import { Logo } from "@/shared/assets/icons/logo";
-import { Button } from "../ui/button";
+import { Button } from "../../shared/ui/button";
 import BurgerMenu from "../burger-menu/BurgerMenu";
 import Link from "next/link";
 import { Paths } from "@/shared/enums";
 import { SearchMobile } from "../search-mobile";
-import { SelectLanguage } from "../ui/select-icons";
+import { SelectLanguage } from "../../shared/ui/select-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { toggleLoginModal } from "@/store/slices/auth-modal/authModalSlice";

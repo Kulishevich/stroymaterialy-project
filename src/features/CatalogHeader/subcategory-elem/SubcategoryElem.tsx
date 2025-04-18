@@ -1,5 +1,5 @@
 import { useGetSubCategoriesQuery } from "@/api/categories/categories.api";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import { RootState } from "@/store/store";
 import Link from "next/link";
 import React from "react";

@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/shared/ui/button";
 import { CloseIcon } from "@/shared/assets/icons";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import { useChangePasswordMutation } from "@/api/user/user.api";
 import { useForm, useWatch } from "react-hook-form";
-import { ControlledTextField } from "@/components/ui/controlled-textfiled";
+import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
 import { editPasswordScheme } from "./model/edit-password-scheme";
 import { zodResolver } from "@hookform/resolvers/zod";
 import s from "./EditPasswordPopup.module.scss";
 import { validation } from "@/shared/validation/validation.errors";
-import { showToast } from "@/components/ui/toast";
+import { showToast } from "@/shared/ui/toast";
 
 type EditPasswordPopupProps = {
   isOpen: boolean;

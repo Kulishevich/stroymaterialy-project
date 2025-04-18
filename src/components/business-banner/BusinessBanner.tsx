@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./BusinessBanner.module.scss";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 import { Logo } from "@/shared/assets/icons/logo";
 import Image from "next/image";
 import { useTranslations } from "next-intl";

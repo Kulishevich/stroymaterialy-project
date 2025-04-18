@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Typography } from "@/components/ui/typography";
-import { Button } from "@/components/ui/button";
+import { Typography } from "@/shared/ui/typography";
+import { Button } from "@/shared/ui/button";
 import { CloseIcon } from "@/shared/assets/icons";
 import { OrderCard } from "../order-card";
 import {
@@ -10,7 +10,7 @@ import {
 } from "@/api/orders/orders.api";
 import { useTranslations } from "next-intl";
 import s from "./OrderPopup.module.scss";
-import { showToast } from "@/components/ui/toast";
+import { showToast } from "@/shared/ui/toast";
 
 type OrderPopupProps = {
   isOpen: boolean;

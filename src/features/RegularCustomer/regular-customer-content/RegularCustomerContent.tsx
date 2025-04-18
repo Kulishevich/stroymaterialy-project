@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import clsx from "clsx";
 import { ArrowRightIcon } from "@/shared/assets/icons";
 import { GiftCards } from "../gift-cards";

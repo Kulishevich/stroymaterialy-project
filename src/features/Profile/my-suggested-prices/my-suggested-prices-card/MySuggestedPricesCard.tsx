@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import { Counter } from "@/components/counter";
-import { TextField } from "@/components/ui/text-field";
-import { Button } from "@/components/ui/button";
+import { TextField } from "@/shared/ui/text-field";
+import { Button } from "@/shared/ui/button";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { useTranslations } from "next-intl";
 import s from "./MySuggestedPricesCard.module.scss";

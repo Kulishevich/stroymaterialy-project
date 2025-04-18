@@ -1,9 +1,9 @@
 import React from "react";
-import { Button } from "../ui/button";
+import { Button } from "../../shared/ui/button";
 import * as Dialog from "@radix-ui/react-dialog";
 import s from "./ConfirmModal.module.scss";
 import { CloseIcon } from "@/shared/assets/icons";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 
 type ConfirmModalProps = {
   isOpen: boolean;

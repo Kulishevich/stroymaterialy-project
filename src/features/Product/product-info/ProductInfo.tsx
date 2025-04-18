@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { StarRating } from "@/components/star-rating";
 import s from "./ProductInfo.module.scss";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import { Counter } from "@/components/counter";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/shared/ui/button";
 import {
   AddressLocationIcon,
   ClockIcon,
@@ -16,7 +16,7 @@ import {
   useAddInFavoriteMutation,
   useDeleteFavoriteMutation,
 } from "@/api/products/products.api";
-import { showToast } from "@/components/ui/toast";
+import { showToast } from "@/shared/ui/toast";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import clsx from "clsx";

@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./BestSellingProducts.module.scss";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 import { Item } from "../item";
 import { Slider } from "../slider";
 import { Product } from "@/api/products/products.types";

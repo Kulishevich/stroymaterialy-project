@@ -4,7 +4,7 @@ import { Header } from "@/components/header";
 import s from "./MainLayout.module.scss";
 import { PopupCallback } from "@/components/popup-callback";
 // import PhoneAnimation from "@/components/phone-animation/PhoneAnimation";
-import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { Breadcrumbs } from "@/shared/ui/breadcrumbs";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { HeaderMobile } from "@/components/header-mobile/HeaderMobile";
 import { Toaster } from "sonner";

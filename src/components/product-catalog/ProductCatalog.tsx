@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 import { Item } from "../item";
 import clsx from "clsx";
 import { useGetTrendsProductsQuery } from "@/api/products/products.api";

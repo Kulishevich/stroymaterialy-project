@@ -1,8 +1,8 @@
 import React from "react";
 import s from "./SharesInfo.module.scss";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 import Image from "next/image";
-import { Button } from "../ui/button";
+import { Button } from "../../shared/ui/button";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 
 export const SharesInfo = () => {

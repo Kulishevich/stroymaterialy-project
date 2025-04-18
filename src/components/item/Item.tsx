@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { Typography } from "../ui/typography";
-import { Button } from "../ui/button";
+import { Typography } from "../../shared/ui/typography";
+import { Button } from "../../shared/ui/button";
 import { BagShoppingIcon, HeartIcon } from "@/shared/assets/icons";
 import { Counter } from "../counter";
 import clsx from "clsx";
@@ -14,7 +14,7 @@ import {
   useDeleteFavoriteMutation,
 } from "@/api/products/products.api";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
-import { showToast } from "../ui/toast";
+import { showToast } from "../../shared/ui/toast";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { useTranslations } from "next-intl";

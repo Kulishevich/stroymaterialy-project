@@ -2,7 +2,7 @@ import React from "react";
 import s from "./ProductsContent.module.scss";
 import { Item } from "@/components/item";
 import { ProductsData } from "@/api/products/products.types";
-import { Pagination } from "@/components/ui/pagination";
+import { Pagination } from "@/shared/ui/pagination";
 
 type ProductContentProps = {
   products: ProductsData;

@@ -1,14 +1,14 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/shared/ui/button";
 import { CloseIcon } from "@/shared/assets/icons";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import s from "./RequestDiscountPopup.module.scss";
 import { RequestDiscountItem } from "../request-discount-item";
 import { useForm } from "react-hook-form";
 import { useCreatePriceOfferMutation } from "@/api/products/products.api";
 import { useTranslations } from "next-intl";
-import { showToast } from "@/components/ui/toast";
+import { showToast } from "@/shared/ui/toast";
 import { Product } from "@/api/products/products.types";
 
 export type FormValues = {

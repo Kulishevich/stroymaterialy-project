@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./CategoryTags.module.scss";
 import { Subcategory } from "@/components/subcategory";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import { CategoryArgs } from "@/api/categories/categories.types";
 
 type CategoryTagsProps = {

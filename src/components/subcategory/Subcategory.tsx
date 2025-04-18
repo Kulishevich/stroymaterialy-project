@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 import Link from "next/link";
 import { CategoryArgs } from "@/api/categories/categories.types";
 import s from "./Subcategory.module.scss";

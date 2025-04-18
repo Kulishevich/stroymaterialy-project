@@ -1,18 +1,18 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/shared/ui/button";
 import { CloseIcon } from "@/shared/assets/icons";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import { useForm } from "react-hook-form";
 import { useGetRegionsQuery } from "@/api/regions/regions.api";
-import { ControlledSelect } from "@/components/ui/controlled-select";
-import { ControlledTextField } from "@/components/ui/controlled-textfiled";
-import { ControlledTextArea } from "@/components/ui/controlled-text-area";
+import { ControlledSelect } from "@/shared/ui/controlled-select";
+import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
+import { ControlledTextArea } from "@/shared/ui/controlled-text-area";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUpdateAddressMutation } from "@/api/addresses/address.api";
 import { editAddressScheme } from "./model/edit-address-scheme";
 import { Address } from "@/api/addresses/address.types";
-import { showToast } from "@/components/ui/toast";
+import { showToast } from "@/shared/ui/toast";
 import s from "./EditAddressPopup.module.scss";
 import { useTranslations } from "next-intl";
 

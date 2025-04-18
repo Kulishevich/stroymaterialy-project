@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./CompanyContacts.module.scss";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 import {
   AddressLocationIcon,
   LetterOpenedIcon,

@@ -1,7 +1,7 @@
 import { Counter } from "@/components/counter";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import Image from "next/image";
-import { ControlledTextField } from "@/components/ui/controlled-textfiled";
+import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
 import { Control, Controller } from "react-hook-form";
 import s from "./RequestDiscountItem.module.scss";
 import { useTranslations } from "next-intl";

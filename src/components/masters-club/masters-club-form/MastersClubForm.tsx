@@ -1,14 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { Typography, Variant } from "@/components/ui/typography";
-import { TextFieldFile } from "@/components/ui/text-field-file";
+import { Button } from "@/shared/ui/button";
+import { Typography, Variant } from "@/shared/ui/typography";
+import { TextFieldFile } from "@/shared/ui/text-field-file";
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { ControlledSelect } from "@/components/ui/controlled-select";
-import { ControlledRadio } from "@/components/ui/controlled-radio";
-import { ControlledTextField } from "@/components/ui/controlled-textfiled";
-import { ControlledTextArea } from "@/components/ui/controlled-text-area";
-import { ControlledCheckbox } from "@/components/ui/controlled-checkbox";
+import { ControlledSelect } from "@/shared/ui/controlled-select";
+import { ControlledRadio } from "@/shared/ui/controlled-radio";
+import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
+import { ControlledTextArea } from "@/shared/ui/controlled-text-area";
+import { ControlledCheckbox } from "@/shared/ui/controlled-checkbox";
 import {
   useCreatePartnerExistUserMutation,
   useCreatePartnerMutation,

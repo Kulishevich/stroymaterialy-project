@@ -1,4 +1,4 @@
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import React, { useEffect } from "react";
 import { useGetFavoriteProductsQuery } from "@/api/products/products.api";
 import { FavoriteItem } from "./favorite-item";

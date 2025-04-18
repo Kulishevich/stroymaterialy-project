@@ -1,4 +1,4 @@
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import React from "react";
 import s from "./AccumulationPoints.module.scss";
 import { useTranslations } from "next-intl";

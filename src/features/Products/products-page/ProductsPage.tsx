@@ -1,7 +1,7 @@
 import { ProductsFilter } from "../products-filter";
 import { ProductContent } from "../products-content";
 import { Banner } from "@/components/banner";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import FilterMobile from "@/components/filter-mobile/FilterMobile";
 // import { FeedbackForm } from "@/components/feedback-form";

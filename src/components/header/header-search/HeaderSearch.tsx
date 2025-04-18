@@ -3,9 +3,9 @@ import {
   BurgerIcon,
   HeartOutlineIcon,
 } from "@/shared/assets/icons";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import React, { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/shared/ui/button";
 import { CatalogPopup } from "@/components/catalog-popup";
 import Link from "next/link";
 import { Paths } from "@/shared/enums";

@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 import Image from "next/image";
 import { debounce } from "lodash";
-import { TextField } from "../ui/text-field";
+import { TextField } from "../../shared/ui/text-field";
 import { useGetSearchItemsQuery } from "@/api/search/search.api";
 import { Item } from "../item";
 import { useTranslations } from "next-intl";

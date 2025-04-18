@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import s from "./ProductImages.module.scss";
 import Image from "next/image";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import { Product } from "@/api/products/products.types";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
 

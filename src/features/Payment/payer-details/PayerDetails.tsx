@@ -1,9 +1,9 @@
 import React from "react";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import { RhombIcon } from "@/shared/assets/icons";
-import { ControlledTextField } from "@/components/ui/controlled-textfiled";
+import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
 import s from "./PayerDetails.module.scss";
-import { ControlledSelect } from "@/components/ui/controlled-select";
+import { ControlledSelect } from "@/shared/ui/controlled-select";
 import { Control } from "react-hook-form";
 import { PaymentFormValues } from "../payment-page";
 import { useTranslations } from "next-intl";

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Typography } from "../ui/typography";
+import { Typography } from "../../shared/ui/typography";
 import clsx from "clsx";
 import { LoginForm } from "./login-form/LoginForm";
 import { Registration } from "./registration";
-import { Button } from "../ui/button";
+import { Button } from "../../shared/ui/button";
 import { CloseIcon } from "@/shared/assets/icons";
-import { TextField } from "../ui/text-field";
+import { TextField } from "../../shared/ui/text-field";
 import s from "./LoginFormPopup.module.scss";
 
 type LoginFormPopupProps = {

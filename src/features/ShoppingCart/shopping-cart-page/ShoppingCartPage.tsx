@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Typography } from "@/components/ui/typography";
-import { Button } from "@/components/ui/button";
+import { Typography } from "@/shared/ui/typography";
+import { Button } from "@/shared/ui/button";
 import { Paths } from "@/shared/enums";
 import { useClearCartMutation, useGetCartQuery } from "@/api/cart/cart.api";
 import { ShoppingCartItemRow } from "../shopping-cart-item-row";
@@ -10,7 +10,7 @@ import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { Item } from "@/components/item";
 import { useTranslations } from "next-intl";
 import { CartResponse } from "@/api/cart/cart.types";
-import { showToast } from "@/components/ui/toast";
+import { showToast } from "@/shared/ui/toast";
 import s from "./ShoppingCartPage.module.scss";
 
 export const ShoppingCart = ({ cartData }: { cartData: CartResponse }) => {

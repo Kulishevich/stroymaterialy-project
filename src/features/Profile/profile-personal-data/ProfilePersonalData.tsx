@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import s from "./ProfilePersonalData.module.scss";
-import { Typography } from "@/components/ui/typography";
-import { TextField } from "@/components/ui/text-field";
-import { Button } from "@/components/ui/button";
+import { Typography } from "@/shared/ui/typography";
+import { TextField } from "@/shared/ui/text-field";
+import { Button } from "@/shared/ui/button";
 import { EditPasswordPopup } from "../edit-password-popup";
 import {
   useChangeSettingMutation,
@@ -11,9 +11,9 @@ import {
 } from "@/api/user/user.api";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ControlledTextField } from "@/components/ui/controlled-textfiled";
+import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
 import { profileSettingScheme } from "./model/profile-setting-scheme";
-import { showToast } from "@/components/ui/toast";
+import { showToast } from "@/shared/ui/toast";
 import { useRouter } from "next/router";
 import { Paths } from "@/shared/enums";
 import { useDispatch } from "react-redux";

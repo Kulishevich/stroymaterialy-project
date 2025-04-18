@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./GiftCards.module.scss";
-import { Typography } from "@/components/ui/typography";
+import { Typography } from "@/shared/ui/typography";
 import { useGetUserGiftsQuery } from "@/api/user/user.api";
 import { useTranslations } from "next-intl";
 
