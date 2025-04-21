@@ -3,7 +3,6 @@
 .container {
   display: flex;
   gap: vw-1490(24);
-  height: vw-1490(416);
 
   @media (max-width: 768px) {
     flex-direction: column-reverse;

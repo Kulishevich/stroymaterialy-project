@@ -1,44 +1,46 @@
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-bottom: 16px;
+@import "../../../shared/styles/functions";
 
-    @media (max-width: 768px) {
-        margin-bottom: 24px;
-    }
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(20);
+  margin-bottom: vw-1490(16);
+
+  @media (max-width: 768px) {
+    margin-bottom: 24px;
+  }
 }
 
-.inputContainer{
-    display: flex;
-    flex-direction: column;
+.inputContainer {
+  display: flex;
+  flex-direction: column;
 
-    gap: 8px;
+  gap: vw-1490(8);
 
-    @media (max-width: 768px) {
-        gap: 6px;
-    }
+  @media (max-width: 768px) {
+    gap: 6px;
+  }
 }
 
 .input {
-    height: 58px;
+  height: vw-1490(58);
 }
 
 .passwordRecovery {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 32px;
-    text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  margin-bottom: vw-1490(32);
+  text-decoration: underline;
 
-    @media (max-width: 768px) {
-        margin-bottom: 16px;
-    }
+  @media (max-width: 768px) {
+    margin-bottom: 16px;
+  }
 }
 
 .submitButton {
-    height: 58px;
+  height: vw-1490(58);
 
-    @media (max-width: 768px) {
-        height: 42px;
-    }
+  @media (max-width: 768px) {
+    height: 42px;
+  }
 }

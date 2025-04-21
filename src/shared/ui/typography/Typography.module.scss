@@ -1,4 +1,5 @@
 @import "../../../shared/styles/variables";
+@import "../../../shared/styles/functions";
 
 @mixin typography($fontSize, $lineHeight, $fontWeight) {
   margin: 0;
@@ -15,98 +16,98 @@
 }
 
 .h1 {
-  @include typography(42px, 49.77px, 600);
+  @include typography(vw-1490(42), vw-1490(50), 600);
   @media (max-width: $mobile) {
     @include typography(30px, 39px, 600);
   }
 }
 
 .h2 {
-  @include typography(36px, 42.66px, 600);
+  @include typography(vw-1490(36), vw-1490(42), 600);
   @media (max-width: $mobile) {
     @include typography(22px, 26.07px, 600);
   }
 }
 
 .h3 {
-  @include typography(22px, 30.8px, 500);
+  @include typography(vw-1490(22), vw-1490(30.8), 500);
   @media (max-width: $mobile) {
     @include typography(19px, 26.6px, 500);
   }
 }
 
 .h4 {
-  @include typography(20px, 23.7px, 500);
+  @include typography(vw-1490(20), vw-1490(23.7), 500);
   @media (max-width: $mobile) {
     @include typography(18px, 21.33px, 500);
   }
 }
 
 .h5 {
-  @include typography(14px, 19.6px, 600);
+  @include typography(vw-1490(14), vw-1490(19.6), 600);
   @media (max-width: $mobile) {
     @include typography(14px, 19.6px, 600);
   }
 }
 
 .body_1 {
-  @include typography(18px, 25.2px, 400);
+  @include typography(vw-1490(18), vw-1490(25.2), 400);
   @media (max-width: $mobile) {
     @include typography(16px, 22.4px, 400);
   }
 }
 
 .body_2 {
-  @include typography(18px, 25.2px, 500);
+  @include typography(vw-1490(18), vw-1490(25.2), 500);
   @media (max-width: $mobile) {
     @include typography(16px, 22.4px, 600);
   }
 }
 
 .body_3 {
-  @include typography(16px, 22.4px, 400);
+  @include typography(vw-1490(16), vw-1490(22.4), 400);
   @media (max-width: $mobile) {
     @include typography(14px, 19.6px, 400);
   }
 }
 
 .body_4 {
-  @include typography(16px, 18.96px, 400);
+  @include typography(vw-1490(16), vw-1490(19), 400);
   @media (max-width: $mobile) {
     @include typography(14px, 16.6px, 400);
   }
 }
 
 .body_5 {
-  @include typography(16px, 22.4px, 600);
+  @include typography(vw-1490(16), vw-1490(22.4), 600);
   @media (max-width: $mobile) {
     @include typography(14px, 19.6px, 600);
   }
 }
 
 .body_6 {
-  @include typography(14px, 19.6px, 400);
+  @include typography(vw-1490(14), vw-1490(19.6), 400);
   @media (max-width: $mobile) {
     @include typography(11px, 15.4px, 400);
   }
 }
 
 .body_7 {
-  @include typography(14px, 19.6px, 600);
+  @include typography(vw-1490(14), vw-1490(19.6), 600);
   @media (max-width: $mobile) {
     @include typography(11px, 15.4px, 600);
   }
 }
 
 .body_8 {
-  @include typography(13px, 18.2px, 400);
+  @include typography(vw-1490(13), vw-1490(18.2), 400);
   @media (max-width: $mobile) {
     @include typography(13px, 18.2px, 400);
   }
 }
 
 .button {
-  @include typography(20px, 28px, 400);
+  @include typography(vw-1490(20), vw-1490(28), 400);
   cursor: pointer;
   @media (max-width: $mobile) {
     @include typography(16px, 22.4px, 500);
@@ -114,21 +115,21 @@
 }
 
 .textfield {
-  @include typography(16px, 18.96px, 400);
+  @include typography(vw-1490(16), vw-1490(19), 400);
   @media (max-width: $mobile) {
     @include typography(16px, 22.4px, 400);
   }
 }
 
 .price_sale {
-  @include typography(16px, 22.4px, 400);
+  @include typography(vw-1490(16), vw-1490(22.4), 400);
   @media (max-width: $mobile) {
     @include typography(16px, 22.4px, 400);
   }
 }
 
 .placeholder_big {
-  @include typography(18px, 21.33px, 400);
+  @include typography(vw-1490(18), vw-1490(21.33), 400);
   @media (max-width: $mobile) {
     @include typography(18px, 21.33px, 400);
   }

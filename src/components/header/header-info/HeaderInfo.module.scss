@@ -1,6 +1,8 @@
+@import "../../../shared/styles/functions";
+
 .info {
-  width: 1296px;
-  height: 70px;
+  width: vw-1490(1296);
+  height: vw-1490(70);
 
   display: flex;
   justify-content: space-between;
@@ -9,15 +11,15 @@
 
 .contacts {
   display: flex;
-  gap: 24px;
+  gap: vw-1490(24);
   height: 100%;
 }
 .workTime {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: vw-1490(8);
 
-  width: 170px;
+  width: vw-1490(170);
   & > h6 {
     color: #4f5e75;
   }
@@ -28,7 +30,7 @@
 .workPhone {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: vw-1490(8);
   & > h6 {
     color: #4f5e75;
   }
@@ -40,5 +42,5 @@
 .phoneContainer {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: vw-1490(8);
 }

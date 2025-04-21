@@ -1,13 +1,15 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    
-    & > h2 {
-        text-align: center;
-    }
+@import "../../shared/styles/functions";
 
-    @media (max-width: 768px) {
-        gap: 24px;
-    }
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(32);
+
+  & > h2 {
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    gap: 24px;
+  }
 }

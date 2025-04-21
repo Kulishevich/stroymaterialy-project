@@ -78,7 +78,7 @@
 .buttonsContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: vw-1490(12);
+  gap: 12px;
   & > button {
     height: vw-1490(58);
   }
@@ -92,6 +92,9 @@
 
 .basketButton {
   width: vw-1490(236);
+  @media (max-width: 768px) {
+    width: 250px;
+  }
 }
 
 .iconButton {

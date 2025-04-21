@@ -1,29 +1,31 @@
+@import "../../shared/styles/functions";
+
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    align-items: center;
-    @media (max-width: 768px) {
-        gap: 20px;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(32);
+  align-items: center;
+  @media (max-width: 768px) {
+    gap: 20px;
+  }
 }
 .nav {
-    display: flex;
-    gap: 20px;
-    & > h3 {
-        cursor: pointer;
-        padding: 6px 10px;
-        background-color: var(--color-grey-1);
-        border-radius: 4px;
-        
-        &.active {
-            background-color: var(--color-accent-orange);   
-            color: var(--color-bg);
-        }
-    }
+  display: flex;
+  gap: vw-1490(20);
+  & > h3 {
+    cursor: pointer;
+    padding: vw-1490(6) vw-1490(10);
+    background-color: var(--color-grey-1);
+    border-radius: 4px;
 
-    @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 12px;
+    &.active {
+      background-color: var(--color-accent-orange);
+      color: var(--color-bg);
     }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+  }
 }

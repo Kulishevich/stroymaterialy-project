@@ -1,3 +1,5 @@
+@import "../../../shared/styles/functions";
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -21,17 +23,17 @@
   width: 32px;
   height: 32px;
   padding: 0;
-  border: 1px solid #2125311A;
+  border: 1px solid #2125311a;
   border-radius: 4px;
   background-color: var(--color-bg);
-  
+
   & > button {
     all: unset;
   }
 
   &.secondary {
     border-radius: 50%; //secondary
-    border-color: #2125314D;
+    border-color: #2125314d;
 
     &:hover {
       border-color: var(--color-text);
@@ -40,11 +42,11 @@
     &:focus-visible {
       border-color: var(--color-text);
     }
-  
-    &[data-state='checked'] {
+
+    &[data-state="checked"] {
       border-color: var(--color-text);
       &:disabled {
-        border-color: #2125311A;
+        border-color: #2125311a;
       }
     }
   }
@@ -62,11 +64,11 @@
     border-color: var(--color-text);
   }
 
-  &[data-state='checked'] {
-      border-color: transparent;
+  &[data-state="checked"] {
+    border-color: transparent;
     &:disabled {
       background-color: var(--color-grey-1);
-      border-color: #2125311A;
+      border-color: #2125311a;
     }
   }
 }
@@ -81,7 +83,7 @@
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    &[data-state='checked'] {
+    &[data-state="checked"] {
       background-color: var(--color-accent-orange);
       &:disabled {
         opacity: 0.7;
@@ -101,7 +103,7 @@
   &.disabled {
     color: var(--color-accent-red);
   }
-  
+
   &.secondary {
     color: var(--color-text);
   }

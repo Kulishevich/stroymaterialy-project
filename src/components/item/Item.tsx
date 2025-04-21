@@ -29,7 +29,6 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
   const [count, setCount] = useState(1);
   const vertical = variant === "vertical";
   const isMobile = useIsMobile("tablet");
-  const sizeImage = !isMobile ? (vertical ? 306 : 110) : 160;
   const favoritesItems = useSelector(
     (state: RootState) => state.favorites.favorites
   );
@@ -101,14 +100,8 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
   return (
     <div className={clsx(vertical ? s.container : s.horizontalContainer)}>
       <div className={s.imageContainer}>
-        <Link href={`/product/${product.id}`}>
-          <Image
-            src={product.images.main.src || ""}
-            width={sizeImage}
-            height={sizeImage}
-            alt="item"
-            className={s.image}
-          />
+        <Link href={`/product/${product.id}`} className={s.image}>
+          <Image src={product.images.main.src || ""} fill alt="item" />
         </Link>
         {variant !== "horizontal" && (
           <>

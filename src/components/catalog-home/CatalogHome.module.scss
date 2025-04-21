@@ -1,3 +1,5 @@
+@import "../../shared/styles/functions";
+
 .container {
   display: flex;
   height: fit-content;
@@ -11,7 +13,7 @@
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 6px;
-  width: 306px;
+  width: vw-1490(306);
   height: 100%;
   @media (max-width: 768px) {
     width: 336px;
@@ -20,10 +22,10 @@
 
 .category {
   display: flex;
-  gap: 12px;
+  gap: vw-1490(12);
   align-items: center;
 
-  padding: 12px;
+  padding: vw-1490(12);
   background-color: var(--color-grey-1);
   border-bottom: 1px solid #7d7d7d33;
   text-decoration: none;
@@ -38,6 +40,11 @@
     & > svg {
       color: var(--color-accent-orange);
     }
+  }
+
+  @media (max-width: 768px) {
+    gap: 12px;
+    padding: 12px;
   }
 }
 

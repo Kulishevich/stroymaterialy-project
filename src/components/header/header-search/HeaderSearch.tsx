@@ -61,7 +61,7 @@ export const HeaderSearch = () => {
         <div className={s.buttonsContainer}>
           <Button className={s.favorites} onClick={handleFavoritesClick}>
             <div className={s.iconContainer}>
-              <HeartOutlineIcon width={28} height={28} />
+              <HeartOutlineIcon />
             </div>
             <div className={s.textContainer}>
               <Typography as="h6">{t("favorites")}</Typography>
@@ -79,7 +79,7 @@ export const HeaderSearch = () => {
             className={s.shoppingCart}
           >
             <div className={s.iconContainer}>
-              <BagShoppingIcon width={28} height={28} />
+              <BagShoppingIcon />
             </div>
             <div className={s.textContainer}>
               <Typography as="h6">{t("cart")}</Typography>

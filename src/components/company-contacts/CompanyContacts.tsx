@@ -26,25 +26,25 @@ export const CompanyContacts = ({
       id: "1",
       title: t("address"),
       value: t("address_content"),
-      icon: <AddressLocationIcon width={48} height={48} />,
+      icon: <AddressLocationIcon />,
     },
     {
       id: "2",
       title: t("phone"),
       value: "+374 (33) 144-000",
-      icon: <PhoneIcon width={48} height={48} />,
+      icon: <PhoneIcon />,
     },
     {
       id: "3",
       title: t("email"),
       value: "Info@domix.am",
-      icon: <LetterOpenedIcon width={48} height={48} />,
+      icon: <LetterOpenedIcon />,
     },
     {
       id: "4",
       title: t("social_media"),
       value: <SocialNetworks />,
-      icon: <UsersGroupIcon width={48} height={48} />,
+      icon: <UsersGroupIcon />,
     },
   ];
 

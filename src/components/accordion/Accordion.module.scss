@@ -4,50 +4,50 @@
   box-sizing: border-box;
 
   border-radius: 6px;
-  background-color: #FFFFFF1A;
+  background-color: #ffffff1a;
   padding: 5px;
 }
 
 .item {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .header {
-	display: flex;
-	margin: 0;
+  display: flex;
+  margin: 0;
 }
 
 .trigger {
-  	cursor: pointer;
-  	border: none;
-	font-family: inherit;
-	background-color: transparent;
-	padding: 0;
-  	height: 100%;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  background-color: transparent;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-	& > svg {
-		color: var(--color-accent-orange);
-    	transition: transform 300ms cubic-bezier(0.87, 0, 0.13, 1);
+  & > svg {
+    color: var(--color-accent-orange);
+    transition: transform 300ms cubic-bezier(0.87, 0, 0.13, 1);
   }
 }
 
 .content {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .content[data-state="open"] {
-	animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
+  animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
 }
 .content[data-state="closed"] {
-	animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
+  animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
 }
 
 .trigger[data-state="open"] > svg {
-	transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .container {
@@ -58,20 +58,19 @@
 }
 
 @keyframes slideDown {
-	from {
-		height: 0;
-	}
-	to {
-		height: var(--radix-accordion-content-height);
-	}
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
 }
 
 @keyframes slideUp {
-	from {
-		height: var(--radix-accordion-content-height);
-	}
-	to {
-		height: 0;
-	}
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
 }
-  

@@ -1,97 +1,103 @@
+@import "../../../shared/styles/functions";
+
 .title {
-    text-align: center;
+  text-align: center;
 }
 
 .form {
-    width: 1296px;
-    padding: 64px 110px;
-    box-sizing: border-box;
+  width: vw-1490(1296);
+  padding: vw-1490(64) vw-1490(110);
+  box-sizing: border-box;
 
-    border-radius: 6px;
-    background-color: var(--color-grey-1);
+  border-radius: 6px;
+  background-color: var(--color-grey-1);
 
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(32);
 
-    @media (max-width: 768px) {
-        width: 336px;
-        padding: 24px 16px;
-        gap: 20px;
-    }
+  @media (max-width: 768px) {
+    width: 336px;
+    padding: 24px 16px;
+    gap: 20px;
+  }
 }
 
 .professionSelect {
-    width: 522px;
-    @media (max-width: 768px) {
-        width: 304px;
-    }
+  width: vw-1490(522);
+  @media (max-width: 768px) {
+    width: 304px;
+  }
 }
 
 .flexContainer {
-    display: flex;
-    gap: 32px;
+  display: flex;
+  gap: vw-1490(32);
 
-    @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 20px;
-    }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 
 .elem {
-    & > h4 {
-        margin-bottom: 16px;
-        @media (max-width: 768px) {
-            margin-bottom: 12px;
-        }
+  & > h4 {
+    margin-bottom: vw-1490(16);
+    @media (max-width: 768px) {
+      margin-bottom: 12px;
     }
+  }
 }
 
 .inputsWrapper {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 
-    gap: 24px;
-    @media (max-width: 768px) {
-        gap: 12px;
-    }
+  gap: vw-1490(24);
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 
 .inputContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
-    width: 342px;
+  width: vw-1490(342);
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .input {
-    height: 58px;
+  height: vw-1490(58);
 }
 
 .about {
-    height: 145px;
+  height: vw-1490(145);
 }
 
 .checkboxContainer {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
-    margin-bottom: 20px;
-    & > p {
-        color: var(--color-grey-3);
-    }
+  margin-bottom: 20px;
+  & > p {
+    color: var(--color-grey-3);
+  }
 }
 
 .buttonsContainer {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 
-    @media (max-width: 768px) {
-        flex-direction: column;
-        & > button {
-            width: 100%;
-        }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    & > button {
+      width: 100%;
     }
+  }
 }

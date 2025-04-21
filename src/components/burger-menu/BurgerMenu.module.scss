@@ -1,78 +1,80 @@
+@import "../../shared/styles/functions";
+
 .burgerTrigger {
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 10;
-    margin: 0;
-    padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
 }
 
-.burgerButton{
+.burgerButton {
   width: 32px;
   height: 32px;
   padding: 0;
   border-radius: 50%;
 }
 
-  .dialogOverlay {
-    position: fixed;
-    inset: 0;
-    background-color: #21253180;
-    z-index: 10;
-  }
-  
-  .dialogContent {
-    z-index: 11;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 236px;
-    height: 100%;
-    max-height: 100vh;
-    overflow-y: auto;
-    box-sizing: border-box;
-    background-color: var(--color-bg);
-    padding: 35px 20px 63px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .navigate {
-    display: flex;
-    flex-direction: column;
-    gap: 26px;
-  }
-
-  .navLink {
-    text-decoration: none;
-  }
-
-  .shares {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    color: var(--color-accent-orange);
-  }
-
-  .accordion_item{
-    text-decoration: none;
-  }
-
-  .dropdown {
-    display: flex;
-    gap: 5px;
-    width: fit-content;
-    & > p {
-        color: var(--color-text);
-        font-size: 19px;
-        font-weight: 500;
-        line-height: 26.6px;
-    }
+.dialogOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: #21253180;
+  z-index: 10;
 }
 
-  .info {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+.dialogContent {
+  z-index: 11;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 236px;
+  height: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  background-color: var(--color-bg);
+  padding: 35px 20px 63px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.navigate {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.navLink {
+  text-decoration: none;
+}
+
+.shares {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-accent-orange);
+}
+
+.accordion_item {
+  text-decoration: none;
+}
+
+.dropdown {
+  display: flex;
+  gap: 5px;
+  width: fit-content;
+  & > p {
+    color: var(--color-text);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 26.6px;
   }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

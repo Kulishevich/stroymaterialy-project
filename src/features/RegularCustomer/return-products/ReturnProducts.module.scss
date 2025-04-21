@@ -3,11 +3,8 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: vw-1490(32);
-  align-items: center;
+  gap: vw-1490(12);
   ul {
-    width: vw-1490(945);
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -17,7 +14,7 @@
     gap: vw-1490(12);
     & > li {
       position: relative;
-      padding-left: 16px;
+      padding-left: vw-1490(16);
       &::before {
         box-sizing: border-box;
         content: "";
@@ -25,42 +22,19 @@
         top: 50%;
         left: 0;
         transform: translateY(-50%) rotate(45deg);
-        width: 7px;
-        height: 7px;
+        width: vw-1490(7);
+        height: vw-1490(7);
         background-color: var(--color-accent-orange);
         border-radius: 1px;
+      }
+
+      @media (max-width: 768px) {
+        padding-left: 26px;
       }
     }
 
     @media (max-width: 768px) {
-      width: 336px;
       gap: 8px;
     }
-  }
-  @media (max-width: 768px) {
-    width: 336px;
-    gap: 24px;
-  }
-}
-
-.title {
-  display: flex;
-  flex-direction: column;
-  gap: vw-1490(16);
-  text-align: center;
-  @media (max-width: 768px) {
-    gap: 12px;
-  }
-}
-
-.footer {
-  width: vw-1490(424);
-  text-align: center;
-
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  @media (max-width: 768px) {
-    width: 336px;
   }
 }

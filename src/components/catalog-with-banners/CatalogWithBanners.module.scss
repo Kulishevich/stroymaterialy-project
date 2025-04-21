@@ -1,8 +1,10 @@
+@import "../../shared/styles/functions";
+
 .container {
   position: relative;
 
   display: flex;
-  gap: 24px;
+  gap: vw-1490(24);
 
   @media (max-width: 768px) {
     flex-direction: column-reverse;
@@ -12,13 +14,13 @@
 .banner {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: vw-1490(24);
 }
 
 .mainBanner {
   position: relative;
-  width: 966px;
-  height: 380px;
+  width: vw-1490(966);
+  height: vw-1490(380);
   border-radius: 6px;
   overflow: hidden;
   & > img {
@@ -33,7 +35,7 @@
 
 .smallBannerContainer {
   display: flex;
-  gap: 24px;
+  gap: vw-1490(24);
 
   @media (max-width: 768px) {
     display: grid;
@@ -50,8 +52,8 @@
   position: relative;
   border-radius: 6px;
   overflow: hidden;
-  width: 306px;
-  height: 219px;
+  width: vw-1490(306);
+  height: vw-1490(219);
 
   & > img {
     object-fit: cover;

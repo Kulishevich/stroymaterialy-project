@@ -16,18 +16,20 @@
   flex-direction: column;
   @media (max-width: 768px) {
     margin: 0 auto;
+    width: 336px;
   }
 }
 .navItem {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: vw-1490(12);
   text-decoration: none;
 
   border-radius: 6px;
-  padding: vw-1490(16) vw-1490(12);
+  padding: 16px 12px;
   & > h4 {
-    width: vw-1490(248);
+    width: 248;
   }
   &:hover {
     cursor: pointer;
@@ -36,8 +38,8 @@
 }
 
 .iconCategory {
-  width: vw-1490(22);
-  height: vw-1490(22);
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
 }
 

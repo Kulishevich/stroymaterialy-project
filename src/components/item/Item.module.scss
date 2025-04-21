@@ -1,133 +1,137 @@
+@import "../../shared/styles/functions";
+
 .container {
-    box-sizing: border-box;
-    width: 306px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    @media (max-width: 768px) {
-        gap: 6px; 
-        width: 160px;
-    }
+  box-sizing: border-box;
+  width: vw-1490(306);
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(12);
+  @media (max-width: 768px) {
+    gap: 6px;
+    width: 160px;
+  }
 }
 
 .horizontalContainer {
-    width: 100%;
-    display: flex;
-    gap: 16px;
+  width: 100%;
+  display: flex;
+  gap: vw-1490(16);
 }
 .imageContainer {
-    position: relative;
+  position: relative;
+  width: vw-1490(306);
+  height: vw-1490(306);
 }
-.tagsContainer{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.tagsContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(8);
 
-    top: 16px;
-    left: 16px;
-    @media (max-width: 768px) {
-        top: 12px;
-        left: 12px; 
-        gap: 4px;
-    }
+  top: vw-1490(16);
+  left: vw-1490(16);
+  @media (max-width: 768px) {
+    top: 12px;
+    left: 12px;
+    gap: 4px;
+  }
 }
 
 .promotion {
-    color: var(--color-bg);
-    padding: 3px 8px;
-    background-color: var(--color-accent-red);
-    opacity: 0.6;
-    width: fit-content;
-    border-radius: 4px;
-    @media (max-width: 768px) {
-        padding: 2px 4px;
-    }
+  color: var(--color-bg);
+  padding: vw-1490(3) vw-1490(8);
+  background-color: var(--color-accent-red);
+  opacity: 0.6;
+  width: fit-content;
+  border-radius: 4px;
+  @media (max-width: 768px) {
+    padding: 2px 4px;
+  }
 }
 .new {
-    color: var(--color-bg);
-    padding: 3px 8px;
-    background-color: var(--color-accent-green);
-    opacity: 0.6;
-    width: fit-content;
-    border-radius: 4px;
+  color: var(--color-bg);
+  padding: vw-1490(3) vw-1490(8);
+  background-color: var(--color-accent-green);
+  opacity: 0.6;
+  width: fit-content;
+  border-radius: 4px;
 }
 .popular {
-    color: var(--color-bg);
-    padding: 3px 10px;
-    background-color: var(--color-accent-blue) ;
-    opacity: 0.6;
-    width: fit-content;
-    border-radius: 4px;
+  color: var(--color-bg);
+  padding: vw-1490(3) vw-1490(10);
+  background-color: var(--color-accent-blue);
+  opacity: 0.6;
+  width: fit-content;
+  border-radius: 4px;
 }
 
 .favoriteButton {
-    position: absolute;
-    right: 16px;
-    top: 16px;
-    z-index: 1000;
-    padding: 0;
-    color: #21253126;
+  position: absolute;
+  right: vw-1490(16);
+  top: vw-1490(16);
+  z-index: 1000;
+  padding: 0;
+  color: #21253126;
 }
 
 .active {
-    color: var(--color-accent-red);
+  color: var(--color-accent-red);
 }
 
 .image {
-    border-radius: 6px;
-    border: 1px solid #E9E9E9;
-    box-sizing: border-box;
+  border-radius: 6px;
+  border: 1px solid #e9e9e9;
+  box-sizing: border-box;
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .text {
-    color: var(--color-text);
-    margin-bottom: 16px;
+  color: var(--color-text);
+  margin-bottom: vw-1490(16);
 
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    height: 3rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  height: 3rem;
 }
 .priceContainer {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-    & > .discount {
-        color: var(--color-accent-red);
-    }
-    & > span {
-        color: var(--color-grey-2);
-        text-decoration: line-through;
-    }
+  display: flex;
+  align-items: center;
+  gap: vw-1490(8);
+  margin-bottom: vw-1490(12);
+  & > .discount {
+    color: var(--color-accent-red);
+  }
+  & > span {
+    color: var(--color-grey-2);
+    text-decoration: line-through;
+  }
 }
 
 .buttonContainer {
-    display: flex;
-    gap: 12px;
+  display: flex;
+  gap: vw-1490(12);
 }
 
 .buttonVertical {
-    width: 130px;
-    height: 38px;
+  width: vw-1490(130);
+  height: vw-1490(38);
 
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 22.4px;
+  font-size: vw-1490(16);
+  font-weight: 400;
+  line-height: vw-1490(22.4);
 }
 
-.buttonHorizontal{
-    @media (max-width: 768px) {
-        padding: 0;
-        width: 36px;
-        height: 36px;
-    }
+.buttonHorizontal {
+  @media (max-width: 768px) {
+    padding: 0;
+    width: 36px;
+    height: 36px;
+  }
 }

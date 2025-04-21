@@ -1,18 +1,20 @@
+@import "../../shared/styles/functions";
+
 .content {
   position: absolute;
-  top: 65px;
+  top: vw-1490(65);
   left: 0;
   z-index: 1001;
   box-sizing: border-box;
 
-  width: 655px;
-  height: 612px;
-  padding: 32px;
+  width: vw-1490(655);
+  height: vw-1490(612);
+  padding: vw-1490(32);
   max-height: 100vh;
 
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: vw-1490(20);
 
   border: 1px solid #7d7d7d4d;
   border-radius: 6px;
@@ -50,8 +52,8 @@
 }
 
 .inputSearch {
-  width: 655px;
-  height: 50px;
+  width: vw-1490(655);
+  height: vw-1490(50);
   @media (max-width: 768px) {
     width: 100vw;
     border-radius: 0;
@@ -61,7 +63,7 @@
 .categoryContainer {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: vw-1490(12);
 }
 
 .imageCategory {
@@ -72,13 +74,13 @@
 .categoryItem {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: vw-1490(6);
 }
 
 .productsContainer {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: vw-1490(20);
   @media (max-width: 768px) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

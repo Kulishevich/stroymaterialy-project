@@ -1,3 +1,5 @@
+@import "../../shared/styles/functions";
+
 .wrapper {
   width: 100%;
 }
@@ -12,9 +14,9 @@
   background-color: var(--color-accent-orange);
 }
 .contentMain {
-  width: 1296px;
+  width: vw-1490(1296);
   height: 100%;
-  padding: 48px 0;
+  padding: vw-1490(48) 0;
   display: flex;
 
   @media (max-width: 768px) {
@@ -35,7 +37,7 @@
 
   width: fit-content;
   height: fit-content;
-  margin-right: 85px;
+  margin-right: vw-1490(85);
   & > a {
     color: var(--color-bg);
     font-size: 19px;
@@ -97,7 +99,7 @@
 .categoryesContainer {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: vw-1490(12);
   & > a {
     color: var(--color-bg);
     text-decoration: none;
@@ -113,12 +115,12 @@
 .navigate {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: vw-1490(24);
 
-  width: 171px;
+  width: vw-1490(171);
   color: var(--color-bg);
 
-  margin: 0 133px 0 67px;
+  margin: 0 vw-1490(133) 0 vw-1490(67);
   & > h4 {
     color: var(--color-bg);
   }
@@ -126,13 +128,14 @@
   @media (max-width: 768px) {
     gap: 12px;
     margin: 0;
+    width: 171px;
   }
 }
 
 .navigateContainer {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: vw-1490(12);
   & > a {
     color: var(--color-bg);
     text-decoration: none;
@@ -151,7 +154,7 @@
 
 a.promotion {
   display: flex;
-  gap: 5px;
+  gap: vw-1490(5);
 
   color: var(--color-accent-orange);
 }
@@ -159,13 +162,13 @@ a.promotion {
 .phoneAndTime {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: vw-1490(16);
 }
 
 .phoneContainer {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: vw-1490(6);
   & > a {
     color: var(--color-bg);
     &:hover {
@@ -180,8 +183,8 @@ a.promotion {
 }
 .card {
   box-sizing: border-box;
-  width: 353px;
-  height: 142px;
+  width: vw-1490(353);
+  height: vw-1490(142);
 
   display: flex;
   flex-direction: column;
@@ -189,18 +192,19 @@ a.promotion {
 
   border-radius: 6px;
   background-color: #ffffff1a;
-  padding: 16px;
+  padding: vw-1490(16);
   & > h6 {
     color: var(--color-bg);
     opacity: 0.6;
   }
   & > p {
     color: var(--color-bg);
-    width: 186px;
+    width: vw-1490(186);
     @media (max-width: 768px) {
       font-size: 19px;
       font-weight: 500;
       line-height: 26.6px;
+      width: 186px;
     }
   }
 
@@ -208,13 +212,14 @@ a.promotion {
     width: 214px;
     height: 142px;
     text-align: left;
+    padding: 16px;
   }
 }
 .contentInfo {
   display: flex;
   align-items: center;
   color: var(--color-bg);
-  padding: 16px 0;
+  padding: vw-1490(16) 0;
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 16px;
@@ -222,12 +227,12 @@ a.promotion {
   }
 }
 .icons {
-  width: 209px;
-  height: 32px;
-  margin: 0 295px 0 429px;
+  width: vw-1490(209);
+  height: vw-1490(32);
+  margin: 0 vw-1490(295) 0 vw-1490(429);
 
   display: flex;
-  gap: 20px;
+  gap: vw-1490(20);
   justify-content: center;
   align-items: center;
   @media (max-width: 768px) {

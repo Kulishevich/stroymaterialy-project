@@ -1,77 +1,79 @@
+@import "../../shared/styles/functions";
+
 .overlay {
-    position: fixed;
-    background: #21253180;
-    inset: 0;
-    z-index: 999;
-    overflow-y: auto;
-    animation: fadeIn 0.3s ease-out;
+  position: fixed;
+  background: #21253180;
+  inset: 0;
+  z-index: 999;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .content {
-    box-sizing: border-box;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-    
-    width: 416px;
-    max-height: 100vh;
-    overflow-y: scroll;
-    padding: 46px 32px;    
+  box-sizing: border-box;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
 
-    background-color: var(--color-bg);
-    border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(20);
+  text-align: center;
 
-    animation: fadeIn 0.3s ease-out;
+  width: vw-1490(416);
+  max-height: 100vh;
+  overflow-y: scroll;
+  padding: vw-1490(46) vw-1490(32);
 
-    &::-webkit-scrollbar{
-        width: 5px;
+  background-color: var(--color-bg);
+  border-radius: 6px;
+
+  animation: fadeIn 0.3s ease-out;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-grey-4);
+    border-radius: 4px;
+    &:hover {
+      background-color: var(--color-grey-2);
     }
-    
-    &::-webkit-scrollbar-thumb{
-        background-color: var(--color-grey-4);
-        border-radius: 4px;
-        &:hover {
-            background-color: var(--color-grey-2);
-        }
-    }
+  }
 
-    &::-webkit-scrollbar-track{
-        background-color: transparent;
-        border-radius: 4px;
-    }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 4px;
+  }
 
-    @media (max-width: 768px) {
-        width: 336px;
-        padding: 52px 16px 42px;
-    }
+  @media (max-width: 768px) {
+    width: 336px;
+    padding: 52px 16px 42px;
+  }
 }
 
 .buttonContainer {
-    display: flex;
-    gap: 12px;
+  display: flex;
+  gap: vw-1490(12);
 }
 
 .closeButton {
-    position: absolute;
-    right: 20px;
-    top: 20px;
+  position: absolute;
+  right: vw-1490(20);
+  top: vw-1490(20);
 
-    margin: 0;
-    outline: none;
+  margin: 0;
+  outline: none;
 }
 
 @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}

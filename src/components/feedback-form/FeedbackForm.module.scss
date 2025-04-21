@@ -1,70 +1,71 @@
+@import "../../shared/styles/functions";
+
 .wrapper {
-    width: 100%;
-    display: flex;
-    background-color: var(--color-accent-orange);
-    display: flex;
-    border-radius: 6px;
-    margin: 0 auto;
-    overflow: hidden;
-    @media (max-width: 768px) {
-        flex-direction: column;
-        width: 336px;
-    }
+  width: 100%;
+  display: flex;
+  background-color: var(--color-accent-orange);
+  display: flex;
+  border-radius: 6px;
+  margin: 0 auto;
+  overflow: hidden;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 336px;
+  }
 }
 
-.image{
-    object-fit: cover;
+.image {
+  object-fit: cover;
 }
 
 .container {
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    padding: 42px;
-    
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    @media (max-width: 768px) {
-        padding: 24px 16px;
-        gap: 16px;
-    }
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: vw-1490(42);
+
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(24);
+  @media (max-width: 768px) {
+    padding: 24px 16px;
+    gap: 16px;
+  }
 }
 
 .text {
-    color: var(--color-bg);
-    max-width: 526px;
+  color: var(--color-bg);
+  max-width: vw-1490(526);
 
-    @media (max-width: 768px) {
-        margin-top: 8px;
-    }
+  @media (max-width: 768px) {
+    margin-top: 8px;
+  }
 }
 
-.inputsContainer{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    
-    gap: 24px;
-    
-    @media (max-width: 768px) {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 12px;
-    }
+.inputsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 
+  gap: vw-1490(24);
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 12px;
+  }
 }
 .submitContainer {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    
-    @media (max-width: 768px) {
-        flex-direction: column-reverse;
-        align-items: start;
-        gap: 16px;
-    }
+  display: flex;
+  align-items: center;
+  gap: vw-1490(20);
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    align-items: start;
+    gap: 16px;
+  }
 }
 .checkbox {
-    color: var(--color-grey-1);
-    width: 100% ;
-    opacity: 0.8;
+  color: var(--color-grey-1);
+  width: 100%;
+  opacity: 0.8;
 }

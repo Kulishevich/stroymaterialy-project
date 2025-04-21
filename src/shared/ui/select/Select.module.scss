@@ -1,10 +1,15 @@
+@import "../../../shared/styles/functions";
 @import "../../../shared/styles/variables";
 
 .icon {
-  width: 22px;
-  height: 22px;
+  width: vw-1490(22);
+  height: vw-1490(22);
   margin-left: 10px;
   color: var(--color-accent-orange);
+  @media (max-width: 768px) {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .trigger {
@@ -15,8 +20,8 @@
   justify-content: space-between;
 
   width: 100%;
-  height: 58px;
-  padding: 16px 18px;
+  height: vw-1490(58);
+  padding: vw-1490(16) vw-1490(18);
 
   text-align: center;
 
@@ -39,14 +44,16 @@
 
   color: var(--color-grey-3);
   font-family: var(--font-rubik);
-  font-size: 18px;
+  font-size: vw-1490(18);
   font-weight: 400;
-  line-height: 21.33px;
+  line-height: vw-1490(21);
   @media (max-width: $mobile) {
     font-family: var(--font-onest);
     font-size: 16px;
     font-weight: 400;
     line-height: 22.4px;
+    height: 58px;
+    padding: 18px 16px;
   }
 }
 
@@ -79,9 +86,9 @@
   &[data-placeholder] {
     color: var(--color-grey-3);
     font-family: var(--font-rubik);
-    font-size: 18px;
+    font-size: vw-1490(18);
     font-weight: 400;
-    line-height: 21.33px;
+    line-height: vw-1490(21);
     @media (max-width: $mobile) {
       font-family: var(--font-onest);
       font-size: 16px;
@@ -95,7 +102,7 @@
   z-index: 1000;
   width: var(--radix-select-trigger-width);
   max-height: var(--radix-select-content-available-height);
-  padding: 18px 16px;
+  padding: vw-1490(18) vw-1490(16);
   border-radius: 4px;
   border: 1px solid #2125311a;
   background-color: var(--color-bg);
@@ -105,7 +112,7 @@
 
 .selectItem {
   cursor: pointer;
-  gap: 12px;
+  gap: vw-1490(12);
 
   color: var(--color-grey-3);
   background-color: var(--color-bg);
@@ -137,9 +144,9 @@
   align-items: center;
 
   font-family: var(--font-rubik);
-  font-size: 18px;
+  font-size: vw-1490(18);
   font-weight: 400;
-  line-height: 21.33px;
+  line-height: vw-1490(21);
   @media (max-width: $mobile) {
     font-family: var(--font-onest);
     font-size: 16px;
