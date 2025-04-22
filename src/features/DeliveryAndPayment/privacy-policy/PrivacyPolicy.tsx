@@ -4,7 +4,7 @@ import { Typography } from "@/shared/ui/typography";
 import { useTranslations } from "next-intl";
 
 export const PrivacyPolicy = () => {
-  const t = useTranslations("regular_customer.privacy_policy");
+  const t = useTranslations("delivery_and_payment.privacy_policy");
 
   return (
     <div className={s.container}>

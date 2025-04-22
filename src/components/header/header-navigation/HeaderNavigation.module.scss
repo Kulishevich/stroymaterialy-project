@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
   gap: vw-1490(36);
+
   & > a {
     text-decoration: none;
     text-wrap: nowrap;
@@ -28,6 +29,11 @@
     &:hover {
       color: var(--color-accent-orange);
     }
+  }
+
+  .active {
+    color: var(--color-text);
+    text-decoration: underline;
   }
 }
 .navLink {
@@ -76,9 +82,4 @@
   &:hover {
     color: var(--color-accent-orange);
   }
-}
-
-.active {
-  color: var(--color-text);
-  text-decoration: underline;
 }

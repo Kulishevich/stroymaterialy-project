@@ -11,12 +11,14 @@ import { PaymentMethod } from "../PaymentMethod";
 import { useRouter } from "next/router";
 import { Paths } from "@/shared/enums";
 import Link from "next/link";
+import { PrivacyPolicy } from "@/features/DeliveryAndPayment/privacy-policy";
+import { Exchange } from "@/features/DeliveryAndPayment/exchange";
+import { ReturnProducts } from "@/features/DeliveryAndPayment/return-products";
 
 export const DeliveryAndPayment = () => {
   const t = useTranslations("delivery_and_payment");
   const router = useRouter();
   const { tab } = router.query;
-  const activeTab = tab || "delivery_and_lifting";
 
   const navigation = [
     {
@@ -39,7 +41,24 @@ export const DeliveryAndPayment = () => {
       title: t("navigation.lifting_conditions"),
       value: <LiftingConditions />,
     },
+    {
+      id: "policy",
+      title: t("navigation.privacy_policy"),
+      value: <PrivacyPolicy />,
+    },
+    {
+      id: "exchange",
+      title: t("navigation.exchange"),
+      value: <Exchange />,
+    },
+    {
+      id: "return",
+      title: t("navigation.return_product"),
+      value: <ReturnProducts />,
+    },
   ];
+
+  const activeTab = tab || navigation[0].id;
 
   return (
     <div className={s.container}>

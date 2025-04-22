@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import s from "./ReturnProducts.module.scss";
 
 export const ReturnProducts = () => {
-  const t = useTranslations("regular_customer.return_product");
+  const t = useTranslations("delivery_and_payment.return_product");
 
   return (
     <div className={s.container}>

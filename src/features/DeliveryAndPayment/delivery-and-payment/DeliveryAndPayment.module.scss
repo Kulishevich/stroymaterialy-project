@@ -14,6 +14,7 @@
   width: vw-1490(306);
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   @media (max-width: 768px) {
     margin: 0 auto;
     width: 336px;

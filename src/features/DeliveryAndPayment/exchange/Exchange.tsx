@@ -4,7 +4,7 @@ import { Typography } from "@/shared/ui/typography";
 import { useTranslations } from "next-intl";
 
 export const Exchange = () => {
-  const t = useTranslations("regular_customer.exchange");
+  const t = useTranslations("delivery_and_payment.exchange");
 
   return (
     <div className={s.container}>
