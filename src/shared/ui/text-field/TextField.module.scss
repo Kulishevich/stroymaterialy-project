@@ -101,7 +101,8 @@
   top: 50%;
   right: vw-1490(16);
   transform: translateY(-50%);
-
+  width: vw-1490(22);
+  height: vw-1490(22);
   display: none;
 
   padding: 0;
@@ -111,6 +112,11 @@
 
   &:hover {
     background: none;
+  }
+
+  @media (max-width: 768px) {
+    width: 22px;
+    height: 22px;
   }
 }
 

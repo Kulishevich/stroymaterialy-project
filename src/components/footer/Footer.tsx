@@ -102,7 +102,11 @@ export const Footer = () => {
               <Typography as={Link} href={Paths.contacts} variant="body_3">
                 {t("contacts")}
               </Typography>
-              <Typography as={Link} href={"#"} variant="body_3">
+              <Typography
+                as={Link}
+                href={`${Paths.regularСustomer}?tab=policy`}
+                variant="body_3"
+              >
                 {t("privacy_policy")}
               </Typography>
             </nav>

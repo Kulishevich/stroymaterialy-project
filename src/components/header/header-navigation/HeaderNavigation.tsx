@@ -131,7 +131,7 @@ export const HeaderNavigation = () => {
           as={"button"}
           variant="body_3"
         >
-          <ProfileIcon width={20} height={20} />
+          <ProfileIcon />
           {token && data?.data?.lastName && data?.data?.firstName[0]
             ? `${data?.data?.lastName} ${data?.data?.firstName[0]}`
             : t("personal_account")}

@@ -22,7 +22,9 @@
   align-items: center;
   gap: vw-1490(36);
   & > a {
+    text-decoration: none;
     text-wrap: nowrap;
+    color: var(--color-grey-2);
     &:hover {
       color: var(--color-accent-orange);
     }
@@ -38,6 +40,11 @@
 }
 .shares {
   color: var(--color-accent-orange);
+
+  & > svg {
+    width: vw-1490(22);
+    height: vw-1490(22);
+  }
 }
 .selectHeader {
   margin-left: vw-1490(53);
@@ -60,6 +67,11 @@
   color: var(--color-text);
   text-decoration: none;
   text-wrap: nowrap;
+
+  & > svg {
+    width: vw-1490(20);
+    height: vw-1490(20);
+  }
 
   &:hover {
     color: var(--color-accent-orange);

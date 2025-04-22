@@ -1,5 +1,7 @@
+@import "../../../shared/styles/functions";
+
 .trigger {
-  cursor: pointer;    
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   gap: 5px;
@@ -7,28 +9,46 @@
   background-color: transparent;
   padding: 0;
   & > p {
-      color: var(--color-grey-2);
+    color: var(--color-grey-2);
   }
   & > svg {
     transition: transform 0.3s ease;
+    width: vw-1490(22);
+    height: vw-1490(22);
+    @media (max-width: 768px) {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  &:hover {
+    & > p {
+      color: var(--color-accent-orange);
+    }
+    & > svg {
+      color: var(--color-accent-orange);
+    }
   }
 }
 
-.trigger[data-state=open] {
+.trigger[data-state="open"] {
   & > svg {
     transform: rotate(180deg);
   }
 }
 
 .content {
-  border: 1px solid #2125311A;
+  border: 1px solid #2125311a;
   border-radius: 4px;
   background-color: var(--color-bg);
-  padding: 18px 16px;
+  padding: vw-1490(18) vw-1490(16);
 
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: vw-1490(12);
+  @media (max-width: 768px) {
+    padding: 18px 16px;
+  }
 }
 
 .item {

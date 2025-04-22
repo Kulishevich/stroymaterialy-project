@@ -1,28 +1,40 @@
-.main {
-    display: inline-flex;
-    align-items: center;
-    gap: 15px;
+@import "../../../../shared/styles/functions";
 
-    text-decoration: none;
-    @media (max-width: 768px) {
-        gap: 8px;
+.main {
+  display: inline-flex;
+  align-items: center;
+  gap: vw-1490(15);
+
+  text-decoration: none;
+
+  & > svg {
+    width: vw-1490(58);
+    height: vw-1490(45);
+  }
+
+  @media (max-width: 768px) {
+    gap: 8px;
+    & > svg {
+      width: 34px;
+      height: 27px;
     }
+  }
 }
 .text {
-    border-left: 2px solid var(--color-accent-orange);
-    height: 50px;
-    padding-left: 15px;
-    @media (max-width: 768px) {
-        height: 29px;
-        padding-left: 8px;
-        font-size: 24.32px;
-        font-weight: 600;
-        line-height: 28.82px;
-      }
+  border-left: 2px solid var(--color-accent-orange);
+  height: vw-1490(50);
+  padding-left: vw-1490(15);
+  @media (max-width: 768px) {
+    height: 29px;
+    padding-left: 8px;
+    font-size: 24.32px;
+    font-weight: 600;
+    line-height: 28.82px;
+  }
 }
 .light {
-    color: var(--color-bg);
+  color: var(--color-bg);
 }
 .dark {
-    color: var(--color-text);
+  color: var(--color-text);
 }

@@ -20,6 +20,16 @@
     & > p {
       color: var(--color-bg);
     }
+
+    & > svg {
+      width: vw-1490(28);
+      height: vw-1490(19);
+
+      @media (max-width: 768px) {
+        width: 28px;
+        height: 19px;
+      }
+    }
   }
 }
 .search {

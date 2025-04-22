@@ -1,9 +1,15 @@
 @import "../../../shared/styles/variables";
+@import "../../../shared/styles/functions";
 
 .icon {
-  width: 22px;
-  height: 22px;
+  width: vw-1490(22);
+  height: vw-1490(22);
   color: var(--color-grey-2);
+
+  @media (max-width: 768px) {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .trigger {
@@ -40,7 +46,7 @@
   left: -5px;
   width: fit-content;
   max-height: var(--radix-select-content-available-height);
-
+  z-index: 10;
   border: 1px solid #2125311a;
 
   animation: fade-in 0.5s ease;
@@ -79,14 +85,24 @@
   align-items: center;
 
   font-family: var(--font-rubik);
-  font-size: 18px;
+  font-size: vw-1490(18);
   font-weight: 400;
-  line-height: 21.33px;
+  line-height: vw-1490(21.33);
+
+  & > svg {
+    width: vw-1490(22);
+    height: vw-1490(22);
+  }
   @media (max-width: $mobile) {
     font-family: var(--font-onest);
     font-size: 16px;
     font-weight: 400;
     line-height: 22.4px;
+
+    & > svg {
+      width: 22px;
+      height: 22px;
+    }
   }
 }
 

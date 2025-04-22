@@ -20,13 +20,15 @@
 .nav {
   display: flex;
   flex-direction: column;
-
+  width: vw-1490(306);
+  flex-shrink: 0;
   @media (max-width: 768px) {
     width: 336px;
   }
 }
 .navItem {
   cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,13 +37,14 @@
 
   text-decoration: none;
   border-radius: 6px;
-  padding: 16px 12px;
+  padding: vw-1490(16) vw-1490(12);
   & > h4 {
     max-width: 248px;
   }
 
   @media (max-width: 768px) {
     justify-content: space-between;
+    padding: 16px 12px;
   }
 
   &:hover {
@@ -50,9 +53,13 @@
 }
 
 .iconCategory {
-  width: 22px;
-  height: 22px;
+  width: vw-1490(22);
+  height: vw-1490(22);
   flex-shrink: 0;
+  @media (max-width: 768px) {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .active {

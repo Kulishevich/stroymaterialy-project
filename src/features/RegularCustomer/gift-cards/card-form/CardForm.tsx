@@ -3,7 +3,6 @@ import s from "./CardForm.module.scss";
 import { Typography } from "@/shared/ui/typography";
 import Image from "next/image";
 import { Button } from "@/shared/ui/button";
-import { useIsMobile } from "@/shared/hooks/useIsMobile";
 import { useCreateGiftMutation } from "@/api/gift/gift.api";
 import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,7 +13,6 @@ import { useTranslations } from "next-intl";
 
 export const CardForm = () => {
   const t = useTranslations("regular_customer.gift_card.order_card");
-  const isMobile = useIsMobile("tablet");
   const [createGiftCard] = useCreateGiftMutation();
 
   const { control, handleSubmit, reset } = useForm({
@@ -72,12 +70,9 @@ export const CardForm = () => {
         </div>
         <Button onClick={formHandler}> {t("send")}</Button>
       </div>
-      <Image
-        src={"/images/domix-card.png"}
-        width={!isMobile ? 518 : 336}
-        height={!isMobile ? 288 : 187}
-        alt="card"
-      />
+      <div className={s.imageContainer}>
+        <Image src={"/images/domix-card.png"} fill alt="card" />
+      </div>
     </div>
   );
 };

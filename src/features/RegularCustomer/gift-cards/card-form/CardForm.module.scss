@@ -6,6 +6,16 @@
   gap: vw-1490(51);
   width: 100%;
 
+  .imageContainer {
+    position: relative;
+    width: vw-1490(518);
+    height: vw-1490(288);
+    @media (max-width: 768px) {
+      width: 336px;
+      height: 187px;
+    }
+  }
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 24px;
