@@ -5,7 +5,6 @@ import { Button } from "@/shared/ui/button";
 import { CloseIcon } from "@/shared/assets/icons";
 import { Typography } from "@/shared/ui/typography";
 import { useForm } from "react-hook-form";
-import { useGetRegionsQuery } from "@/api/regions/regions.api";
 import { ControlledSelect } from "@/shared/ui/controlled-select";
 import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
 import { ControlledTextArea } from "@/shared/ui/controlled-text-area";
@@ -14,19 +13,21 @@ import { addAddressScheme } from "./model/add-address-scheme";
 import { useCreateAddressMutation } from "@/api/addresses/address.api";
 import { showToast } from "@/shared/ui/toast";
 import { useTranslations } from "next-intl";
+import { GetRegionsResponse } from "@/api/regions/regions.types";
 
 type AddAddressPopupProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  regions: GetRegionsResponse | undefined;
 };
 
 export const AddAddressPopup = ({
   isOpen,
   setIsOpen,
+  regions,
 }: AddAddressPopupProps) => {
   const t = useTranslations("profile.my_addresses.add_address_popup");
   const [createAddress] = useCreateAddressMutation();
-  const { data: regions } = useGetRegionsQuery();
 
   const {
     control,

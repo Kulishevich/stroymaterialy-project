@@ -1,16 +1,23 @@
 import { Typography } from "@/shared/ui/typography";
 import React, { useEffect } from "react";
-import { useGetFavoriteProductsQuery } from "@/api/products/products.api";
 import { FavoriteItem } from "./favorite-item";
 import { useDispatch } from "react-redux";
 import s from "./Favoriter.module.scss";
 import { setFavorites } from "@/store/slices/favorites/favoritesSlice";
 import { useTranslations } from "next-intl";
+import { GetFavotireResponse } from "@/api/products/products.types";
 
-export const Favorites = () => {
+export const Favorites = ({
+  favorites,
+}: {
+  favorites:
+    | {
+        data: GetFavotireResponse;
+      }
+    | undefined;
+}) => {
   const t = useTranslations("profile.favorites");
   const dispatch = useDispatch();
-  const { data: favorites } = useGetFavoriteProductsQuery();
 
   useEffect(() => {
     if (favorites?.data?.favorites) {

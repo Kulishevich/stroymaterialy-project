@@ -108,18 +108,18 @@ export const Item = ({ variant = "vertical", product }: ItemProps) => {
             <div className={s.tagsContainer}>
               {isDiscount && (
                 <Typography className={s.promotion} variant="body_6">
-                  Акция
+                  {t("promotion")}
                 </Typography>
               )}
               {!!product.isNew && (
                 <Typography className={s.new} variant="body_6">
-                  Новинка
+                  {t("new")}
                 </Typography>
               )}
 
               {!!product.isPopular && (
                 <Typography className={s.popular} variant="body_6">
-                  Популярное
+                  {t("popular")}
                 </Typography>
               )}
               {!!product.bonusPercent && (

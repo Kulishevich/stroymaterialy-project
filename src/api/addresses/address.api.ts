@@ -8,7 +8,10 @@ import {
 export const addressesApi = domixApi.injectEndpoints({
   endpoints: (builder) => {
     return {
-      getAddresses: builder.query<GetAddressesResponse, { perPage: number }>({
+      getAddresses: builder.query<
+        GetAddressesResponse,
+        { perPage: number; lang: string }
+      >({
         providesTags: ["Addresses"],
         query: ({ perPage }) => ({
           url: `/users/addresses/?perPage=${perPage}`,

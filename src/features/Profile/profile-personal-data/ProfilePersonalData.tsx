@@ -20,12 +20,20 @@ import { useDispatch } from "react-redux";
 import { logout } from "@/store/slices/auth/authSlice";
 import { useTranslations } from "next-intl";
 import { ConfirmModal } from "@/components/confirm-modal";
+import { UserSettingResponse } from "@/api/user/user.types";
 
-export const ProfilePersonalData = () => {
+export const ProfilePersonalData = ({
+  setting,
+}: {
+  setting:
+    | {
+        data: UserSettingResponse;
+      }
+    | undefined;
+}) => {
   const t = useTranslations("profile.profile_personal_data");
   const [isEditPassword, setIsEditPassword] = useState<boolean>(false);
   const [isOpenConfirm, setIsOpenConfirm] = useState<boolean>(false);
-  const { data: setting } = useGetUserSettingQuery();
   const [changeSetting] = useChangeSettingMutation();
   const [deleteUser] = useDeleteUserMutation();
   const router = useRouter();
@@ -64,10 +72,10 @@ export const ProfilePersonalData = () => {
     };
     try {
       await changeSetting(fetchData).unwrap();
-      showToast({ message: "Отредачено", variant: "success" });
+      showToast({ message: t("changes_saved"), variant: "success" });
     } catch (err: unknown) {
       console.error(err);
-      showToast({ message: "Ошибка", variant: "error" });
+      showToast({ message: t("error"), variant: "error" });
     }
   });
 
@@ -165,7 +173,7 @@ export const ProfilePersonalData = () => {
       <ConfirmModal
         setIsOpen={setIsOpenConfirm}
         isOpen={isOpenConfirm}
-        title={"Вы уверены что хотите удалить пользователя?"}
+        title={t("confirm_delete_user")}
         handleSubmit={handleDeleteUser}
       />
       <EditPasswordPopup

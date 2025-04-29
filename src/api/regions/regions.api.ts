@@ -4,7 +4,7 @@ import { GetRegionsResponse } from "./regions.types";
 export const regionsApi = domixApi.injectEndpoints({
   endpoints: (builder) => {
     return {
-      getRegions: builder.query<GetRegionsResponse, void>({
+      getRegions: builder.query<GetRegionsResponse, { lang: string }>({
         query: () => ({
           url: "/regions",
         }),

@@ -5,12 +5,15 @@ import { ProductInfo } from "../product-info";
 import { SimilarProducts } from "@/components/similar-products";
 import s from "./ProductPage.module.scss";
 import { Product } from "@/api/products/products.types";
+import { useTranslations } from "next-intl";
 
 type ProductPageProps = {
   product: { data: Product } | undefined;
 };
 
 export const ProductPage = ({ product }: ProductPageProps) => {
+  const t = useTranslations("product");
+
   return (
     <div className={s.wrapper}>
       <div className={s.title}>
@@ -18,7 +21,7 @@ export const ProductPage = ({ product }: ProductPageProps) => {
           {product?.data.name}
         </Typography>
         <Typography variant="body_4">
-          Код продукта: {product?.data.code}
+          {t("product_code")}: {product?.data.code}
         </Typography>
       </div>
       <div className={s.container}>

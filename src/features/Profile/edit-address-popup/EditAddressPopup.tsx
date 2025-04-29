@@ -15,21 +15,23 @@ import { Address } from "@/api/addresses/address.types";
 import { showToast } from "@/shared/ui/toast";
 import s from "./EditAddressPopup.module.scss";
 import { useTranslations } from "next-intl";
+import { GetRegionsResponse } from "@/api/regions/regions.types";
 
 type AddAddressPopupProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   address: Address;
+  regions: GetRegionsResponse | undefined;
 };
 
 export const EditAddressPopup = ({
   isOpen,
   setIsOpen,
   address,
+  regions,
 }: AddAddressPopupProps) => {
   const t = useTranslations("profile.my_addresses.edit_address_popup");
   const [updateAddress] = useUpdateAddressMutation();
-  const { data: regions } = useGetRegionsQuery();
 
   const {
     control,

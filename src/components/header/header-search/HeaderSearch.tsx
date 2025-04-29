@@ -26,10 +26,14 @@ export const HeaderSearch = () => {
   const router = useRouter();
   const token = useSelector((state: RootState) => state.auth.token);
   const dispatch = useDispatch();
+  const lang = router.locale || "hy";
 
-  const { data: favorites } = useGetFavoriteProductsQuery(undefined, {
-    skip: !token,
-  });
+  const { data: favorites } = useGetFavoriteProductsQuery(
+    { lang },
+    {
+      skip: !token,
+    }
+  );
   const { data: cart } = useGetCartQuery();
 
   useEffect(() => {

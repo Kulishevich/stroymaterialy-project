@@ -3,24 +3,28 @@ import { Typography } from "@/shared/ui/typography";
 import { Button } from "@/shared/ui/button";
 import { AddAddressPopup } from "../add-address-popup";
 import { RadioCards } from "@/shared/ui/radio-cards";
-import {
-  useGetAddressesQuery,
-  useSetDefaultAddressMutation,
-} from "@/api/addresses/address.api";
+import { useSetDefaultAddressMutation } from "@/api/addresses/address.api";
 import { EditAddressPopup } from "../edit-address-popup";
-import { Address } from "@/api/addresses/address.types";
+import { Address, GetAddressesResponse } from "@/api/addresses/address.types";
 import s from "./MyAddresses.module.scss";
 import { useTranslations } from "next-intl";
+import { GetRegionsResponse } from "@/api/regions/regions.types";
 
-export const MyAddresses = () => {
+export const MyAddresses = ({
+  addresses,
+  name,
+  regions,
+}: {
+  regions: GetRegionsResponse | undefined;
+  name: string;
+  addresses: GetAddressesResponse | undefined;
+}) => {
   const t = useTranslations("profile.my_addresses");
   const [isAddAddressOpen, setIsAddAddressOpen] = useState(false);
   const [isEditAddressOpen, setIsEditAddressOpen] = useState(false);
   const [editAddress, setEditAddress] = useState<Address | null>(null);
   const [setDefaultAddress] = useSetDefaultAddressMutation();
-  const { data: addresses } = useGetAddressesQuery({
-    perPage: 20,
-  });
+
   const defaultAddress = addresses?.data.find((elem) => elem.isDefault);
 
   const addressesOptions = addresses?.data.map((address) => {
@@ -29,7 +33,7 @@ export const MyAddresses = () => {
       value: String(address.id),
       title: (
         <>
-          <Typography variant="body_5">Эдвард</Typography>
+          <Typography variant="body_5">{name}</Typography>
           {address.isDefault && (
             <Typography variant="body_3">
               {t("default_address_label")}
@@ -104,12 +108,14 @@ export const MyAddresses = () => {
       <AddAddressPopup
         isOpen={isAddAddressOpen}
         setIsOpen={setIsAddAddressOpen}
+        regions={regions}
       />
       {!!editAddress && (
         <EditAddressPopup
           isOpen={isEditAddressOpen}
           setIsOpen={setIsEditAddressOpen}
           address={editAddress}
+          regions={regions}
         />
       )}
     </div>

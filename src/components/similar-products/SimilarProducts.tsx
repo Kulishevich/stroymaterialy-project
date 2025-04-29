@@ -5,6 +5,7 @@ import { Item } from "../item";
 import { Product } from "@/api/products/products.types";
 import { Slider } from "../slider";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { useTranslations } from "next-intl";
 
 type SimilarProductsProps = {
   similars: Product[];
@@ -12,11 +13,12 @@ type SimilarProductsProps = {
 
 export const SimilarProducts = ({ similars }: SimilarProductsProps) => {
   const isMobile = useIsMobile("tablet");
+  const t = useTranslations("product");
 
   return (
     <div className={s.container}>
       <Typography variant="h2" as="h2">
-        Похожие продукты
+        {t("similar_products")}
       </Typography>
       {!isMobile ? (
         <Slider itemWidth={330}>

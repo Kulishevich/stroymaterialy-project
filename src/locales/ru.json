@@ -98,7 +98,7 @@
         "post_delivery_details": "Ай пост",
         "location": "Место",
         "city": "Город",
-        "yerevan": "г.Ереван",
+        "yerevan": "Ереван",
         "all_regions": "Все регионы",
         "time": "Время",
         "same_day": "день в день",
@@ -508,7 +508,19 @@
       "password_label": "Пароль",
       "edit_button": "Редактировать",
       "delete_button": "Удалить страницу",
-      "logout_button": "Выйти из личного кабинета"
+      "logout_button": "Выйти из личного кабинета",
+      "changes_saved": "Изменения сохранены",
+      "error": "Ошибка",
+      "confirm_delete_user": "Вы уверены что хотите удалить пользователя?",
+      "edit_password": {
+        "title": "Редактировать пароль",
+        "current_password": "Текущий пароль",
+        "new_password": "Новый пароль",
+        "confirm_new_password": "Подтвердить новый пароль",
+        "save_button": "Сохранить",
+        "success_message": "Пароль сменён успешно",
+        "error_message": "Ошибка в смене пароля"
+      }
     },
     "my_addresses": {
       "title": "Мои адреса",
@@ -660,7 +672,27 @@
     "add_in_favorite_error_description": "Пожалуйста, повторите попытку ещё раз",
     "delete_from_favorite": "Товар удалён из избранного",
     "delete_from_favorite_error": "Товар не удалён в избранного",
-    "delete_from_favorite_error_description": "Пожалуйста, повторите попытку ещё раз"
+    "delete_from_favorite_error_description": "Пожалуйста, повторите попытку ещё раз",
+    "promotion": "Акция",
+    "new": "Новинка",
+    "popular": "Популярное"
+  },
+  "product": {
+    "product_code": "Код продукта",
+    "similar_products": "Похожие продукты",
+    "promotion": "Акция",
+    "new": "Новинка",
+    "popular": "Популярное",
+    "brand": "Бренд",
+    "add_to_cart": "В корзину",
+    "request_discount": "Запросить скидку",
+    "added_to_cart": "Добавлено в корзину",
+    "error": "Ошибка",
+    "removed_from_favorites": "Удалено из избранного",
+    "added_to_favorites": "Добавлено в избранное",
+    "description": "Описание",
+    "delivery_info": "Информация о доставке",
+    "lifting_info": "Информация о подъёме"
   },
   "callback_popup": {
     "title": "Обратный звонок",
@@ -685,5 +717,9 @@
     "cart": "Корзина",
     "payment": "Оплата",
     "catalog": "Каталог"
+  },
+  "confirm_modal": {
+    "yes": "Да",
+    "no": "Нет"
   }
 }

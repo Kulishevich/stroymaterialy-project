@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Typography } from "@/shared/ui/typography";
 import { Product } from "@/api/products/products.types";
 import { useIsMobile } from "@/shared/hooks/useIsMobile";
+import { useTranslations } from "next-intl";
 
 type ProductImagesProps = {
   item: Product;
@@ -13,6 +14,7 @@ export const ProductImages = ({ item }: ProductImagesProps) => {
   const isMobile = useIsMobile("tablet");
   const [activeImage, setActiveImage] = useState(item?.images?.main?.src || "");
   const isDiscount = !!Number(item.discount.split(" ")[0]);
+  const t = useTranslations("product");
 
   useEffect(() => {
     setActiveImage(item?.images?.main?.src || "");
@@ -50,7 +52,7 @@ export const ProductImages = ({ item }: ProductImagesProps) => {
         <div className={s.tagsContainer}>
           {isDiscount && (
             <Typography variant="body_6" className={s.promotion}>
-              Акция
+              {t("promotion")}
             </Typography>
           )}
           {!!item.bonusPercent && (
@@ -60,12 +62,12 @@ export const ProductImages = ({ item }: ProductImagesProps) => {
           )}
           {!!item.isNew && (
             <Typography variant="body_6" className={s.new}>
-              Новинка
+              {t("new")}
             </Typography>
           )}
           {!!item.isPopular && (
             <Typography variant="body_6" className={s.popular}>
-              Популярное
+              {t("popular")}
             </Typography>
           )}
         </div>

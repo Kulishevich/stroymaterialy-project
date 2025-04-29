@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import s from "./EditPasswordPopup.module.scss";
 import { validation } from "@/shared/validation/validation.errors";
 import { showToast } from "@/shared/ui/toast";
+import { useTranslations } from "next-intl";
 
 type EditPasswordPopupProps = {
   isOpen: boolean;
@@ -21,6 +22,7 @@ export const EditPasswordPopup = ({
   isOpen,
   setIsOpen,
 }: EditPasswordPopupProps) => {
+  const t = useTranslations("profile.profile_personal_data.edit_password");
   const [changePassword] = useChangePasswordMutation();
 
   const { control, handleSubmit, reset, setError } = useForm({
@@ -53,12 +55,12 @@ export const EditPasswordPopup = ({
   const formHandler = handleSubmit(async (data) => {
     try {
       await changePassword(data).unwrap();
-      showToast({ message: "Пароль сменён успешно", variant: "success" });
+      showToast({ message: t("success_message"), variant: "success" });
       reset();
       setIsOpen(false);
     } catch (err: unknown) {
       console.error(err);
-      showToast({ message: "Ошибка в смене пароля", variant: "error" });
+      showToast({ message: t("error_message"), variant: "error" });
     }
   });
 
@@ -68,11 +70,11 @@ export const EditPasswordPopup = ({
       <Dialog.Content className={s.content}>
         <form onSubmit={formHandler}>
           <Typography variant="h3" as="h3">
-            Редактировать пароль
+            {t("title")}
           </Typography>
           <div className={s.inputsContainer}>
             <div className={s.inputContainer}>
-              <Typography variant="body_5">Текущий пароль</Typography>
+              <Typography variant="body_5">{t("current_password")}</Typography>
               <ControlledTextField
                 control={control}
                 name="password"
@@ -80,7 +82,7 @@ export const EditPasswordPopup = ({
               />
             </div>
             <div className={s.inputContainer}>
-              <Typography variant="body_5">Новый пароль</Typography>
+              <Typography variant="body_5">{t("new_password")}</Typography>
               <ControlledTextField
                 control={control}
                 name="newPassword"
@@ -88,7 +90,9 @@ export const EditPasswordPopup = ({
               />
             </div>
             <div className={s.inputContainer}>
-              <Typography variant="body_5">Подтвердить новый пароль</Typography>
+              <Typography variant="body_5">
+                {t("confirm_new_password")}
+              </Typography>
               <ControlledTextField
                 control={control}
                 name="newPasswordConfirmation"
@@ -97,7 +101,7 @@ export const EditPasswordPopup = ({
             </div>
           </div>
           <Button fullWidth={true} className={s.buttonSubmit} type="submit">
-            Сохранить
+            {t("save_button")}
           </Button>
         </form>
         <Button

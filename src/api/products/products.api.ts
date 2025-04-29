@@ -37,7 +37,10 @@ export const productsApi = domixApi.injectEndpoints({
           url: `/products/trends/${trend}?perPage=${perPage}`,
         }),
       }),
-      getFavoriteProducts: builder.query<{ data: GetFavotireResponse }, void>({
+      getFavoriteProducts: builder.query<
+        { data: GetFavotireResponse },
+        { lang: string }
+      >({
         providesTags: ["Favorites"],
         query: () => ({
           url: "/products/favorites",
@@ -75,7 +78,7 @@ export const productsApi = domixApi.injectEndpoints({
           body: { ...args },
         }),
       }),
-      getPriceOffers: builder.query<{ data: PriceOffer[] }, void>({
+      getPriceOffers: builder.query<{ data: PriceOffer[] }, { lang: string }>({
         query: () => ({
           url: "/products/price-requests",
         }),

@@ -1,13 +1,17 @@
 import { Typography } from "@/shared/ui/typography";
 import React from "react";
 import s from "./Orders.module.scss";
-import { useGetUserOrdersQuery } from "@/api/user/user.api";
 import { OrderItem } from "../order-item";
 import { useTranslations } from "next-intl";
+import { GetOrdersResponse } from "@/api/user/user.types";
 
-export const Orders = () => {
+export const Orders = ({
+  orders,
+}: {
+  orders: GetOrdersResponse | undefined;
+}) => {
   const t = useTranslations("profile.orders");
-  const { data: orders } = useGetUserOrdersQuery();
+
   return (
     <div className={s.container}>
       <Typography variant="h3" as="h3">
