@@ -11,7 +11,13 @@
   margin-bottom: vw-1490(276);
 
   & > svg {
-    color: var(--color-accent-green);
+    &.red {
+      color: var(--color-accent-red);
+    }
+
+    &.green {
+      color: var(--color-accent-green);
+    }
     width: vw-1490(64);
     height: vw-1490(64);
     @media (max-width: 768px) {
