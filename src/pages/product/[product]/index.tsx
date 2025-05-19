@@ -1,5 +1,6 @@
 import { useGetProductQuery } from "@/api/products/products.api";
 import { ProductPage } from "@/features/Product/product-page";
+import { ProductSkeleton } from "@/features/Product/product-skeleton";
 import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
 import { RootState } from "@/store/store";
 import Head from "next/head";
@@ -12,7 +13,7 @@ export default function ProductPageDynamic() {
   const dispatch = useDispatch();
   const { query } = useRouter();
   const id = query.product as string;
-  const { data: productData } = useGetProductQuery({ id, lang });
+  const { data: productData, isLoading } = useGetProductQuery({ id, lang });
 
   // const { data: rating } = useGetRatingQuery(product as string);
 
@@ -29,6 +30,8 @@ export default function ProductPageDynamic() {
       );
     }
   }, [productData, dispatch]);
+
+  if (isLoading) return <ProductSkeleton />;
 
   return (
     <>

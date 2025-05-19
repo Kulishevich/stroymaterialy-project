@@ -1,0 +1,42 @@
+@import "../../../shared/styles/functions";
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, vw-1490(196));
+  gap: vw-1490(32) vw-1490(24);
+  justify-content: center;
+
+  margin-bottom: vw-1490(140);
+
+  @media (max-width: 768px) {
+    margin-bottom: 72px;
+    grid-template-columns: repeat(2, 160px);
+    gap: 20px 16px;
+  }
+}
+
+.block {
+  width: vw-1490(196);
+  height: vw-1490(196);
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  animation: pulse 1.5s infinite;
+
+  @media (max-width: 768px) {
+    width: 160px;
+    height: 196px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-color: var(--color-grey-1);
+  }
+  50% {
+    background-color: var(--color-grey-3);
+    opacity: 0.5;
+  }
+  100% {
+    background-color: var(--color-grey-1);
+  }
+}

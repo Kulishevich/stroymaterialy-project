@@ -2,6 +2,7 @@ import { useGetBreadcrumbsCategoriesQuery } from "@/api/categories/categories.ap
 import { useGetContentQuery } from "@/api/content/content.api";
 import { useGetProductsByCategoryQuery } from "@/api/products/products.api";
 import { ProductsPage } from "@/features/Products/products-page";
+import { ProductsSkeleton } from "@/features/Products/products-skeleton";
 import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
 import { RootState } from "@/store/store";
 import Head from "next/head";
@@ -19,7 +20,7 @@ export default function ProductsPageDynamic() {
   const { products } = router.query;
   const dispatch = useDispatch();
 
-  const { data: productsList } = useGetProductsByCategoryQuery({
+  const { data: productsList, isLoading } = useGetProductsByCategoryQuery({
     id: products as string,
     perPage: 12,
     page: Number(page),
@@ -56,6 +57,8 @@ export default function ProductsPageDynamic() {
       dispatch(setBreadcrumbs(breadcrumbs.data.breadcrumb));
     }
   }, [breadcrumbs, dispatch, page]);
+
+  if (isLoading) return <ProductsSkeleton />;
 
   return (
     <>

@@ -1,0 +1,90 @@
+@import "../../../shared/styles/functions";
+
+.page {
+  display: flex;
+  gap: vw-1490(24);
+  margin: 0 auto;
+  margin-bottom: vw-1490(140);
+
+  @media (max-width: 768px) {
+    gap: 72px;
+    width: 336px;
+    margin-bottom: 72px;
+  }
+}
+
+.sidebar {
+  width: vw-1490(306);
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(20);
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.sidebarBlock {
+  height: vw-1490(71);
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  animation: pulse 2.5s infinite;
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, vw-1490(306));
+  gap: vw-1490(24);
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 160px);
+    gap: 32px 16px;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: vw-1490(12);
+
+  width: vw-1490(306);
+  height: vw-1490(475);
+  box-sizing: border-box;
+  padding: vw-1490(5);
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  animation: pulse 2.5s infinite;
+
+  & > .image {
+    background-color: var(--color-bg);
+    width: 100%;
+    height: vw-1490(306);
+    border-radius: 6px;
+    @media (max-width: 768px) {
+      height: 160px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    gap: 6px;
+    width: 160px;
+    height: 339px;
+    padding: 5px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-color: var(--color-grey-1);
+  }
+  50% {
+    background-color: var(--color-grey-3);
+    opacity: 0.5;
+  }
+  100% {
+    background-color: var(--color-grey-1);
+  }
+}

@@ -4,6 +4,7 @@ import {
 } from "@/api/categories/categories.api";
 import { useGetTrendsProductsQuery } from "@/api/products/products.api";
 import { CategoryPage } from "@/features/Category/category-page";
+import { CategorySkeleton } from "@/features/Category/category-skeleton";
 import { setBreadcrumbs } from "@/store/slices/breadcrumbs/breadcrumbsSlice";
 import { RootState } from "@/store/store";
 import Head from "next/head";
@@ -16,7 +17,7 @@ export default function CategoryPageDynamic() {
   const { query } = useRouter();
   const dispatch = useDispatch();
 
-  const { data: categories } = useGetSubCategoriesQuery({
+  const { data: categories, isLoading } = useGetSubCategoriesQuery({
     id: query.category as string,
     perPage: 20,
     lang,
@@ -38,6 +39,8 @@ export default function CategoryPageDynamic() {
       dispatch(setBreadcrumbs(breadcrumbs.data.breadcrumb));
     }
   }, [breadcrumbs, dispatch]);
+
+  if (isLoading) return <CategorySkeleton />;
 
   return (
     <>
