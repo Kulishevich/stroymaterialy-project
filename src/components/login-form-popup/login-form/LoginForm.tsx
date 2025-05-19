@@ -9,6 +9,7 @@ import { useLoginMutation } from "@/api/auth/auth.api";
 import { LoginArgs } from "@/api/auth/auth.types";
 import { showToast } from "@/shared/ui/toast";
 import s from "./LoginForm.module.scss";
+import { useTranslations } from "next-intl";
 
 type LoginFormProps = {
   setIsPasswordRecovery: (value: boolean) => void;
@@ -19,6 +20,8 @@ export const LoginForm = ({
   setIsPasswordRecovery,
   setIsOpen,
 }: LoginFormProps) => {
+  const t = useTranslations("autorization.login_form");
+
   const [login] = useLoginMutation();
 
   const {
@@ -41,7 +44,7 @@ export const LoginForm = ({
 
       reset();
       showToast({
-        message: res.message || "Успешный вход",
+        message: res.message || t("success_message"),
         variant: "success",
       });
       setIsOpen(false);
@@ -55,7 +58,7 @@ export const LoginForm = ({
         const errorData = err as { data: { message: string } };
         showToast({ message: errorData.data.message, variant: "error" });
       } else {
-        showToast({ message: "Ошибка входа", variant: "error" });
+        showToast({ message: t("error_message"), variant: "error" });
       }
       console.error(err);
     }
@@ -65,11 +68,11 @@ export const LoginForm = ({
     <form onSubmit={formHandler}>
       <div className={s.form}>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Эл. адрес</Typography>
+          <Typography variant="body_5">{t("email")}</Typography>
           <ControlledTextField control={control} name={"email"} />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Пароль</Typography>
+          <Typography variant="body_5">{t("password")}</Typography>
           <ControlledTextField
             control={control}
             name={"password"}
@@ -82,7 +85,7 @@ export const LoginForm = ({
         className={s.passwordRecovery}
         onClick={() => setIsPasswordRecovery(true)}
       >
-        Восстановить пароль
+        {t("password_recovery")}
       </Typography>
       <Button
         fullWidth={true}
@@ -90,7 +93,7 @@ export const LoginForm = ({
         disabled={!isValid}
         type={"submit"}
       >
-        Войти
+        {t("submit_button")}
       </Button>
     </form>
   );

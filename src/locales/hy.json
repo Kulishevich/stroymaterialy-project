@@ -720,5 +720,37 @@
   "confirm_modal": {
     "yes": "Այո",
     "no": "Ոչ"
+  },
+  "autorization": {
+    "login": "Մուտք",
+    "registration": "Գրանցում",
+    "login_form": {
+      "email": "Էլ. հասցե",
+      "password": "Գաղտնաբառ",
+      "password_recovery": "Վերականգնել գաղտնաբառը",
+      "submit_button": "Մուտք գործել",
+      "success_message": "Մուտքն հաջողությամբ կատարվեց",
+      "error_message": "Մուտքի սխալ"
+    },
+    "password_recovery": {
+      "title": "Վերականգնել գաղտնաբառը",
+      "description": "Մուտքագրեք ձեր էլ. հասցեն, և մենք կուղարկենք հղում՝ գաղտնաբառը վերականգնելու համար",
+      "email_label": "Էլ. հասցե",
+      "recover_button": "Վերականգնել",
+      "back_to_login": "Վերադառնալ մուտք"
+    },
+    "registration_form": {
+      "become_partner": "Դառնալ գործընկեր",
+      "name": "Անուն",
+      "surname": "Ազգանուն",
+      "phone": "Հեռախոսահամար",
+      "phone_placeholder": "(+374) 12 34 56 78",
+      "email": "Էլ. հասցե",
+      "password": "Գաղտնաբառ",
+      "confirm_password": "Հաստատել գաղտնաբառը",
+      "submit_button": "Գրանցվել",
+      "success_message": "Գրանցումն հաջողությամբ կատարվեց",
+      "error_message": "Գրանցման սխալ"
+    }
   }
 }

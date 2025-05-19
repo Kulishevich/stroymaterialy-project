@@ -9,12 +9,14 @@ import { ControlledTextField } from "@/shared/ui/controlled-textfiled";
 import { useSignUpMutation } from "@/api/auth/auth.api";
 import { validation } from "@/shared/validation/validation.errors";
 import { showToast } from "@/shared/ui/toast";
+import { useTranslations } from "next-intl";
 
 export const Registration = ({
   setIsOpen,
 }: {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const t = useTranslations("autorization.registration_form");
   const [signUp] = useSignUpMutation();
 
   const {
@@ -56,7 +58,7 @@ export const Registration = ({
       const resData = await signUp(fetchData).unwrap();
       reset();
       showToast({
-        message: resData.message || "Регистрация прошла успешно",
+        message: resData.message || t("success_message"),
         variant: "success",
       });
       setIsOpen(false);
@@ -70,7 +72,7 @@ export const Registration = ({
         const errorData = err as { data: { message: string } };
         showToast({ message: errorData.data.message, variant: "error" });
       } else {
-        showToast({ message: "Ошибка регистрации", variant: "error" });
+        showToast({ message: t("error_message"), variant: "error" });
       }
       console.error(err);
     }
@@ -79,31 +81,31 @@ export const Registration = ({
   return (
     <form className={s.container} onSubmit={formHandler}>
       <Button variant={"secondary"} fullWidth={true}>
-        Стать партнером
+        {t("become_partner")}
       </Button>
       <div className={s.form}>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Имя</Typography>
+          <Typography variant="body_5">{t("name")}</Typography>
           <ControlledTextField control={control} name={"name"} />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Фамилия</Typography>
+          <Typography variant="body_5">{t("surname")}</Typography>
           <ControlledTextField control={control} name={"surname"} />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Телефон</Typography>
+          <Typography variant="body_5">{t("phone")}</Typography>
           <ControlledTextField
             control={control}
             name={"phone"}
-            placeholder="(+374) 12 34 56 78"
+            placeholder={t("phone_placeholder")}
           />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Эл. адрес</Typography>
+          <Typography variant="body_5">{t("email")}</Typography>
           <ControlledTextField control={control} name={"email"} />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Пароль</Typography>
+          <Typography variant="body_5">{t("password")}</Typography>
           <ControlledTextField
             control={control}
             name={"password"}
@@ -111,7 +113,7 @@ export const Registration = ({
           />
         </div>
         <div className={s.inputContainer}>
-          <Typography variant="body_5">Подтвердить пароль</Typography>
+          <Typography variant="body_5">{t("confirm_password")}</Typography>
           <ControlledTextField
             control={control}
             name={"passwordConfirmation"}
@@ -120,7 +122,7 @@ export const Registration = ({
         </div>
       </div>
       <Button fullWidth={true} type={"submit"} disabled={!isValid}>
-        Зарегистрироваться
+        {t("submit_button")}
       </Button>
     </form>
   );

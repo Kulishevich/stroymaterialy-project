@@ -721,5 +721,37 @@
   "confirm_modal": {
     "yes": "Да",
     "no": "Нет"
+  },
+  "autorization": {
+    "login": "Вход",
+    "registration": "Регистрация",
+    "login_form": {
+      "email": "Эл. адрес",
+      "password": "Пароль",
+      "password_recovery": "Восстановить пароль",
+      "submit_button": "Войти",
+      "success_message": "Успешный вход",
+      "error_message": "Ошибка входа"
+    },
+    "password_recovery": {
+      "title": "Восстановить пароль",
+      "description": "Введите ваш адрес электронной почты, и мы пошлем вам ссылку для сброса пароля",
+      "email_label": "Эл. адрес",
+      "recover_button": "Восстановить",
+      "back_to_login": "Вернуться во вход"
+    },
+    "registration_form": {
+      "become_partner": "Стать партнером",
+      "name": "Имя",
+      "surname": "Фамилия",
+      "phone": "Телефон",
+      "phone_placeholder": "(+374) 12 34 56 78",
+      "email": "Эл. адрес",
+      "password": "Пароль",
+      "confirm_password": "Подтвердить пароль",
+      "submit_button": "Зарегистрироваться",
+      "success_message": "Регистрация прошла успешно",
+      "error_message": "Ошибка регистрации"
+    }
   }
 }
