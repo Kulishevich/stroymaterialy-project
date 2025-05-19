@@ -8,12 +8,14 @@ import { Paths } from "@/shared/enums";
 import { useRouter } from "next/router";
 import { useGetOrderQuery } from "@/api/orders/orders.api";
 import { useTranslations } from "next-intl";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export const OrderSuccess = () => {
   const t = useTranslations("orderSuccess");
   const router = useRouter();
   const { id } = router.query;
-
+  const token = useSelector((state: RootState) => state.auth.token);
   const { data } = useGetOrderQuery({ id: (id as string) || "" });
 
   return !!data ? (
@@ -30,9 +32,11 @@ export const OrderSuccess = () => {
       </div>
 
       <div className={s.buttonsContainer}>
-        <Button as={Link} href={`${Paths.profile}?tab=orders`}>
-          {t("ordersBtn")}
-        </Button>
+        {!!token && (
+          <Button as={Link} href={`${Paths.profile}?tab=orders`}>
+            {t("ordersBtn")}
+          </Button>
+        )}
         <Button variant="secondary" as={Link} href={"/"}>
           {t("homeBtn")}
         </Button>
@@ -49,9 +53,11 @@ export const OrderSuccess = () => {
       </div>
 
       <div className={s.buttonsContainer}>
-        <Button as={Link} href={`${Paths.profile}?tab=orders`}>
-          {t("ordersBtn")}
-        </Button>
+        {!!token && (
+          <Button as={Link} href={`${Paths.profile}?tab=orders`}>
+            {t("ordersBtn")}
+          </Button>
+        )}
         <Button variant="secondary" as={Link} href={"/"}>
           {t("homeBtn")}
         </Button>
