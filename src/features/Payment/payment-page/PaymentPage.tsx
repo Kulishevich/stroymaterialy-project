@@ -156,68 +156,63 @@ export const PaymentPage = ({
   }, [orderTypeId, addressId, checkOrder, orderId]);
 
   const formHandler = handleSubmit(async (data) => {
-    const customer = {
-      // referralCode: "2313", //можно кидать если есть
-      orderId: orderId as string,
-      email: data.email,
-      phone: data.phone,
-      type: data.payerType,
-      fullName: `${data.firstName} ${data.lastName}`,
-      ...(data.payerType === "entity" && { tin: data.tin }),
-    };
-    //создание покупателя
     try {
-      const res = await createCustomer(customer).unwrap();
-      console.log("Customer", res);
-      showToast({ message: "Customer прошёл", variant: "success" });
-    } catch (err) {
-      console.error("Error customer", err);
-    }
+      // 1. Создание покупателя
+      const customer = {
+        orderId: orderId as string,
+        email: data.email,
+        phone: data.phone,
+        type: data.payerType,
+        fullName: `${data.firstName} ${data.lastName}`,
+        ...(data.payerType === "entity" && { tin: data.tin }),
+        // referralCode: "2313", //можно кидать если есть
+      };
 
-    const changeOrderArgs = {
-      ...(user
-        ? { addressId: Number(data.addressId) }
-        : {
-            address: data.address,
-            additional: data.additional,
-            regionId: data.regionId,
-          }),
-      orderTypeId: Number(data.orderType),
-      extraOptions: data.extraOptions,
-      ...(data.orderType !== "15" && {
-        date: data.deliveryData,
-        start: data.deliveryTime.split("-")[0],
-        end: data.deliveryTime.split("-")[1],
-      }),
-      // gift,
-    };
-    //данные доставки
-    try {
-      const res = await changeOrder({
+      await createCustomer(customer).unwrap();
+
+      // 2. Изменение заказа
+      const changeOrderArgs = {
+        ...(user
+          ? { addressId: Number(data.addressId) }
+          : {
+              address: data.address,
+              additional: data.additional,
+              regionId: data.regionId,
+            }),
+        orderTypeId: Number(data.orderType),
+        extraOptions: data.extraOptions,
+        ...(data.orderType !== "15" && {
+          date: data.deliveryData,
+          start: data.deliveryTime.split("-")[0],
+          end: data.deliveryTime.split("-")[1],
+        }),
+        // gift,
+      };
+
+      await changeOrder({
         args: changeOrderArgs,
         orderId: orderId as string,
       }).unwrap();
-      console.log("changeOrder", res);
-      showToast({ message: "changeOrder прошёл", variant: "success" });
-    } catch (err) {
-      console.error("Ошибка при создании заказа:", err);
-    }
 
-    const payMethodArgs = {
-      id: orderId as string,
-      method: data.paymentMethod,
-    };
-    //метод оплаты
-    try {
-      const res = await changePayMethod(payMethodArgs).unwrap();
-      showToast({ message: "Payment прошёл", variant: "success" });
-      if (res.data.redirectUrl) {
-        window.location.href = res.data.redirectUrl;
-      } else {
-        await clearCart();
+      // 3. Метод оплаты
+      const payMethodArgs = {
+        id: orderId as string,
+        method: data.paymentMethod,
+      };
+
+      const paymentRes = await changePayMethod(payMethodArgs).unwrap();
+      showToast({ message: "Покупатель создан", variant: "success" });
+
+      if (paymentRes.data.redirectUrl) {
+        window.location.href = paymentRes.data.redirectUrl;
       }
-    } catch (err: unknown) {
-      console.error("Payment error", err);
+      await clearCart();
+    } catch (err) {
+      console.error("Ошибка при оформлении заказа:", err);
+      showToast({
+        message: "Произошла ошибка при оформлении заказа. Попробуйте ещё раз.",
+        variant: "error",
+      });
     }
   });
 

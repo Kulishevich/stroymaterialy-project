@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./ProfilePage.module.scss";
 import { ArrowRightIcon } from "@/shared/assets/icons";
 import { Typography } from "@/shared/ui/typography";
@@ -30,7 +30,7 @@ export const ProfilePage = () => {
   const { tab } = router.query;
   const lang = router.locale || "hy";
 
-  const { data: setting } = useGetUserSettingQuery();
+  const { data: setting, isLoading } = useGetUserSettingQuery();
   const { data: addresses } = useGetAddressesQuery({
     lang,
     perPage: 20,
@@ -80,6 +80,16 @@ export const ProfilePage = () => {
   ];
 
   const activeTab = tab || navigate[0].id;
+
+  useEffect(() => {
+    if (!isLoading && !setting) {
+      router.replace(Paths.home);
+    }
+  }, [isLoading, setting, router]);
+
+  if (isLoading || !setting) {
+    return null;
+  }
 
   return (
     <div className={s.container}>
